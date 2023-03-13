@@ -21,6 +21,7 @@ namespace PickItEasy.Web
             builder.Services.AddPersistence(builder.Configuration);
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddRazorPages();
