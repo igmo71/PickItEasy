@@ -19,7 +19,7 @@ namespace PickItEasy.Web
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             //builder.Services.AddDbContext<ApplicationDbContext>(options =>
             //    options.UseSqlServer(connectionString));
             //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -28,13 +28,15 @@ namespace PickItEasy.Web
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            
+
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<ApplicationUser>>();
             builder.Services.AddSingleton<WeatherForecastService>();
 
             var app = builder.Build();
+
+            InitializeDb(app);
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -61,6 +63,24 @@ namespace PickItEasy.Web
             app.MapFallbackToPage("/_Host");
 
             app.Run();
+        }
+
+        private static void InitializeDb(WebApplication app)
+        {
+            using (var scope = app.Services.CreateScope())
+            {
+                try
+                {
+                    var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
+                    if (context is not null)
+                        DbInitializer.Initialize(context);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
         }
     }
 }
