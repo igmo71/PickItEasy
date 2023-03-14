@@ -7,6 +7,9 @@
 <p role="status">Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<AuthorizeView Roles="Admin">
+    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+</AuthorizeView>
 
 @code {
     private int currentCount = 0;

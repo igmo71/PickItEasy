@@ -32,19 +32,27 @@ namespace PickItEasy.Web.Controllers.Identity
             if(user == null)
                 return NotFound(loginUser.UserName);
 
-            var result = _signInManager.PasswordSignInAsync(user, loginUser.Password, false, false);
+            var result = await _signInManager.PasswordSignInAsync(user, loginUser.Password, false, false);
+            if (!result.Succeeded)
+                return Problem();
 
             var claims = new List<Claim> {
-                new Claim(ClaimTypes.Name, user.UserName)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.UserName!)
                 };
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+            foreach(var role in userRoles)
+            {
+                claims.Add(new Claim(ClaimsIdentity.DefaultRoleClaimType, role));
+            }
 
             var jwt = new JwtSecurityToken(
                 issuer: _configuration["JWT:ValidIssuer"],
                 audience: _configuration["JWT:ValidAudience"],
                 claims: claims,
-                expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(double.Parse(_configuration["JWT:ExpiryInMinutes"]))), // TODO: CS8604
+                expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(double.Parse(_configuration["JWT:ExpiryInMinutes"]!))), // TODO: CS8604
                 signingCredentials: new SigningCredentials(
-                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:IssuerSigningKey"])), SecurityAlgorithms.HmacSha256) // TODO: CS8604                
+                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:IssuerSigningKey"]!)), SecurityAlgorithms.HmacSha256) // TODO: CS8604                
                 );
 
             return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(jwt) });
