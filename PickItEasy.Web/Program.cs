@@ -29,27 +29,29 @@ namespace PickItEasy.Web
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            //builder.Services.ConfigureApplicationCookie(o =>
-            //{
-            //    o.Events.OnRedirectToLogin = ctx =>
-            //    {
-            //        if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
-            //        {
-            //            ctx.Response.StatusCode = StatusCodes.Status401Unauthorized;
-            //        }
+            /* 
+             builder.Services.ConfigureApplicationCookie(o =>
+            {
+                o.Events.OnRedirectToLogin = ctx =>
+                {
+                    if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+                    {
+                        ctx.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                    }
 
-            //        return Task.CompletedTask;
-            //    };
-            //    o.Events.OnRedirectToAccessDenied = ctx =>
-            //    {
-            //        if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
-            //        {
-            //            ctx.Response.StatusCode = StatusCodes.Status403Forbidden;
-            //        }
+                    return Task.CompletedTask;
+                };
+                o.Events.OnRedirectToAccessDenied = ctx =>
+                {
+                    if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+                    {
+                        ctx.Response.StatusCode = StatusCodes.Status403Forbidden;
+                    }
 
-            //        return Task.CompletedTask;
-            //    };
-            //});
+                    return Task.CompletedTask;
+                };
+            });
+            */
 
             var validIssuer = builder.Configuration["JWT:ValidIssuer"];
             var validAudience = builder.Configuration["JWT:ValidAudience"];
