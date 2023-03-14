@@ -44,7 +44,6 @@ namespace PickItEasy.Web
                         ValidateLifetime = true
                     };
                 });
-            //builder.Services.AddAuthorization();
 
             builder.Services.AddControllers();
 
@@ -108,7 +107,6 @@ namespace PickItEasy.Web
 
             app.UseRouting();
 
-            //app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();
