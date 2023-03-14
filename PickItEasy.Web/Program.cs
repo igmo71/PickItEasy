@@ -40,8 +40,8 @@ namespace PickItEasy.Web
                         ValidateAudience = true,
                         ValidAudience = builder.Configuration["JWT:ValidAudience"],
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:IssuerSigningKey"])), // TODO: CS8604
-                        //ValidateLifetime = true
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:IssuerSigningKey"] ?? throw new InvalidOperationException("JWT:IssuerSigningKey not found."))),
+                        ValidateLifetime = true
                     };
                 });
             //builder.Services.AddAuthorization();
@@ -64,15 +64,15 @@ namespace PickItEasy.Web
                 options.AddSecurityRequirement(new OpenApiSecurityRequirement()
                 {
                     {
-                      new OpenApiSecurityScheme
-                      {
-                        Reference = new OpenApiReference
+                        new OpenApiSecurityScheme
                         {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            },
                         },
-                      },
-                      new List<string>()
+                        new List<string>()
                     }
                 });
             });

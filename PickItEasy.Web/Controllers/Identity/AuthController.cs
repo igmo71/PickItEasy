@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using PickItEasy.Persistence.Models;
+using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -29,7 +30,7 @@ namespace PickItEasy.Web.Controllers.Identity
         public async Task<IActionResult> Login([FromBody] UserForApiLogin loginUser)
         {
             var user = await _userManager.FindByNameAsync(loginUser.UserName);
-            if(user == null)
+            if (user == null)
                 return NotFound(loginUser.UserName);
 
             var result = await _signInManager.PasswordSignInAsync(user, loginUser.Password, false, false);
@@ -37,11 +38,11 @@ namespace PickItEasy.Web.Controllers.Identity
                 return Problem();
 
             var claims = new List<Claim> {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.UserName!)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.UserName)
                 };
 
             var userRoles = await _userManager.GetRolesAsync(user);
-            foreach(var role in userRoles)
+            foreach (var role in userRoles)
             {
                 claims.Add(new Claim(ClaimsIdentity.DefaultRoleClaimType, role));
             }
@@ -49,10 +50,9 @@ namespace PickItEasy.Web.Controllers.Identity
             var jwt = new JwtSecurityToken(
                 issuer: _configuration["JWT:ValidIssuer"],
                 audience: _configuration["JWT:ValidAudience"],
-                claims: claims,
-                expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(double.Parse(_configuration["JWT:ExpiryInMinutes"]!))), // TODO: CS8604
-                signingCredentials: new SigningCredentials(
-                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:IssuerSigningKey"]!)), SecurityAlgorithms.HmacSha256) // TODO: CS8604                
+                expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(double.Parse(_configuration["JWT:ExpiryInMinutes"] ?? throw new InvalidOperationException("JWT:ExpiryInMinutes not found.")))),
+                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:IssuerSigningKey"] ?? throw new InvalidOperationException("JWT:IssuerSigningKey not found."))), SecurityAlgorithms.HmacSha256),
+                claims: claims
                 );
 
             return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(jwt) });
@@ -60,8 +60,11 @@ namespace PickItEasy.Web.Controllers.Identity
 
         public class UserForApiLogin
         {
-            public string UserName { get; set; }
-            public string Password { get; set; }
+            [Required]
+            public string UserName { get; set; } = null!;
+
+            [Required]
+            public string Password { get; set; } = null!;
         }
     }
 }
