@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
@@ -10,6 +12,7 @@ using PickItEasy.Persistence.Data;
 using PickItEasy.Persistence.Models;
 using PickItEasy.Web.Areas.Identity;
 using PickItEasy.Web.Data;
+using System.Net;
 using System.Text;
 
 namespace PickItEasy.Web
@@ -26,6 +29,32 @@ namespace PickItEasy.Web
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            //builder.Services.ConfigureApplicationCookie(o =>
+            //{
+            //    o.Events.OnRedirectToLogin = ctx =>
+            //    {
+            //        if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+            //        {
+            //            ctx.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            //        }
+
+            //        return Task.CompletedTask;
+            //    };
+            //    o.Events.OnRedirectToAccessDenied = ctx =>
+            //    {
+            //        if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+            //        {
+            //            ctx.Response.StatusCode = StatusCodes.Status403Forbidden;
+            //        }
+
+            //        return Task.CompletedTask;
+            //    };
+            //});
+
+            var validIssuer = builder.Configuration["JWT:ValidIssuer"];
+            var validAudience = builder.Configuration["JWT:ValidAudience"];
+            var issuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:IssuerSigningKey"]));
+
             builder.Services.AddAuthentication()
                 .AddJwtBearer(options =>
                 {
@@ -33,15 +62,12 @@ namespace PickItEasy.Web
                     {
                         ValidateIssuer = true,
                         ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-
                         ValidateAudience = true,
                         ValidAudience = builder.Configuration["JWT:ValidAudience"],
-                        
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:IssuerSigningKey"])), // TODO: CS8604
-
-                        ValidateLifetime = true
-                    };
+                        //ValidateLifetime = true
+                    };                    
                 });
 
             builder.Services.AddControllers();
@@ -53,7 +79,7 @@ namespace PickItEasy.Web
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<ApplicationUser>>();
-            
+
             builder.Services.AddSingleton<WeatherForecastService>();
 
             var app = builder.Build();
@@ -64,7 +90,7 @@ namespace PickItEasy.Web
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
-                
+
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
