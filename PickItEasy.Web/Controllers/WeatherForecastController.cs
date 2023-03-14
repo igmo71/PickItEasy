@@ -6,9 +6,9 @@ using PickItEasy.Web.Data;
 
 namespace PickItEasy.Web.Controllers
 {
-    //[ApiController]
-    //[Route("api/[controller]")]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [ApiController]
+    [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User")]
     public class WeatherForecastController : BaseController
     {
         private readonly WeatherForecastService _forecastService;

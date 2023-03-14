@@ -26,25 +26,34 @@ namespace PickItEasy.Web.Controllers.Identity
         }
 
         [HttpPost("[action]")]
-        public IActionResult Login([FromBody] string username)
+        public async Task<IActionResult> Login([FromBody] UserForApiLogin loginUser)
         {
-            if (username != "Vasya")
-                return BadRequest();
-            
+            var user = await _userManager.FindByNameAsync(loginUser.UserName);
+            if(user == null)
+                return NotFound(loginUser.UserName);
+
+            var result = _signInManager.PasswordSignInAsync(user, loginUser.Password, false, false);
+
             var claims = new List<Claim> {
-                new Claim(ClaimTypes.Name, username)
+                new Claim(ClaimTypes.Name, user.UserName)
                 };
-            
+
             var jwt = new JwtSecurityToken(
                 issuer: _configuration["JWT:ValidIssuer"],
                 audience: _configuration["JWT:ValidAudience"],
                 claims: claims,
                 expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(double.Parse(_configuration["JWT:ExpiryInMinutes"]))), // TODO: CS8604
-                signingCredentials: new SigningCredentials( 
+                signingCredentials: new SigningCredentials(
                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:IssuerSigningKey"])), SecurityAlgorithms.HmacSha256) // TODO: CS8604                
                 );
 
             return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(jwt) });
+        }
+
+        public class UserForApiLogin
+        {
+            public string UserName { get; set; }
+            public string Password { get; set; }
         }
     }
 }
