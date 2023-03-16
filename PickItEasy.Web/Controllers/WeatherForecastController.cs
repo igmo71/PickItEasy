@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PickItEasy.Web.Data;
+using PickItEasy.Application;
+using PickItEasy.Domain;
 
 namespace PickItEasy.Web.Controllers
 {
@@ -21,8 +22,8 @@ namespace PickItEasy.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            WeatherForecast[]? forecastsawait = await _forecastService.GetForecastAsync(DateOnly.FromDateTime(DateTime.Now));
-            return Ok(forecastsawait);
+            WeatherForecast[]? forecasts = await _forecastService.GetForecastAsync(DateOnly.FromDateTime(DateTime.Now));
+            return Ok(forecasts);
         }
     }
 }

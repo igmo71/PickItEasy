@@ -1,9 +1,11 @@
 ﻿@page "/fetchdata"
 @using Microsoft.AspNetCore.Authentication.Cookies;
-@using PickItEasy.Web.Data
-@attribute [Authorize]
+@using PickItEasy.Domain
+@using PickItEasy.Application
+@*@attribute [Authorize]*@
 @inject WeatherForecastService ForecastService
-<AuthorizeView Roles="User">
+
+@*<AuthorizeView Roles="User">*@
     <PageTitle>Weather forecast</PageTitle>
 
     <h1>Weather forecast</h1>
@@ -38,7 +40,7 @@
             </tbody>
         </table>
     }
-</AuthorizeView>
+@*</AuthorizeView>*@
 
 @code {
     private WeatherForecast[]? forecasts;

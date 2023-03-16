@@ -1,11 +1,18 @@
-namespace PickItEasy.Web.Data
+﻿using PickItEasy.Domain;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PickItEasy.Application
 {
     public class WeatherForecastService
     {
         private static readonly string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        };
 
         public Task<WeatherForecast[]> GetForecastAsync(DateOnly startDate)
         {

@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using PickItEasy.Application;
 using PickItEasy.Persistence;
 using PickItEasy.Persistence.Data;
 using PickItEasy.Persistence.Models;
 using PickItEasy.Web.Areas.Identity;
-using PickItEasy.Web.Data;
 using System.Net;
 using System.Text;
 

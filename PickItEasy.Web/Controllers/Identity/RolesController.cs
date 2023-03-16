@@ -9,7 +9,7 @@ namespace PickItEasy.Web.Controllers.Identity
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
     public class RolesController : ControllerBase
     {
         RoleManager<IdentityRole> _roleManager;
