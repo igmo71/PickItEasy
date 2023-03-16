@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PickItEasy.Domain", "PickIt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PickItEasy.WebApi", "PickItEasy.WebApi\PickItEasy.WebApi.csproj", "{EA24B3A9-EB51-4563-8408-0158EBB89128}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PickItEasy.WebApp.BlazorServer", "PickItEasy.WebApp.BlazorServer\PickItEasy.WebApp.BlazorServer.csproj", "{89673ADD-AFF4-4668-971D-7EC9AE988925}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PickItEasy.WebApp.BlazorServer", "PickItEasy.WebApp.BlazorServer\PickItEasy.WebApp.BlazorServer.csproj", "{89673ADD-AFF4-4668-971D-7EC9AE988925}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{365A484D-6701-4DEB-B283-1E12DA93F360}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{89673ADD-AFF4-4668-971D-7EC9AE988925}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89673ADD-AFF4-4668-971D-7EC9AE988925}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89673ADD-AFF4-4668-971D-7EC9AE988925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{365A484D-6701-4DEB-B283-1E12DA93F360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{365A484D-6701-4DEB-B283-1E12DA93F360}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{365A484D-6701-4DEB-B283-1E12DA93F360}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{365A484D-6701-4DEB-B283-1E12DA93F360}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
