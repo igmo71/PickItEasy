@@ -1,10 +1,7 @@
 ﻿@page "/fetchdata"
-@using PickItEasy.Application.Services;
 @using Microsoft.AspNetCore.Authentication.Cookies;
-@using PickItEasy.Domain
 @using PickItEasy.Web.Pages.Components
 @*@attribute [Authorize]*@
-@inject WeatherForecastService ForecastService
 
 @*<AuthorizeView Roles="User">*@
     <PageTitle>Weather forecast</PageTitle>
@@ -13,7 +10,7 @@
 
     <p>This component demonstrates fetching data from a service.</p>
     
-    <SearchWeatherForecast OnSearch="Search"></SearchWeatherForecast>
+    <SearchWeatherForecast Search="@SearchAsync"></SearchWeatherForecast>
     
     @if (forecasts == null)
     {
@@ -45,16 +42,3 @@
     }
 @*</AuthorizeView>*@
 
-@code {
-    private WeatherForecast[]? forecasts;
-
-    protected override async Task OnInitializedAsync()
-    {
-        forecasts = await ForecastService.GetAllAsync(/*DateOnly.FromDateTime(DateTime.Now)*/);
-    }
-
-    private async Task Search(SearchWeatherForecastModel searchWeatherForecastModel)
-    {
-        forecasts = await ForecastService.SearchAsync(searchWeatherForecastModel);
-    }
-}

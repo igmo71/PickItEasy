@@ -17,13 +17,13 @@
 
 @code {
     [Parameter]
-    public EventCallback<SearchWeatherForecastModel> OnSearch { get; set; }
+    public EventCallback<SearchWeatherForecastModel> Search { get; set; }
 
     private SearchWeatherForecastModel searchModel = new();
 
     private async Task HandleSubmit()
     {
-        await OnSearch.InvokeAsync(searchModel);
+        await Search.InvokeAsync(searchModel);
     }
 
     

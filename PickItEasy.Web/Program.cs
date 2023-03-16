@@ -13,6 +13,7 @@ using PickItEasy.Persistence;
 using PickItEasy.Persistence.Data;
 using PickItEasy.Persistence.Models;
 using PickItEasy.Web.Areas.Identity;
+using PickItEasy.Web.EventBus;
 using System.Net;
 using System.Text;
 
@@ -80,6 +81,8 @@ namespace PickItEasy.Web
             builder.Services.AddServerSideBlazor();
             builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<ApplicationUser>>();
 
+            builder.Services.AddSingleton<EventManager>();
+            
             builder.Services.AddScoped<WeatherForecastService>();
 
             var app = builder.Build();

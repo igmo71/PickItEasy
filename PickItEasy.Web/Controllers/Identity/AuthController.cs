@@ -38,7 +38,7 @@ namespace PickItEasy.Web.Controllers.Identity
                 return Problem();
 
             var claims = new List<Claim> {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.UserName)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.UserName ?? string.Empty)
                 };
 
             var userRoles = await _userManager.GetRolesAsync(user);
