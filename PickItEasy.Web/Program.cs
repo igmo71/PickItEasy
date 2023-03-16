@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using PickItEasy.Application;
+using PickItEasy.Application.Services;
 using PickItEasy.Persistence;
 using PickItEasy.Persistence.Data;
 using PickItEasy.Persistence.Models;
@@ -80,7 +80,7 @@ namespace PickItEasy.Web
             builder.Services.AddServerSideBlazor();
             builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<ApplicationUser>>();
 
-            builder.Services.AddSingleton<WeatherForecastService>();
+            builder.Services.AddScoped<WeatherForecastService>();
 
             var app = builder.Build();
 
