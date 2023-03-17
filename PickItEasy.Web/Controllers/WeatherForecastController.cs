@@ -43,12 +43,30 @@ namespace PickItEasy.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(WeatherForecast weatherForecast)
         {
-            var result = await _forecastService.AddAsync(weatherForecast);
+            var result = await _forecastService.CreateAsync(weatherForecast);
 
             //_forecastEventManager.OnWeatherForecastCreated();
-            await _mediator.Publish(new WeatherForecastCreateNotifucation() { Value = weatherForecast });
+            await _mediator.Publish(new WeatherForecastCreateNotifucation() { Value = result });
             
             return Ok(result);
-        }   
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put(WeatherForecast weatherForecast)
+        {
+            var result = await _forecastService.UpdateAsync(weatherForecast);
+
+            //_forecastEventManager.OnWeatherForecastCreated();
+            await _mediator.Publish(new WeatherForecastUpdateNotifucation() { Value = result });
+
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAll()
+        {
+            await _forecastService.DeleteAllAsync();
+            return NoContent();
+        }
     }
 }

@@ -3,7 +3,7 @@ version: '3.4'
 services:
   pickiteasy.web:
     image: ${DOCKER_REGISTRY-}pickiteasyweb
-    container_name: web_combine_container
+    container_name: web_combine
     environment:
       COMPOSE_PROJECT_NAME: pickiteasy
     build:
@@ -12,7 +12,7 @@ services:
 
   pickiteasy.webapi:
     image: ${DOCKER_REGISTRY-}pickiteasywebapi
-    container_name: webapi_container
+    container_name: webapi
     environment:
       COMPOSE_PROJECT_NAME: pickiteasy
     build:
@@ -21,7 +21,7 @@ services:
 
   pickiteasy.webapp.blazorserver:
     image: ${DOCKER_REGISTRY-}pickiteasywebappblazorserver
-    container_name: webapp-blazor_container
+    container_name: webapp-blazor
     environment:
       COMPOSE_PROJECT_NAME: pickiteasy
     build:
@@ -29,7 +29,7 @@ services:
       dockerfile: PickItEasy.WebApp.BlazorServer/Dockerfile
 
   postgres:
-    container_name: postgres_container
+    container_name: postgres
     image: postgres
     command:
       - "postgres"
@@ -85,7 +85,7 @@ services:
           memory: 4G
 
   pgadmin:
-    container_name: pgadmin_container
+    container_name: pgadmin
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: "igmo@dobroga.ru"

@@ -5,7 +5,10 @@ using PickItEasy.Domain;
 
 namespace PickItEasy.Web.Pages
 {
-    public partial class FetchData : INotificationHandler<WeatherForecastCreateNotifucation>, IDisposable
+    public partial class FetchData :
+        INotificationHandler<WeatherForecastCreateNotifucation>,
+        INotificationHandler<WeatherForecastUpdateNotifucation>,
+        IDisposable
     {
         [Inject]
         public WeatherForecastService? ForecastService { get; set; }
@@ -14,6 +17,7 @@ namespace PickItEasy.Web.Pages
         private SearchWeatherForecastModel searchForecastModel = new();
 
         private static event EventHandler<WeatherForecastCreateNotifucation>? WeatherForecastCreated;
+        private static event EventHandler<WeatherForecastUpdateNotifucation>? WeatherForecastUpdated;
 
         protected override async Task OnInitializedAsync()
         {
@@ -28,15 +32,18 @@ namespace PickItEasy.Web.Pages
             if (firstRender)
             {
                 WeatherForecastCreated += WeatherForecastCreatedHandle;
+                WeatherForecastUpdated += WeatherForecastUpdatedHandle;
             }
         }
 
         private void WeatherForecastCreatedHandle(object? sender, WeatherForecastCreateNotifucation e)
         {
-            if (e.Value is null) return;
+            SearchAsync(searchForecastModel).GetAwaiter().GetResult();
+        }
 
-            forecasts?.Add(e.Value);
-            InvokeAsync(StateHasChanged);
+        private void WeatherForecastUpdatedHandle(object? sender, WeatherForecastUpdateNotifucation e)
+        {
+            SearchAsync(searchForecastModel).GetAwaiter().GetResult();
         }
 
         private async Task SearchAsync(SearchWeatherForecastModel searchWeatherForecastModel)
@@ -53,9 +60,16 @@ namespace PickItEasy.Web.Pages
             return Task.CompletedTask;
         }
 
+        public Task Handle(WeatherForecastUpdateNotifucation notification, CancellationToken cancellationToken)
+        {
+            WeatherForecastUpdated?.Invoke(this, notification);
+            return Task.CompletedTask;
+        }
+
         public void Dispose()
         {
             WeatherForecastCreated -= WeatherForecastCreatedHandle;
+            WeatherForecastUpdated -= WeatherForecastUpdatedHandle;
         }
     }
 }

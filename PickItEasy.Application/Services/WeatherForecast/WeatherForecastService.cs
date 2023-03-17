@@ -30,19 +30,32 @@ namespace PickItEasy.Application.Services
         public async Task<List<WeatherForecast>> SearchAsync(SearchWeatherForecastModel searchModel)
         {
             var query = _context.WeatherForecasts.AsQueryable();
+
             if (!string.IsNullOrEmpty(searchModel.Summary))
                 query = query.Where(e => e.Summary == searchModel.Summary);
 
-            var result = await query.ToListAsync();
+            var result = await query.AsNoTracking().ToListAsync();
 
             return result;
         }
 
-        public async Task<WeatherForecast> AddAsync(WeatherForecast weatherForecast)
+        public async Task<WeatherForecast> CreateAsync(WeatherForecast weatherForecast)
         {
             await _context.WeatherForecasts.AddAsync(weatherForecast);
             await _context.SaveChangesAsync(CancellationToken.None);
             return weatherForecast;
+        }
+
+        public async Task<WeatherForecast?> UpdateAsync(WeatherForecast weatherForecast)
+        {
+            var item = await _context.WeatherForecasts.FindAsync(weatherForecast.Id);
+            if (item != null)
+            {
+                item.Summary = weatherForecast.Summary;
+                item.TemperatureC = weatherForecast.TemperatureC;
+                await _context.SaveChangesAsync(CancellationToken.None);
+            }
+            return item;
         }
 
         public async Task AddRangeAsync(WeatherForecast[] weatherForecasts)
@@ -65,6 +78,13 @@ namespace PickItEasy.Application.Services
                 TemperatureC = Random.Shared.Next(-20, 55),
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             }).ToArray());
+        }
+
+        public async Task DeleteAllAsync()
+        {
+            var range = await _context.WeatherForecasts.ToListAsync();
+            _context.WeatherForecasts.RemoveRange(range);
+            await _context.SaveChangesAsync(CancellationToken.None);
         }
     }
 }
