@@ -1,6 +1,6 @@
 ﻿namespace PickItEasy.Web.EventBus
 {
-    public class EventManager
+    public class WeatherForecasEventManager
     {
         public event EventHandler? WeatherForecastCreated;
 

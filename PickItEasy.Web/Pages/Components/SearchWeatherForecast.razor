@@ -1,30 +1,34 @@
 ﻿@using PickItEasy.Application.Services
 
-<EditForm Model="@searchModel" OnSubmit="HandleSubmit">
+<EditForm Model="@SearchModel" OnSubmit="HandleSubmit">
     <div class="row">
         <div class="col">
-            <InputSelect class="form-select" id="summary" @bind-Value="searchModel.Summary">
-                <option value="">Select...</option>
-                @foreach (var item in WeatherForecastService.Summaries)
-                {
-                    <option value="@item">@item</option>
-                }
-            </InputSelect>
+            @if (SearchModel is not null)
+            {
+                <InputSelect class="form-select" id="summary" @bind-Value="SearchModel.Summary">
+                    <option value="">Select...</option>
+                    @foreach (var item in WeatherForecastService.Summaries)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </InputSelect>
+            }
         </div>
         <div class="col"><button class="btn btn-primary" type="submit">Search</button></div>
-    </div>    
+    </div>
 </EditForm>
 
 @code {
     [Parameter]
     public EventCallback<SearchWeatherForecastModel> Search { get; set; }
 
-    private SearchWeatherForecastModel searchModel = new();
+    [Parameter]
+    public SearchWeatherForecastModel? SearchModel { get; set; }
 
     private async Task HandleSubmit()
     {
-        await Search.InvokeAsync(searchModel);
+        await Search.InvokeAsync(SearchModel);
     }
 
-    
+
 }

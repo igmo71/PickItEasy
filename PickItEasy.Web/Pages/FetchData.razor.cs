@@ -1,25 +1,25 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using MediatR;
+using Microsoft.AspNetCore.Components;
 using PickItEasy.Application.Services;
 using PickItEasy.Domain;
-using PickItEasy.Web.EventBus;
 
 namespace PickItEasy.Web.Pages
 {
-    public partial class FetchData : IDisposable
+    public partial class FetchData : INotificationHandler<WeatherForecastCreateNotifucation>, IDisposable
     {
         [Inject]
         public WeatherForecastService? ForecastService { get; set; }
 
-        [Inject]
-        public EventManager? EventManager { get; set; }
+        private List<WeatherForecast>? forecasts;
+        private SearchWeatherForecastModel searchForecastModel = new();
 
-        private WeatherForecast[]? forecasts;
-        private SearchWeatherForecastModel searchWeatherForecastModel = new();
+        private static event EventHandler<WeatherForecastCreateNotifucation>? WeatherForecastCreated;
 
         protected override async Task OnInitializedAsync()
         {
-            if (ForecastService is not null)
-                forecasts = await ForecastService.GetAllAsync();
+            if (ForecastService is null) return;
+
+            forecasts = await ForecastService.GetAllAsync();
         }
 
         protected override void OnAfterRender(bool firstRender)
@@ -27,33 +27,37 @@ namespace PickItEasy.Web.Pages
             base.OnAfterRender(firstRender);
             if (firstRender)
             {
-                if (EventManager is not null)
-                    EventManager.WeatherForecastCreated += UpdateList;
+                WeatherForecastCreated += WeatherForecastCreatedHandle;
             }
+        }
+
+        private void WeatherForecastCreatedHandle(object? sender, WeatherForecastCreateNotifucation e)
+        {
+            if (e.Value is null) return;
+
+            forecasts?.Add(e.Value);
+            InvokeAsync(StateHasChanged);
         }
 
         private async Task SearchAsync(SearchWeatherForecastModel searchWeatherForecastModel)
         {
-            this.searchWeatherForecastModel = searchWeatherForecastModel;
-            if (ForecastService is not null)
-            {
-                forecasts = await ForecastService.SearchAsync(searchWeatherForecastModel);
-                //StateHasChanged();
-                await InvokeAsync(() => StateHasChanged());
-            }
+            if (ForecastService is null) return;
+
+            forecasts = await ForecastService.SearchAsync(searchWeatherForecastModel);
+            //StateHasChanged(); // InvokeAsync(StateHasChanged);
+            await InvokeAsync(() => StateHasChanged()); // !!!
+
         }
 
-        private void UpdateList(object? sender, EventArgs e)
+        public Task Handle(WeatherForecastCreateNotifucation notification, CancellationToken cancellationToken)
         {
-            SearchAsync(searchWeatherForecastModel).GetAwaiter().GetResult();
-            //StateHasChanged();
-            InvokeAsync(() => StateHasChanged());
+            WeatherForecastCreated?.Invoke(this, notification);
+            return Task.CompletedTask;
         }
 
         public void Dispose()
         {
-            if (EventManager is not null)
-                EventManager.WeatherForecastCreated -= UpdateList;
+            WeatherForecastCreated -= WeatherForecastCreatedHandle;
         }
     }
 }

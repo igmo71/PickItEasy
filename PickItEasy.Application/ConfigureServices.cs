@@ -11,15 +11,15 @@ namespace PickItEasy.Application
 {
     public static class ConfigureServices
     {
-        public static IServiceCollection AddApplication(this IServiceCollection services)
-        {
-            services.AddMediatR(config =>
-            {
-                config.RegisterServicesFromAssemblies(new[] {Assembly.GetExecutingAssembly()});
-            });
-            //services.AddValidatorsFromAssemblies
-            //services.AddTransient(typeof(INotificationHandler<>), typeof(WeatherForecastCreateNotificationHandler));
-            return services;
-        }
+        //public static IServiceCollection AddApplication(this IServiceCollection services)
+        //{
+        //    services.AddMediatR(config =>
+        //    {
+        //        config.RegisterServicesFromAssemblies(new[] {Assembly.GetExecutingAssembly()});
+        //    });
+        //    //services.AddValidatorsFromAssemblies
+        //    //services.AddTransient(typeof(INotificationHandler<>), typeof(WeatherForecastCreateNotificationHandler));
+        //    return services;
+        //}
     }
 }

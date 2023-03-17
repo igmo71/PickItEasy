@@ -16,6 +16,8 @@ using PickItEasy.Web.Areas.Identity;
 using PickItEasy.Web.EventBus;
 using System.Net;
 using System.Text;
+using PickItEasy.Application;
+using System.Reflection;
 
 namespace PickItEasy.Web
 {
@@ -81,8 +83,15 @@ namespace PickItEasy.Web
             builder.Services.AddServerSideBlazor();
             builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<ApplicationUser>>();
 
-            builder.Services.AddSingleton<EventManager>();
-            
+            //builder.Services.AddApplication();
+
+            builder.Services.AddMediatR(config =>
+                {
+                    config.RegisterServicesFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
+                });
+
+            builder.Services.AddSingleton<WeatherForecasEventManager>();
+
             builder.Services.AddScoped<WeatherForecastService>();
 
             var app = builder.Build();

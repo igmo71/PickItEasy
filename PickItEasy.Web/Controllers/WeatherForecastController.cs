@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Services;
 using PickItEasy.Domain;
 using PickItEasy.Web.EventBus;
+using PickItEasy.Web.Pages;
 
 namespace PickItEasy.Web.Controllers
 {
@@ -14,18 +16,20 @@ namespace PickItEasy.Web.Controllers
     public class WeatherForecastController : BaseController
     {
         private readonly WeatherForecastService _forecastService;
-        private readonly EventManager _eventManager;
+        private readonly WeatherForecasEventManager _forecastEventManager;
+        private readonly IMediator _mediator;
 
-        public WeatherForecastController(WeatherForecastService forecastService, EventManager eventManager)
+        public WeatherForecastController(WeatherForecastService forecastService, WeatherForecasEventManager forecastEventManager, IMediator mediator)
         {
             _forecastService = forecastService;
-            _eventManager = eventManager;
+            _forecastEventManager = forecastEventManager;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            WeatherForecast[]? forecasts = await _forecastService.GetAllAsync(/*DateOnly.FromDateTime(DateTime.Now)*/);
+            var forecasts = await _forecastService.GetAllAsync();
             return Ok(forecasts);
         }
 
@@ -41,8 +45,9 @@ namespace PickItEasy.Web.Controllers
         {
             var result = await _forecastService.AddAsync(weatherForecast);
 
-            _eventManager.OnWeatherForecastCreated();
-
+            //_forecastEventManager.OnWeatherForecastCreated();
+            await _mediator.Publish(new WeatherForecastCreateNotifucation() { Value = weatherForecast });
+            
             return Ok(result);
         }   
     }

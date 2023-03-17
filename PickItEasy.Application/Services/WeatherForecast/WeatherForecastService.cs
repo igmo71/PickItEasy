@@ -20,20 +20,20 @@ namespace PickItEasy.Application.Services
             _context = context;
         }
 
-        public async Task<WeatherForecast[]> GetAllAsync()
+        public async Task<List<WeatherForecast>> GetAllAsync()
         {
-            var result = await _context.WeatherForecasts.ToArrayAsync();
+            var result = await _context.WeatherForecasts.ToListAsync();
 
             return result;
         }
 
-        public async Task<WeatherForecast[]> SearchAsync(SearchWeatherForecastModel searchModel)
+        public async Task<List<WeatherForecast>> SearchAsync(SearchWeatherForecastModel searchModel)
         {
             var query = _context.WeatherForecasts.AsQueryable();
             if (!string.IsNullOrEmpty(searchModel.Summary))
                 query = query.Where(e => e.Summary == searchModel.Summary);
 
-            var result = await query.ToArrayAsync();
+            var result = await query.ToListAsync();
 
             return result;
         }
