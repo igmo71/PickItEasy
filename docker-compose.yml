@@ -1,5 +1,7 @@
 version: '3.4'
 
+name: pick-it-easy
+
 services:
   pickiteasy.web:
     image: ${DOCKER_REGISTRY-}pickiteasyweb
@@ -29,7 +31,7 @@ services:
       dockerfile: PickItEasy.WebApp.BlazorServer/Dockerfile
 
   postgres:
-    container_name: postgres
+    container_name: postgres_container
     image: postgres
     command:
       - "postgres"
@@ -85,7 +87,7 @@ services:
           memory: 4G
 
   pgadmin:
-    container_name: pgadmin
+    container_name: pgadmin_container
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: "igmo@dobroga.ru"
@@ -101,6 +103,7 @@ services:
           memory: 1G
 
   rabbitmq:
+    container_name: rabbitmq_container
     image: rabbitmq:3-management
     ports:
       - "15672:15672"
@@ -108,6 +111,7 @@ services:
     restart: unless-stopped
 
   redis:
+    container_name: redis_container
     image: redis
 
 volumes:
