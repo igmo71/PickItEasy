@@ -5,8 +5,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using PickItEasy.WebApp.BlazorServer.Areas.Identity;
-using PickItEasy.WebApp.BlazorServer.Data;
 using PickItEasy.Persistence;
+using PickItEasy.Persistence.Data;
+using PickItEasy.Application.Services;
+using PickItEasy.Persistence.Models;
 
 namespace PickItEasy.WebApp.BlazorServer
 {
@@ -20,12 +22,12 @@ namespace PickItEasy.WebApp.BlazorServer
 
             builder.Services.AddPersistence(builder.Configuration);
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
-            builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
-            builder.Services.AddSingleton<WeatherForecastService>();
+            builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<ApplicationUser>>();
+            builder.Services.AddScoped<WeatherForecastService>();
 
             var app = builder.Build();
 

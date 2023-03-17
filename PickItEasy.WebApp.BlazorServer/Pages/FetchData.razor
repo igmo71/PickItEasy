@@ -1,5 +1,6 @@
 ﻿@page "/fetchdata"
-@using PickItEasy.WebApp.BlazorServer.Data
+@using PickItEasy.Domain;
+@using PickItEasy.Application.Services
 @inject WeatherForecastService ForecastService
 
 <PageTitle>Weather forecast</PageTitle>
@@ -38,10 +39,10 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private List<WeatherForecast>? forecasts;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await ForecastService.GetForecastAsync(DateOnly.FromDateTime(DateTime.Now));
+        forecasts = await ForecastService.GetAllAsync();
     }
 }
