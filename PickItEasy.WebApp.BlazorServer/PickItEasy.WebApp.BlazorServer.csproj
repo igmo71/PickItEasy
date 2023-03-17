@@ -21,4 +21,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PickItEasy.Application\PickItEasy.Application.csproj" />
+    <ProjectReference Include="..\PickItEasy.Persistence\PickItEasy.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>

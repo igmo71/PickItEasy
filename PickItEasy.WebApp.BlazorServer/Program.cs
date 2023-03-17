@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using PickItEasy.WebApp.BlazorServer.Areas.Identity;
 using PickItEasy.WebApp.BlazorServer.Data;
+using PickItEasy.Persistence;
 
 namespace PickItEasy.WebApp.BlazorServer
 {
@@ -16,10 +17,9 @@ namespace PickItEasy.WebApp.BlazorServer
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
-            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+            builder.Services.AddPersistence(builder.Configuration);
+
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddRazorPages();
