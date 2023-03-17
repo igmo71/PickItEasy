@@ -44,9 +44,7 @@ namespace PickItEasy.Web.Pages
             if (ForecastService is null) return;
 
             forecasts = await ForecastService.SearchAsync(searchWeatherForecastModel);
-            //StateHasChanged(); // InvokeAsync(StateHasChanged);
-            await InvokeAsync(() => StateHasChanged()); // !!!
-
+            await InvokeAsync(StateHasChanged);
         }
 
         public Task Handle(WeatherForecastCreateNotifucation notification, CancellationToken cancellationToken)
