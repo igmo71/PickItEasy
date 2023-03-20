@@ -367,8 +367,6 @@ namespace PickItEasy.Persistence.Migrations
                 {
                     b.HasBaseType("PickItEasy.Domain.Entities.DocumentHistory");
 
-                    b.HasIndex("DocumentId");
-
                     b.HasDiscriminator().HasValue("WhsOrderHistory");
                 });
 
@@ -382,10 +380,6 @@ namespace PickItEasy.Persistence.Migrations
             modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderProductHistory", b =>
                 {
                     b.HasBaseType("PickItEasy.Domain.Entities.DocumentItemHistory");
-
-                    b.HasIndex("DocumentId");
-
-                    b.HasIndex("DocumentItemId");
 
                     b.HasDiscriminator().HasValue("WhsOrderProductHistory");
                 });
@@ -468,36 +462,6 @@ namespace PickItEasy.Persistence.Migrations
                         .HasForeignKey("WhsOrdersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderHistory", b =>
-                {
-                    b.HasOne("PickItEasy.Domain.Entities.WhsOrder", "WhsOrder")
-                        .WithMany()
-                        .HasForeignKey("DocumentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("WhsOrder");
-                });
-
-            modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderProductHistory", b =>
-                {
-                    b.HasOne("PickItEasy.Domain.Entities.WhsOrder", "WhsOrder")
-                        .WithMany()
-                        .HasForeignKey("DocumentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PickItEasy.Domain.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("DocumentItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("WhsOrder");
                 });
 #pragma warning restore 612, 618
         }

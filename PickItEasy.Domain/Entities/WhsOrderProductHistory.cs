@@ -8,7 +8,7 @@ namespace PickItEasy.Domain.Entities
 {
     public class WhsOrderProductHistory : DocumentItemHistory
     {
-        public WhsOrder? WhsOrder { get; set; }
-        public Product? Product { get; set; }
+        //public WhsOrder? WhsOrder { get; set; }
+        //public Product? Product { get; set; }
     }
 }

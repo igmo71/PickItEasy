@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Services.WhsOrdersExpense.Commands.CreateWhsOrderExpense;
 using PickItEasy.Application.Services.WhsOrdersOut.Dto;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries;
+using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,11 +28,10 @@ namespace PickItEasy.WebApi.Controllers
         }
 
         // GET api/<WhsOrdersOutController>/5
-        [ActionName("GetById")]
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(Guid id)
+        public async Task<IActionResult> GetById(Guid id)
         {
-            var result = await _mediator.Send(new GetWhsOrderOutQuery { Id = id });
+            var result = await _mediator.Send(new GetByIdWhsOrderOutQuery { Id = id });
 
             return Ok(result);
         }
@@ -42,7 +42,7 @@ namespace PickItEasy.WebApi.Controllers
         {
             var result = await _mediator.Send(new CreateWhsOrderOutCommand { CreateWhsOrderExpenseDto = createWhsOrderOutDto });
 
-            return CreatedAtAction("GetById", new { id = result.Id }, result);
+            return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 
         // PUT api/<WhsOrdersOutController>/5

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
+namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
 {
-    public class GetWhsOrderOutQuery : IRequest<WhsOrderOutDto>
+    public class GetByIdWhsOrderOutQuery : IRequest<WhsOrderOutDto>
     {
         public Guid Id { get; set; }
     }

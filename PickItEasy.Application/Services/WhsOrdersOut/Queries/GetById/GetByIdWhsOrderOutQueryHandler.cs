@@ -10,20 +10,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
+namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
 {
-    public class GetWhsOrderOutQueryHandler : IRequestHandler<GetWhsOrderOutQuery, WhsOrderOutDto>
+    public class GetByIdWhsOrderOutQueryHandler : IRequestHandler<GetByIdWhsOrderOutQuery, WhsOrderOutDto>
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetWhsOrderOutQueryHandler(IApplicationDbContext dbContext, IMapper mapper)
+        public GetByIdWhsOrderOutQueryHandler(IApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
         }
 
-        public async Task<WhsOrderOutDto> Handle(GetWhsOrderOutQuery request, CancellationToken cancellationToken)
+        public async Task<WhsOrderOutDto> Handle(GetByIdWhsOrderOutQuery request, CancellationToken cancellationToken)
         {
             var whsOrderOut = await _dbContext.WhsOrdersOut.AsNoTracking()
                 .FirstOrDefaultAsync(e => e.Id == request.Id);
