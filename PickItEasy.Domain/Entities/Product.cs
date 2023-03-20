@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PickItEasy.Domain
+namespace PickItEasy.Domain.Entities
 {
-    public interface IHasId
+    public class Product : DocumentItem
     {
-        public Guid Id { get; set; }
     }
 }

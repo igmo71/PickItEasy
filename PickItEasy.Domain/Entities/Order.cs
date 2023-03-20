@@ -8,6 +8,10 @@ namespace PickItEasy.Domain.Entities
 {
     public class Order : Document
     {
-        public ICollection<OrderItem>? Items { get; set; }
+        public ICollection<OrderProduct>? Items { get; set; }
+
+        public OrderType? OrderType { get; set; }
+
+        public Guid OrderTypeId { get; set; }
     }
 }

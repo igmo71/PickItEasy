@@ -1,17 +1,19 @@
-﻿using System;
+﻿using PickItEasy.Domain.Entities.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PickItEasy.Domain.Entities.Interfaces;
 
 namespace PickItEasy.Domain.Entities
 {
-    public class Document : BaseEntity, IHasId, IHasName, IHasDateTime
+    public class DocumentHistory<TDocument> : BaseEntity, IHasId, IHasDateTime
     {
         public Guid Id { get; set; }
+
         public DateTime DateTime { get; set; }
-        public string? Number { get; set; }
-        public string? Name { get; set; }
+
+        public TDocument? Document { get; set; }
+        public Guid DocumentId { get; set; }
     }
 }
