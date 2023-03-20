@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Interfaces;
+using PickItEasy.Application.Interfaces.EventBus;
 using PickItEasy.EventBus.RabbitMq;
 
 namespace PickItEasy.Web.Controllers
@@ -9,18 +10,18 @@ namespace PickItEasy.Web.Controllers
     [ApiController]
     public class RabbitMqController : ControllerBase
     {
-        private readonly IEventBusPublisher _eventBusService;
+        private readonly IEventBusPublisher _eventBusPublisher;
 
-        public RabbitMqController(IEventBusPublisher eventBusService)
+        public RabbitMqController(IEventBusPublisher eventBusPublisher)
         {
-            _eventBusService = eventBusService;
+            _eventBusPublisher = eventBusPublisher;
         }
 
         [Route("[action]/{message}")]
         [HttpGet]
         public IActionResult SendMessage(string message)
         {
-            _eventBusService.SendMessage(message);
+            _eventBusPublisher.SendMessage(message);
 
             return Ok("Сообщение отправлено");
         }

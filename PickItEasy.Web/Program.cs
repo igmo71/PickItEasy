@@ -21,6 +21,7 @@ using System.Reflection;
 using RabbitMQ.Client.Events;
 using PickItEasy.EventBus.RabbitMq;
 using PickItEasy.Application.Interfaces;
+using PickItEasy.Application.Interfaces.EventBus;
 
 namespace PickItEasy.Web
 {
