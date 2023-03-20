@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Domain.Entities
 {
-    public class WhsOrderReceipt : WhsOrder
+    public class WhsOrderIn : WhsOrder
     {
     }
 }

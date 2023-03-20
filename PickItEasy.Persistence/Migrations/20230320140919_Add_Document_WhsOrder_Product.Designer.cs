@@ -12,7 +12,7 @@ using PickItEasy.Persistence.Data;
 namespace PickItEasy.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230320112856_Add_Document_WhsOrder_Product")]
+    [Migration("20230320140919_Add_Document_WhsOrder_Product")]
     partial class Add_Document_WhsOrder_Product
     {
         /// <inheritdoc />
@@ -104,12 +104,10 @@ namespace PickItEasy.Persistence.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("character varying(128)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("character varying(128)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("text");
@@ -146,12 +144,10 @@ namespace PickItEasy.Persistence.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("character varying(128)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("character varying(128)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Value")
                         .HasColumnType("text");
@@ -397,18 +393,18 @@ namespace PickItEasy.Persistence.Migrations
                     b.HasDiscriminator().HasValue("WhsOrderProductHistory");
                 });
 
-            modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderExpense", b =>
+            modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderIn", b =>
                 {
                     b.HasBaseType("PickItEasy.Domain.Entities.WhsOrder");
 
-                    b.HasDiscriminator().HasValue("WhsOrderExpense");
+                    b.HasDiscriminator().HasValue("WhsOrderIn");
                 });
 
-            modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderReceipt", b =>
+            modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderOut", b =>
                 {
                     b.HasBaseType("PickItEasy.Domain.Entities.WhsOrder");
 
-                    b.HasDiscriminator().HasValue("WhsOrderReceipt");
+                    b.HasDiscriminator().HasValue("WhsOrderOut");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

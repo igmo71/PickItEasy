@@ -1,3 +1,4 @@
+using PickItEasy.Application;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Interfaces.EventBus;
 using PickItEasy.EventBus;
@@ -13,6 +14,7 @@ namespace PickItEasy.WebApi
 
             // Add services to the container.
 
+            builder.Services.AddApplication();
             builder.Services.AddPersistence(builder.Configuration);
 
             builder.Services.AddControllers();

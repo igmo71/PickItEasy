@@ -30,11 +30,10 @@ namespace PickItEasy.Persistence.Data
         public DbSet<WhsOrder> WhsOrders => Set<WhsOrder>();
         public DbSet<WhsOrderHistory> OrderHistory => Set<WhsOrderHistory>();
         public DbSet<WhsOrderProductHistory> WhsOrderProductHistory => Set<WhsOrderProductHistory>();
-        public DbSet<WhsOrderExpense> WhsOrdersExpense => Set<WhsOrderExpense>();
-        public DbSet<WhsOrderReceipt> WhsOrdersReceipt => Set<WhsOrderReceipt>();
+        public DbSet<WhsOrderIn> WhsOrdersIn => Set<WhsOrderIn>();
+        public DbSet<WhsOrderOut> WhsOrdersOut { get; set; }
 
         public DbSet<Product> Products => Set<Product>();
-
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
