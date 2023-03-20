@@ -1,0 +1,23 @@
+﻿@page "/rabbit"
+@using PickItEasy.EventBus.RabbitMq
+<h3>RabbitMq</h3>
+<span>Message: @pageMessage</span>
+
+@code {
+    private string pageMessage = "Hello";
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            RabbitMqListener.MessageReceived += MessageReceivedHandle;
+        }
+    }
+
+    private void MessageReceivedHandle(object? sender, string message)
+    {
+        pageMessage = message;
+        InvokeAsync(StateHasChanged);
+    }
+}

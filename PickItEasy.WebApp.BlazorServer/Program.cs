@@ -9,6 +9,7 @@ using PickItEasy.Persistence;
 using PickItEasy.Persistence.Data;
 using PickItEasy.Application.Services;
 using PickItEasy.Persistence.Models;
+using PickItEasy.EventBus.RabbitMq;
 
 namespace PickItEasy.WebApp.BlazorServer
 {
@@ -27,7 +28,10 @@ namespace PickItEasy.WebApp.BlazorServer
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<ApplicationUser>>();
+            
             builder.Services.AddScoped<WeatherForecastService>();
+
+            builder.Services.AddHostedService<RabbitMqListener>();
 
             var app = builder.Build();
 

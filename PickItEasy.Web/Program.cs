@@ -18,6 +18,9 @@ using System.Net;
 using System.Text;
 using PickItEasy.Application;
 using System.Reflection;
+using RabbitMQ.Client.Events;
+using PickItEasy.EventBus.RabbitMq;
+using PickItEasy.Application.Interfaces;
 
 namespace PickItEasy.Web
 {
@@ -93,6 +96,9 @@ namespace PickItEasy.Web
             builder.Services.AddSingleton<WeatherForecasEventManager>();
 
             builder.Services.AddScoped<WeatherForecastService>();
+
+            builder.Services.AddScoped<IEventBusService, RabbitMqService>();
+            //builder.Services.AddHostedService<RabbitMqListener>();
 
             var app = builder.Build();
 

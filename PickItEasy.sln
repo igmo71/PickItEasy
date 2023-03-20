@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PickItEasy.WebApp.BlazorSer
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{365A484D-6701-4DEB-B283-1E12DA93F360}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PickItEasy.EventBus", "..\PickItEasy.EventBus\PickItEasy.EventBus.csproj", "{4965E474-A2E9-4671-A2F2-22D4D52B6DE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{365A484D-6701-4DEB-B283-1E12DA93F360}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{365A484D-6701-4DEB-B283-1E12DA93F360}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{365A484D-6701-4DEB-B283-1E12DA93F360}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4965E474-A2E9-4671-A2F2-22D4D52B6DE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4965E474-A2E9-4671-A2F2-22D4D52B6DE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4965E474-A2E9-4671-A2F2-22D4D52B6DE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4965E474-A2E9-4671-A2F2-22D4D52B6DE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +76,7 @@ Global
 		{C1605184-C967-492F-87EA-3F88730C3C07} = {75424DDC-7823-446A-A260-5C567E44FCCB}
 		{EA24B3A9-EB51-4563-8408-0158EBB89128} = {7D4B6A9D-29BE-492F-9620-0F8F65736E45}
 		{89673ADD-AFF4-4668-971D-7EC9AE988925} = {7D4B6A9D-29BE-492F-9620-0F8F65736E45}
+		{4965E474-A2E9-4671-A2F2-22D4D52B6DE3} = {D6E64110-533C-48B6-AB52-3545892B3E6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F29F149A-0968-4A56-A6D2-DA5316693CB0}
