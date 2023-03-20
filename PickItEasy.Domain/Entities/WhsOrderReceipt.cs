@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Domain.Entities
 {
-    public class OrderType : DocumentType
+    public class WhsOrderReceipt : WhsOrder
     {
     }
 }

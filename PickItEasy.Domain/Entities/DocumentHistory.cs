@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Domain.Entities
 {
-    public class DocumentHistory<TDocument> : BaseEntity, IHasId, IHasDateTime
+    public class DocumentHistory : BaseEntity, IHasId, IHasDateTime
     {
         public Guid Id { get; set; }
-
         public DateTime DateTime { get; set; }
-
-        public TDocument? Document { get; set; }
         public Guid DocumentId { get; set; }
     }
 }
