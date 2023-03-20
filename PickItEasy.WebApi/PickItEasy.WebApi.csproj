@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\PickItEasy.EventBus\PickItEasy.EventBus.csproj" />
     <ProjectReference Include="..\PickItEasy.Application\PickItEasy.Application.csproj" />
+    <ProjectReference Include="..\PickItEasy.Persistence\PickItEasy.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

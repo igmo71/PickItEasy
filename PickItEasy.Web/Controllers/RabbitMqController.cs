@@ -9,9 +9,9 @@ namespace PickItEasy.Web.Controllers
     [ApiController]
     public class RabbitMqController : ControllerBase
     {
-        private readonly IEventBusService _eventBusService;
+        private readonly IEventBusPublisher _eventBusService;
 
-        public RabbitMqController(IEventBusService eventBusService)
+        public RabbitMqController(IEventBusPublisher eventBusService)
         {
             _eventBusService = eventBusService;
         }

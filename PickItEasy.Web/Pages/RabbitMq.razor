@@ -11,7 +11,7 @@
         base.OnAfterRender(firstRender);
         if (firstRender)
         {
-            RabbitMqListener.MessageReceived += MessageReceivedHandle;
+            RabbitMqConsumer.MessageReceived += MessageReceivedHandle;
         }
     }
 

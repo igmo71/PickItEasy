@@ -1,6 +1,7 @@
-
 using PickItEasy.Application.Interfaces;
-using PickItEasy.EventBus.RabbitMq;
+using PickItEasy.Application.Interfaces.EventBus;
+using PickItEasy.EventBus;
+using PickItEasy.Persistence;
 
 namespace PickItEasy.WebApi
 {
@@ -12,12 +13,14 @@ namespace PickItEasy.WebApi
 
             // Add services to the container.
 
+            builder.Services.AddPersistence(builder.Configuration);
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
-            builder.Services.AddScoped<IEventBusService, RabbitMqService>();
+                        
+            builder.Services.AddEventBusPublisher();
 
             var app = builder.Build();
 

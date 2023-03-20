@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PickItEasy.Application.Interfaces
+namespace PickItEasy.Application.Interfaces.EventBus
 {
-    public interface IEventBusService
+    public interface IEventBusPublisher
     {
         void SendMessage(object obj);
         void SendMessage(string message);
