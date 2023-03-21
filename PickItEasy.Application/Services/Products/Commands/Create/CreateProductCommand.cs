@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using PickItEasy.Application.Services.Products.Dto;
+using PickItEasy.Application.Services.Products.Vm;
 using PickItEasy.Domain.Entities;
 using System;
 using System.Collections.Generic;

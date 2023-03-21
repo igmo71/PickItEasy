@@ -2,7 +2,7 @@
 using MediatR;
 using PickItEasy.Application.Interfaces.EventBus;
 using PickItEasy.Application.Interfaces;
-using PickItEasy.Application.Services.Products.Dto;
+using PickItEasy.Application.Services.Products.Vm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,22 +16,19 @@ namespace PickItEasy.Application.Services.Products.Commands.Create
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
-        private readonly IEventBusPublisher _eventPublisher;
 
-        public CreateProductCommandHandler(IApplicationDbContext dbContext, IMapper mapper, IEventBusPublisher eventPublisher)
+        public CreateProductCommandHandler(IApplicationDbContext dbContext, IMapper mapper)
         {
-
             _dbContext = dbContext;
             _mapper = mapper;
-            _eventPublisher = eventPublisher;
         }
 
         public async Task<ProductVm> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             var product = _mapper.Map<Product>(request.CreateProductDto);
 
-            await _dbContext.Products.AddAsync(product);
-            await _dbContext.SaveChangesAsync(CancellationToken.None);
+            await _dbContext.Products.AddAsync(product, cancellationToken);
+            await _dbContext.SaveChangesAsync(cancellationToken);
 
             var response = _mapper.Map<ProductVm>(product);
 

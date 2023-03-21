@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PickItEasy.Application.Services.Products.Dto
+namespace PickItEasy.Application.Services.Products.Commands.Update
 {
-    public class CreateProductDto
+    public class UpdateProductDto
     {
         public string? Name { get; set; }
     }

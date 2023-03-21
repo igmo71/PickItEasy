@@ -1,4 +1,4 @@
-﻿namespace PickItEasy.Application.Services.Products.Dto
+﻿namespace PickItEasy.Application.Services.Products.Vm
 {
     public class ProductVm
     {
