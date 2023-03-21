@@ -17,4 +17,8 @@
     <ProjectReference Include="..\PickItEasy.Domain\PickItEasy.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\WhsOrdersOut\Notifications\" />
+  </ItemGroup>
+
 </Project>

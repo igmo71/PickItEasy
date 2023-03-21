@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
 {
-    public class GetByIdWhsOrderOutQueryHandler : IRequestHandler<GetByIdWhsOrderOutQuery, WhsOrderOutDto>
+    public class GetByIdWhsOrderOutQueryHandler : IRequestHandler<GetByIdWhsOrderOutQuery, WhsOrderOutVm>
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -23,14 +23,14 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
             _mapper = mapper;
         }
 
-        public async Task<WhsOrderOutDto> Handle(GetByIdWhsOrderOutQuery request, CancellationToken cancellationToken)
+        public async Task<WhsOrderOutVm> Handle(GetByIdWhsOrderOutQuery request, CancellationToken cancellationToken)
         {
             var whsOrderOut = await _dbContext.WhsOrdersOut.AsNoTracking()
                 .FirstOrDefaultAsync(e => e.Id == request.Id);
 
             if (whsOrderOut == null) throw new EntityNotFoundException();
 
-            var response = _mapper.Map<WhsOrderOutDto>(whsOrderOut);
+            var response = _mapper.Map<WhsOrderOutVm>(whsOrderOut);
 
             return response;
         }

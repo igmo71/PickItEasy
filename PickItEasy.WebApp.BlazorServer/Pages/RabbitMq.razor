@@ -1,5 +1,6 @@
 ﻿@page "/rabbit"
 @using PickItEasy.EventBus.RabbitMq
+@implements IDisposable
 <h3>RabbitMq</h3>
 <span>Message: @pageMessage</span>
 
@@ -11,13 +12,19 @@
         base.OnAfterRender(firstRender);
         if (firstRender)
         {
-            RabbitMqConsumer.MessageReceived += MessageReceivedHandle;
+            WhsOrderOutConsumer.MessageReceived += MessageReceivedHandle;
         }
     }
 
     private void MessageReceivedHandle(object? sender, string message)
     {
         pageMessage = message;
+        Console.WriteLine($"Blazor received order: {message}");
         InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        WhsOrderOutConsumer.MessageReceived -= MessageReceivedHandle;
     }
 }

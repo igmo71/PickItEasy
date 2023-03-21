@@ -31,6 +31,8 @@ namespace PickItEasy.WebApp.BlazorServer
             
             builder.Services.AddScoped<WeatherForecastService>();
 
+            builder.Services.Configure<EventBusOptions>(
+                builder.Configuration.GetSection(EventBusOptions.Section));
             builder.Services.AddEventBusConsumer();
 
             var app = builder.Build();

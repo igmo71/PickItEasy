@@ -98,7 +98,7 @@ namespace PickItEasy.Web
 
             builder.Services.AddScoped<WeatherForecastService>();
 
-            builder.Services.AddScoped<IEventBusPublisher, RabbitMqPublisher>();
+            builder.Services.AddScoped<IEventBusPublisher, WhsOrderOutPublisher>();
             //builder.Services.AddHostedService<RabbitMqListener>();
 
             var app = builder.Build();

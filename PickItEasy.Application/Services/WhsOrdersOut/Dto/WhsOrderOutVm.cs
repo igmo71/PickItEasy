@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Dto
 {
-    public class WhsOrderOutDto
+    public class WhsOrderOutVm
     {
         public Guid Id { get; set; }
         public DateTime DateTime { get; set; }

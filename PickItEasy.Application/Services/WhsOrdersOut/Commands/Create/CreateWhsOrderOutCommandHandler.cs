@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using PickItEasy.Application.Interfaces;
+using PickItEasy.Application.Interfaces.EventBus;
 using PickItEasy.Application.Services.WhsOrdersOut.Dto;
 using PickItEasy.Domain.Entities;
 using System;
@@ -11,25 +12,29 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.WhsOrdersExpense.Commands.CreateWhsOrderExpense
 {
-    public class CreateWhsOrderOutCommandHandler : IRequestHandler<CreateWhsOrderOutCommand, WhsOrderOutDto>
+    public class CreateWhsOrderOutCommandHandler : IRequestHandler<CreateWhsOrderOutCommand, WhsOrderOutVm>
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IEventBusPublisher _eventPublisher;
 
-        public CreateWhsOrderOutCommandHandler(IApplicationDbContext dbContext, IMapper mapper)
+        public CreateWhsOrderOutCommandHandler(IApplicationDbContext dbContext, IMapper mapper, IEventBusPublisher eventPublisher)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _eventPublisher = eventPublisher;
         }
 
-        public async Task<WhsOrderOutDto> Handle(CreateWhsOrderOutCommand request, CancellationToken cancellationToken)
+        public async Task<WhsOrderOutVm> Handle(CreateWhsOrderOutCommand request, CancellationToken cancellationToken)
         {
             var whsOrderOut = _mapper.Map<WhsOrderOut>(request.CreateWhsOrderExpenseDto);
 
             await _dbContext.WhsOrdersOut.AddAsync(whsOrderOut);
             await _dbContext.SaveChangesAsync(CancellationToken.None);
 
-            var response = _mapper.Map<WhsOrderOutDto>(whsOrderOut);
+            _eventPublisher.SendMessage($"{nameof(whsOrderOut)}_{whsOrderOut.Id}");
+
+            var response = _mapper.Map<WhsOrderOutVm>(whsOrderOut);
 
             return response;
         }

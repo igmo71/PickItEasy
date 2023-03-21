@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using PickItEasy.Application;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Interfaces.EventBus;
@@ -21,7 +23,9 @@ namespace PickItEasy.WebApi
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-                        
+
+            builder.Services.Configure<EventBusOptions>(
+                builder.Configuration.GetSection(EventBusOptions.Section));
             builder.Services.AddEventBusPublisher();
 
             var app = builder.Build();

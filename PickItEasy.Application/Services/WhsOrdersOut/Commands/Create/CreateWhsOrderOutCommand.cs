@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.WhsOrdersExpense.Commands.CreateWhsOrderExpense
 {
-    public class CreateWhsOrderOutCommand : IRequest<WhsOrderOutDto>
+    public class CreateWhsOrderOutCommand : IRequest<WhsOrderOutVm>
     {
         public CreateWhsOrderOutDto? CreateWhsOrderExpenseDto { get; set; }
     }
