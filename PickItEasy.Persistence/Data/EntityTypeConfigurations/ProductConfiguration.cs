@@ -13,7 +13,7 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.HasMany(p => p.WhsOrders).WithMany(o => o.Products);
+            builder.HasMany(p => p.WhsOrders).WithMany();
         }
     }
 }

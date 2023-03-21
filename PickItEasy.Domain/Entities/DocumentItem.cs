@@ -12,6 +12,6 @@ namespace PickItEasy.Domain.Entities
         public Guid Id { get; set; }
         public string? Name { get; set; }
 
-        //public ICollection<Document>? Documents { get; set; }
+        public ICollection<Document>? Documents { get; set; }
     }
 }
