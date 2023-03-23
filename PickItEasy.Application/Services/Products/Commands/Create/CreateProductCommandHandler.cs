@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PickItEasy.Domain.Entities;
-
 namespace PickItEasy.Application.Services.Products.Commands.Create
 {
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, ProductVm>

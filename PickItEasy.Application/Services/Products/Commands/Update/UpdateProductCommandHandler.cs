@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using PickItEasy.Application.Exceptions;
+using PickItEasy.Application.Common.Exceptions;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Services.Products.Commands.Create;
 using PickItEasy.Domain.Entities;

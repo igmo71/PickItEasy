@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using PickItEasy.Application.Common.Behaviors;
 using PickItEasy.Application.Services.Products.Mapping;
 using PickItEasy.Application.Services.WhsOrdersOut.Mapping;
 using System;
@@ -25,11 +26,14 @@ namespace PickItEasy.Application
             {
                 config.AddProfile<WhsOrderOutMapperProfile>();
                 config.AddProfile<ProductMappingProfile>();
-            }); 
+            });
 
-            //services.AddValidatorsFromAssemblies
+            //services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
             //services.AddTransient(typeof(INotificationHandler<>), typeof(WeatherForecastCreateNotificationHandler));
-            
+
             return services;
         }
     }
