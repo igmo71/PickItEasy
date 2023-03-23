@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Exceptions;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Services.WhsOrdersOut.Dto;
+using PickItEasy.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
             var whsOrderOut = await _dbContext.WhsOrdersOut.AsNoTracking()
                 .FirstOrDefaultAsync(e => e.Id == request.Id);
 
-            if (whsOrderOut == null) throw new EntityNotFoundException();
+            if (whsOrderOut == null) throw new EntityNotFoundException(nameof(WhsOrderOut), request.Id);
 
             var response = _mapper.Map<WhsOrderOutVm>(whsOrderOut);
 

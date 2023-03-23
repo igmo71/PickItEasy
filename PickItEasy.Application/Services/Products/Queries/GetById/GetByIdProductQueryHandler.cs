@@ -5,6 +5,7 @@ using PickItEasy.Application.Exceptions;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Services.Products.Vm;
 using PickItEasy.Application.Services.WhsOrdersOut.Dto;
+using PickItEasy.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,11 +30,8 @@ namespace PickItEasy.Application.Services.Products.Queries.GetById
         {
 
             var product = await _dbContext.Products.AsNoTracking()
-                .FirstOrDefaultAsync(e => e.Id == request.Id);
-                ?? throw new EntityNotFoundException(nameof(Product), request.Id); ;
-
-            if (product == null) throw new EntityNotFoundException();
-
+                .FirstOrDefaultAsync(e => e.Id == request.Id)
+                ?? throw new EntityNotFoundException(nameof(Product), request.Id);
             var response = _mapper.Map<ProductVm>(product);
 
             return response;

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Exceptions;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Services.Products.Commands.Create;
+using PickItEasy.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,8 @@ namespace PickItEasy.Application.Services.Products.Commands.Update
         public async Task Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
             var product = await _dbContext.Products
-                .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken) ?? throw new EntityNotFoundException();
+                .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken) 
+                ?? throw new EntityNotFoundException(nameof(Product), request.Id);
 
             product.Name = request.UpdateProductDto?.Name;
 

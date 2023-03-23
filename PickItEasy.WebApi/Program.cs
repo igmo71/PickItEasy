@@ -24,8 +24,7 @@ namespace PickItEasy.WebApi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.Configure<EventBusOptions>(
-                builder.Configuration.GetSection(EventBusOptions.Section));
+            builder.Services.ConfigureEventBus(builder.Configuration);
             builder.Services.AddEventBusPublisher();
 
             var app = builder.Build();

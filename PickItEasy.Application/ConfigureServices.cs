@@ -25,7 +25,7 @@ namespace PickItEasy.Application
             {
                 config.AddProfile<WhsOrderOutMapperProfile>();
                 config.AddProfile<ProductMappingProfile>();
-            });
+            }); 
 
             //services.AddValidatorsFromAssemblies
             //services.AddTransient(typeof(INotificationHandler<>), typeof(WeatherForecastCreateNotificationHandler));

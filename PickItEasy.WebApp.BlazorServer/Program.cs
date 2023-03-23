@@ -28,12 +28,11 @@ namespace PickItEasy.WebApp.BlazorServer
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<ApplicationUser>>();
+
+            builder.Services.ConfigureEventBus(builder.Configuration);
+            builder.Services.AddEventBusConsumer();
             
             builder.Services.AddScoped<WeatherForecastService>();
-
-            builder.Services.Configure<EventBusOptions>(
-                builder.Configuration.GetSection(EventBusOptions.Section));
-            builder.Services.AddEventBusConsumer();
 
             var app = builder.Build();
 
