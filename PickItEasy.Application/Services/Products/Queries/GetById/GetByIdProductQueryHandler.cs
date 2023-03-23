@@ -30,6 +30,7 @@ namespace PickItEasy.Application.Services.Products.Queries.GetById
 
             var product = await _dbContext.Products.AsNoTracking()
                 .FirstOrDefaultAsync(e => e.Id == request.Id);
+                ?? throw new EntityNotFoundException(nameof(Product), request.Id); ;
 
             if (product == null) throw new EntityNotFoundException();
 
