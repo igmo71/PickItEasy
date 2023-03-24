@@ -111,21 +111,34 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672" 
-    restart: unless-stopped
+    restart: unless-stopped  
 
   redis:
     container_name: redis_container
     image: redis
     restart: unless-stopped
-    
-  
+
+  seq:
+    hostname: ca2b35a51a38
+    container_name: seq_container
+    environment:
+      - ACCEPT_EULA=Y
+      - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+      - BASE_URI=
+      - DATA_DIR=/data
+    ports:
+      - '5341:5341'
+      - '81:80'
+    labels:
+      - Description=Seq
+      - 'Vendor=Datalust Pty Ltd'
+      - org.opencontainers.image.ref.name=ubuntu
+      - org.opencontainers.image.version=20.04
+    image: datalust/seq:latest  
 
 volumes:
   pickiteasy-pg-data:
     name: pickiteasy-pg-data
-    driver: local
-  pickiteasy-seq-data:
-    name: pickiteasy-seq-data
     driver: local
 
 
