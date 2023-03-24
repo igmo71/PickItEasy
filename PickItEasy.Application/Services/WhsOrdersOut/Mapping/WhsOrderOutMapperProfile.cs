@@ -14,6 +14,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Mapping
         public WhsOrderOutMapperProfile()
         {
             CreateMap<CreateWhsOrderOutDto, WhsOrderOut>();
+            CreateMap<CreateWhsOrderOutProductDto,  WhsOrderOutProduct>();
             CreateMap<WhsOrderOut, WhsOrderOutVm>();
         }
     }

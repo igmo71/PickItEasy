@@ -6,29 +6,32 @@ services:
   pickiteasy.web:
     image: ${DOCKER_REGISTRY-}pickiteasyweb
     container_name: web_combine
-    environment:
-      COMPOSE_PROJECT_NAME: pickiteasy
     build:
       context: .
-      dockerfile: PickItEasy.Web/Dockerfile  
+      dockerfile: PickItEasy.Web/Dockerfile
+    depends_on: 
+      - postgres
+      - rabbitmq  
 
   pickiteasy.webapi:
     image: ${DOCKER_REGISTRY-}pickiteasywebapi
     container_name: webapi
-    environment:
-      COMPOSE_PROJECT_NAME: pickiteasy
     build:
       context: .
       dockerfile: PickItEasy.WebApi/Dockerfile
+    depends_on: 
+      - postgres
+      - rabbitmq
 
   pickiteasy.webapp.blazorserver:
     image: ${DOCKER_REGISTRY-}pickiteasywebappblazorserver
     container_name: webapp-blazor
-    environment:
-      COMPOSE_PROJECT_NAME: pickiteasy
     build:
       context: .
       dockerfile: PickItEasy.WebApp.BlazorServer/Dockerfile
+    depends_on: 
+      - postgres
+      - rabbitmq
 
   postgres:
     container_name: postgres_container
@@ -95,12 +98,12 @@ services:
       PGADMIN_CONFIG_SERVER_MODE: "False"
     ports:
       - "5050:80"
-    restart: unless-stopped
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: '0.25'
           memory: 1G
+    restart: unless-stopped
 
   rabbitmq:
     container_name: rabbitmq_container
@@ -113,9 +116,16 @@ services:
   redis:
     container_name: redis_container
     image: redis
+    restart: unless-stopped
+    
+  
 
 volumes:
   pickiteasy-pg-data:
     name: pickiteasy-pg-data
     driver: local
+  pickiteasy-seq-data:
+    name: pickiteasy-seq-data
+    driver: local
+
 
