@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PickItEasy.Application.Common;
 using PickItEasy.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,15 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<WhsOrder> builder)
         {
-            builder.HasMany(o => o.Products).WithOne(p => p.WhsOrder)
-                .HasForeignKey(p => p.WhsOrderId).HasPrincipalKey(o => o.Id);
+            //builder.HasKey(o => o.Id);
+
+            //builder.Property(o => o.DateTime).IsRequired();
+
+            //builder.Property(o => o.Number).IsRequired()
+            //    .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.NUMBER_MAX_LENGTH);
+
+            //builder.Property(o => o.Name).IsRequired()
+            //    .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.NAME_MAX_LENGTH);            
         }
     }
 }

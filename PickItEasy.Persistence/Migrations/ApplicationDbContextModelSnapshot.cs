@@ -214,7 +214,7 @@ namespace PickItEasy.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("DocumentId")
+                    b.Property<Guid>("ItemId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -263,7 +263,7 @@ namespace PickItEasy.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("DocumentId")
+                    b.Property<Guid>("ItemId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("DocumentItemId")

@@ -7,13 +7,14 @@ using PickItEasy.Domain.Entities.Interfaces;
 
 namespace PickItEasy.Domain.Entities
 {
-    public class Document : BaseEntity, IHasId, IHasDateTime, IHasNumber, IHasName
+    public abstract class Document : BaseEntity, IHasId, IHasName, IHasNumber, IHasDateTime
     {
-        public Guid Id { get; set; }
-        public DateTime DateTime { get; set; }
-        public required string Number { get; set; }
+        public required Guid Id { get; set; }
         public required string Name { get; set; }
+        public required string Number { get; set; }
+        public required DateTime DateTime { get; set; }
 
-        public ICollection<Item>? Items { get; set; }
+        //public List<Item>? Items { get; set; }
+        //public List<DocumentItem>? DocumentItems { get; set; }
     }
 }

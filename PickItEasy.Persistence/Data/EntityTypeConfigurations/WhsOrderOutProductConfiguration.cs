@@ -13,11 +13,13 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<WhsOrderOutProduct> builder)
         {
-            builder.HasKey(wop => wop.Id);
-            builder.HasOne(wop => wop.WhsOrder).WithMany(o => o.Products)
-                .HasForeignKey(wop => wop.WhsOrderId).HasPrincipalKey(o => o.Id);
-            builder.HasOne(wop => wop.Product).WithMany()
-                .HasForeignKey(wop => wop.ProductId).HasPrincipalKey(p => p.Id);
+            builder.HasKey(op => op.Id);
+
+            builder.HasOne(op => op.WhsOrderOut).WithMany(o => o.WhsOrderOutProducts)
+                .HasForeignKey(op => op.WhsOrderOutId).HasPrincipalKey(o => o.Id);
+
+            builder.HasOne(op => op.Product).WithMany()
+                .HasForeignKey(op => op.ProductId).HasPrincipalKey(p => p.Id);
         }
     }
 }

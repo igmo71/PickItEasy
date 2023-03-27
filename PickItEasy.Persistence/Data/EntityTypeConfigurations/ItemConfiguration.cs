@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
 {
-    public class ProductConfiguration : IEntityTypeConfiguration<Product>
+    public class ItemConfiguration : IEntityTypeConfiguration<Item>
     {
-        public void Configure(EntityTypeBuilder<Product> builder)
+        public void Configure(EntityTypeBuilder<Item> builder)
         {
-            builder.HasKey(p => p.Id);
+            //builder.HasKey(i => i.Id);
 
-            builder.Property(p => p.Name).IsRequired()
-                .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.NAME_MAX_LENGTH);
+            //builder.Property(i => i.Name).IsRequired()
+            //    .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.NAME_MAX_LENGTH);
         }
     }
 }
