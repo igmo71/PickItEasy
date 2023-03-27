@@ -52,7 +52,7 @@ namespace PickItEasy.Persistence.Data
             builder.ApplyConfiguration(new ItemConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
             builder.ApplyConfiguration(new WhsOrderConfiguration());
-            builder.ApplyConfiguration(new WhsOrderHistoryConfiguration());
+            builder.ApplyConfiguration(new WhsOrderInHistoryConfiguration());
             builder.ApplyConfiguration(new WhsOrderProductHistoryConfiguration());
 
         }
