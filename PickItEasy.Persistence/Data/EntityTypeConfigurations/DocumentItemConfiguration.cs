@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
 {
-    public class DocumentItemConfiguration : IEntityTypeConfiguration<DocumentItem>
+    public class DocumentItemConfiguration : IEntityTypeConfiguration<Item>
     {
-        public void Configure(EntityTypeBuilder<DocumentItem> builder)
+        public void Configure(EntityTypeBuilder<Item> builder)
         {
             builder.HasKey(i => i.Id);
             builder.Property(i => i.Name).HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.NAME_MAX_LENGTH).IsRequired();

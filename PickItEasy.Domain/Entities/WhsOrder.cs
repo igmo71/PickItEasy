@@ -8,6 +8,6 @@ namespace PickItEasy.Domain.Entities
 {
     public class WhsOrder : Document
     {        
-        public ICollection<WhsOrderProduct>? Products { get; set; }
+        public ICollection<Product>? Products { get; set; }
     }
 }

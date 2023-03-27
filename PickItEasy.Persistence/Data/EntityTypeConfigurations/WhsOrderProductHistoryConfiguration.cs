@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
 {
-    public class WhsOrderProductHistoryConfiguration : IEntityTypeConfiguration<WhsOrderProductHistory>
+    public class WhsOrderProductHistoryConfiguration : IEntityTypeConfiguration<ProductHistory>
     {
-        public void Configure(EntityTypeBuilder<WhsOrderProductHistory> builder)
+        public void Configure(EntityTypeBuilder<ProductHistory> builder)
         {
             //builder.HasOne(woph => woph.WhsOrder).WithMany()
             //    .HasForeignKey(woph => woph.DocumentId).HasPrincipalKey(d => d.Id);

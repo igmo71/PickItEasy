@@ -90,7 +90,7 @@ namespace PickItEasy.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Documents",
+                name: "DocumentHeaders",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -123,7 +123,7 @@ namespace PickItEasy.Persistence.Migrations
                     table.ForeignKey(
                         name: "FK_ProductWhsOrder_Documents_WhsOrdersId",
                         column: x => x.WhsOrdersId,
-                        principalTable: "Documents",
+                        principalTable: "DocumentHeaders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -150,7 +150,7 @@ namespace PickItEasy.Persistence.Migrations
                 name: "DocumentItems");
 
             migrationBuilder.DropTable(
-                name: "Documents");
+                name: "DocumentHeaders");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",

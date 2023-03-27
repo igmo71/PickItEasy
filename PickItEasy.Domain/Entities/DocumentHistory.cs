@@ -12,5 +12,6 @@ namespace PickItEasy.Domain.Entities
         public Guid Id { get; set; }
         public DateTime DateTime { get; set; }
         public Guid DocumentId { get; set; }
+        public string? Message { get; set; }
     }
 }

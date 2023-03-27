@@ -22,7 +22,7 @@ namespace PickItEasy.Persistence.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "Number",
-                table: "Documents",
+                table: "DocumentHeaders",
                 type: "character varying(50)",
                 maxLength: 50,
                 nullable: true,
@@ -32,7 +32,7 @@ namespace PickItEasy.Persistence.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
-                table: "Documents",
+                table: "DocumentHeaders",
                 type: "character varying(100)",
                 maxLength: 100,
                 nullable: true,
@@ -59,7 +59,7 @@ namespace PickItEasy.Persistence.Migrations
                     table.ForeignKey(
                         name: "FK_DocumentDocumentItem_Documents_DocumentsId",
                         column: x => x.DocumentsId,
-                        principalTable: "Documents",
+                        principalTable: "DocumentHeaders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -86,7 +86,7 @@ namespace PickItEasy.Persistence.Migrations
                     table.ForeignKey(
                         name: "FK_WhsOrderProducts_Documents_WhsOrderId",
                         column: x => x.WhsOrderId,
-                        principalTable: "Documents",
+                        principalTable: "DocumentHeaders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -135,7 +135,7 @@ namespace PickItEasy.Persistence.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "Number",
-                table: "Documents",
+                table: "DocumentHeaders",
                 type: "text",
                 nullable: true,
                 oldClrType: typeof(string),
@@ -145,7 +145,7 @@ namespace PickItEasy.Persistence.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
-                table: "Documents",
+                table: "DocumentHeaders",
                 type: "text",
                 nullable: true,
                 oldClrType: typeof(string),

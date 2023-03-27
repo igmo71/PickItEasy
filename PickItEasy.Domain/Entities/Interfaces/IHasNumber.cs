@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PickItEasy.Domain.Entities
+namespace PickItEasy.Domain.Entities.Interfaces
 {
-    public class WhsOrderHistory : DocumentHistory
+    public interface IHasNumber
     {
+        public string Number { get; set; }
     }
 }

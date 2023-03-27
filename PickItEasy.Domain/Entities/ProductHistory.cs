@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Domain.Entities
 {
-    public class WhsOrderProductHistory : DocumentItemHistory
+    public class ProductHistory : ItemHistory
     {
-        //public WhsOrder? WhsOrder { get; set; }
-        //public Product? Product { get; set; }
     }
 }

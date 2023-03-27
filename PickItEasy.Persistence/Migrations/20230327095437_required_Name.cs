@@ -12,7 +12,7 @@ namespace PickItEasy.Persistence.Migrations
         {
             migrationBuilder.AlterColumn<string>(
                 name: "Number",
-                table: "Documents",
+                table: "DocumentHeaders",
                 type: "varchar",
                 maxLength: 60,
                 nullable: false,
@@ -24,7 +24,7 @@ namespace PickItEasy.Persistence.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
-                table: "Documents",
+                table: "DocumentHeaders",
                 type: "varchar",
                 maxLength: 12,
                 nullable: false,
@@ -51,7 +51,7 @@ namespace PickItEasy.Persistence.Migrations
         {
             migrationBuilder.AlterColumn<string>(
                 name: "Number",
-                table: "Documents",
+                table: "DocumentHeaders",
                 type: "varchar",
                 maxLength: 60,
                 nullable: true,
@@ -61,7 +61,7 @@ namespace PickItEasy.Persistence.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
-                table: "Documents",
+                table: "DocumentHeaders",
                 type: "varchar",
                 maxLength: 120,
                 nullable: true,

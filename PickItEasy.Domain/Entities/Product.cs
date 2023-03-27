@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Domain.Entities
 {
-    public class Product : DocumentItem
+    public class Product : Item
     {
         public ICollection<WhsOrder>? WhsOrders { get; set; }
     }

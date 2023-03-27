@@ -194,7 +194,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Documents");
+                    b.ToTable("DocumentHeaders");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Document");
 

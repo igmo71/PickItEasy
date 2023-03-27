@@ -8,6 +8,5 @@ namespace PickItEasy.Domain.Entities
 {
     public class WhsOrderOutProduct : WhsOrderProduct
     {
-        public new WhsOrderOut? WhsOrder { get; set; }
     }
 }

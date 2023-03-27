@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PickItEasy.Domain.Entities.Interfaces;
+﻿using PickItEasy.Domain.Entities.Interfaces;
 
 namespace PickItEasy.Domain.Entities
 {
-    public class DocumentItem : BaseEntity, IHasId, IHasName
+    public class DocumentItem : BaseEntity, IHasId
     {
         public Guid Id { get; set; }
-        public required string Name { get; set; }
 
-        public ICollection<Document>? Documents { get; set; }
+        public Guid DocumentId { get; set; }
+        public Document? Document { get; set; }
+
+        public Guid ItemId { get; set; }
+        public Item? Item { get; set; }
     }
 }

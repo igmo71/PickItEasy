@@ -15,16 +15,16 @@ namespace PickItEasy.Application.Interfaces
         public DbSet<WeatherForecast> WeatherForecasts { get; set; }
 
         public DbSet<Document> Documents { get; set; }
-        public DbSet<DocumentHistory> DocumentHistory { get; set; }
-        public DbSet<DocumentItem> DocumentItems { get; set; }
-        public DbSet<DocumentItemHistory> DocumentItemHistory { get; set; }
+        public DbSet<DocumentHistory> DocumentsHistory { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<ItemHistory> ItemsHistory { get; set; }
 
         public DbSet<Product> Products { get; set; }
 
         public DbSet<WhsOrder> WhsOrders { get; set; }
         public DbSet<WhsOrderProduct> WhsOrderProducts { get; set; }
         public DbSet<WhsOrderHistory> OrderHistory { get; set; }
-        public DbSet<WhsOrderProductHistory> WhsOrderProductHistory { get; set; }
+        public DbSet<ProductHistory> WhsOrderProductHistory { get; set; }
         public DbSet<WhsOrderIn> WhsOrdersIn { get; set; }
         public DbSet<WhsOrderInProduct> WhsOrderInProducts { get; set; }
         public DbSet<WhsOrderOut> WhsOrdersOut { get; set; }
