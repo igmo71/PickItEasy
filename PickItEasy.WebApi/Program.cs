@@ -5,6 +5,7 @@ using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Interfaces.EventBus;
 using PickItEasy.EventBus;
 using PickItEasy.Persistence;
+using PickItEasy.WebApi.Middleware;
 using PickItEasy.WebApi.Services;
 using Serilog;
 
@@ -43,14 +44,15 @@ namespace PickItEasy.WebApi
 
             var app = builder.Build();
 
-            app.UseSerilogRequestLogging();
-
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseCustomExceptionHandler();
+
+            app.UseSerilogRequestLogging();
 
             app.UseHttpsRedirection();
 
