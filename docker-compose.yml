@@ -94,7 +94,7 @@ services:
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: "igmo@dobroga.ru"
-      PGADMIN_DEFAULT_PASSWORD: "pwd4pgadmin"
+      PGADMIN_DEFAULT_PASSWORD: "Pwd4PickItEasy"
       PGADMIN_CONFIG_SERVER_MODE: "False"
     ports:
       - "5050:80"

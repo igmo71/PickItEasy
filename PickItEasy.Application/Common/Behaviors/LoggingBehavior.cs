@@ -23,13 +23,11 @@ namespace PickItEasy.Application.Common.Behaviors
         {
             var userId = _currentUserService.UserId;
 
-            var requestName = typeof(TRequest).Name;
-            Log.Information("PickItEasy.WebApi Request: {RequestName} {@UserId} {@RequestBody}", requestName, userId, request);
+            Log.Information("PickItEasy.WebApi Request: {RequestName} {@UserId} {@RequestBody}", typeof(TRequest).Name, userId, request);
 
             var response = await next();
 
-            var responseName = typeof(TResponse).Name;
-            Log.Information("PickItEasy.WebApi Response: {ResponseName} {@UserId} {@ResponseBody}", responseName, userId, response);
+            Log.Information("PickItEasy.WebApi Response: {ResponseName} {@UserId} {@ResponseBody}", typeof(TResponse).Name, userId, response);
 
             return response;
         }
