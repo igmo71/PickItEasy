@@ -11,8 +11,5 @@ namespace PickItEasy.Domain.Entities
     {
         public required Guid Id { get; set; }
         public required string Name { get; set; }
-
-        //public List<Document>? Documents { get; set; }
-        //public List<DocumentItem>? ItemDocuments { get; set; }
     }
 }

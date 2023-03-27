@@ -7,8 +7,5 @@ using System.Threading.Tasks;
 namespace PickItEasy.Domain.Entities
 {
     public class Product : Item
-    {
-        //public List<WhsOrder>? WhsOrders { get; set; }
-        //public List<WhsOrderProduct>? ProductWhsOrders { get; set; }
-    }
+    { }
 }

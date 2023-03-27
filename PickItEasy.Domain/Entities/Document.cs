@@ -13,8 +13,5 @@ namespace PickItEasy.Domain.Entities
         public required string Name { get; set; }
         public required string Number { get; set; }
         public required DateTime DateTime { get; set; }
-
-        //public List<Item>? Items { get; set; }
-        //public List<DocumentItem>? DocumentItems { get; set; }
     }
 }
