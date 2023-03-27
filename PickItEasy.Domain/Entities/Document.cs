@@ -11,8 +11,8 @@ namespace PickItEasy.Domain.Entities
     {
         public Guid Id { get; set; }
         public DateTime DateTime { get; set; }
-        public string? Number { get; set; }
-        public string? Name { get; set; }
+        public required string Number { get; set; }
+        public required string Name { get; set; }
 
         public List<DocumentItem>? Items { get; set; }
     }

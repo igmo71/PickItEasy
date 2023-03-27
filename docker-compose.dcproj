@@ -6,7 +6,7 @@
     <ProjectGuid>365a484d-6701-4deb-b283-1e12da93f360</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
-    <DockerServiceName>pickiteasy.webapp.blazorserver</DockerServiceName>
+    <DockerServiceName>pickiteasy.webapi</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">

@@ -13,9 +13,6 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<WhsOrderHistory> builder)
         {
-            //builder.HasOne(woh => woh.WhsOrder).WithMany()
-            //    .HasForeignKey(woh => woh.DocumentId).HasPrincipalKey(wo => wo.Id)
-            //    .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

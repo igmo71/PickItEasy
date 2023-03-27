@@ -40,6 +40,9 @@ namespace PickItEasy.WebApi.Controllers
 
         // POST api/<ProductsController>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Post([FromBody] CreateProductDto createProductDto)
         {
             var createProductCommand = new CreateProductCommand { CreateProductDto = createProductDto };
