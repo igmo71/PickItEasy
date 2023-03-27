@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PickItEasy.Application.Common;
 using PickItEasy.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.HasMany(p => p.WhsOrders).WithMany();
+            builder.Property(p => p.Name).HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.NAME_MAX_LENGTH);
         }
     }
 }

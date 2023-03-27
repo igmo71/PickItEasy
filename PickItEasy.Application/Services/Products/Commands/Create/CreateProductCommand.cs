@@ -11,6 +11,6 @@ namespace PickItEasy.Application.Services.Products.Commands.Create
 {
     public class CreateProductCommand : IRequest<ProductVm>
     {
-        public CreateProductDto? CreateProductDto { get; set; }
+        public required CreateProductDto CreateProductDto { get; init; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using PickItEasy.Application.Common.Behaviors;
@@ -28,9 +29,9 @@ namespace PickItEasy.Application
                 config.AddProfile<ProductMappingProfile>();
             });
 
-            //services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
+            services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
-            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
             //services.AddTransient(typeof(INotificationHandler<>), typeof(WeatherForecastCreateNotificationHandler));
 
