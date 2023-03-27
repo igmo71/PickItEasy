@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Persistence.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>//, IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -23,24 +23,12 @@ namespace PickItEasy.Persistence.Data
 
         public DbSet<WeatherForecast> WeatherForecasts { get; set; }
 
-        public DbSet<Document> Documents { get; set; }
-        public DbSet<DocumentHistory> DocumentsHistory { get; set; }
-
-        public DbSet<Item> Items { get; set; }
-        public DbSet<ItemHistory> ItemsHistory { get; set; }
-
-        public DbSet<DocumentItem> DocumentItem { get; set; }
-
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductHistory> ProductsHistory { get; set; }
 
-        public DbSet<WhsOrder> WhsOrders { get; set; }
-        public DbSet<WhsOrderHistory> WhsOrdersHistory { get; set; }
-        public DbSet<WhsOrderProduct> WhsOrderProduct { get; set; }
-        //public DbSet<WhsOrderIn> WhsOrdersIn { get; set; }
-        //public DbSet<WhsOrderInProduct> WhsOrderInProducts { get; set; }
-        //public DbSet<WhsOrderOut> WhsOrdersOut { get; set; }
-        //public DbSet<WhsOrderOutProduct> WhsOrderOutProducts { get; set; }
+        public DbSet<WhsOrderIn> WhsOrdersIn { get; set; }
+        public DbSet<WhsOrderInProduct> WhsOrderInProducts { get; set; }
+        public DbSet<WhsOrderOut> WhsOrdersOut { get; set; }
+        public DbSet<WhsOrderOutProduct> WhsOrderOutProducts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -48,12 +36,11 @@ namespace PickItEasy.Persistence.Data
 
             builder.ApplyConfiguration(new WeatherForecastConfiguration());
 
-            builder.ApplyConfiguration(new DocumentConfiguration());
-            builder.ApplyConfiguration(new ItemConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
-            builder.ApplyConfiguration(new WhsOrderConfiguration());
-            builder.ApplyConfiguration(new WhsOrderInHistoryConfiguration());
-            builder.ApplyConfiguration(new WhsOrderProductHistoryConfiguration());
+            builder.ApplyConfiguration(new WhsOrderInConfiguration());
+            builder.ApplyConfiguration(new WhsOrderInProductConfiguration());
+            builder.ApplyConfiguration(new WhsOrderOutConfiguration());
+            builder.ApplyConfiguration(new WhsOrderOutProductConfiguration());
 
         }
     }
