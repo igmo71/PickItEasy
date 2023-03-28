@@ -24,13 +24,14 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
             builder.Property(o => o.Name).IsRequired()
                 .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.NAME_MAX_LENGTH);
 
-            builder.HasMany(o => o.Products).WithMany().UsingEntity<WhsOrderInProduct>(
-                b => b.HasOne(op => op.Product).WithMany().HasForeignKey(op => op.ProductId),
-                b => b.HasOne(op => op.WhsOrderIn).WithMany(o => o.WhsOrderInProducts).HasForeignKey(op => op.WhsOrderInId),
-                b =>
-                {
-                    b.HasKey(op => op.Id);
-                });
+            builder.HasMany(o => o.Products).WithMany()
+                .UsingEntity<WhsOrderInProduct>(
+                    b => b.HasOne(op => op.Product).WithMany().HasForeignKey(op => op.ProductId),
+                    b => b.HasOne(op => op.WhsOrderIn).WithMany(o => o.WhsOrderInProducts).HasForeignKey(op => op.WhsOrderInId),
+                    b =>
+                    {
+                        b.HasKey(op => op.Id);
+                    });
         }
     }
 }

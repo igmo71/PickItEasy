@@ -9,7 +9,7 @@ namespace PickItEasy.Application.Common
     public class EntityConfig
     {
         public static int NUMBER_MAX_LENGTH = 60;
-        public static int NAME_MAX_LENGTH = 12;
+        public static int NAME_MAX_LENGTH = 120;
         public static string TYPE_VARCHAR = "varchar";
     }
 }
