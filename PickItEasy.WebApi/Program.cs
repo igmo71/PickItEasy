@@ -47,7 +47,7 @@ namespace PickItEasy.WebApi
             }
             app.UseCustomExceptionHandler();
 
-            //app.UseSerilogRequestLogging();
+            app.UseSerilogRequestLogging();
 
             app.UseHttpsRedirection();
 

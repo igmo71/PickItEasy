@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PickItEasy.Application.Services.Products.Commands.Update
+namespace PickItEasy.Application.Services.Products.Queries.IsExistsById
 {
-    public class UpdateProductCommand : IRequest
+    public class IsExistsByIdProductQuery : IRequest<bool>
     {
         public required Guid Id { get; set; }
-        public required UpdateProductDto UpdateProductDto { get; set; }
     }
 }

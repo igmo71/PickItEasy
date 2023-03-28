@@ -30,8 +30,9 @@ namespace PickItEasy.Application.Services.Products.Queries.GetById
         {
 
             var product = await _dbContext.Products.AsNoTracking()
-                .FirstOrDefaultAsync(e => e.Id == request.Id)
+                .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken)
                 ?? throw new EntityNotFoundException(nameof(Product), request.Id);
+            
             var response = _mapper.Map<ProductVm>(product);
 
             return response;

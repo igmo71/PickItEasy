@@ -30,9 +30,11 @@ namespace PickItEasy.Application.Services.Products.Commands.Update
                 .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken) 
                 ?? throw new EntityNotFoundException(nameof(Product), request.Id);
 
-            product.Name = request.UpdateProductDto?.Name;
+            product.Name = request.UpdateProductDto.Name;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
+
+            return;
         }
     }
 }

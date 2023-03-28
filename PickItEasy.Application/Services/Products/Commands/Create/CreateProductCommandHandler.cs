@@ -9,25 +9,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PickItEasy.Domain.Entities;
+using PickItEasy.Application.Services.Products.Queries.IsExistsById;
+using PickItEasy.Application.Services.Products.Commands.Update;
+
 namespace PickItEasy.Application.Services.Products.Commands.Create
 {
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, ProductVm>
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public CreateProductCommandHandler(IApplicationDbContext dbContext, IMapper mapper)
+        public CreateProductCommandHandler(IApplicationDbContext dbContext, IMapper mapper, IMediator mediator)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _mediator = mediator;
         }
 
         public async Task<ProductVm> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             var product = _mapper.Map<Product>(request.CreateProductDto);
 
-            await _dbContext.Products.AddAsync(product, cancellationToken);
-            await _dbContext.SaveChangesAsync(cancellationToken);
+            var isProductExists = await _mediator.Send(new IsExistsByIdProductQuery { Id = product.Id }, cancellationToken);
+            if (!isProductExists)
+            {
+                await _dbContext.Products.AddAsync(product, cancellationToken);
+                await _dbContext.SaveChangesAsync(cancellationToken);
+            }
+            else
+            {
+                await _mediator.Send(new UpdateProductCommand
+                {
+                    Id = product.Id,
+                    UpdateProductDto = new UpdateProductDto
+                    {
+                        Name = product.Name
+                    }
+                }, cancellationToken);
+            }
 
             var response = _mapper.Map<ProductVm>(product);
 

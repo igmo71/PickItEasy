@@ -12,7 +12,7 @@ namespace PickItEasy.Application.Services.Products.Commands.Create
     {
         public CreateProductValidator()
         {
-            RuleFor(createProductCommand => createProductCommand.CreateProductDto).NotNull();
+            RuleFor(createProductCommand => createProductCommand.CreateProductDto).NotNull().NotEmpty();
             RuleFor(createProductCommand => createProductCommand.CreateProductDto).SetValidator(new CreateProductDtoValidator());
         }
 
@@ -20,8 +20,8 @@ namespace PickItEasy.Application.Services.Products.Commands.Create
         {
             public CreateProductDtoValidator()
             {
-                RuleFor(createProductDto => createProductDto.Id).NotNull();
-                RuleFor(createProductDto => createProductDto.Name).NotNull().MaximumLength(EntityConfig.MAX_LENGTH_NAME);
+                RuleFor(createProductDto => createProductDto.Id).NotNull().NotEmpty();
+                RuleFor(createProductDto => createProductDto.Name).NotNull().NotEmpty().MaximumLength(EntityConfig.MAX_LENGTH_NAME);
             }
         }
     }
