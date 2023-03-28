@@ -17,7 +17,7 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
             builder.HasKey(p => p.Id);
 
             builder.Property(p => p.Name).IsRequired()
-                .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.NAME_MAX_LENGTH);
+                .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.MAX_LENGTH_NAME);
         }
     }
 }

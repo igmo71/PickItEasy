@@ -19,10 +19,10 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
             builder.Property(o => o.DateTime).IsRequired();
 
             builder.Property(o => o.Number).IsRequired()
-                .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.NUMBER_MAX_LENGTH);
+                .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.MAX_LENGTH_NUMBER);
 
             builder.Property(o => o.Name).IsRequired()
-                .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.NAME_MAX_LENGTH);
+                .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.MAX_LENGTH_NAME);
 
             builder.HasMany(o => o.Products).WithMany()
                 .UsingEntity<WhsOrderInProduct>(

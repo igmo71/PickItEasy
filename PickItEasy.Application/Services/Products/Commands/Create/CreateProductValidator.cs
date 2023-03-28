@@ -21,7 +21,7 @@ namespace PickItEasy.Application.Services.Products.Commands.Create
             public CreateProductDtoValidator()
             {
                 RuleFor(createProductDto => createProductDto.Id).NotNull();
-                RuleFor(createProductDto => createProductDto.Name).NotNull().MaximumLength(EntityConfig.NAME_MAX_LENGTH);
+                RuleFor(createProductDto => createProductDto.Name).NotNull().MaximumLength(EntityConfig.MAX_LENGTH_NAME);
             }
         }
     }
