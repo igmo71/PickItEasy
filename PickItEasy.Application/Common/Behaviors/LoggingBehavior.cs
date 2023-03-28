@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace PickItEasy.Application.Common.Behaviors
 {
     public class LoggingBehavior<TRequest, TResponse>
-        : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
+        : IPipelineBehavior<TRequest, TResponse> where TRequest : IBaseRequest
     {
         private readonly ICurrentUserService _currentUserService;
 
@@ -23,11 +23,13 @@ namespace PickItEasy.Application.Common.Behaviors
         {
             var userId = _currentUserService.UserId;
 
-            Log.Information("PickItEasy.WebApi Request: {RequestName} {@UserId} {@RequestBody}", typeof(TRequest).Name, userId, request);
+            Log.Information("PickItEasy.WebApi Request: {RequestName} - {ResponseName}", typeof(TRequest).Name, typeof(TResponse).Name);
+            Log.Debug("PickItEasy.WebApi Request: {RequestName} {@UserId} {@RequestBody}", typeof(TRequest).Name, userId, request);
 
             var response = await next();
 
-            Log.Information("PickItEasy.WebApi Response: {ResponseName} {@UserId} {@ResponseBody}", typeof(TResponse).Name, userId, response);
+            Log.Debug("PickItEasy.WebApi Response: {ResponseName} {@UserId} {@ResponseBody}", typeof(TResponse).Name, userId, response);
+            Log.Information("PickItEasy.WebApi Response: {RequestName} - {ResponseName}", typeof(TRequest).Name, typeof(TResponse).Name);
 
             return response;
         }
