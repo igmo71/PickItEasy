@@ -24,6 +24,9 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
             builder.Property(o => o.Name).IsRequired()
                 .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.MAX_LENGTH_NAME);
 
+            //builder.Property(o => o.DateTime).IsRequired()
+            //    .HasColumnType(EntityConfig.TYPE_DATETIME);
+
             builder.HasMany(o => o.Products).WithMany()
                 .UsingEntity<WhsOrderInProduct>(
                     b => b.HasOne(op => op.Product).WithMany().HasForeignKey(op => op.ProductId),

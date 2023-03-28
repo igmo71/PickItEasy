@@ -167,7 +167,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderIn", b =>
@@ -191,7 +191,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WhsOrdersIn");
+                    b.ToTable("WhsOrdersIn", (string)null);
                 });
 
             modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderInProduct", b =>
@@ -215,7 +215,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasIndex("WhsOrderInId");
 
-                    b.ToTable("WhsOrderInProducts");
+                    b.ToTable("WhsOrderInProducts", (string)null);
                 });
 
             modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderOut", b =>
@@ -239,7 +239,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WhsOrdersOut");
+                    b.ToTable("WhsOrdersOut", (string)null);
                 });
 
             modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderOutProduct", b =>
@@ -263,7 +263,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasIndex("WhsOrderOutId");
 
-                    b.ToTable("WhsOrderOutProducts");
+                    b.ToTable("WhsOrderOutProducts", (string)null);
                 });
 
             modelBuilder.Entity("PickItEasy.Domain.WeatherForecast", b =>
@@ -283,7 +283,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WeatherForecasts");
+                    b.ToTable("WeatherForecasts", (string)null);
                 });
 
             modelBuilder.Entity("PickItEasy.Persistence.Models.ApplicationUser", b =>

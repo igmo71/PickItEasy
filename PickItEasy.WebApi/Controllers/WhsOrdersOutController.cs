@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Services.WhsOrdersExpense.Commands.CreateWhsOrderExpense;
-using PickItEasy.Application.Services.WhsOrdersOut.Dto;
+using PickItEasy.Application.Services.WhsOrdersOut.Commands.Create;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById;
 
@@ -40,7 +40,7 @@ namespace PickItEasy.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateWhsOrderOutDto createWhsOrderOutDto)
         {
-            var result = await _mediator.Send(new CreateWhsOrderOutCommand { CreateWhsOrderExpenseDto = createWhsOrderOutDto });
+            var result = await _mediator.Send(new CreateWhsOrderOutCommand { CreateWhsOrderOutDto = createWhsOrderOutDto });
 
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }

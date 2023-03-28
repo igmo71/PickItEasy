@@ -27,8 +27,8 @@ namespace PickItEasy.Application.Services.WhsOrdersExpense.Commands.CreateWhsOrd
 
         public async Task<WhsOrderOutVm> Handle(CreateWhsOrderOutCommand request, CancellationToken cancellationToken)
         {
-            var whsOrderOut = _mapper.Map<WhsOrderOut>(request.CreateWhsOrderExpenseDto);
-
+            var whsOrderOut = _mapper.Map<WhsOrderOut>(request.CreateWhsOrderOutDto);
+            
             await _dbContext.WhsOrdersOut.AddAsync(whsOrderOut);
             await _dbContext.SaveChangesAsync(CancellationToken.None);
 

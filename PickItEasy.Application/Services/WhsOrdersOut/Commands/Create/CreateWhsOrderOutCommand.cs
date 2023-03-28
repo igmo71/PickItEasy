@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using PickItEasy.Application.Services.WhsOrdersOut.Commands.Create;
 using PickItEasy.Application.Services.WhsOrdersOut.Dto;
 using PickItEasy.Domain.Entities;
 using System;
@@ -11,6 +12,6 @@ namespace PickItEasy.Application.Services.WhsOrdersExpense.Commands.CreateWhsOrd
 {
     public class CreateWhsOrderOutCommand : IRequest<WhsOrderOutVm>
     {
-        public CreateWhsOrderOutDto? CreateWhsOrderExpenseDto { get; set; }
+        public CreateWhsOrderOutDto? CreateWhsOrderOutDto { get; set; }
     }
 }
