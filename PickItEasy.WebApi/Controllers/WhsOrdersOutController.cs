@@ -61,12 +61,17 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public void Put(int Guid, [FromBody] string value)
+        [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
+        public IActionResult Put(int Guid, [FromBody] string value)
         {
+            return StatusCode((int)HttpStatusCode.MethodNotAllowed);
         }
 
         // DELETE api/<WhsOrdersOutController>/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Delete(Guid id)
         {
             var deleteWhsOrderOutCommand = new DeleteWhsOrderOutCommand { Id = id };
