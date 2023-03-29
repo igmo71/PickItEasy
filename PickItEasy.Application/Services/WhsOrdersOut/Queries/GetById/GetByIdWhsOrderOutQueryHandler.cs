@@ -3,13 +3,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Common.Exceptions;
 using PickItEasy.Application.Interfaces;
-using PickItEasy.Application.Services.WhsOrdersOut.Commands.Create;
 using PickItEasy.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
 {

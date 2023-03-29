@@ -1,16 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using PickItEasy.Application.Interfaces.EventBus;
 using PickItEasy.Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PickItEasy.Domain.Entities;
-using PickItEasy.Application.Services.Products.Queries.IsExistsById;
 using PickItEasy.Application.Services.Products.Commands.Update;
-using PickItEasy.Application.Services.Products.Queries.GetById;
+using PickItEasy.Application.Services.Products.Queries.IsExistsById;
+using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.Products.Commands.Create
 {

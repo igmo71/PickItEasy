@@ -1,15 +1,10 @@
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.EntityFrameworkCore;
-using PickItEasy.WebApp.BlazorServer.Areas.Identity;
+using PickItEasy.Application.Services;
+using PickItEasy.EventBus;
 using PickItEasy.Persistence;
 using PickItEasy.Persistence.Data;
-using PickItEasy.Application.Services;
 using PickItEasy.Persistence.Models;
-using PickItEasy.EventBus;
+using PickItEasy.WebApp.BlazorServer.Areas.Identity;
 
 namespace PickItEasy.WebApp.BlazorServer
 {
@@ -31,7 +26,7 @@ namespace PickItEasy.WebApp.BlazorServer
 
             builder.Services.ConfigureEventBus(builder.Configuration);
             builder.Services.AddEventBusConsumer();
-            
+
             builder.Services.AddScoped<WeatherForecastService>();
 
             var app = builder.Build();

@@ -3,11 +3,6 @@ using MediatR;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Interfaces.EventBus;
 using PickItEasy.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
 {
@@ -27,7 +22,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
         public async Task<CreateWhsOrderOutVm> Handle(CreateWhsOrderOutCommand request, CancellationToken cancellationToken)
         {
             var whsOrderOut = _mapper.Map<WhsOrderOut>(request.CreateWhsOrderOutDto);
-            
+
             await _dbContext.WhsOrdersOut.AddAsync(whsOrderOut);
             await _dbContext.SaveChangesAsync(CancellationToken.None);
 

@@ -1,12 +1,8 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Services;
 using PickItEasy.Domain;
 using PickItEasy.Web.EventBus;
-using PickItEasy.Web.Pages;
 
 namespace PickItEasy.Web.Controllers
 {
@@ -47,7 +43,7 @@ namespace PickItEasy.Web.Controllers
 
             //_forecastEventManager.OnWeatherForecastCreated();
             await _mediator.Publish(new WeatherForecastCreateNotifucation() { Value = result });
-            
+
             return Ok(result);
         }
 

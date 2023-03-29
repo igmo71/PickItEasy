@@ -1,16 +1,10 @@
-﻿using AutoMapper;
-using FluentValidation;
+﻿using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using PickItEasy.Application.Common.Behaviors;
 using PickItEasy.Application.Services.Products.Mapping;
 using PickItEasy.Application.Services.WhsOrdersOut.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickItEasy.Application
 {
@@ -29,7 +23,7 @@ namespace PickItEasy.Application
             {
                 config.AddProfile<WhsOrderOutMapperProfile>();
                 config.AddProfile<ProductMappingProfile>();
-            });            services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
+            }); services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
 
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));

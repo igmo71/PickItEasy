@@ -1,6 +1,4 @@
-﻿using PickItEasy.Application.Services.WhsOrdersOut.Commands.Create;
-
-namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
+﻿namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
 {
     public class GetByIdWhsOrderOutVm
     {

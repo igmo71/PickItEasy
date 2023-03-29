@@ -1,11 +1,5 @@
 ﻿using FluentValidation;
-using FluentValidation.Validators;
 using PickItEasy.Application.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.Products.Commands.Update
 {

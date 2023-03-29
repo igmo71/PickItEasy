@@ -1,9 +1,9 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Services.Products.Commands.Create;
-using PickItEasy.Application.Services.Products.Queries.GetById;
 using PickItEasy.Application.Services.Products.Commands.Update;
-using AutoMapper;
+using PickItEasy.Application.Services.Products.Queries.GetById;
 using System.Net;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -41,7 +41,7 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var result = await _mediator.Send(new GetByIdProductQuery { Id =  id });
+            var result = await _mediator.Send(new GetByIdProductQuery { Id = id });
 
             return Ok(result);
         }
@@ -56,7 +56,7 @@ namespace PickItEasy.WebApi.Controllers
             var createProductCommand = new CreateProductCommand { CreateProductDto = createProductDto };
             var result = await _mediator.Send(createProductCommand);
 
-            return CreatedAtAction(nameof(GetById), new {id = result.Id}, result);
+            return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 
         // PUT api/<ProductsController>/5

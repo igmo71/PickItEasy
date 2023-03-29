@@ -4,11 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Common.Exceptions;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.Products.Queries.GetById
 {
@@ -30,7 +25,7 @@ namespace PickItEasy.Application.Services.Products.Queries.GetById
             var product = await _dbContext.Products.AsNoTracking()
                 .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken)
                 ?? throw new EntityNotFoundException(nameof(Product), request.Id);
-            
+
             var response = _mapper.Map<GetByIdProductVm>(product);
 
             return response;

@@ -1,8 +1,5 @@
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using PickItEasy.Application;
 using PickItEasy.Application.Interfaces;
-using PickItEasy.Application.Interfaces.EventBus;
 using PickItEasy.EventBus;
 using PickItEasy.Persistence;
 using PickItEasy.WebApi.Middleware;

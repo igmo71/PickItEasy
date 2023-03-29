@@ -42,7 +42,7 @@ namespace PickItEasy.WebApi.Middleware
             }
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)statusCode;
-            if(string.IsNullOrEmpty(result)) 
+            if (string.IsNullOrEmpty(result))
                 result = JsonSerializer.Serialize(new { error = exception.Message });
             return context.Response.WriteAsync(result);
         }

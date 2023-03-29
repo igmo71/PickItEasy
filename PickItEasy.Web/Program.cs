@@ -1,27 +1,17 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using PickItEasy.Application.Interfaces.EventBus;
 using PickItEasy.Application.Services;
+using PickItEasy.EventBus.RabbitMq;
 using PickItEasy.Persistence;
 using PickItEasy.Persistence.Data;
 using PickItEasy.Persistence.Models;
 using PickItEasy.Web.Areas.Identity;
 using PickItEasy.Web.EventBus;
-using System.Net;
-using System.Text;
-using PickItEasy.Application;
 using System.Reflection;
-using RabbitMQ.Client.Events;
-using PickItEasy.EventBus.RabbitMq;
-using PickItEasy.Application.Interfaces;
-using PickItEasy.Application.Interfaces.EventBus;
+using System.Text;
 
 namespace PickItEasy.Web
 {

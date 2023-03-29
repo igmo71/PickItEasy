@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Persistence.Models;
 
@@ -69,7 +66,7 @@ namespace PickItEasy.Web.Controllers.Identity
         public async Task<IActionResult> AddRoles(string userId, List<string> roles)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            if(user == null)
+            if (user == null)
                 return NotFound(userId);
 
             // получем список ролей пользователя

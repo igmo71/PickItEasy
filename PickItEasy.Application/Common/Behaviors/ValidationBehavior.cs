@@ -1,11 +1,5 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation;
+﻿using FluentValidation;
+using MediatR;
 
 namespace PickItEasy.Application.Common.Behaviors
 {
@@ -26,7 +20,7 @@ namespace PickItEasy.Application.Common.Behaviors
                 .SelectMany(result => result.Errors)
                 .Where(failure => failure != null)
                 .ToList();
-            if(failures.Any())
+            if (failures.Any())
             {
                 throw new ValidationException(failures);
             }

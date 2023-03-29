@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using PickItEasy.Application.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Interfaces.EventBus;
-using PickItEasy.EventBus.RabbitMq;
 
 namespace PickItEasy.Web.Controllers
 {
