@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.Products.Commands.Create
 {
-    public class CreateProductValidator : AbstractValidator<CreateProductCommand>
+    public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
     {
-        public CreateProductValidator()
+        public CreateProductCommandValidator()
         {
             RuleFor(createProductCommand => createProductCommand.CreateProductDto).NotNull().NotEmpty();
             RuleFor(createProductCommand => createProductCommand.CreateProductDto).SetValidator(new CreateProductDtoValidator());

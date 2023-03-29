@@ -2,7 +2,6 @@
 using MediatR;
 using PickItEasy.Application.Interfaces.EventBus;
 using PickItEasy.Application.Interfaces;
-using PickItEasy.Application.Services.Products.Vm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +10,11 @@ using System.Threading.Tasks;
 using PickItEasy.Domain.Entities;
 using PickItEasy.Application.Services.Products.Queries.IsExistsById;
 using PickItEasy.Application.Services.Products.Commands.Update;
+using PickItEasy.Application.Services.Products.Queries.GetById;
 
 namespace PickItEasy.Application.Services.Products.Commands.Create
 {
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, ProductVm>
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, CreateProductVm>
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -27,7 +27,7 @@ namespace PickItEasy.Application.Services.Products.Commands.Create
             _mediator = mediator;
         }
 
-        public async Task<ProductVm> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+        public async Task<CreateProductVm> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             var product = _mapper.Map<Product>(request.CreateProductDto);
 
@@ -49,7 +49,7 @@ namespace PickItEasy.Application.Services.Products.Commands.Create
                 }, cancellationToken);
             }
 
-            var response = _mapper.Map<ProductVm>(product);
+            var response = _mapper.Map<CreateProductVm>(product);
 
             return response;
         }

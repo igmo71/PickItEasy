@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Common.Exceptions;
 using PickItEasy.Application.Interfaces;
-using PickItEasy.Application.Services.Products.Vm;
 using PickItEasy.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.Products.Queries.GetById
 {
-    public class GetByIdProductQueryHandler : IRequestHandler<GetByIdProductQuery, ProductVm>
+    public class GetByIdProductQueryHandler : IRequestHandler<GetByIdProductQuery, GetByIdProductVm>
     {
 
         private readonly IApplicationDbContext _dbContext;
@@ -25,14 +24,14 @@ namespace PickItEasy.Application.Services.Products.Queries.GetById
             _mapper = mapper;
         }
 
-        public async Task<ProductVm> Handle(GetByIdProductQuery request, CancellationToken cancellationToken)
+        public async Task<GetByIdProductVm> Handle(GetByIdProductQuery request, CancellationToken cancellationToken)
         {
 
             var product = await _dbContext.Products.AsNoTracking()
                 .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken)
                 ?? throw new EntityNotFoundException(nameof(Product), request.Id);
             
-            var response = _mapper.Map<ProductVm>(product);
+            var response = _mapper.Map<GetByIdProductVm>(product);
 
             return response;
         }

@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using PickItEasy.Application.Services.Products.Vm;
+using PickItEasy.Application.Services.Products.Queries.GetById;
 using PickItEasy.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.Products.Commands.Create
 {
-    public class CreateProductCommand : IRequest<ProductVm>
+    public class CreateProductCommand : IRequest<CreateProductVm>
     {
         public required CreateProductDto CreateProductDto { get; init; }
     }

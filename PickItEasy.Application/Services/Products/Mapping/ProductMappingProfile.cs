@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using PickItEasy.Application.Services.Products.Commands.Create;
-using PickItEasy.Application.Services.Products.Vm;
+using PickItEasy.Application.Services.Products.Queries.GetById;
 using PickItEasy.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,8 +14,12 @@ namespace PickItEasy.Application.Services.Products.Mapping
     {
         public ProductMappingProfile()
         {
+            // Create
             CreateMap<CreateProductDto, Product>();
-            CreateMap<Product, ProductVm>();
+            CreateMap<Product, CreateProductVm>();
+
+            // GetById
+            CreateMap<Product, GetByIdProductVm>();
         }
     }
 }
