@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using PickItEasy.Application.Services.WhsOrdersOut.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
 {
-    public class GetByIdWhsOrderOutQuery : IRequest<WhsOrderOutVm>
+    public class GetByIdWhsOrderOutQuery : IRequest<GetByIdWhsOrderOutVm>
     {
         public Guid Id { get; set; }
     }

@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Common.Exceptions;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Services.Products.Vm;
-using PickItEasy.Application.Services.WhsOrdersOut.Dto;
 using PickItEasy.Domain.Entities;
 using System;
 using System.Collections.Generic;

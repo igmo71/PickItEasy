@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Create;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Create;
+using PickItEasy.Application.Services.WhsOrdersOut.Commands.Delete;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById;
 
@@ -40,8 +41,8 @@ namespace PickItEasy.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateWhsOrderOutDto createWhsOrderOutDto)
         {
-            var result = await _mediator.Send(new CreateWhsOrderOutCommand { CreateWhsOrderOutDto = createWhsOrderOutDto });
-
+            var createWhsOrderOutCommand = new CreateWhsOrderOutCommand { CreateWhsOrderOutDto = createWhsOrderOutDto };
+            var result = await _mediator.Send(createWhsOrderOutCommand);
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 
@@ -53,8 +54,11 @@ namespace PickItEasy.WebApi.Controllers
 
         // DELETE api/<WhsOrdersOutController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
+            var deleteWhsOrderOutCommand = new DeleteWhsOrderOutCommand { Id = id };
+            await _mediator.Send(deleteWhsOrderOutCommand);
+            return NoContent();
         }
     }
 }

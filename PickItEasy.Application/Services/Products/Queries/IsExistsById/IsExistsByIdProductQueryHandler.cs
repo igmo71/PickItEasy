@@ -21,7 +21,6 @@ namespace PickItEasy.Application.Services.Products.Queries.IsExistsById
         public async Task<bool> Handle(IsExistsByIdProductQuery request, CancellationToken cancellationToken)
         {
             var response = await _dbContext.Products.AnyAsync(p => p.Id == request.Id, cancellationToken);
-
             return response;
         }
     }
