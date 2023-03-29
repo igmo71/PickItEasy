@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PickItEasy.Application.Services.WhsOrdersExpense.Commands.CreateWhsOrderExpense
+namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
 {
     public class CreateWhsOrderOutCommandHandler : IRequestHandler<CreateWhsOrderOutCommand, WhsOrderOutVm>
     {

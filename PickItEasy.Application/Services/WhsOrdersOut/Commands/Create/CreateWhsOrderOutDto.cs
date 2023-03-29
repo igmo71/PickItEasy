@@ -9,7 +9,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
         public required string Number { get; set; }
         public required DateTime DateTime { get; set; }
 
-        public List<CreateWhsOrderOutProductDto>? Products { get; set; }
+        public required List<CreateWhsOrderOutProductDto> Products { get; set; }
     }
 
     public class CreateWhsOrderOutProductDto

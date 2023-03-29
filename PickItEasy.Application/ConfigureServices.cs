@@ -18,8 +18,6 @@ namespace PickItEasy.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
-
             services.AddMediatR(config =>
             {
                 config.RegisterServicesFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
@@ -31,7 +29,7 @@ namespace PickItEasy.Application
             {
                 config.AddProfile<WhsOrderOutMapperProfile>();
                 config.AddProfile<ProductMappingProfile>();
-            });
+            });            services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
 
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));

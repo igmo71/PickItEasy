@@ -8,10 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PickItEasy.Application.Services.WhsOrdersExpense.Commands.CreateWhsOrderExpense
+namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
 {
     public class CreateWhsOrderOutCommand : IRequest<WhsOrderOutVm>
     {
-        public CreateWhsOrderOutDto? CreateWhsOrderOutDto { get; set; }
+        public required CreateWhsOrderOutDto CreateWhsOrderOutDto { get; set; }
     }
 }
