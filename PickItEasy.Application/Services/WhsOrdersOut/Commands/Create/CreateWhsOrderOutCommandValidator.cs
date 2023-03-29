@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
 {
-    internal class CreateWhsOrderOutCommandValidator : AbstractValidator<CreateWhsOrderOutCommand>
+    public class CreateWhsOrderOutCommandValidator : AbstractValidator<CreateWhsOrderOutCommand>
     {
         public CreateWhsOrderOutCommandValidator()
         {
@@ -17,7 +17,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
         }
     }
 
-    internal class CreateWhsOrderOutDtoValidator : AbstractValidator<CreateWhsOrderOutDto>
+    public class CreateWhsOrderOutDtoValidator : AbstractValidator<CreateWhsOrderOutDto>
     {
         public CreateWhsOrderOutDtoValidator()
         {
@@ -26,11 +26,11 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
             RuleFor(createWhsOrderOutDto => createWhsOrderOutDto.Number).NotNull().NotEmpty();
             RuleFor(createWhsOrderOutDto => createWhsOrderOutDto.DateTime).NotNull().NotEmpty();
             RuleFor(createWhsOrderOutDto => createWhsOrderOutDto.Products).NotNull().NotEmpty();
-            //RuleFor(createWhsOrderOutDto => createWhsOrderOutDto.Products).SetValidator(new CreateWhsOrderOutProductDtoValidator());
+            RuleForEach(createWhsOrderOutDto => createWhsOrderOutDto.Products).SetValidator(new CreateWhsOrderOutProductDtoValidator());
         }
     }
 
-    internal class CreateWhsOrderOutProductDtoValidator : AbstractValidator<CreateWhsOrderOutProductDto>
+    public class CreateWhsOrderOutProductDtoValidator : AbstractValidator<CreateWhsOrderOutProductDto>
     {
         public CreateWhsOrderOutProductDtoValidator()
         {
