@@ -21,12 +21,10 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
         public async Task<GetByIdWhsOrderOutVm> Handle(GetByIdWhsOrderOutQuery request, CancellationToken cancellationToken)
         {
             var whsOrderOut = await _dbContext.WhsOrdersOut.AsNoTracking()
-                .Include(e => e.WhsOrderOutProducts).ThenInclude(op => op.Product)
-                //.Include(e => e.Products)
-                .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken: cancellationToken);
-
-            if (whsOrderOut == null) throw new EntityNotFoundException(nameof(WhsOrderOut), request.Id);
-
+                .Include(e => e.WhsOrderOutProducts).ThenInclude(op => op.Product)//.Include(e => e.Products)
+                .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken: cancellationToken) 
+                ?? throw new EntityNotFoundException(nameof(WhsOrderOut), request.Id);
+            
             var response = _mapper.Map<GetByIdWhsOrderOutVm>(whsOrderOut);
 
             return response;

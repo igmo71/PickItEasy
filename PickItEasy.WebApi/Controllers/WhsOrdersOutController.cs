@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Create;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Delete;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById;
+using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList;
 using System.Net;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -26,9 +27,12 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
-        public IActionResult Get()
+        public async Task<IActionResult> Get([FromQuery] WhsOrderOutSearchParameters searchParameters)
         {
-            return StatusCode((int)HttpStatusCode.MethodNotAllowed);
+            var getListWhsOrderOutQuery = new GetListWhsOrderOutQuery { SearchParameters = searchParameters };
+            var result = await _mediator.Send(getListWhsOrderOutQuery);
+            return Ok(result);
+            //return StatusCode((int)HttpStatusCode.MethodNotAllowed);
         }
 
         // GET api/<WhsOrdersOutController>/5

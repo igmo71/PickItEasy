@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Create;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById;
+using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList;
 using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Mapping
@@ -51,6 +52,14 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Mapping
                 .ForMember(vm => vm.Count, opt => opt.MapFrom(orderProduct => orderProduct.Count))
                 .ForMember(vm => vm.Name, opt => opt.MapFrom(orderProduct =>
                     orderProduct.Product == null ? string.Empty : orderProduct.Product.Name));
+
+            // GetList
+            // 
+            CreateMap<WhsOrderOut, GetListWhsOrderOutLookup>()
+                .ForMember(lookup => lookup.Id, opt => opt.MapFrom(order => order.Id))
+                .ForMember(lookup => lookup.Name, opt => opt.MapFrom(order => order.Name))
+                .ForMember(lookup => lookup.Number, opt => opt.MapFrom(order => order.Number))
+                .ForMember(lookup => lookup.DateTime, opt => opt.MapFrom(order => order.DateTime));
         }
     }
 }

@@ -25,12 +25,7 @@ namespace PickItEasy.Application.Services.Products.Commands.Create
             var product = _mapper.Map<Product>(request.CreateProductDto);
 
             var isProductExists = await _mediator.Send(new IsExistsByIdProductQuery { Id = product.Id }, cancellationToken);
-            if (!isProductExists)
-            {
-                await _dbContext.Products.AddAsync(product, cancellationToken);
-                await _dbContext.SaveChangesAsync(cancellationToken);
-            }
-            else
+            if (isProductExists)
             {
                 await _mediator.Send(new UpdateProductCommand
                 {
@@ -40,6 +35,11 @@ namespace PickItEasy.Application.Services.Products.Commands.Create
                         Name = product.Name
                     }
                 }, cancellationToken);
+            }
+            else
+            {
+                await _dbContext.Products.AddAsync(product, cancellationToken);
+                await _dbContext.SaveChangesAsync(cancellationToken);
             }
 
             var response = _mapper.Map<CreateProductVm>(product);

@@ -2,6 +2,8 @@
 using MediatR;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Interfaces.EventBus;
+using PickItEasy.Application.Services.WhsOrdersOut.Commands.Delete;
+using PickItEasy.Application.Services.WhsOrdersOut.Queries.IsExistsById;
 using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
@@ -10,12 +12,14 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
         private readonly IEventBusPublisher _eventPublisher;
 
-        public CreateWhsOrderOutCommandHandler(IApplicationDbContext dbContext, IMapper mapper, IEventBusPublisher eventPublisher)
+        public CreateWhsOrderOutCommandHandler(IApplicationDbContext dbContext, IMapper mapper, IMediator mediator, IEventBusPublisher eventPublisher)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _mediator = mediator;
             _eventPublisher = eventPublisher;
         }
 
@@ -23,8 +27,15 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
         {
             var whsOrderOut = _mapper.Map<WhsOrderOut>(request.CreateWhsOrderOutDto);
 
-            await _dbContext.WhsOrdersOut.AddAsync(whsOrderOut);
+            var isWhsOrderOutExists = await _mediator.Send(new IsExistsByIdWhsOrderOutQuery { Id = whsOrderOut.Id }, cancellationToken);
+            if (isWhsOrderOutExists)
+            {
+                await _mediator.Send(new DeleteWhsOrderOutCommand { Id = whsOrderOut.Id }, cancellationToken);
+            }
+            await _dbContext.WhsOrdersOut.AddAsync(whsOrderOut, cancellationToken);
             await _dbContext.SaveChangesAsync(CancellationToken.None);
+
+
 
             _eventPublisher.SendMessage($"{nameof(whsOrderOut)}_{whsOrderOut.Id}");
 
