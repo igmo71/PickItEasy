@@ -38,7 +38,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Mapping
                 .ForMember(vm => vm.Products, opt => opt.MapFrom(order => order.WhsOrderOutProducts));
 
             CreateMap<WhsOrderOutProduct, CreateWhsOrderOutProductVm>()
-                .ForMember(vm => vm.Id, opt => opt.MapFrom(product => product.Id))                
+                .ForMember(vm => vm.ProductId, opt => opt.MapFrom(product => product.Id))                
                 .ForMember(vm => vm.Count, opt => opt.MapFrom(product => product.Count));
 
             // WhsOrderOut => GetByIdWhsOrderOutVm
@@ -50,7 +50,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Mapping
                 .ForMember(vm => vm.Products, opt => opt.MapFrom(order => order.WhsOrderOutProducts));
 
             CreateMap<WhsOrderOutProduct, GetByIdWhsOrderOutProductVm>()
-                .ForMember(vm => vm.Id, opt => opt.MapFrom(orderProduct => orderProduct.Id))
+                .ForMember(vm => vm.ProductId, opt => opt.MapFrom(orderProduct => orderProduct.Id))
                 .ForMember(vm => vm.Count, opt => opt.MapFrom(orderProduct => orderProduct.Count))
                 .ForMember(vm => vm.Name, opt => opt.MapFrom(orderProduct =>
                     orderProduct.Product == null ? string.Empty : orderProduct.Product.Name));

@@ -4,6 +4,7 @@ using PickItEasy.Application.Services.Products.Commands.Create;
 using PickItEasy.Application.Services.Products.Queries.GetById;
 using PickItEasy.Application.Services.Products.Commands.Update;
 using AutoMapper;
+using System.Net;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,13 +25,20 @@ namespace PickItEasy.WebApi.Controllers
 
         // GET: api/<ProductsController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return StatusCode((int)HttpStatusCode.MethodNotAllowed);
         }
 
         // GET api/<ProductsController>/5
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetById(Guid id)
         {
             var result = await _mediator.Send(new GetByIdProductQuery { Id =  id });
@@ -53,6 +61,9 @@ namespace PickItEasy.WebApi.Controllers
 
         // PUT api/<ProductsController>/5
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Put(Guid id, [FromBody] UpdateProductDto updateProductDto)
         {
             var updateProductCommand = new UpdateProductCommand { Id = id, UpdateProductDto = updateProductDto };
@@ -63,8 +74,13 @@ namespace PickItEasy.WebApi.Controllers
 
         // DELETE api/<ProductsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
+        public IActionResult Delete(Guid id)
         {
+            return StatusCode((int)HttpStatusCode.MethodNotAllowed);
         }
     }
 }

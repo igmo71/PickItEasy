@@ -21,7 +21,7 @@ namespace PickItEasy.Persistence.Migrations
             migrationBuilder.AddPrimaryKey(
                 name: "PK_WeatherForecasts",
                 table: "WeatherForecasts",
-                column: "Id");
+                column: "ProductId");
         }
 
         /// <inheritdoc />
@@ -38,7 +38,7 @@ namespace PickItEasy.Persistence.Migrations
             migrationBuilder.AddPrimaryKey(
                 name: "PK_WeatherForecast",
                 table: "WeatherForecast",
-                column: "Id");
+                column: "ProductId");
         }
     }
 }

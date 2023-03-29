@@ -18,7 +18,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
 
     public class CreateWhsOrderOutProductVm
     {
-        public Guid Id { get; set; }
+        public Guid ProductId { get; set; }
         public float Count { get; set; }
     }
 }

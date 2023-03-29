@@ -55,13 +55,13 @@ namespace PickItEasy.Persistence.Migrations
                         name: "FK_WhsOrderInProducts_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "Id",
+                        principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_WhsOrderInProducts_WhsOrdersIn_WhsOrderInId",
                         column: x => x.WhsOrderInId,
                         principalTable: "WhsOrdersIn",
-                        principalColumn: "Id",
+                        principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -81,13 +81,13 @@ namespace PickItEasy.Persistence.Migrations
                         name: "FK_WhsOrderOutProducts_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "Id",
+                        principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_WhsOrderOutProducts_WhsOrdersOut_WhsOrderOutId",
                         column: x => x.WhsOrderOutId,
                         principalTable: "WhsOrdersOut",
-                        principalColumn: "Id",
+                        principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                 });
 

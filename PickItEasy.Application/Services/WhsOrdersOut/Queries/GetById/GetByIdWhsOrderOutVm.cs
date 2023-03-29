@@ -14,7 +14,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
 
     public class GetByIdWhsOrderOutProductVm
     {
-        public Guid Id { get; set; }
+        public Guid ProductId { get; set; }
         public string? Name { get; set; }
         public float Count { get; set; }
     }

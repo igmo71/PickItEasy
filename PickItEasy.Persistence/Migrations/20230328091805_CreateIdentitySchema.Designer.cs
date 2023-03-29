@@ -27,7 +27,7 @@ namespace PickItEasy.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("ProductId")
                         .HasColumnType("text");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -42,7 +42,7 @@ namespace PickItEasy.Persistence.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductId");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
@@ -53,11 +53,11 @@ namespace PickItEasy.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ProductId"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("text");
@@ -69,7 +69,7 @@ namespace PickItEasy.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductId");
 
                     b.HasIndex("RoleId");
 
@@ -78,11 +78,11 @@ namespace PickItEasy.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ProductId"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("text");
@@ -94,7 +94,7 @@ namespace PickItEasy.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductId");
 
                     b.HasIndex("UserId");
 
@@ -159,7 +159,7 @@ namespace PickItEasy.Persistence.Migrations
 
             modelBuilder.Entity("PickItEasy.Domain.WeatherForecast", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
@@ -172,14 +172,14 @@ namespace PickItEasy.Persistence.Migrations
                     b.Property<int>("TemperatureC")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductId");
 
                     b.ToTable("WeatherForecast");
                 });
 
             modelBuilder.Entity("PickItEasy.Persistence.Models.ApplicationUser", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("ProductId")
                         .HasColumnType("text");
 
                     b.Property<int>("AccessFailedCount")
@@ -229,7 +229,7 @@ namespace PickItEasy.Persistence.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
