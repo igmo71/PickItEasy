@@ -13,6 +13,7 @@ using PickItEasy.Persistence;
 using PickItEasy.Persistence.Data;
 using PickItEasy.Persistence.Models;
 using PickItEasy.WebApp.BlazorServer.Areas.Identity;
+using Serilog;
 using System.Reflection;
 
 namespace PickItEasy.WebApp.BlazorServer
@@ -22,6 +23,10 @@ namespace PickItEasy.WebApp.BlazorServer
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Host.UseSerilog((ctx, lc) => lc
+                .ReadFrom.Configuration(ctx.Configuration)
+                .WriteTo.Console());
 
             // Add services to the container.
 

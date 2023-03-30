@@ -18,13 +18,13 @@ namespace PickItEasy.Application.Common.Behaviors
         {
             var userId = _currentUserService.UserId;
 
-            Log.Information("PickItEasy.WebApi Request: {RequestName} - {ResponseName}", typeof(TRequest).Name, typeof(TResponse).Name);
-            Log.Debug("PickItEasy.WebApi Request: {RequestName} {@UserId} {@RequestBody}", typeof(TRequest).Name, userId, request);
+            //Log.Information("PickItEasy Request: {RequestName} - {ResponseName}", typeof(TRequest).Name, typeof(TResponse).Name);
+            Log.Debug("PickItEasy Request: {RequestName} {@UserId} {@RequestBody}", typeof(TRequest).Name, userId, request);
 
             var response = await next();
 
-            Log.Debug("PickItEasy.WebApi Response: {ResponseName} {@UserId} {@ResponseBody}", typeof(TResponse).Name, userId, response);
-            Log.Information("PickItEasy.WebApi Response: {RequestName} - {ResponseName}", typeof(TRequest).Name, typeof(TResponse).Name);
+            Log.Debug("PickItEasy Response: {ResponseName} {@UserId} {@ResponseBody}", typeof(TResponse).Name, userId, response);
+            //Log.Information("PickItEasy Response: {RequestName} - {ResponseName}", typeof(TRequest).Name, typeof(TResponse).Name);
 
             return response;
         }
