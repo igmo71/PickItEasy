@@ -1,6 +1,8 @@
 ﻿@page "/WhsOrdersOut/List"
 <h3>List</h3>
+
 <div>@pageMessage</div>
+
 @if (listWhsOrderOutVm.Orders is not null && listWhsOrderOutVm.Orders.Any())
 {
     @foreach (var order in listWhsOrderOutVm.Orders)
