@@ -1,9 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PickItEasy.Application.Interfaces.EventBus;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Create;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Delete;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList;
+using PickItEasy.Domain.Entities;
 using System.Net;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -15,10 +17,12 @@ namespace PickItEasy.WebApi.Controllers
     public class WhsOrdersOutController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IEventBusPublisher _eventPublisher;
 
-        public WhsOrdersOutController(IMediator mediator)
+        public WhsOrdersOutController(IMediator mediator, IEventBusPublisher eventPublisher)
         {
             _mediator = mediator;
+            _eventPublisher = eventPublisher;
         }
 
         // GET: api/<WhsOrdersOutController>
@@ -55,6 +59,7 @@ namespace PickItEasy.WebApi.Controllers
         {
             var createWhsOrderOutCommand = new CreateWhsOrderOutCommand { CreateWhsOrderOutDto = createWhsOrderOutDto };
             var result = await _mediator.Send(createWhsOrderOutCommand);
+            _eventPublisher.SendMessage($"{nameof(CreateWhsOrderOutCommand)}_{result.Id}");
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 

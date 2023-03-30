@@ -1,9 +1,9 @@
 using PickItEasy.Application;
+using PickItEasy.Application.Common;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.EventBus;
 using PickItEasy.Persistence;
 using PickItEasy.WebApi.Middleware;
-using PickItEasy.WebApi.Services;
 using Serilog;
 
 namespace PickItEasy.WebApi

@@ -13,14 +13,14 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
-        private readonly IEventBusPublisher _eventPublisher;
+        //private readonly IEventBusPublisher _eventPublisher;
 
-        public CreateWhsOrderOutCommandHandler(IApplicationDbContext dbContext, IMapper mapper, IMediator mediator, IEventBusPublisher eventPublisher)
+        public CreateWhsOrderOutCommandHandler(IApplicationDbContext dbContext, IMapper mapper, IMediator mediator/*, IEventBusPublisher eventPublisher*/)
         {
             _dbContext = dbContext;
             _mapper = mapper;
             _mediator = mediator;
-            _eventPublisher = eventPublisher;
+            //_eventPublisher = eventPublisher;
         }
 
         public async Task<CreateWhsOrderOutVm> Handle(CreateWhsOrderOutCommand request, CancellationToken cancellationToken)
@@ -37,7 +37,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
 
 
 
-            _eventPublisher.SendMessage($"{nameof(whsOrderOut)}_{whsOrderOut.Id}");
+            //_eventPublisher.SendMessage($"{nameof(whsOrderOut)}_{whsOrderOut.Id}");
 
             var response = _mapper.Map<CreateWhsOrderOutVm>(whsOrderOut);
 

@@ -1,0 +1,144 @@
+version: '3.4'
+
+name: pick-it-easy
+
+services:
+  pickiteasy.web:
+    image: ${DOCKER_REGISTRY-}pickiteasyweb
+    container_name: web_combine
+    build:
+      context: .
+      dockerfile: PickItEasy.Web/Dockerfile
+    depends_on: 
+      - postgres
+      - rabbitmq  
+
+  pickiteasy.webapi:
+    image: ${DOCKER_REGISTRY-}pickiteasywebapi
+    container_name: webapi
+    build:
+      context: .
+      dockerfile: PickItEasy.WebApi/Dockerfile
+    depends_on: 
+      - postgres
+      - rabbitmq
+
+  pickiteasy.webapp.blazorserver:
+    image: ${DOCKER_REGISTRY-}pickiteasywebappblazorserver
+    container_name: webapp-blazor
+    build:
+      context: .
+      dockerfile: PickItEasy.WebApp.BlazorServer/Dockerfile
+    depends_on: 
+      - postgres
+      - rabbitmq
+
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    command:
+      - "postgres"
+      - "-c"
+      - "max_connections=50"
+      - "-c"
+      - "shared_buffers=1GB"
+      - "-c"
+      - "effective_cache_size=4GB"
+      - "-c"
+      - "work_mem=16MB"
+      - "-c"
+      - "maintenance_work_mem=512MB"
+      - "-c"
+      - "random_page_cost=1.1"
+      - "-c"
+      - "temp_file_limit=10GB"
+      - "-c"
+      - "log_min_duration_statement=200ms"
+      - "-c"
+      - "idle_in_transaction_session_timeout=10s"
+      - "-c"
+      - "lock_timeout=1s"
+      - "-c"
+      - "statement_timeout=60s"
+      - "-c"
+      - "shared_preload_libraries=pg_stat_statements"
+      - "-c"
+      - "pg_stat_statements.max=10000"
+      - "-c"
+      - "pg_stat_statements.track=all"
+    environment:
+      POSTGRES_DB: "PickItEasyDb"
+      POSTGRES_USER: "PickItEasyUser"
+      POSTGRES_PASSWORD: "Pwd4PickItEasy"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - .:/docker-entrypoint-initdb.d
+      - pickiteasy-pg-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U PickItEasyUser -d PickItEasyDb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 4G
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "igmo@dobroga.ru"
+      PGADMIN_DEFAULT_PASSWORD: "Pwd4PickItEasy"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    ports:
+      - "5050:80"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 1G
+    restart: unless-stopped
+
+  rabbitmq:
+    container_name: rabbitmq_container
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+      - "5672:5672" 
+    restart: unless-stopped  
+
+  redis:
+    container_name: redis_container
+    image: redis
+    restart: unless-stopped
+
+  seq:
+    hostname: ca2b35a51a38
+    container_name: seq_container
+    environment:
+      - ACCEPT_EULA=Y
+      - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+      - BASE_URI=
+      - DATA_DIR=/data
+    ports:
+      - '5341:5341'
+      - '81:80'
+    labels:
+      - Description=Seq
+      - 'Vendor=Datalust Pty Ltd'
+      - org.opencontainers.image.ref.name=ubuntu
+      - org.opencontainers.image.version=20.04
+    image: datalust/seq:latest  
+
+volumes:
+  pickiteasy-pg-data:
+    name: pickiteasy-pg-data
+    driver: local
+
+
