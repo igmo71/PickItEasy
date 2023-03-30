@@ -8,7 +8,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceName>pickiteasy.webapi</DockerServiceName>
+    <DockerServiceName>pickiteasy.webapp.blazorserver</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose - Copy.override.yml">

@@ -1,0 +1,9 @@
+﻿@page "/WhsOrdersOut/Item/{id}"
+<h3>Item</h3>
+
+@if(whsOrderOut is not null)
+{
+    <div>@whsOrderOut.Name</div>
+    <div>@whsOrderOut.Number</div>
+    <div>@whsOrderOut.DateTime</div>
+}

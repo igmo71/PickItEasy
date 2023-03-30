@@ -1,6 +1,7 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.DependencyInjection;
 using PickItEasy.Application;
 using PickItEasy.Application.Common;
 using PickItEasy.Application.Common.Behaviors;
@@ -15,6 +16,7 @@ using PickItEasy.Persistence.Models;
 using PickItEasy.WebApp.BlazorServer.Areas.Identity;
 using Serilog;
 using System.Reflection;
+using PickItEasy.Integration;
 
 namespace PickItEasy.WebApp.BlazorServer
 {
@@ -30,9 +32,9 @@ namespace PickItEasy.WebApp.BlazorServer
 
             // Add services to the container.
 
-            builder.Services.AddApplication();
-            
+            builder.Services.AddApplication();            
             builder.Services.AddPersistence(builder.Configuration);
+            builder.Services.AddConnectors(builder.Configuration);
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
