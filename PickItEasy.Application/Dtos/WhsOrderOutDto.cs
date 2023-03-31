@@ -8,11 +8,5 @@
         public required DateTime DateTime { get; set; }
 
         public required List<WhsOrderOutProductDto> Products { get; set; }
-    }
-
-    public class WhsOrderOutProductDto
-    {
-        public required Guid ProductId { get; set; }
-        public required float Count { get; set; }
-    }
+    }    
 }
