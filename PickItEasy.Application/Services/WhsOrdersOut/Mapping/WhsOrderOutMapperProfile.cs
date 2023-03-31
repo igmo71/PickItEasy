@@ -11,8 +11,8 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Mapping
         public WhsOrderOutMapperProfile()
         {
             // Create
-            // CreateWhsOrderOutDto => WhsOrderOut
-            CreateMap<CreateWhsOrderOutDto, WhsOrderOut>()
+            // WhsOrderOutDto => WhsOrderOut
+            CreateMap<WhsOrderOutDto, WhsOrderOut>()
                 .ForMember(order => order.Id, opt => opt.MapFrom(dto => dto.Id))
                 .ForMember(order => order.Name, opt => opt.MapFrom(dto => dto.Name))
                 .ForMember(order => order.Number, opt => opt.MapFrom(dto => dto.Number))
@@ -20,7 +20,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Mapping
                 .ForMember(order => order.WhsOrderOutProducts, opt => opt.MapFrom(dto => dto.Products))
                 .ForMember(order => order.Products, opt => opt.Ignore());
 
-            CreateMap<CreateWhsOrderOutProductDto, WhsOrderOutProduct>()
+            CreateMap<WhsOrderOutProductDto, WhsOrderOutProduct>()
                 .ForMember(product => product.ProductId, opt => opt.MapFrom(dto => dto.ProductId))
                 .ForMember(product => product.Count, opt => opt.MapFrom(dto => dto.Count))
                 .ForMember(product => product.Product, opt => opt.Ignore())

@@ -55,9 +55,9 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> Post([FromBody] CreateWhsOrderOutDto createWhsOrderOutDto)
+        public async Task<IActionResult> Post([FromBody] WhsOrderOutDto whsOrderOutDto)
         {
-            var createWhsOrderOutCommand = new CreateWhsOrderOutCommand { CreateWhsOrderOutDto = createWhsOrderOutDto };
+            var createWhsOrderOutCommand = new CreateWhsOrderOutCommand { WhsOrderOutDto = whsOrderOutDto };
             var result = await _mediator.Send(createWhsOrderOutCommand);
             _eventPublisher.SendMessage($"{nameof(CreateWhsOrderOutCommand)}_{result.Id}");
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);

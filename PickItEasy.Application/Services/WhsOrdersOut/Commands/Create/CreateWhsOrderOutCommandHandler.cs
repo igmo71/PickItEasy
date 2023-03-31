@@ -25,7 +25,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
 
         public async Task<CreateWhsOrderOutVm> Handle(CreateWhsOrderOutCommand request, CancellationToken cancellationToken)
         {
-            var whsOrderOut = _mapper.Map<WhsOrderOut>(request.CreateWhsOrderOutDto);
+            var whsOrderOut = _mapper.Map<WhsOrderOut>(request.WhsOrderOutDto);
 
             var isWhsOrderOutExists = await _mediator.Send(new IsExistsByIdWhsOrderOutQuery { Id = whsOrderOut.Id }, cancellationToken);
             if (isWhsOrderOutExists)

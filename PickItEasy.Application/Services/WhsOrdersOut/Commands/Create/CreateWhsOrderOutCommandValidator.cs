@@ -6,30 +6,30 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
     {
         public CreateWhsOrderOutCommandValidator()
         {
-            RuleFor(createWhsOrderOutCommand => createWhsOrderOutCommand.CreateWhsOrderOutDto).NotNull().NotEmpty();
-            RuleFor(createWhsOrderOutCommand => createWhsOrderOutCommand.CreateWhsOrderOutDto).SetValidator(new CreateWhsOrderOutDtoValidator());
+            RuleFor(createWhsOrderOutCommand => createWhsOrderOutCommand.WhsOrderOutDto).NotNull().NotEmpty();
+            RuleFor(createWhsOrderOutCommand => createWhsOrderOutCommand.WhsOrderOutDto).SetValidator(new WhsOrderOutDtoValidator());
         }
     }
 
-    public class CreateWhsOrderOutDtoValidator : AbstractValidator<CreateWhsOrderOutDto>
+    public class WhsOrderOutDtoValidator : AbstractValidator<WhsOrderOutDto>
     {
-        public CreateWhsOrderOutDtoValidator()
+        public WhsOrderOutDtoValidator()
         {
-            RuleFor(createWhsOrderOutDto => createWhsOrderOutDto.Id).NotNull().NotEmpty();
-            RuleFor(createWhsOrderOutDto => createWhsOrderOutDto.Name).NotNull().NotEmpty();
-            RuleFor(createWhsOrderOutDto => createWhsOrderOutDto.Number).NotNull().NotEmpty();
-            RuleFor(createWhsOrderOutDto => createWhsOrderOutDto.DateTime).NotNull().NotEmpty();
-            RuleFor(createWhsOrderOutDto => createWhsOrderOutDto.Products).NotNull().NotEmpty();
-            RuleForEach(createWhsOrderOutDto => createWhsOrderOutDto.Products).SetValidator(new CreateWhsOrderOutProductDtoValidator());
+            RuleFor(whsOrderOutDto => whsOrderOutDto.Id).NotNull().NotEmpty();
+            RuleFor(whsOrderOutDto => whsOrderOutDto.Name).NotNull().NotEmpty();
+            RuleFor(whsOrderOutDto => whsOrderOutDto.Number).NotNull().NotEmpty();
+            RuleFor(whsOrderOutDto => whsOrderOutDto.DateTime).NotNull().NotEmpty();
+            RuleFor(whsOrderOutDto => whsOrderOutDto.Products).NotNull().NotEmpty();
+            RuleForEach(whsOrderOutDto => whsOrderOutDto.Products).SetValidator(new WhsOrderOutProductDtoValidator());
         }
     }
 
-    public class CreateWhsOrderOutProductDtoValidator : AbstractValidator<CreateWhsOrderOutProductDto>
+    public class WhsOrderOutProductDtoValidator : AbstractValidator<WhsOrderOutProductDto>
     {
-        public CreateWhsOrderOutProductDtoValidator()
+        public WhsOrderOutProductDtoValidator()
         {
-            RuleFor(createWhsOrderOutProductDto => createWhsOrderOutProductDto.ProductId).NotNull().NotEmpty();
-            RuleFor(createWhsOrderOutProductDto => createWhsOrderOutProductDto.Count).NotNull();
+            RuleFor(whsOrderOutProductDto => whsOrderOutProductDto.ProductId).NotNull().NotEmpty();
+            RuleFor(whsOrderOutProductDto => whsOrderOutProductDto.Count).NotNull();
         }
     }
 }
