@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using PickItEasy.Application.Dtos;
 using PickItEasy.Domain.Entities;
 
-namespace PickItEasy.Application.Services.WhsOrdersOut.Mapping
+namespace PickItEasy.Application.Dtos.Mapping
 {
     public class WhsOrderOutMapperProfile : Profile
     {

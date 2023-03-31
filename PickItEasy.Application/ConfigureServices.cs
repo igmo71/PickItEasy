@@ -2,10 +2,10 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using PickItEasy.Application.Common.Behaviors;
+using PickItEasy.Application.Dtos.Mapping;
 using PickItEasy.Application.Services.Products.Mapping;
 using System.Reflection;
 using IntegrationMapping = PickItEasy.Application.Integration.WhsOrdersOut;
-using ServicesMapping = PickItEasy.Application.Services.WhsOrdersOut.Mapping;
 
 namespace PickItEasy.Application
 {
@@ -22,7 +22,7 @@ namespace PickItEasy.Application
 
             services.AddAutoMapper(config =>
             {
-                config.AddProfile<ServicesMapping.WhsOrderOutMapperProfile>();
+                config.AddProfile<WhsOrderOutMapperProfile>();
                 config.AddProfile<IntegrationMapping.WhsOrderOutMapperProfile>();
                 config.AddProfile<ProductMappingProfile>();
             }); services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
