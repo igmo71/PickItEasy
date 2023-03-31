@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Services.Products.Commands.Create;
 using PickItEasy.Application.Services.Products.Commands.Update;
 using PickItEasy.Application.Services.Products.Queries.GetById;
@@ -51,9 +52,9 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> Post([FromBody] CreateProductDto createProductDto)
+        public async Task<IActionResult> Post([FromBody] ProductDto productDto)
         {
-            var createProductCommand = new CreateProductCommand { CreateProductDto = createProductDto };
+            var createProductCommand = new CreateProductCommand { ProductDto = productDto };
             var result = await _mediator.Send(createProductCommand);
 
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
@@ -64,9 +65,9 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> Put(Guid id, [FromBody] UpdateProductDto updateProductDto)
+        public async Task<IActionResult> Put(Guid id, [FromBody] ProductDto productDto)
         {
-            var updateProductCommand = new UpdateProductCommand { Id = id, UpdateProductDto = updateProductDto };
+            var updateProductCommand = new UpdateProductCommand { Id = id, ProductDto = productDto };
             await _mediator.Send(updateProductCommand);
 
             return NoContent();

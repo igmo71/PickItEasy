@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Services.Products.Commands.Update;
 using PickItEasy.Application.Services.Products.Queries.IsExistsById;
@@ -7,7 +8,7 @@ using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.Products.Commands.Create
 {
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, CreateProductVm>
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, ProductDto>
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -20,9 +21,9 @@ namespace PickItEasy.Application.Services.Products.Commands.Create
             _mediator = mediator;
         }
 
-        public async Task<CreateProductVm> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+        public async Task<ProductDto> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            var product = _mapper.Map<Product>(request.CreateProductDto);
+            var product = _mapper.Map<Product>(request.ProductDto);
 
             var isProductExists = await _mediator.Send(new IsExistsByIdProductQuery { Id = product.Id }, cancellationToken);
             if (isProductExists)
@@ -30,8 +31,9 @@ namespace PickItEasy.Application.Services.Products.Commands.Create
                 await _mediator.Send(new UpdateProductCommand
                 {
                     Id = product.Id,
-                    UpdateProductDto = new UpdateProductDto
+                    ProductDto = new ProductDto
                     {
+                        Id = product.Id,
                         Name = product.Name
                     }
                 }, cancellationToken);
@@ -42,9 +44,7 @@ namespace PickItEasy.Application.Services.Products.Commands.Create
                 await _dbContext.SaveChangesAsync(cancellationToken);
             }
 
-            var response = _mapper.Map<CreateProductVm>(product);
-
-            return response;
+            return request.ProductDto;
         }
     }
 }

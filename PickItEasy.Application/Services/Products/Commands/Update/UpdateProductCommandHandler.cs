@@ -21,10 +21,12 @@ namespace PickItEasy.Application.Services.Products.Commands.Update
         public async Task Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
             var product = await _dbContext.Products
-                .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken)
-                ?? throw new EntityNotFoundException(nameof(Product), request.Id);
+                .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken);
 
-            product.Name = request.UpdateProductDto.Name;
+            if (product is null || product.Id != request.Id) 
+                throw new EntityNotFoundException(nameof(Product), request.Id);
+
+            product.Name = request.ProductDto.Name;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 

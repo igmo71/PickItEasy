@@ -1,9 +1,10 @@
 ﻿using MediatR;
+using PickItEasy.Application.Dtos;
 
 namespace PickItEasy.Application.Services.Products.Queries.GetById
 {
-    public class GetByIdProductQuery : IRequest<GetByIdProductVm>
+    public class GetByIdProductQuery : IRequest<ProductVm>
     {
-        public Guid Id { get; set; }
+        public required Guid Id { get; set; }
     }
 }

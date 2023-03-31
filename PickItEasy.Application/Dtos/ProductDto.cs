@@ -1,6 +1,6 @@
-﻿namespace PickItEasy.Application.Services.Products.Commands.Create
+﻿namespace PickItEasy.Application.Dtos
 {
-    public class CreateProductVm
+    public class ProductDto
     {
         public Guid Id { get; set; }
         public required string Name { get; set; }

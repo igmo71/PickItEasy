@@ -3,9 +3,9 @@ using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Dtos.Mapping
 {
-    public class WhsOrderOutMapperProfile : Profile
+    public class WhsOrderOutMappingProfile : Profile
     {
-        public WhsOrderOutMapperProfile()
+        public WhsOrderOutMappingProfile()
         {
             // WhsOrderOutDto => WhsOrderOut
             CreateMap<WhsOrderOutDto, WhsOrderOut>()
