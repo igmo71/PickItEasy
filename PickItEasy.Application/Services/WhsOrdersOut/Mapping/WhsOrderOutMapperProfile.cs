@@ -28,14 +28,14 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Mapping
 
             // GetById
             // WhsOrderOut => GetByIdWhsOrderOutVm
-            CreateMap<WhsOrderOut, GetByIdWhsOrderOutVm>()
+            CreateMap<WhsOrderOut, WhsOrderOutVm>()
                 .ForMember(vm => vm.Id, opt => opt.MapFrom(order => order.Id))
                 .ForMember(vm => vm.Name, opt => opt.MapFrom(order => order.Name))
                 .ForMember(vm => vm.Number, opt => opt.MapFrom(order => order.Number))
                 .ForMember(vm => vm.DateTime, opt => opt.MapFrom(order => order.DateTime))
                 .ForMember(vm => vm.Products, opt => opt.MapFrom(order => order.WhsOrderOutProducts));
 
-            CreateMap<WhsOrderOutProduct, GetByIdWhsOrderOutProductVm>()
+            CreateMap<WhsOrderOutProduct, WhsOrderOutProductVm>()
                 .ForMember(vm => vm.ProductId, opt => opt.MapFrom(orderProduct => orderProduct.Id))
                 .ForMember(vm => vm.Count, opt => opt.MapFrom(orderProduct => orderProduct.Count))
                 .ForMember(vm => vm.Name, opt => opt.MapFrom(orderProduct =>

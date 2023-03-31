@@ -12,7 +12,7 @@
 
     public class WhsOrderOutProductDto
     {
-        public Guid ProductId { get; set; }
-        public float Count { get; set; }
+        public required Guid ProductId { get; set; }
+        public required float Count { get; set; }
     }
 }

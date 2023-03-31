@@ -11,6 +11,6 @@ namespace PickItEasy.Application.Integration.WhsOrdersOut
 {
     public class PostWhsOrderOutRequest : IRequest<HttpStatusCode>
     {
-        public required GetByIdWhsOrderOutVm GetByIdWhsOrderOutVm { get; set; }
+        public required WhsOrderOutVm GetByIdWhsOrderOutVm { get; set; }
     }
 }

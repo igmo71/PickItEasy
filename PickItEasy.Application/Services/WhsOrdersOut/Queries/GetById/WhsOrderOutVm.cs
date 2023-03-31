@@ -1,16 +1,16 @@
 ﻿namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
 {
-    public class GetByIdWhsOrderOutVm
+    public class WhsOrderOutVm
     {
         public Guid Id { get; set; }
-        public DateTime DateTime { get; set; }
-        public string? Number { get; set; }
         public string? Name { get; set; }
+        public string? Number { get; set; }
+        public DateTime DateTime { get; set; }
 
-        public List<GetByIdWhsOrderOutProductVm>? Products { get; set; }
+        public List<WhsOrderOutProductVm>? Products { get; set; }
     }
 
-    public class GetByIdWhsOrderOutProductVm
+    public class WhsOrderOutProductVm
     {
         public Guid ProductId { get; set; }
         public string? Name { get; set; }

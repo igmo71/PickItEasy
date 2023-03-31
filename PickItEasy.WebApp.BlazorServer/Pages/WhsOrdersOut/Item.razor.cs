@@ -17,7 +17,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrdersOut
         [Parameter]
         public string? Id { get; set; }
 
-        private GetByIdWhsOrderOutVm? whsOrderOut;
+        private WhsOrderOutVm? whsOrderOut;
         private string pageMessage = string.Empty;
 
         protected override async Task OnInitializedAsync()
