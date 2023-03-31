@@ -1,3 +1,4 @@
+using Microsoft.Extensions.DependencyInjection;
 using PickItEasy.Application;
 using PickItEasy.Application.Common;
 using PickItEasy.Application.Interfaces;
@@ -5,6 +6,7 @@ using PickItEasy.EventBus;
 using PickItEasy.Persistence;
 using PickItEasy.WebApi.Middleware;
 using Serilog;
+using PickItEasy.Integration;
 
 namespace PickItEasy.WebApi
 {
@@ -22,6 +24,7 @@ namespace PickItEasy.WebApi
 
             builder.Services.AddApplication();
             builder.Services.AddPersistence(builder.Configuration);
+            builder.Services.AddConnectors(builder.Configuration);
 
             builder.Services.AddControllers();
 
