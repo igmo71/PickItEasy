@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using PickItEasy.Application.Services.WhsOrdersOut.Commands.Create;
-using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById;
-using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList;
+using PickItEasy.Application.Dtos;
 using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Mapping
@@ -10,7 +8,6 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Mapping
     {
         public WhsOrderOutMapperProfile()
         {
-            // Create
             // WhsOrderOutDto => WhsOrderOut
             CreateMap<WhsOrderOutDto, WhsOrderOut>()
                 .ForMember(order => order.Id, opt => opt.MapFrom(dto => dto.Id))
@@ -26,8 +23,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Mapping
                 .ForMember(product => product.Product, opt => opt.Ignore())
                 .ForMember(product => product.WhsOrderOut, opt => opt.Ignore());            
 
-            // GetById
-            // WhsOrderOut => GetByIdWhsOrderOutVm
+            // WhsOrderOut => WhsOrderOutVm
             CreateMap<WhsOrderOut, WhsOrderOutVm>()
                 .ForMember(vm => vm.Id, opt => opt.MapFrom(order => order.Id))
                 .ForMember(vm => vm.Name, opt => opt.MapFrom(order => order.Name))
@@ -41,9 +37,20 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Mapping
                 .ForMember(vm => vm.Name, opt => opt.MapFrom(orderProduct =>
                     orderProduct.Product == null ? string.Empty : orderProduct.Product.Name));
 
-            // GetList
-            // 
-            CreateMap<WhsOrderOut, GetListWhsOrderOutLookup>()
+            // WhsOrderOutVm => WhsOrderOutDto
+            CreateMap<WhsOrderOutVm, WhsOrderOutDto>()
+                .ForMember(dto => dto.Id, opt => opt.MapFrom(vm => vm.Id))
+                .ForMember(dto => dto.Name, opt => opt.MapFrom(vm => vm.Name))
+                .ForMember(dto => dto.Number, opt => opt.MapFrom(vm => vm.Number))
+                .ForMember(dto => dto.DateTime, opt => opt.MapFrom(vm => vm.DateTime))
+                .ForMember(dto => dto.Products, opt => opt.MapFrom(vm => vm.Products));
+
+            CreateMap<WhsOrderOutProductVm, WhsOrderOutProductDto>()
+                .ForMember(dto => dto.ProductId, opt => opt.MapFrom(vm => vm.ProductId))
+                .ForMember(dto => dto.Count, opt => opt.MapFrom(vm => vm.Count));
+
+            // WhsOrderOut => WhsOrderOutLookupVm
+            CreateMap<WhsOrderOut, WhsOrderOutLookupVm>()
                 .ForMember(lookup => lookup.Id, opt => opt.MapFrom(order => order.Id))
                 .ForMember(lookup => lookup.Name, opt => opt.MapFrom(order => order.Name))
                 .ForMember(lookup => lookup.Number, opt => opt.MapFrom(order => order.Number))

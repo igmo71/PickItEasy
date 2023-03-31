@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById;
+using PickItEasy.Application.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,6 @@ namespace PickItEasy.Application.Integration.WhsOrdersOut
 {
     public class PostWhsOrderOutRequest : IRequest<HttpStatusCode>
     {
-        public required WhsOrderOutVm GetByIdWhsOrderOutVm { get; set; }
+        public required WhsOrderOutVm WhsOrderOutVm { get; set; }
     }
 }

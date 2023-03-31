@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Interfaces.EventBus;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Delete;

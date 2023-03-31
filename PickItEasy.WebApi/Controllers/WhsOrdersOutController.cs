@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces.EventBus;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Create;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Delete;

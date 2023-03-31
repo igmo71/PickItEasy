@@ -1,4 +1,4 @@
-﻿namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
+﻿namespace PickItEasy.Application.Dtos
 {
     public class WhsOrderOutVm
     {

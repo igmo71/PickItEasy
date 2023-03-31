@@ -4,14 +4,14 @@
 
 <div>@pageMessage</div>
 
-@if(whsOrderOut is not null)
+@if(whsOrderOutVm is not null)
 {
-    <div>@whsOrderOut.Name</div>
-    <div>@whsOrderOut.Number</div>
-    <div>@whsOrderOut.DateTime</div>
+    <div>@whsOrderOutVm.Name</div>
+    <div>@whsOrderOutVm.Number</div>
+    <div>@whsOrderOutVm.DateTime</div>
     <div>
         <table class="table">
-            @foreach(var item in whsOrderOut.Products)
+            @foreach(var item in whsOrderOutVm.Products)
             {
                 <tr>
                     <td>@item.Name</td>

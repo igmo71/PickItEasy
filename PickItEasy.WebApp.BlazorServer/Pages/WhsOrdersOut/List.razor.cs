@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Components;
+using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList;
 using PickItEasy.EventBus.RabbitMq;
 
@@ -10,7 +11,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrdersOut
         [Inject] public required IMediator Mediator { get; set; }
 
         private string pageMessage = "Hello!";
-        private GetListWhsOrderOutVm listWhsOrderOutVm = new();
+        private WhsOrderOutListVm whsOrderOutListVm = new();
         private WhsOrderOutSearchParameters searchParameters = new();
         private string searchTerm = "ордер";
 
@@ -24,7 +25,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrdersOut
         {
             searchParameters = new WhsOrderOutSearchParameters { SearchTerm = searchTerm };
             var getListWhsOrderOutQuery = new GetListWhsOrderOutQuery { SearchParameters = searchParameters };
-            listWhsOrderOutVm = await Mediator.Send(getListWhsOrderOutQuery);
+            whsOrderOutListVm = await Mediator.Send(getListWhsOrderOutQuery);
         }
 
         protected async override Task OnAfterRenderAsync(bool firstRender)

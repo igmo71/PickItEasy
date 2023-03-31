@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using PickItEasy.Application.Dtos;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
 {

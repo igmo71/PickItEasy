@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Components;
 using Microsoft.EntityFrameworkCore;
+using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Integration.WhsOrdersOut;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Interfaces.Integration;
@@ -17,7 +18,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrdersOut
         [Parameter]
         public string? Id { get; set; }
 
-        private WhsOrderOutVm? whsOrderOut;
+        private WhsOrderOutVm? whsOrderOutVm;
         private string pageMessage = string.Empty;
 
         protected override async Task OnInitializedAsync()
@@ -26,13 +27,13 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrdersOut
 
             if (string.IsNullOrEmpty(Id)) return;
             var getByIdWhsOrderOutQuery = new GetByIdWhsOrderOutQuery { Id = Guid.Parse(Id) };
-            whsOrderOut = await Mediator.Send(getByIdWhsOrderOutQuery);
+            whsOrderOutVm = await Mediator.Send(getByIdWhsOrderOutQuery);
         }
 
         private async Task PostWhsOrderOut()
         {
-            if (whsOrderOut is null) return;
-            var postWhsOrderOutRequest = new PostWhsOrderOutRequest { GetByIdWhsOrderOutVm = whsOrderOut };
+            if (whsOrderOutVm is null) return;
+            var postWhsOrderOutRequest = new PostWhsOrderOutRequest { WhsOrderOutVm = whsOrderOutVm };
             var httpStatusCode = await Mediator.Send(postWhsOrderOutRequest);
             pageMessage = httpStatusCode.ToString();
         }

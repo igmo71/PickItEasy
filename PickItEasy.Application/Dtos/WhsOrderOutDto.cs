@@ -1,4 +1,4 @@
-﻿namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
+﻿namespace PickItEasy.Application.Dtos
 {
     public class WhsOrderOutDto
     {

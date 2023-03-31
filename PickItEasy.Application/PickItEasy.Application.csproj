@@ -21,6 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Services\WhsOrdersOut\Mapping\" />
+    <Folder Include="Validation\" />
     <Folder Include="Services\WhsOrdersOut\Notifications\" />
   </ItemGroup>
 

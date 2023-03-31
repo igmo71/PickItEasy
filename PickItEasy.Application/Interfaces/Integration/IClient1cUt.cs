@@ -1,4 +1,5 @@
-﻿using PickItEasy.Application.Integration.WhsOrdersOut;
+﻿using PickItEasy.Application.Dtos;
+using PickItEasy.Application.Integration.WhsOrdersOut;
 using PickItEasy.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,6 @@ namespace PickItEasy.Application.Interfaces.Integration
 {
     public interface IClient1cUt : IIntegrationClient
     {
-        Task<HttpStatusCode> PostWhsOrderOutAsync(PostWhsOrderOutDto postWhsOrderOutDto);
+        Task<HttpStatusCode> PostWhsOrderOutAsync(WhsOrderOutDto whsOrderOutDto);
     }
 }

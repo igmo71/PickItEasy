@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Common.Exceptions;
+using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Domain.Entities;
 

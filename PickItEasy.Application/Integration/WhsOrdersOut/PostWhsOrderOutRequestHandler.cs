@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Interfaces.Integration;
 using System;
@@ -26,8 +27,8 @@ namespace PickItEasy.Application.Integration.WhsOrdersOut
 
         public async Task<HttpStatusCode> Handle(PostWhsOrderOutRequest request, CancellationToken cancellationToken)
         {
-            var postWhsOrderOutDto = _mapper.Map<PostWhsOrderOutDto>(request.GetByIdWhsOrderOutVm);
-            var httpStatusCode = await _client1CUt.PostWhsOrderOutAsync(postWhsOrderOutDto);
+            var whsOrderOutDto = _mapper.Map<WhsOrderOutDto>(request.WhsOrderOutVm);
+            var httpStatusCode = await _client1CUt.PostWhsOrderOutAsync(whsOrderOutDto);
             return httpStatusCode;
         }
     }
