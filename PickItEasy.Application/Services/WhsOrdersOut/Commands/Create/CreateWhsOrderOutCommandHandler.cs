@@ -2,7 +2,6 @@
 using MediatR;
 using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces;
-using PickItEasy.Application.Interfaces.EventBus;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Delete;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.IsExistsById;
 using PickItEasy.Domain.Entities;

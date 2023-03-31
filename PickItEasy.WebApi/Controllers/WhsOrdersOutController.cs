@@ -6,7 +6,6 @@ using PickItEasy.Application.Services.WhsOrdersOut.Commands.Create;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Delete;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList;
-using PickItEasy.Domain.Entities;
 using System.Net;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

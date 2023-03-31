@@ -1,12 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Components;
-using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Integration.WhsOrdersOut;
-using PickItEasy.Application.Interfaces;
-using PickItEasy.Application.Interfaces.Integration;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById;
-using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrdersOut
 {

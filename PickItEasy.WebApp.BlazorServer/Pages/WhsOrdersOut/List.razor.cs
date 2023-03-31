@@ -34,7 +34,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrdersOut
 
             if (firstRender)
             {
-                WhsOrderOutConsumer.MessageReceived += async(sender, args) =>  await MessageReceivedHandle(sender, args);
+                WhsOrderOutConsumer.MessageReceived += async (sender, args) => await MessageReceivedHandle(sender, args);
             }
         }
 

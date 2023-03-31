@@ -1,12 +1,11 @@
-using Microsoft.Extensions.DependencyInjection;
 using PickItEasy.Application;
 using PickItEasy.Application.Common;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.EventBus;
+using PickItEasy.Integration;
 using PickItEasy.Persistence;
 using PickItEasy.WebApi.Middleware;
 using Serilog;
-using PickItEasy.Integration;
 
 namespace PickItEasy.WebApi
 {

@@ -1,22 +1,15 @@
-using FluentValidation;
-using MediatR;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.Extensions.DependencyInjection;
 using PickItEasy.Application;
 using PickItEasy.Application.Common;
-using PickItEasy.Application.Common.Behaviors;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Services;
-using PickItEasy.Application.Services.Products.Mapping;
-using PickItEasy.Application.Services.WhsOrdersOut.Mapping;
 using PickItEasy.EventBus;
+using PickItEasy.Integration;
 using PickItEasy.Persistence;
 using PickItEasy.Persistence.Data;
 using PickItEasy.Persistence.Models;
 using PickItEasy.WebApp.BlazorServer.Areas.Identity;
 using Serilog;
-using System.Reflection;
-using PickItEasy.Integration;
 
 namespace PickItEasy.WebApp.BlazorServer
 {
@@ -32,7 +25,7 @@ namespace PickItEasy.WebApp.BlazorServer
 
             // Add services to the container.
 
-            builder.Services.AddApplication();            
+            builder.Services.AddApplication();
             builder.Services.AddPersistence(builder.Configuration);
             builder.Services.AddConnectors(builder.Configuration);
 
@@ -64,19 +57,19 @@ namespace PickItEasy.WebApp.BlazorServer
                 app.UseHsts();
             }
 
-app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
-app.UseStaticFiles();
+            app.UseStaticFiles();
 
-app.UseRouting();
+            app.UseRouting();
 
-app.UseAuthorization();
+            app.UseAuthorization();
 
-app.MapControllers();
-app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
+            app.MapControllers();
+            app.MapBlazorHub();
+            app.MapFallbackToPage("/_Host");
 
-app.Run();
+            app.Run();
         }
     }
 }
