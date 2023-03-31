@@ -24,19 +24,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Mapping
                 .ForMember(product => product.ProductId, opt => opt.MapFrom(dto => dto.ProductId))
                 .ForMember(product => product.Count, opt => opt.MapFrom(dto => dto.Count))
                 .ForMember(product => product.Product, opt => opt.Ignore())
-                .ForMember(product => product.WhsOrderOut, opt => opt.Ignore());
-
-            // WhsOrderOut => CreateWhsOrderOutVm
-            CreateMap<WhsOrderOut, CreateWhsOrderOutVm>()
-                .ForMember(vm => vm.Id, opt => opt.MapFrom(order => order.Id))
-                .ForMember(vm => vm.Name, opt => opt.MapFrom(order => order.Name))
-                .ForMember(vm => vm.Number, opt => opt.MapFrom(order => order.Number))
-                .ForMember(vm => vm.DateTime, opt => opt.MapFrom(order => order.DateTime))
-                .ForMember(vm => vm.Products, opt => opt.MapFrom(order => order.WhsOrderOutProducts));
-
-            CreateMap<WhsOrderOutProduct, CreateWhsOrderOutProductVm>()
-                .ForMember(vm => vm.ProductId, opt => opt.MapFrom(product => product.Id))
-                .ForMember(vm => vm.Count, opt => opt.MapFrom(product => product.Count));
+                .ForMember(product => product.WhsOrderOut, opt => opt.Ignore());            
 
             // GetById
             // WhsOrderOut => GetByIdWhsOrderOutVm
