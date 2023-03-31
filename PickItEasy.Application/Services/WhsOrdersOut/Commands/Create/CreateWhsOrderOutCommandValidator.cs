@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Dtos.Validation;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
@@ -11,5 +10,5 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
             RuleFor(createWhsOrderOutCommand => createWhsOrderOutCommand.WhsOrderOutDto).NotNull().NotEmpty();
             RuleFor(createWhsOrderOutCommand => createWhsOrderOutCommand.WhsOrderOutDto).SetValidator(new WhsOrderOutDtoValidator());
         }
-    }        
+    }
 }

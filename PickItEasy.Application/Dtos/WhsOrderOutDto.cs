@@ -8,5 +8,5 @@
         public required DateTime DateTime { get; set; }
 
         public required List<WhsOrderOutProductDto> Products { get; set; }
-    }    
+    }
 }

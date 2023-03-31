@@ -8,5 +8,5 @@
         public DateTime DateTime { get; set; }
 
         public List<WhsOrderOutProductVm>? Products { get; set; }
-    }    
+    }
 }
