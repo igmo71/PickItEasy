@@ -19,11 +19,11 @@ namespace PickItEasy.Application.Common.Behaviors
             var userId = _currentUserService.UserId;
 
             //Log.Information("PickItEasy Request: {RequestName} - {ResponseName}", typeof(TRequest).Name, typeof(TResponse).Name);
-            Log.Debug("PickItEasy Request: {RequestName} {@UserId} {@RequestBody}", typeof(TRequest).Name, userId, request);
+            Log.Debug("PickItEasy Request: {RequestName}<{ResponseName}> {@RequestBody} {@UserId}", typeof(TRequest).Name, typeof(TResponse).Name, request, userId);
 
             var response = await next();
 
-            Log.Debug("PickItEasy Response: {ResponseName} {@UserId} {@ResponseBody}", typeof(TResponse).Name, userId, response);
+            Log.Debug("PickItEasy Response: {RequestName}<{ResponseName}> {@ResponseBody} {@UserId}", typeof(TRequest).Name, typeof(TResponse).Name, response, userId);
             //Log.Information("PickItEasy Response: {RequestName} - {ResponseName}", typeof(TRequest).Name, typeof(TResponse).Name);
 
             return response;

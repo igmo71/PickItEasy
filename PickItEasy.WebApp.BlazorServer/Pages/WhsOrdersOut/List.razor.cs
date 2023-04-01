@@ -13,7 +13,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrdersOut
         private string pageMessage = "Hello!";
         private WhsOrderOutListVm whsOrderOutListVm = new();
         private WhsOrderOutSearchParameters searchParameters = new();
-        private string searchTerm = "ордер";
+        private string searchTerm = "";
 
         protected async override Task OnInitializedAsync()
         {
