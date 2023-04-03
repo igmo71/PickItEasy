@@ -116,6 +116,7 @@ namespace PickItEasy.Persistence.Migrations
                     Value = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "varchar", maxLength: 120, nullable: false),
                     Synonym = table.Column<string>(type: "varchar", maxLength: 120, nullable: false),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: false),
                     Discriminator = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -304,16 +305,16 @@ namespace PickItEasy.Persistence.Migrations
 
             migrationBuilder.InsertData(
                 table: "WhsOrderStatuses",
-                columns: new[] { "Id", "Discriminator", "Name", "Synonym", "Value" },
+                columns: new[] { "Id", "Discriminator", "IsActive", "Name", "Synonym", "Value" },
                 values: new object[,]
                 {
-                    { new Guid("17cee206-e06f-47d8-824d-14eeceaf394a"), "WhsOrderOutStatus", "ВПроцессеПроверки", "В процессе проверки", 3 },
-                    { new Guid("63e9d44c-dd4f-4d87-8c70-e97a96eaa989"), "WhsOrderOutStatus", "Отгружен", "Отгружен", 6 },
-                    { new Guid("7c2bd6be-cf81-4b1a-9acf-d4ebf416f4d3"), "WhsOrderOutStatus", "КОтгрузке", "К отгрузке", 5 },
-                    { new Guid("bd1ae241-d787-4a6d-b920-029bc6577364"), "WhsOrderOutStatus", "КПроверке", "К проверке", 2 },
-                    { new Guid("c2c5935d-b332-4d84-b1fd-309ad8a65356"), "WhsOrderOutStatus", "Подготовлено", "Подготовлено", 0 },
-                    { new Guid("e1a4c395-f7a3-40af-82ab-ad545e51eca7"), "WhsOrderOutStatus", "КОтбору", "К отбору", 1 },
-                    { new Guid("e911589b-613c-42ad-ad56-7083c481c4b4"), "WhsOrderOutStatus", "Проверен", "Проверен", 4 }
+                    { new Guid("17cee206-e06f-47d8-824d-14eeceaf394a"), "WhsOrderOutStatus", false, "ВПроцессеПроверки", "В процессе проверки", 3 },
+                    { new Guid("63e9d44c-dd4f-4d87-8c70-e97a96eaa989"), "WhsOrderOutStatus", false, "Отгружен", "Отгружен", 6 },
+                    { new Guid("7c2bd6be-cf81-4b1a-9acf-d4ebf416f4d3"), "WhsOrderOutStatus", false, "КОтгрузке", "К отгрузке", 5 },
+                    { new Guid("bd1ae241-d787-4a6d-b920-029bc6577364"), "WhsOrderOutStatus", false, "КПроверке", "К проверке", 2 },
+                    { new Guid("c2c5935d-b332-4d84-b1fd-309ad8a65356"), "WhsOrderOutStatus", false, "Подготовлено", "Подготовлено", 0 },
+                    { new Guid("e1a4c395-f7a3-40af-82ab-ad545e51eca7"), "WhsOrderOutStatus", false, "КОтбору", "К отбору", 1 },
+                    { new Guid("e911589b-613c-42ad-ad56-7083c481c4b4"), "WhsOrderOutStatus", false, "Проверен", "Проверен", 4 }
                 });
 
             migrationBuilder.CreateIndex(

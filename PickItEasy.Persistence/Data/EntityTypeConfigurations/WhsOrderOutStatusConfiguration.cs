@@ -15,7 +15,13 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
         {
             foreach (var status in Integration.Connectors.Ut1c.WhsOrderOutStatus.List)
             {
-                builder.HasData(new WhsOrderOutStatus { Id = status.Id, Value = status.Value, Name = status.Name, Synonym = status.Synonym });
+                builder.HasData(new WhsOrderOutStatus
+                {
+                    Id = status.Id,
+                    Value = status.Value,
+                    Name = status.Name,
+                    Synonym = status.Synonym
+                });
             }
         }
     }

@@ -317,6 +317,9 @@ namespace PickItEasy.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(120)
@@ -440,6 +443,7 @@ namespace PickItEasy.Persistence.Migrations
                         new
                         {
                             Id = new Guid("c2c5935d-b332-4d84-b1fd-309ad8a65356"),
+                            IsActive = false,
                             Name = "Подготовлено",
                             Synonym = "Подготовлено",
                             Value = 0
@@ -447,6 +451,7 @@ namespace PickItEasy.Persistence.Migrations
                         new
                         {
                             Id = new Guid("e1a4c395-f7a3-40af-82ab-ad545e51eca7"),
+                            IsActive = false,
                             Name = "КОтбору",
                             Synonym = "К отбору",
                             Value = 1
@@ -454,6 +459,7 @@ namespace PickItEasy.Persistence.Migrations
                         new
                         {
                             Id = new Guid("bd1ae241-d787-4a6d-b920-029bc6577364"),
+                            IsActive = false,
                             Name = "КПроверке",
                             Synonym = "К проверке",
                             Value = 2
@@ -461,6 +467,7 @@ namespace PickItEasy.Persistence.Migrations
                         new
                         {
                             Id = new Guid("17cee206-e06f-47d8-824d-14eeceaf394a"),
+                            IsActive = false,
                             Name = "ВПроцессеПроверки",
                             Synonym = "В процессе проверки",
                             Value = 3
@@ -468,6 +475,7 @@ namespace PickItEasy.Persistence.Migrations
                         new
                         {
                             Id = new Guid("e911589b-613c-42ad-ad56-7083c481c4b4"),
+                            IsActive = false,
                             Name = "Проверен",
                             Synonym = "Проверен",
                             Value = 4
@@ -475,6 +483,7 @@ namespace PickItEasy.Persistence.Migrations
                         new
                         {
                             Id = new Guid("7c2bd6be-cf81-4b1a-9acf-d4ebf416f4d3"),
+                            IsActive = false,
                             Name = "КОтгрузке",
                             Synonym = "К отгрузке",
                             Value = 5
@@ -482,6 +491,7 @@ namespace PickItEasy.Persistence.Migrations
                         new
                         {
                             Id = new Guid("63e9d44c-dd4f-4d87-8c70-e97a96eaa989"),
+                            IsActive = false,
                             Name = "Отгружен",
                             Synonym = "Отгружен",
                             Value = 6
