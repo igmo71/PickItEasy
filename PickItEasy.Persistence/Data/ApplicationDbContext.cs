@@ -26,6 +26,10 @@ namespace PickItEasy.Persistence.Data
         public DbSet<WhsOrderOut> WhsOrdersOut { get; set; }
         public DbSet<WhsOrderOutProduct> WhsOrderOutProducts { get; set; }
 
+        public DbSet<WhsOrderOutStatus> WhsOrderOutStatuses { get; set; }
+
+        public DbSet<WhsOrderOutQueue> WhsOrderOutQueues { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -37,7 +41,8 @@ namespace PickItEasy.Persistence.Data
             builder.ApplyConfiguration(new WhsOrderInProductConfiguration());
             builder.ApplyConfiguration(new WhsOrderOutConfiguration());
             builder.ApplyConfiguration(new WhsOrderOutProductConfiguration());
-
+            builder.ApplyConfiguration(new WhsOrderOutStatusConfiguration());
+            builder.ApplyConfiguration(new WhsOrderOutQueueConfiguration());
         }
     }
 }

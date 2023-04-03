@@ -15,8 +15,14 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<WhsOrderOutQueue> builder)
         {
             builder.HasKey(e => e.Id);
+            
             builder.Property(e => e.Name).IsRequired()
                 .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.MAX_LENGTH_NAME);
+            
+            builder.Property(e => e.NameRu).IsRequired()
+                .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.MAX_LENGTH_NAME);
+            
+            builder.Property(e => e.Rank).IsRequired();
         }
     }
 }

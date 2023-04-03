@@ -30,6 +30,9 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
                     {
                         b.HasKey(op => op.Id);
                     });
+
+            builder.HasOne(o => o.Status).WithMany().HasForeignKey(o => o.StatusId).HasPrincipalKey(s => s.Id);
+            builder.HasOne(o => o.Queue).WithMany().HasForeignKey(o => o.QueueId).HasPrincipalKey(q => q.Id);
         }
     }
 }

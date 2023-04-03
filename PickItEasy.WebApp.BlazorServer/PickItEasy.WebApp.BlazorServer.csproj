@@ -28,8 +28,4 @@
     <ProjectReference Include="..\PickItEasy.Persistence\PickItEasy.Persistence.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\WhsOrders\Components\" />
-  </ItemGroup>
-
 </Project>

@@ -27,7 +27,7 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PickItEasy.EventBus", "..\PickItEasy.EventBus\PickItEasy.EventBus.csproj", "{4965E474-A2E9-4671-A2F2-22D4D52B6DE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PickItEasy.Integration", "..\PickItEasy.Integration\PickItEasy.Integration.csproj", "{27A3921D-9CAD-4E2E-8899-76EF4DBE5BBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PickItEasy.Integration", "..\PickItEasy.Integration\PickItEasy.Integration.csproj", "{27A3921D-9CAD-4E2E-8899-76EF4DBE5BBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

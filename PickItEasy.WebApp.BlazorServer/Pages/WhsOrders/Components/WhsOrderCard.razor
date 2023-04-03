@@ -1,0 +1,18 @@
+﻿@using PickItEasy.Domain.Entities;
+<div class="card mb-2">
+    <div class="card-header">
+        <h5 class="card-title">Расходник</h5>
+    </div>
+    <div class="card-body">
+        <span>
+            <a href="/WhsOrders/Out/Item/@WhsOrder?.Id">@WhsOrder?.Name</a>
+        </span>
+    </div>
+    <div class="card-footer">
+        Особенности расходника
+    </div>
+</div>
+@code {
+    [Parameter]
+    public WhsOrder WhsOrder { get; set; }
+}
