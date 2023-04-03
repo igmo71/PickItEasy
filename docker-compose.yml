@@ -39,7 +39,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pickiteasy-pg-data:/var/lib/postgresql/data
+      - pickiteasy-pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: "PickItEasyDb"
       POSTGRES_USER: "PickItEasyUser"
@@ -85,8 +85,8 @@ services:
       - DATA_DIR=/data
 
 volumes:
-  pickiteasy-pg-data:
-    name: pickiteasy-pg-data
+  pickiteasy-pgdata:
+    name: pickiteasy-pgdata
     driver: local
 
 

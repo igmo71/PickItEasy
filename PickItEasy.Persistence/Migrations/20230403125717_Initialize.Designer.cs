@@ -12,8 +12,8 @@ using PickItEasy.Persistence.Data;
 namespace PickItEasy.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230328092838_Add_WhsOrders")]
-    partial class Add_WhsOrders
+    [Migration("20230403125717_Initialize")]
+    partial class Initialize
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,7 @@ namespace PickItEasy.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
-                    b.Property<string>("ProductId")
+                    b.Property<string>("Id")
                         .HasColumnType("text");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -42,7 +42,7 @@ namespace PickItEasy.Persistence.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
@@ -53,11 +53,11 @@ namespace PickItEasy.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ProductId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("text");
@@ -69,7 +69,7 @@ namespace PickItEasy.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.HasIndex("RoleId");
 
@@ -78,11 +78,11 @@ namespace PickItEasy.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ProductId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("text");
@@ -94,7 +94,7 @@ namespace PickItEasy.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
@@ -104,10 +104,12 @@ namespace PickItEasy.Persistence.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("text");
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("text");
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("text");
@@ -144,10 +146,12 @@ namespace PickItEasy.Persistence.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("text");
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("text");
@@ -159,7 +163,7 @@ namespace PickItEasy.Persistence.Migrations
 
             modelBuilder.Entity("PickItEasy.Domain.Entities.Product", b =>
                 {
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
@@ -168,19 +172,19 @@ namespace PickItEasy.Persistence.Migrations
                         .HasMaxLength(120)
                         .HasColumnType("varchar");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderIn", b =>
                 {
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("DateTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -192,14 +196,14 @@ namespace PickItEasy.Persistence.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("varchar");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.ToTable("WhsOrdersIn");
                 });
 
             modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderInProduct", b =>
                 {
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
@@ -212,7 +216,7 @@ namespace PickItEasy.Persistence.Migrations
                     b.Property<Guid>("WhsOrderInId")
                         .HasColumnType("uuid");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProductId");
 
@@ -223,12 +227,12 @@ namespace PickItEasy.Persistence.Migrations
 
             modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderOut", b =>
                 {
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("DateTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -240,14 +244,19 @@ namespace PickItEasy.Persistence.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("varchar");
 
-                    b.HasKey("ProductId");
+                    b.Property<Guid>("StatusId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StatusId");
 
                     b.ToTable("WhsOrdersOut");
                 });
 
             modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderOutProduct", b =>
                 {
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
@@ -260,7 +269,7 @@ namespace PickItEasy.Persistence.Migrations
                     b.Property<Guid>("WhsOrderOutId")
                         .HasColumnType("uuid");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProductId");
 
@@ -269,9 +278,73 @@ namespace PickItEasy.Persistence.Migrations
                     b.ToTable("WhsOrderOutProducts");
                 });
 
+            modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderQueue", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar");
+
+                    b.Property<string>("NameRu")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar");
+
+                    b.Property<int>("Rank")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WhsOrderQueues");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("WhsOrderQueue");
+
+                    b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderStatus", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar");
+
+                    b.Property<string>("Synonym")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WhsOrderStatuses");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("WhsOrderStatus");
+
+                    b.UseTphMappingStrategy();
+                });
+
             modelBuilder.Entity("PickItEasy.Domain.WeatherForecast", b =>
                 {
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
@@ -284,14 +357,14 @@ namespace PickItEasy.Persistence.Migrations
                     b.Property<int>("TemperatureC")
                         .HasColumnType("integer");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.ToTable("WeatherForecasts");
                 });
 
             modelBuilder.Entity("PickItEasy.Persistence.Models.ApplicationUser", b =>
                 {
-                    b.Property<string>("ProductId")
+                    b.Property<string>("Id")
                         .HasColumnType("text");
 
                     b.Property<int>("AccessFailedCount")
@@ -341,7 +414,7 @@ namespace PickItEasy.Persistence.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -351,6 +424,71 @@ namespace PickItEasy.Persistence.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderOutQueue", b =>
+                {
+                    b.HasBaseType("PickItEasy.Domain.Entities.WhsOrderQueue");
+
+                    b.HasDiscriminator().HasValue("WhsOrderOutQueue");
+                });
+
+            modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderOutStatus", b =>
+                {
+                    b.HasBaseType("PickItEasy.Domain.Entities.WhsOrderStatus");
+
+                    b.HasDiscriminator().HasValue("WhsOrderOutStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("c2c5935d-b332-4d84-b1fd-309ad8a65356"),
+                            Name = "Подготовлено",
+                            Synonym = "Подготовлено",
+                            Value = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("e1a4c395-f7a3-40af-82ab-ad545e51eca7"),
+                            Name = "КОтбору",
+                            Synonym = "К отбору",
+                            Value = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("bd1ae241-d787-4a6d-b920-029bc6577364"),
+                            Name = "КПроверке",
+                            Synonym = "К проверке",
+                            Value = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("17cee206-e06f-47d8-824d-14eeceaf394a"),
+                            Name = "ВПроцессеПроверки",
+                            Synonym = "В процессе проверки",
+                            Value = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("e911589b-613c-42ad-ad56-7083c481c4b4"),
+                            Name = "Проверен",
+                            Synonym = "Проверен",
+                            Value = 4
+                        },
+                        new
+                        {
+                            Id = new Guid("7c2bd6be-cf81-4b1a-9acf-d4ebf416f4d3"),
+                            Name = "КОтгрузке",
+                            Synonym = "К отгрузке",
+                            Value = 5
+                        },
+                        new
+                        {
+                            Id = new Guid("63e9d44c-dd4f-4d87-8c70-e97a96eaa989"),
+                            Name = "Отгружен",
+                            Synonym = "Отгружен",
+                            Value = 6
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -421,6 +559,17 @@ namespace PickItEasy.Persistence.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("WhsOrderIn");
+                });
+
+            modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderOut", b =>
+                {
+                    b.HasOne("PickItEasy.Domain.Entities.WhsOrderOutStatus", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .IsRequired();
+
+                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderOutProduct", b =>

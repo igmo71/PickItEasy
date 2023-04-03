@@ -1,4 +1,4 @@
-﻿@using PickItEasy.Domain.Entities;
+﻿@using PickItEasy.Application.Dtos;
 <div class="card mb-2">
     <div class="card-header">
         <h5 class="card-title">Расходник</h5>
@@ -9,10 +9,10 @@
         </span>
     </div>
     <div class="card-footer">
-        Особенности расходника
+        Статус: @WhsOrder?.Status?.Synonym
     </div>
 </div>
 @code {
     [Parameter]
-    public WhsOrder WhsOrder { get; set; }
+    public WhsOrderOutLookupVm? WhsOrder { get; set; }
 }

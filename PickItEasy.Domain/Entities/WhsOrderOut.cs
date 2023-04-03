@@ -5,9 +5,9 @@
         public List<WhsOrderOutProduct> WhsOrderOutProducts { get; set; } = new();
 
         public required Guid StatusId { get; set; }
-        public required WhsOrderOutStatus Status { get; set; }
+        public  WhsOrderOutStatus? Status { get; set; }
 
-        public required Guid QueueId { get; set; }
-        public required WhsOrderOutQueue Queue { get; set; }
+        //public Guid QueueId { get; set; }
+        //public WhsOrderOutQueue? Queue { get; set; }
     }
 }

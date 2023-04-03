@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\PickItEasy.Integration\PickItEasy.Integration.csproj" />
     <ProjectReference Include="..\PickItEasy.Application\PickItEasy.Application.csproj" />
   </ItemGroup>
 

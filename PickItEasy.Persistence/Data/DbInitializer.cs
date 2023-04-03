@@ -6,7 +6,8 @@ namespace PickItEasy.Persistence.Data
     {
         public static void Initialize(ApplicationDbContext context)
         {
-            context.Database.Migrate();
+            //context.Database.Migrate();
+            context.Database.EnsureCreated();
         }
     }
 }

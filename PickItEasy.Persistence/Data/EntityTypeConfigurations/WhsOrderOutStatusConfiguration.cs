@@ -1,12 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PickItEasy.Application.Common;
 using PickItEasy.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
 {
@@ -14,15 +8,15 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<WhsOrderOutStatus> builder)
         {
-            builder.HasKey(e => e.Id);
-            
-            builder.Property(e => e.Name).IsRequired()
-                .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.MAX_LENGTH_NAME);
-            
-            builder.Property(e => e.NameRu).IsRequired()
-                .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.MAX_LENGTH_NAME);
-            
-            builder.Property(e => e.Rank).IsRequired();
+            SeedWhsOrderOutStatus(builder);
+        }
+
+        private static void SeedWhsOrderOutStatus(EntityTypeBuilder<WhsOrderOutStatus> builder)
+        {
+            foreach (var status in Integration.Connectors.Ut1c.WhsOrderOutStatus.List)
+            {
+                builder.HasData(new WhsOrderOutStatus { Id = status.Id, Value = status.Value, Name = status.Name, Synonym = status.Synonym });
+            }
         }
     }
 }

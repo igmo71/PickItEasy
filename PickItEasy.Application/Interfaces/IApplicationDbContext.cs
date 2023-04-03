@@ -16,5 +16,11 @@ namespace PickItEasy.Application.Interfaces
 
         public DbSet<WhsOrderOut> WhsOrdersOut { get; set; }
         public DbSet<WhsOrderOutProduct> WhsOrderOutProducts { get; set; }
+
+        public DbSet<WhsOrderStatus> WhsOrderStatuses { get; set; }
+        public DbSet<WhsOrderOutStatus> WhsOrderOutStatuses { get; set; }
+
+        public DbSet<WhsOrderQueue> WhsOrderQueues { get; set; }
+        public DbSet<WhsOrderOutQueue> WhsOrderOutQueues { get; set; }
     }
 }

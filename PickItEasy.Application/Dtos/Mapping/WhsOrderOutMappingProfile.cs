@@ -14,7 +14,8 @@ namespace PickItEasy.Application.Dtos.Mapping
                 .ForMember(order => order.Number, opt => opt.MapFrom(dto => dto.Number))
                 .ForMember(order => order.DateTime, opt => opt.MapFrom(dto => dto.DateTime))
                 .ForMember(order => order.WhsOrderOutProducts, opt => opt.MapFrom(dto => dto.Products))
-                .ForMember(order => order.Products, opt => opt.Ignore());
+                .ForMember(order => order.Products, opt => opt.Ignore())
+                .ForMember(order => order.Status, opt => opt.Ignore());
 
             CreateMap<WhsOrderOutProductDto, WhsOrderOutProduct>()
                 .ForMember(product => product.ProductId, opt => opt.MapFrom(dto => dto.ProductId))
@@ -28,6 +29,7 @@ namespace PickItEasy.Application.Dtos.Mapping
                 .ForMember(vm => vm.Name, opt => opt.MapFrom(order => order.Name))
                 .ForMember(vm => vm.Number, opt => opt.MapFrom(order => order.Number))
                 .ForMember(vm => vm.DateTime, opt => opt.MapFrom(order => order.DateTime))
+                .ForMember(vm => vm.Status, opt => opt.MapFrom(order => order.Status))
                 .ForMember(vm => vm.Products, opt => opt.MapFrom(order => order.WhsOrderOutProducts));
 
             CreateMap<WhsOrderOutProduct, WhsOrderOutProductVm>()
@@ -42,7 +44,9 @@ namespace PickItEasy.Application.Dtos.Mapping
                 .ForMember(dto => dto.Name, opt => opt.MapFrom(vm => vm.Name))
                 .ForMember(dto => dto.Number, opt => opt.MapFrom(vm => vm.Number))
                 .ForMember(dto => dto.DateTime, opt => opt.MapFrom(vm => vm.DateTime))
-                .ForMember(dto => dto.Products, opt => opt.MapFrom(vm => vm.Products));
+                .ForMember(dto => dto.Products, opt => opt.MapFrom(vm => vm.Products))
+                .ForMember(dto => dto.Status, opt => 
+                    opt.MapFrom(vm => vm.Status != null ? vm.Status.Value : -1)); // TODO: кастыль
 
             CreateMap<WhsOrderOutProductVm, WhsOrderOutProductDto>()
                 .ForMember(dto => dto.ProductId, opt => opt.MapFrom(vm => vm.ProductId))
@@ -53,7 +57,8 @@ namespace PickItEasy.Application.Dtos.Mapping
                 .ForMember(lookup => lookup.Id, opt => opt.MapFrom(order => order.Id))
                 .ForMember(lookup => lookup.Name, opt => opt.MapFrom(order => order.Name))
                 .ForMember(lookup => lookup.Number, opt => opt.MapFrom(order => order.Number))
-                .ForMember(lookup => lookup.DateTime, opt => opt.MapFrom(order => order.DateTime));
+                .ForMember(lookup => lookup.DateTime, opt => opt.MapFrom(order => order.DateTime))
+                .ForMember(lookup => lookup.Status, opt => opt.MapFrom(order => order.Status));
         }
     }
 }

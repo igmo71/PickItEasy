@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Domain;
 using PickItEasy.Domain.Entities;
@@ -15,6 +16,8 @@ namespace PickItEasy.Persistence.Data
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             AppContext.SetSwitch("Npgsql.DisableDateTimeInfinityConversions", true);
+            Database.EnsureCreated();
+            //Database.Migrate();
         }
 
         public DbSet<WeatherForecast> WeatherForecasts { get; set; }
@@ -26,8 +29,11 @@ namespace PickItEasy.Persistence.Data
         public DbSet<WhsOrderOut> WhsOrdersOut { get; set; }
         public DbSet<WhsOrderOutProduct> WhsOrderOutProducts { get; set; }
 
+
+        public DbSet<WhsOrderStatus> WhsOrderStatuses { get; set; }
         public DbSet<WhsOrderOutStatus> WhsOrderOutStatuses { get; set; }
 
+        public DbSet<WhsOrderQueue> WhsOrderQueues { get; set; }
         public DbSet<WhsOrderOutQueue> WhsOrderOutQueues { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -41,8 +47,11 @@ namespace PickItEasy.Persistence.Data
             builder.ApplyConfiguration(new WhsOrderInProductConfiguration());
             builder.ApplyConfiguration(new WhsOrderOutConfiguration());
             builder.ApplyConfiguration(new WhsOrderOutProductConfiguration());
+            builder.ApplyConfiguration(new WhsOrderStatusConfiguration());
             builder.ApplyConfiguration(new WhsOrderOutStatusConfiguration());
-            builder.ApplyConfiguration(new WhsOrderOutQueueConfiguration());
+            builder.ApplyConfiguration(new WhsOrderQueueConfiguration());
+
+            
         }
     }
 }

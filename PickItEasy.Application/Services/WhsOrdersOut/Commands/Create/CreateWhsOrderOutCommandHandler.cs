@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using PickItEasy.Application.Common.Exceptions;
 using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Delete;
@@ -26,6 +28,10 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
         public async Task<WhsOrderOutDto> Handle(CreateWhsOrderOutCommand request, CancellationToken cancellationToken)
         {
             var whsOrderOut = _mapper.Map<WhsOrderOut>(request.WhsOrderOutDto);
+            
+            var status = await _dbContext.WhsOrderOutStatuses.FirstOrDefaultAsync(s => s.Value == request.WhsOrderOutDto.Status)
+                ?? throw new EntityNotFoundException(nameof(WhsOrderOutStatus), request.WhsOrderOutDto.Status.ToString());
+            whsOrderOut.StatusId = status.Id;
 
             var isWhsOrderOutExists = await _mediator.Send(new IsExistsByIdWhsOrderOutQuery { Id = whsOrderOut.Id }, cancellationToken);
             if (isWhsOrderOutExists)

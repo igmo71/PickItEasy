@@ -7,12 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using PickItEasy.Domain.Entities;
 using PickItEasy.Application.Common;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
 {
-    public class WhsOrderOutQueueConfiguration : IEntityTypeConfiguration<WhsOrderOutQueue>
+    public class WhsOrderQueueConfiguration : IEntityTypeConfiguration<WhsOrderQueue>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<WhsOrderOutQueue> builder)
+        public void Configure(EntityTypeBuilder<WhsOrderQueue> builder)
         {
             builder.HasKey(e => e.Id);
             
