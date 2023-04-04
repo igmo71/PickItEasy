@@ -25,7 +25,7 @@ namespace PickItEasy.Application.Services.Products.Commands.Create
         {
             var product = _mapper.Map<Product>(request.ProductDto);
 
-            var isProductExists = await _mediator.Send(new IsExistsByIdProductQuery { Id = product.Id }, cancellationToken);
+            var isProductExists = await _mediator.Send(new IsExistsProductByIdQuery { Id = product.Id }, cancellationToken);
             if (isProductExists)
             {
                 await _mediator.Send(new UpdateProductCommand

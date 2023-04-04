@@ -8,7 +8,7 @@ using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.Products.Queries.GetById
 {
-    public class GetByIdProductQueryHandler : IRequestHandler<GetByIdProductQuery, ProductVm>
+    public class GetByIdProductQueryHandler : IRequestHandler<GetProductByIdQuery, ProductVm>
     {
 
         private readonly IApplicationDbContext _dbContext;
@@ -20,7 +20,7 @@ namespace PickItEasy.Application.Services.Products.Queries.GetById
             _mapper = mapper;
         }
 
-        public async Task<ProductVm> Handle(GetByIdProductQuery request, CancellationToken cancellationToken)
+        public async Task<ProductVm> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
         {
 
             var product = await _dbContext.Products.AsNoTracking()
