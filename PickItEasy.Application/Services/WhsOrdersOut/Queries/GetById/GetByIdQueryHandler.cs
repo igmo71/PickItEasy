@@ -8,18 +8,18 @@ using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
 {
-    public class GetWhsOrderOutByIdQueryHandler : IRequestHandler<GetWhsOrderOutByIdQuery, WhsOrderOutVm>
+    public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, WhsOrderOutVm>
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetWhsOrderOutByIdQueryHandler(IApplicationDbContext dbContext, IMapper mapper)
+        public GetByIdQueryHandler(IApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
         }
 
-        public async Task<WhsOrderOutVm> Handle(GetWhsOrderOutByIdQuery request, CancellationToken cancellationToken)
+        public async Task<WhsOrderOutVm> Handle(GetByIdQuery request, CancellationToken cancellationToken)
         {
             var whsOrderOut = await _dbContext.WhsOrdersOut.AsNoTracking()
                 .Include(e => e.WhsOrderOutProducts).ThenInclude(op => op.Product)//.Include(e => e.Products)

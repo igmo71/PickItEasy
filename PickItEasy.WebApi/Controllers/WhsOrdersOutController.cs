@@ -31,9 +31,9 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
-        public async Task<IActionResult> Get([FromQuery] WhsOrderOutSearchParameters searchParameters)
+        public async Task<IActionResult> Get([FromQuery] SearchParameters searchParameters)
         {
-            var getListWhsOrderOutQuery = new GetWhsOrderOutListQuery { SearchParameters = searchParameters };
+            var getListWhsOrderOutQuery = new GetListQuery { SearchParameters = searchParameters };
             var result = await _mediator.Send(getListWhsOrderOutQuery);
             return Ok(result);
             //return StatusCode((int)HttpStatusCode.MethodNotAllowed);
@@ -46,7 +46,7 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var result = await _mediator.Send(new GetWhsOrderOutByIdQuery { Id = id });
+            var result = await _mediator.Send(new GetByIdQuery { Id = id });
             return Ok(result);
         }
 
@@ -57,9 +57,9 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Post([FromBody] WhsOrderOutDto whsOrderOutDto)
         {
-            var createWhsOrderOutCommand = new CreateWhsOrderOutCommand { WhsOrderOutDto = whsOrderOutDto };
+            var createWhsOrderOutCommand = new CreateCommand { WhsOrderOutDto = whsOrderOutDto };
             var result = await _mediator.Send(createWhsOrderOutCommand);
-            _eventPublisher.SendMessage($"{nameof(CreateWhsOrderOutCommand)}_{result.Id}");
+            _eventPublisher.SendMessage($"{nameof(CreateCommand)}_{result.Id}");
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 
@@ -81,7 +81,7 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var deleteWhsOrderOutCommand = new DeleteWhsOrderOutCommand { Id = id };
+            var deleteWhsOrderOutCommand = new DeleteCommand { Id = id };
             await _mediator.Send(deleteWhsOrderOutCommand);
             return NoContent();
         }

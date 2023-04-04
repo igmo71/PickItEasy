@@ -8,27 +8,27 @@ using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.Products.Commands.Create
 {
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, ProductDto>
+    public class CreateCommandHandler : IRequestHandler<CreateCommand, ProductDto>
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
 
-        public CreateProductCommandHandler(IApplicationDbContext dbContext, IMapper mapper, IMediator mediator)
+        public CreateCommandHandler(IApplicationDbContext dbContext, IMapper mapper, IMediator mediator)
         {
             _dbContext = dbContext;
             _mapper = mapper;
             _mediator = mediator;
         }
 
-        public async Task<ProductDto> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+        public async Task<ProductDto> Handle(CreateCommand request, CancellationToken cancellationToken)
         {
             var product = _mapper.Map<Product>(request.ProductDto);
 
-            var isProductExists = await _mediator.Send(new IsExistsProductByIdQuery { Id = product.Id }, cancellationToken);
+            var isProductExists = await _mediator.Send(new IsExistsByIdQuery { Id = product.Id }, cancellationToken);
             if (isProductExists)
             {
-                await _mediator.Send(new UpdateProductCommand
+                await _mediator.Send(new UpdateCommand
                 {
                     Id = product.Id,
                     ProductDto = new ProductDto

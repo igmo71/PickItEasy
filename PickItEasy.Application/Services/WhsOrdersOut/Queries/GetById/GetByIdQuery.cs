@@ -3,7 +3,7 @@ using PickItEasy.Application.Dtos;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
 {
-    public class GetWhsOrderOutByIdQuery : IRequest<WhsOrderOutVm>
+    public class GetByIdQuery : IRequest<WhsOrderOutVm>
     {
         public Guid Id { get; set; }
     }

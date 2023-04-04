@@ -14,8 +14,8 @@ namespace PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.Contains
         public async Task<bool> Handle(ContainsValueQuery request, CancellationToken cancellationToken)
         {
             var statusLit = await _mediator.Send(new GetListQuery(), cancellationToken);
-            var result = request.Value >= statusLit.MinBy(s => s.Value)?.Value
-                        && request.Value >= statusLit.MaxBy(s => s.Value)?.Value;
+            var result = request.Value >= statusLit.Statuses?.MinBy(s => s.Value)?.Value
+                        && request.Value >= statusLit.Statuses?.MaxBy(s => s.Value)?.Value;
             return result;
         }
     }

@@ -2,9 +2,9 @@
 
 namespace PickItEasy.Application.Services.Products.Queries.GetById
 {
-    public class GetProductByIdQueryValidator : AbstractValidator<GetProductByIdQuery>
+    public class GetByIdQueryValidator : AbstractValidator<GetByIdQuery>
     {
-        public GetProductByIdQueryValidator()
+        public GetByIdQueryValidator()
         {
             RuleFor(getByIdProductQuery => getByIdProductQuery.Id).NotNull().NotEmpty();
         }

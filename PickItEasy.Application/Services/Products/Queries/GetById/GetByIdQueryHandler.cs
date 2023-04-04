@@ -8,22 +8,23 @@ using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.Products.Queries.GetById
 {
-    public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, ProductVm>
+    public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, ProductVm>
     {
 
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetProductByIdQueryHandler(IApplicationDbContext dbContext, IMapper mapper)
+        public GetByIdQueryHandler(IApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
         }
 
-        public async Task<ProductVm> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ProductVm> Handle(GetByIdQuery request, CancellationToken cancellationToken)
         {
 
-            var product = await _dbContext.Products.AsNoTracking()
+            var product = await _dbContext.Products
+                .AsNoTracking()
                 .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken)
                 ?? throw new EntityNotFoundException(nameof(Product), request.Id);
 

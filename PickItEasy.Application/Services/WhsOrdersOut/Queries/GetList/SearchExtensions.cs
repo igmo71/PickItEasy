@@ -2,9 +2,9 @@
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList
 {
-    public static class WhsOrderOutSearchExtensions
+    public static class SearchExtensions
     {
-        public static IQueryable<WhsOrderOut> Search(this IQueryable<WhsOrderOut> query, WhsOrderOutSearchParameters parameters)
+        public static IQueryable<WhsOrderOut> Search(this IQueryable<WhsOrderOut> query, SearchParameters parameters)
         {
             if (!string.IsNullOrWhiteSpace(parameters.SearchTerm))
             {

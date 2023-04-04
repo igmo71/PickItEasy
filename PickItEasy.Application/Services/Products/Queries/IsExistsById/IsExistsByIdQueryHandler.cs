@@ -4,16 +4,16 @@ using PickItEasy.Application.Interfaces;
 
 namespace PickItEasy.Application.Services.Products.Queries.IsExistsById
 {
-    public class IsExistsProductByIdQueryHandler : IRequestHandler<IsExistsProductByIdQuery, bool>
+    public class IsExistsByIdQueryHandler : IRequestHandler<IsExistsByIdQuery, bool>
     {
         private readonly IApplicationDbContext _dbContext;
 
-        public IsExistsProductByIdQueryHandler(IApplicationDbContext dbContext)
+        public IsExistsByIdQueryHandler(IApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<bool> Handle(IsExistsProductByIdQuery request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(IsExistsByIdQuery request, CancellationToken cancellationToken)
         {
             var response = await _dbContext.Products.AnyAsync(p => p.Id == request.Id, cancellationToken);
             return response;

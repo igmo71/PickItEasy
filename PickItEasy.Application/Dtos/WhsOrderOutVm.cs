@@ -9,7 +9,7 @@ namespace PickItEasy.Application.Dtos
         public string? Number { get; set; }
         public DateTime DateTime { get; set; }
 
-        public WhsOrderOutStatus? Status { get; set; }
+        public WhsOrderOutStatusVm? Status { get; set; }
 
         public List<WhsOrderOutProductVm>? Products { get; set; }
     }

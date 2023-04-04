@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using PickItEasy.Application.Dtos;
 using PickItEasy.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetList
 {
-    public class GetListQuery : IRequest<List<WhsOrderOutStatus>>
+    public class GetListQuery : IRequest<WhsOrderOutStatusListVm>
     {
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList
 {
-    public class WhsOrderOutSearchParameters
+    public class SearchParameters
     {
         public string? SearchTerm { get; set; }
         public Guid UserId { get; set; }

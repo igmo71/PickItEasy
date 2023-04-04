@@ -42,7 +42,7 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var result = await _mediator.Send(new GetProductByIdQuery { Id = id });
+            var result = await _mediator.Send(new GetByIdQuery { Id = id });
 
             return Ok(result);
         }
@@ -54,7 +54,7 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Post([FromBody] ProductDto productDto)
         {
-            var createProductCommand = new CreateProductCommand { ProductDto = productDto };
+            var createProductCommand = new CreateCommand { ProductDto = productDto };
             var result = await _mediator.Send(createProductCommand);
 
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
@@ -67,7 +67,7 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Put(Guid id, [FromBody] ProductDto productDto)
         {
-            var updateProductCommand = new UpdateProductCommand { Id = id, ProductDto = productDto };
+            var updateProductCommand = new UpdateCommand { Id = id, ProductDto = productDto };
             await _mediator.Send(updateProductCommand);
 
             return NoContent();

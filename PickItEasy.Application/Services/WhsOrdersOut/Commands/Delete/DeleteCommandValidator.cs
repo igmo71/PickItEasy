@@ -2,9 +2,9 @@
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Delete
 {
-    public class DeleteWhsOrderOutCommandValidator : AbstractValidator<DeleteWhsOrderOutCommand>
+    public class DeleteCommandValidator : AbstractValidator<DeleteCommand>
     {
-        public DeleteWhsOrderOutCommandValidator()
+        public DeleteCommandValidator()
         {
             RuleFor(deleteWhsOrderOutCommand => deleteWhsOrderOutCommand.Id).NotNull().NotEmpty();
         }
