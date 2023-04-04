@@ -2,9 +2,9 @@
 
 namespace PickItEasy.Application.Services.Products.Queries.IsExistsById
 {
-    public class IsExistsByIdProductQueryValidator : AbstractValidator<IsExistsProductByIdQuery>
+    public class IsExistsProductByIdQueryValidator : AbstractValidator<IsExistsProductByIdQuery>
     {
-        public IsExistsByIdProductQueryValidator()
+        public IsExistsProductByIdQueryValidator()
         {
             RuleFor(isExistsByIdProductQuery => isExistsByIdProductQuery.Id).NotNull().NotEmpty();
         }

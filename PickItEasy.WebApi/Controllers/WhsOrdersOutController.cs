@@ -33,7 +33,7 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
         public async Task<IActionResult> Get([FromQuery] WhsOrderOutSearchParameters searchParameters)
         {
-            var getListWhsOrderOutQuery = new GetListWhsOrderOutQuery { SearchParameters = searchParameters };
+            var getListWhsOrderOutQuery = new GetWhsOrderOutListQuery { SearchParameters = searchParameters };
             var result = await _mediator.Send(getListWhsOrderOutQuery);
             return Ok(result);
             //return StatusCode((int)HttpStatusCode.MethodNotAllowed);

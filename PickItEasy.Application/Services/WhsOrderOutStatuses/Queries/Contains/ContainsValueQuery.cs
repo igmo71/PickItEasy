@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetIdByValue
+namespace PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.Contains
 {
-    public class GetWhsOrderOutStatusIdByValueQuery : IRequest<Guid>
+    public class ContainsValueQuery: IRequest<bool>
     {
         public int Value { get; set; }
     }

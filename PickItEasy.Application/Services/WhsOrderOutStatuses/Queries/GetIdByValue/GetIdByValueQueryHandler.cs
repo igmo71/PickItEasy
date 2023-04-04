@@ -11,18 +11,20 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetIdByValue
 {
-    public class GetWhsOrderOutStatusIdByValueQueryHandler : IRequestHandler<GetWhsOrderOutStatusIdByValueQuery, Guid>
+    public class GetIdByValueQueryHandler : IRequestHandler<GetIdByValueQuery, Guid>
     {
         private readonly IApplicationDbContext _dbContext;
 
-        public GetWhsOrderOutStatusIdByValueQueryHandler(IApplicationDbContext dbContext)
+        public GetIdByValueQueryHandler(IApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<Guid> Handle(GetWhsOrderOutStatusIdByValueQuery request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(GetIdByValueQuery request, CancellationToken cancellationToken)
         {
-            var status = await _dbContext.WhsOrderOutStatuses.FirstOrDefaultAsync(e => e.Value == request.Value)
+            var status = await _dbContext.WhsOrderOutStatuses
+                .AsNoTracking()
+                .FirstOrDefaultAsync(e => e.Value == request.Value)
                 ?? throw new EntityNotFoundException(nameof(WhsOrderOutStatus), request.Value.ToString());
             return status.Id;
         }

@@ -10,17 +10,19 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetList
 {
-    public class GetWhsOrderOutStatusListQueryHandler : IRequestHandler<GetWhsOrderOutStatusListQuery, List<WhsOrderOutStatus>>
+    public class GetListQueryHandler : IRequestHandler<GetListQuery, List<WhsOrderOutStatus>>
     {
         private readonly IApplicationDbContext _dbContext;
 
-        public GetWhsOrderOutStatusListQueryHandler(IApplicationDbContext dbContext)
+        public GetListQueryHandler(IApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
-        public async Task<List<WhsOrderOutStatus>> Handle(GetWhsOrderOutStatusListQuery request, CancellationToken cancellationToken)
+        public async Task<List<WhsOrderOutStatus>> Handle(GetListQuery request, CancellationToken cancellationToken)
         {
-            var result = await _dbContext.WhsOrderOutStatuses.AsNoTracking().ToListAsync(cancellationToken);
+            var result = await _dbContext.WhsOrderOutStatuses
+                .AsNoTracking()
+                .ToListAsync(cancellationToken);
             return result;
         }
     }

@@ -7,12 +7,12 @@ using PickItEasy.Application.Interfaces;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList
 {
-    public class GetListWhsOrderOutQueryHandler : IRequestHandler<GetWhsOrderOutListQuery, WhsOrderOutListVm>
+    public class GetWhsOrderOutListQueryHandler : IRequestHandler<GetWhsOrderOutListQuery, WhsOrderOutListVm>
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetListWhsOrderOutQueryHandler(IApplicationDbContext dbContext, IMapper mapper)
+        public GetWhsOrderOutListQueryHandler(IApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;

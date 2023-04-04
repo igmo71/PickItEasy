@@ -30,7 +30,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
         {
             var whsOrderOut = _mapper.Map<WhsOrderOut>(request.WhsOrderOutDto);
 
-            whsOrderOut.StatusId = await _mediator.Send(new GetWhsOrderOutStatusIdByValueQuery { Value = request.WhsOrderOutDto.Status }, cancellationToken);
+            whsOrderOut.StatusId = await _mediator.Send(new GetIdByValueQuery { Value = request.WhsOrderOutDto.Status }, cancellationToken);
 
             var isWhsOrderOutExists = await _mediator.Send(new IsExistsByIdWhsOrderOutQuery { Id = whsOrderOut.Id }, cancellationToken);
             if (isWhsOrderOutExists)

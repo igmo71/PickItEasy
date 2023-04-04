@@ -8,13 +8,13 @@ using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.Products.Queries.GetById
 {
-    public class GetByIdProductQueryHandler : IRequestHandler<GetProductByIdQuery, ProductVm>
+    public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, ProductVm>
     {
 
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetByIdProductQueryHandler(IApplicationDbContext dbContext, IMapper mapper)
+        public GetProductByIdQueryHandler(IApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;

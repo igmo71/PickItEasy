@@ -4,11 +4,11 @@ using PickItEasy.Application.Interfaces;
 
 namespace PickItEasy.Application.Services.Products.Queries.IsExistsById
 {
-    public class IsExistsByIdProductQueryHandler : IRequestHandler<IsExistsProductByIdQuery, bool>
+    public class IsExistsProductByIdQueryHandler : IRequestHandler<IsExistsProductByIdQuery, bool>
     {
         private readonly IApplicationDbContext _dbContext;
 
-        public IsExistsByIdProductQueryHandler(IApplicationDbContext dbContext)
+        public IsExistsProductByIdQueryHandler(IApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
