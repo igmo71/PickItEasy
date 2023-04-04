@@ -7,7 +7,7 @@ using PickItEasy.Application.Interfaces;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList
 {
-    public class GetListWhsOrderOutQueryHandler : IRequestHandler<GetListWhsOrderOutQuery, WhsOrderOutListVm>
+    public class GetListWhsOrderOutQueryHandler : IRequestHandler<GetWhsOrderOutListQuery, WhsOrderOutListVm>
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -18,7 +18,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList
             _mapper = mapper;
         }
 
-        public async Task<WhsOrderOutListVm> Handle(GetListWhsOrderOutQuery request, CancellationToken cancellationToken)
+        public async Task<WhsOrderOutListVm> Handle(GetWhsOrderOutListQuery request, CancellationToken cancellationToken)
         {
             var whsOrdersOut = await _dbContext.WhsOrdersOut
                 .AsNoTracking()

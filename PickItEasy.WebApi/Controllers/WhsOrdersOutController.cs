@@ -46,7 +46,7 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var result = await _mediator.Send(new GetByIdWhsOrderOutQuery { Id = id });
+            var result = await _mediator.Send(new GetWhsOrderOutByIdQuery { Id = id });
             return Ok(result);
         }
 

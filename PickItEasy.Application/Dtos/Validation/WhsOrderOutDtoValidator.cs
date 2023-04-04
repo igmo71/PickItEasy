@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Dtos.Validation
 {
@@ -12,6 +13,7 @@ namespace PickItEasy.Application.Dtos.Validation
             RuleFor(whsOrderOutDto => whsOrderOutDto.DateTime).NotNull().NotEmpty();
             RuleFor(whsOrderOutDto => whsOrderOutDto.Products).NotNull().NotEmpty();
             RuleForEach(whsOrderOutDto => whsOrderOutDto.Products).SetValidator(new WhsOrderOutProductDtoValidator());
+            RuleFor(WhsOrderOutDto => WhsOrderOutDto.Status).NotNull().Must(status => PickItEasy.Integration.Connectors.Ut1c.WhsOrderOutStatus.Contain(status));
         }
     }
 }

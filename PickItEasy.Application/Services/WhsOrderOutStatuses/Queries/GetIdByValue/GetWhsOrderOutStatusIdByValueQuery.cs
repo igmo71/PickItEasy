@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetIdByValue
 {
-    public class GetStatusIdByValueQuery : IRequest<Guid>
+    public class GetWhsOrderOutStatusIdByValueQuery : IRequest<Guid>
     {
         public int Value { get; set; }
     }

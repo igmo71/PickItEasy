@@ -2,9 +2,9 @@
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
 {
-    public class GetByIdWhsOrderOutQueryValidator : AbstractValidator<GetByIdWhsOrderOutQuery>
+    public class GetWhsOrderOutByIdQueryValidator : AbstractValidator<GetWhsOrderOutByIdQuery>
     {
-        public GetByIdWhsOrderOutQueryValidator()
+        public GetWhsOrderOutByIdQueryValidator()
         {
             RuleFor(getByIdWhsOrderOutQuery => getByIdWhsOrderOutQuery.Id).NotNull().NotEmpty();
         }
