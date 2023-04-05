@@ -6,6 +6,11 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList
     {
         public static IQueryable<WhsOrderOut> Search(this IQueryable<WhsOrderOut> query, SearchParameters parameters)
         {
+            if (parameters.StatusId != Guid.Empty)
+            {
+                query = query.Where(e => e.StatusId == parameters.StatusId);
+            }
+
             if (!string.IsNullOrWhiteSpace(parameters.SearchTerm))
             {
                 var lowerCaseSearchTerm = parameters.SearchTerm.Trim().ToLower();

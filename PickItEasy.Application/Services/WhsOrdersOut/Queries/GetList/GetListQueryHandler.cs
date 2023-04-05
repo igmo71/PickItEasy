@@ -20,7 +20,8 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList
 
         public async Task<WhsOrderOutListVm> Handle(GetListQuery request, CancellationToken cancellationToken)
         {
-            var orders = await _dbContext.WhsOrdersOut//.Include(o => o.Status)
+            var orders = await _dbContext.WhsOrdersOut
+                //.Include(o => o.Status)
                 .AsNoTracking()
                 .Search(request.SearchParameters)
                 .ProjectTo<WhsOrderOutLookupVm>(_mapper.ConfigurationProvider)

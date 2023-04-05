@@ -2,6 +2,6 @@
 {
     public class WhsOrderOutListVm
     {
-        public List<WhsOrderOutLookupVm> Orders { get; set; } = new();
+        public List<WhsOrderOutLookupVm>? Orders { get; set; }
     }
 }

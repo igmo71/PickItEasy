@@ -40,6 +40,7 @@ services:
       - "5432:5432"
     volumes:
       - pickiteasy-pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
     environment:
       POSTGRES_DB: "PickItEasyDb"
       POSTGRES_USER: "PickItEasyUser"
