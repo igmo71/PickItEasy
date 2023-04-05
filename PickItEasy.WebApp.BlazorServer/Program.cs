@@ -5,6 +5,7 @@ using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Services;
 using PickItEasy.EventBus;
 using PickItEasy.Integration;
+using PickItEasy.Integration.Connectors.Ut1c;
 using PickItEasy.Persistence;
 using PickItEasy.Persistence.Data;
 using PickItEasy.Persistence.Models;
@@ -34,6 +35,8 @@ namespace PickItEasy.WebApp.BlazorServer
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<ApplicationUser>>();
+
+            builder.Services.AddSignalR();
 
             builder.Services.ConfigureEventBus(builder.Configuration);
             builder.Services.AddEventBusConsumer();
@@ -68,6 +71,7 @@ namespace PickItEasy.WebApp.BlazorServer
             app.MapControllers();
             app.MapBlazorHub();
             app.MapFallbackToPage("/_Host");
+            app.MapHub<Hub1cUt>("/Hub1cUt");
 
             app.Run();
         }

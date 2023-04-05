@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -22,13 +22,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PickItEasy.EventBus\PickItEasy.EventBus.csproj" />
-    <ProjectReference Include="..\..\PickItEasy.Integration\PickItEasy.Integration.csproj" />
     <ProjectReference Include="..\PickItEasy.Application\PickItEasy.Application.csproj" />
+    <ProjectReference Include="..\PickItEasy.EventBus\PickItEasy.EventBus.csproj" />
+    <ProjectReference Include="..\PickItEasy.Integration\PickItEasy.Integration.csproj" />
     <ProjectReference Include="..\PickItEasy.Persistence\PickItEasy.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Hubs\" />
     <Folder Include="Pages\WhsOrders\Components\" />
   </ItemGroup>
 
