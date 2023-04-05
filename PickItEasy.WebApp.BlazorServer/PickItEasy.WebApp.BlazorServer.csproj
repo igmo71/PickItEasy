@@ -32,4 +32,8 @@
     <Folder Include="Pages\WhsOrders\Components\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\js\onscan\.github\main.workflow" />
+  </ItemGroup>
+
 </Project>
