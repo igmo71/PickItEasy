@@ -3,6 +3,7 @@ using PickItEasy.Application.Common;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.EventBus;
 using PickItEasy.Integration;
+using PickItEasy.Integration.Connectors.Ut1c;
 using PickItEasy.Persistence;
 using PickItEasy.WebApi.Middleware;
 using Serilog;
@@ -30,6 +31,8 @@ namespace PickItEasy.WebApi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddSignalR();
+
             builder.Services.ConfigureEventBus(builder.Configuration);
             builder.Services.AddEventBusPublisher();
 
@@ -53,6 +56,7 @@ namespace PickItEasy.WebApi
             app.UseAuthorization();
 
             app.MapControllers();
+            app.MapHub<Hub1cUt>("/Hub1cUt");
 
             app.Run();
         }

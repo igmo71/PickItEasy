@@ -29,7 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Hubs\" />
     <Folder Include="Pages\WhsOrders\Components\" />
   </ItemGroup>
 

@@ -30,6 +30,7 @@ namespace PickItEasy.Integration.Connectors.Ut1c
             services.Configure<ConnectorConfig>(connectorName, connectorConfig);
             services.AddScoped<IClient1cUt, Client1cUt>();
 
+            services.AddScoped<IHub1cUtService, Hub1cUtService>();
 
 
             return services;

@@ -4,11 +4,20 @@ namespace PickItEasy.Integration.Connectors.Ut1c
 {
     public class Hub1cUt : Hub<IHub1cUtClient>
     {
+        public const string HUB_1C_UT_GROUP = "Hub1cUtGroup";
         private List<string> connections = new List<string>();
 
-        public async Task GetMessage(string message)
+        public static event EventHandler<string>? ResultReceived;
+
+        public void GetMessage(string message)
         {
             Console.WriteLine(message);
+        }
+
+        public void GetResult(string message)
+        {
+            //Console.WriteLine(message);
+            OnResultReceived(message);
         }
 
         public async Task BroadcastMessage(string message)
@@ -29,15 +38,20 @@ namespace PickItEasy.Integration.Connectors.Ut1c
         public override async Task OnConnectedAsync()
         {
             connections.Add(Context.ConnectionId);
-            await Groups.AddToGroupAsync(Context.ConnectionId, "HubConnections");
+            await Groups.AddToGroupAsync(Context.ConnectionId, HUB_1C_UT_GROUP);
             await base.OnConnectedAsync();
         }
 
-        public override async Task OnDisconnectedAsync(Exception? exception)
+        public override async Task OnDisconnectedAsync(Exception? exception)        
         {
             connections.Remove(Context.ConnectionId);
-            await Groups.RemoveFromGroupAsync(Context.ConnectionId, "HubConnections");
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, HUB_1C_UT_GROUP);
             await base.OnDisconnectedAsync(exception);
+        }
+
+        private void OnResultReceived(string content)
+        {
+            ResultReceived?.Invoke(this, content);
         }
 
         //private string GetMessage(string originalMessage)
