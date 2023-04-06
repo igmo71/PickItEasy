@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Extensions.Logging;
-using PickItEasy.Application.Dtos;
-using System.Net;
-using System.Threading.Channels;
 using Microsoft.Extensions.Hosting;
+using PickItEasy.Application.Dtos;
+using Serilog;
+using System.Net;
 
 namespace PickItEasy.Integration.Proxy
 {
@@ -13,6 +12,10 @@ namespace PickItEasy.Integration.Proxy
         {
             var builder = Host.CreateApplicationBuilder(args);
 
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(builder.Configuration)
+                .WriteTo.Console()
+                .CreateLogger();
 
             string hubUriParam = builder.Configuration.GetSection("hubUri").Value
                 ?? throw new ApplicationException("Fail to get configuration");
@@ -23,7 +26,7 @@ namespace PickItEasy.Integration.Proxy
 
 
             var hubConnection = new HubConnectionBuilder()
-                .WithUrl(hubUri)
+                .WithUrl(hubUriParam)
                 .WithAutomaticReconnect()
                 .Build();
 
@@ -36,26 +39,27 @@ namespace PickItEasy.Integration.Proxy
             
             hubConnection.Closed += async (ex) =>
             {
-                Console.WriteLine($"Disconnected at {DateTime.Now}");
+                Log.Information($"Disconnected");
                 await TryStartConnection(hubConnection);
             };
 
             await TryStartConnection(hubConnection);
 
             using IHost host = builder.Build();
+            Console.Read();
             await host.StartAsync();
 
             
         }
         private static async Task TryStartConnection(HubConnection hubConnection)
         {
-            await Console.Out.WriteLineAsync($"Trying to connect at {DateTime.Now}");
+            Log.Information($"Trying to connect");
             try
             {
                 await hubConnection.StartAsync();
-                Console.WriteLine($"Connected at {DateTime.Now}");
+                Log.Information($"Connected");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 await Task.Delay(3000);
                 await TryStartConnection(hubConnection);
@@ -64,14 +68,14 @@ namespace PickItEasy.Integration.Proxy
 
         private static async Task PostWhsOrderOutDto(WhsOrderOutDto dto, HubConnection hubConnection)
         {
-            Console.WriteLine($"{dto.Name}");
+            Log.Information($"{dto.Name}");
             var httpStatusCode = HttpStatusCode.OK;
             await hubConnection.SendAsync("GetResult", $"{dto.Name} - {httpStatusCode}"); // Guid
         }
 
         private static void HandleResievedMessage(string message)
         {
-            Console.WriteLine($"{message}");
+            Log.Information($"{message}");
         }
     }
 }
