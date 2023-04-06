@@ -28,7 +28,7 @@ namespace PickItEasy.Integration.Connectors.Ut1c
             });
 
             services.Configure<ConnectorConfig>(connectorName, connectorConfig);
-            services.AddTransient<IClient1cUt, Client1cUt>();
+            services.AddScoped<IClient1cUt, Client1cUt>();
 
 
 
