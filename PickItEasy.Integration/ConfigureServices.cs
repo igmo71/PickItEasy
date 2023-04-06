@@ -4,7 +4,7 @@ using PickItEasy.Integration.Connectors.Ut1c;
 
 namespace PickItEasy.Integration
 {
-    public static class ConfogureServices
+    public static class ConfigureServices
     {
         public static IServiceCollection AddConnectors(this IServiceCollection services, IConfiguration configuration)
         {

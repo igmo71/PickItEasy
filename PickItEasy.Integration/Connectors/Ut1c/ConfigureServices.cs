@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PickItEasy.Integration.Connectors.Ut1c
 {
-    public static class ConfogureServices
+    public static class ConfigureServices
     {
         public static IServiceCollection AddConnectorUt1c(this IServiceCollection services, IConfiguration configuration)
         {
