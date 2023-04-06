@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.Logging;
 using PickItEasy.Application.Dtos;
 using System.Net;
 using System.Threading.Channels;
+using Microsoft.Extensions.Hosting;
 
 namespace PickItEasy.Integration.Proxy
 {
@@ -9,22 +11,29 @@ namespace PickItEasy.Integration.Proxy
     {
         static async Task Main(string[] args)
         {
-            const string HUB_URL = "https://localhost:55927/Hub1cUt";
-            Console.WriteLine("Hub Url:");
-            var hubUriStr = Console.ReadLine();
+            var builder = Host.CreateApplicationBuilder(args);
 
-            //Uri.TryCreate(hubUriStr, creationOptions: ..., out Uri hubUri);
+
+            string hubUriParam = builder.Configuration.GetSection("hubUri").Value
+                ?? throw new ApplicationException("Fail to get configuration");
+            
+            var uriCreationOptions = new UriCreationOptions { DangerousDisablePathAndQueryCanonicalization = true };
+            if (!Uri.TryCreate(hubUriParam, uriCreationOptions, out Uri? hubUri))
+                throw new ApplicationException("Fail to create Hub Uri");
+
 
             var hubConnection = new HubConnectionBuilder()
-                .WithUrl(string.IsNullOrEmpty(hubUriStr) ? HUB_URL : hubUriStr)
+                .WithUrl(hubUri)
                 .WithAutomaticReconnect()
                 .Build();
 
             hubConnection.On<string>("ReceiveMessage", HandleResievedMessage);
+            
             hubConnection.On<WhsOrderOutDto>("PostWhsOrderOutDto", async (dto) =>
             {
                 await PostWhsOrderOutDto(dto, hubConnection);
             });
+            
             hubConnection.Closed += async (ex) =>
             {
                 Console.WriteLine($"Disconnected at {DateTime.Now}");
@@ -33,30 +42,23 @@ namespace PickItEasy.Integration.Proxy
 
             await TryStartConnection(hubConnection);
 
-            //while (true) {
-            //    var message = string.Empty;
-            //    Console.Write("Message: ");
-            //    message = Console.ReadLine();
+            using IHost host = builder.Build();
+            await host.StartAsync();
 
-            //    await hubConnection.SendAsync("GetMessage", message);
-            //}
-
-            //Console.WriteLine("Press any key to exit...");
-            Console.ReadLine();
-
-            static async Task TryStartConnection(HubConnection hubConnection)
+            
+        }
+        private static async Task TryStartConnection(HubConnection hubConnection)
+        {
+            await Console.Out.WriteLineAsync($"Trying to connect at {DateTime.Now}");
+            try
             {
-                await Console.Out.WriteLineAsync($"Trying to connect at {DateTime.Now}");
-                try
-                {
-                    await hubConnection.StartAsync();
-                    Console.WriteLine($"Connected at {DateTime.Now}");
-                }
-                catch (Exception)
-                {
-                    await Task.Delay(3000);
-                    await TryStartConnection(hubConnection);
-                }
+                await hubConnection.StartAsync();
+                Console.WriteLine($"Connected at {DateTime.Now}");
+            }
+            catch (Exception)
+            {
+                await Task.Delay(3000);
+                await TryStartConnection(hubConnection);
             }
         }
 
