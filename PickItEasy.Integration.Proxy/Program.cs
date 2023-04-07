@@ -25,13 +25,6 @@ namespace PickItEasy.Integration.Proxy
                 await PostWhsOrderOutDto(dto, hubConnection);
             });
 
-            //hubConnection.On<WhsOrderOutDto>("PostWhsOrderOutDtoWithResponse", (dto) =>
-            //{
-            //    Log.Information($"{dto.Name}");
-            //    var httpStatusCode = HttpStatusCode.OK;
-            //    return Task.FromResult($"{dto.Name} - {httpStatusCode}");
-            //});
-
             hubConnection.On("PostWhsOrderOutDtoWithResponse", new[] { typeof(WhsOrderOutDto) }, HandleWhsOrderOutDtoRequest);
 
             await TryStartConnection(hubConnection);

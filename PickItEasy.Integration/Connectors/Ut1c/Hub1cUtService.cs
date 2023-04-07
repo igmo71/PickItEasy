@@ -34,12 +34,7 @@ namespace PickItEasy.Integration.Connectors.Ut1c
             //    .SendAsync("PostWhsOrderOutDto", whsOrderOutDto);
 
             var clientId = Hub1cUt.connections[0];
-
-            CancellationTokenSource cts = new CancellationTokenSource();
-
-            //string result = await _hubContext.Clients.Client(clientId)
-            //    .InvokeAsync<string>("PostWhsOrderOutDtoWithResponse", whsOrderOutDto, cts.Token);
-                        
+                                    
             string result = await _hubContext.Clients.Client(clientId)
                 .InvokeAsync<string>("PostWhsOrderOutDtoWithResponse", whsOrderOutDto, CancellationToken.None);
             
