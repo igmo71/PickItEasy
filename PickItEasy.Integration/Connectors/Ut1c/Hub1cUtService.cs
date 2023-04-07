@@ -41,7 +41,7 @@ namespace PickItEasy.Integration.Connectors.Ut1c
             //    .InvokeAsync<string>("PostWhsOrderOutDtoWithResponse", whsOrderOutDto, cts.Token);
                         
             string result = await _hubContext.Clients.Client(clientId)
-                .InvokeAsync<string>("PostWhsOrderOutDtoWithResponse", "Request from Hub", CancellationToken.None);
+                .InvokeAsync<string>("PostWhsOrderOutDtoWithResponse", whsOrderOutDto, CancellationToken.None);
             
             await Console.Out.WriteLineAsync(result);
         }

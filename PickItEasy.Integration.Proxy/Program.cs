@@ -31,8 +31,8 @@ namespace PickItEasy.Integration.Proxy
             //    var httpStatusCode = HttpStatusCode.OK;
             //    return Task.FromResult($"{dto.Name} - {httpStatusCode}");
             //});
-            Func<object?[], Task<string>> myResponseDelegate = MyAsyncMethod;
-            hubConnection.On("PostWhsOrderOutDtoWithResponse", new[] {typeof(string)}, (str) => myResponseDelegate(str));
+
+            hubConnection.On("PostWhsOrderOutDtoWithResponse", new[] { typeof(WhsOrderOutDto) }, HandleWhsOrderOutDtoRequest);
 
             await TryStartConnection(hubConnection);
 
@@ -71,15 +71,15 @@ namespace PickItEasy.Integration.Proxy
             var httpStatusCode = HttpStatusCode.OK;
             return Task.FromResult($"{dto.Name} - {httpStatusCode}"); // Guid
         }
-        public static async Task<string> MyAsyncMethod(object?[] input)
+        public static async Task<string> HandleWhsOrderOutDtoRequest(object?[] input)
         {
-            Console.WriteLine(input[0].ToString());
+            Console.WriteLine($"{(input[0] as WhsOrderOutDto).Name} - received");
+
             // Do some asynchronous work
             await Task.Delay(1000);
 
-            var result = input[0].ToString();
-            // Return a string result
-            return result + " -> Response from Client";
+            var result = (input[0] as WhsOrderOutDto).Name;
+            return $"{result} - Ok";
         }
 
     }
