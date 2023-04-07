@@ -18,7 +18,7 @@ namespace PickItEasy.Integration.Proxy
 
             LoggerProviderOptions.RegisterProviderOptions<EventLogSettings, EventLogLoggerProvider>(builder.Services);
             builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
-            builder.Logging.AddEventLog();            
+            builder.Logging.AddEventLog();
             var logger = LoggerFactory.Create(config => config.AddEventLog()).CreateLogger("PickItEasy.Integration");
 
             builder.Services.AddHostedService<ProxyWorker>();
@@ -33,12 +33,7 @@ namespace PickItEasy.Integration.Proxy
                 .WithAutomaticReconnect()
                 .Build();
 
-            //hubConnection.On<WhsOrderOutDto>("PostWhsOrderOutDto", async (dto) =>
-            //{
-            //    await PostWhsOrderOutDto(dto, hubConnection, logger);
-            //});
-
-            hubConnection.On("PostWhsOrderOutDtoWithResponse", new[] { typeof(WhsOrderOutDto) }, HandleWhsOrderOutDtoRequest);
+            hubConnection.On("PostWhsOrderOutDto", new[] { typeof(WhsOrderOutDto) }, HandlePostWhsOrderOutDto);
 
             await StartConnection(hubConnection, logger);
 
@@ -63,28 +58,16 @@ namespace PickItEasy.Integration.Proxy
             }
         }
 
-        //private static async Task PostWhsOrderOutDto(WhsOrderOutDto dto, HubConnection hubConnection, ILogger logger)
-        //{
-        //    logger.LogInformation($"{dto.Name} - received");
-        //    var httpStatusCode = HttpStatusCode.OK;
-        //    await hubConnection.SendAsync("GetResult", $"{dto.Name} - {httpStatusCode}"); // Guid
-        //}
-
-        //private static Task<string> PostWhsOrderOutDtoWithResponse(WhsOrderOutDto dto, ILogger logger)
-        //{
-        //    logger.LogInformation($"{dto.Name} - received");
-        //    var httpStatusCode = HttpStatusCode.OK;
-        //    return Task.FromResult($"{dto.Name} - {httpStatusCode}"); // Guid
-        //}
-
-        public static async Task<string> HandleWhsOrderOutDtoRequest(object?[] input)
+        public static async Task<string> HandlePostWhsOrderOutDto(object?[] input)
         {
             Console.WriteLine($"{(input[0] as WhsOrderOutDto).Name} - received");
+
             //logger.LogInformation($"{(input[0] as WhsOrderOutDto).Name} - received");
-            // Do some asynchronous work
+
             await Task.Delay(1000);
 
             var result = (input[0] as WhsOrderOutDto).Name;
+
             return $"{result} - Ok";
         }
     }
