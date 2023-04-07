@@ -19,33 +19,34 @@ namespace PickItEasy.Integration.Proxy
             builder.Logging.AddEventLog();
             var logger = LoggerFactory.Create(config => config.AddEventLog()).CreateLogger("PickItEasy.Integration");
 
-            builder.Services.AddHostedService<ProxyWorker>();
+            builder.Services.AddSingleton<ISignalRHubClient, Hub1cUtClientService>();
             builder.Services.AddHostedService<HealthChecker>();
+            builder.Services.AddHostedService<ProxyWorker>();
+            builder.Services.AddSingleton<IRequestHandler, PostWhsOrderOutDtoHandler>();
 
+            //string hubUri = builder.Configuration.GetSection("HubUri").Value
+            //    ?? throw new ApplicationException("Fail to get configuration");
 
-            string hubUri = builder.Configuration.GetSection("HubUri").Value
-                ?? throw new ApplicationException("Fail to get configuration");
+            //HubConnection hubConnection = new HubConnectionBuilder()
+            //    .WithUrl(hubUri)
+            //    .WithAutomaticReconnect()
+            //    .Build();
 
-            HubConnection hubConnection = new HubConnectionBuilder()
-                .WithUrl(hubUri)
-                .WithAutomaticReconnect()
-                .Build();
+            ////hubConnection.On("PostWhsOrderOutDto", new[] { typeof(WhsOrderOutDto) }, HandlePostWhsOrderOutDto);
+            //hubConnection.On("PostWhsOrderOutDto", new[] { typeof(WhsOrderOutDto) }, async (input) =>
+            //{
+            //    Console.WriteLine($"{(input[0] as WhsOrderOutDto).Name} - received");
 
-            //hubConnection.On("PostWhsOrderOutDto", new[] { typeof(WhsOrderOutDto) }, HandlePostWhsOrderOutDto);
-            hubConnection.On("PostWhsOrderOutDto", new[] { typeof(WhsOrderOutDto) }, async (input) =>
-            {
-                Console.WriteLine($"{(input[0] as WhsOrderOutDto).Name} - received");
+            //    logger.LogInformation($"{(input[0] as WhsOrderOutDto).Name} - received");
 
-                logger.LogInformation($"{(input[0] as WhsOrderOutDto).Name} - received");
+            //    await Task.Delay(1000);
 
-                await Task.Delay(1000);
+            //    var result = (input[0] as WhsOrderOutDto).Name;
 
-                var result = (input[0] as WhsOrderOutDto).Name;
+            //    return $"{result} - Ok";
+            //});
 
-                return $"{result} - Ok";
-            });
-
-            await StartConnection(hubConnection, logger);
+            //await StartConnection(hubConnection, logger);
 
             IHost host = builder.Build();
 

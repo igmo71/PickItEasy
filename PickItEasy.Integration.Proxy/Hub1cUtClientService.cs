@@ -1,43 +1,49 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
-using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PickItEasy.Application.Dtos;
 
 namespace PickItEasy.Integration.Proxy
 {
+    public delegate Task<string> OnPostWhsOrderOutDtoHandler(WhsOrderOutDto dto);
     public class Hub1cUtClientService : ISignalRHubClient
     {
-
         private readonly HubConnection _hubConnection;
         private readonly ILogger<Hub1cUtClientService> _logger;
+        public OnPostWhsOrderOutDtoHandler? postWhsOrderOutDtoHandler;
 
         public Hub1cUtClientService(IConfiguration configuration, ILogger<Hub1cUtClientService> logger)
         {
             _logger = logger;
-            string hubUrl = configuration.GetSection("HubUrl").Value
-                ?? throw new ApplicationException("Fail to get configuration");
+
+            //string hubUrl = configuration.GetSection("HubUri").Value ?? throw new ApplicationException("Fail to get configuration")
+            string hubUrl = configuration.GetValue<string>("HubUri") ?? throw new ApplicationException("Fail to get configuration"); ;
+
             _hubConnection = new HubConnectionBuilder()
                 .WithUrl(hubUrl)
                 .WithAutomaticReconnect()
                 .Build();
+
             StartConnection().GetAwaiter().GetResult();
+
             _hubConnection.Closed += async (ex) =>
             {
                 _logger.LogError(ex, "Disconnected");
                 await StartConnection();
             };
+
+            _hubConnection.On("PostWhsOrderOutDto", new[] { typeof(WhsOrderOutDto) }, async (input) =>
+            {
+                var result = await OnPostWhsOrderOutDto((input[0] as WhsOrderOutDto));
+                return result;
+            });
         }
 
         private async Task StartConnection()
         {
-            _logger.LogInformation($"Trying to connect");
+            _logger.LogInformation("Trying to connect");
             try
             {
                 await _hubConnection.StartAsync();
-                _logger.LogInformation($"Connected");
+                _logger.LogInformation("Connected");
             }
             catch (Exception ex)
             {
@@ -45,6 +51,8 @@ namespace PickItEasy.Integration.Proxy
                 await StartConnection();
             }
         }
+
+        public string State => _hubConnection.State.ToString();
 
         public async Task Connect()
         {
@@ -59,6 +67,22 @@ namespace PickItEasy.Integration.Proxy
         public async Task SendMessage(string message)
         {
             var result = await _hubConnection.InvokeAsync<string>("SendMessage", message);
+        }
+
+        public void RegisterPostWhsOrderOutDtoHandler(OnPostWhsOrderOutDtoHandler handler)
+        {
+            postWhsOrderOutDtoHandler += handler;
+        }
+
+        public void UnregisterPostWhsOrderOutDtoHandler(OnPostWhsOrderOutDtoHandler handler)
+        {
+            postWhsOrderOutDtoHandler -= handler;
+        }
+
+        private async Task<string> OnPostWhsOrderOutDto(WhsOrderOutDto? whsOrderOutDto)
+        {
+            var result = await postWhsOrderOutDtoHandler?.Invoke(whsOrderOutDto); // TODO: Check whsOrderOutDto!
+            return result;
         }
     }
 }
