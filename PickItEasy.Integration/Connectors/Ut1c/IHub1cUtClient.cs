@@ -3,5 +3,6 @@
     public interface IHub1cUtClient
     {
         Task ReceiveMessage(string message);
+        Task<string> ReceiveMessageWithResponse(string message);
     }
 }

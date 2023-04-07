@@ -1,56 +1,48 @@
-﻿using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.SignalR.Client;
 using PickItEasy.Application.Dtos;
 using Serilog;
 using System.Net;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace PickItEasy.Integration.Proxy
 {
-    internal class Program
+    public class Program
     {
-        static async Task Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = Host.CreateApplicationBuilder(args);
+            builder.Services.AddHostedService<ProxyWorker>();
+            builder.Services.AddHostedService<HealthChecker>();
 
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(builder.Configuration)
-                .WriteTo.Console()
-                .CreateLogger();
-
-            string hubUriParam = builder.Configuration.GetSection("hubUri").Value
-                ?? throw new ApplicationException("Fail to get configuration");
-            
-            var uriCreationOptions = new UriCreationOptions { DangerousDisablePathAndQueryCanonicalization = true };
-            if (!Uri.TryCreate(hubUriParam, uriCreationOptions, out Uri? hubUri))
-                throw new ApplicationException("Fail to create Hub Uri");
-
-
-            var hubConnection = new HubConnectionBuilder()
-                .WithUrl(hubUriParam)
+            string hubUri = "https://localhost:55927/Hub1cUt";
+            HubConnection hubConnection = new HubConnectionBuilder()
+                .WithUrl(hubUri)
                 .WithAutomaticReconnect()
                 .Build();
 
-            hubConnection.On<string>("ReceiveMessage", HandleResievedMessage);
-            
             hubConnection.On<WhsOrderOutDto>("PostWhsOrderOutDto", async (dto) =>
             {
                 await PostWhsOrderOutDto(dto, hubConnection);
             });
-            
-            hubConnection.Closed += async (ex) =>
-            {
-                Log.Information($"Disconnected");
-                await TryStartConnection(hubConnection);
-            };
+
+            //hubConnection.On<WhsOrderOutDto>("PostWhsOrderOutDtoWithResponse", (dto) =>
+            //{
+            //    Log.Information($"{dto.Name}");
+            //    var httpStatusCode = HttpStatusCode.OK;
+            //    return Task.FromResult($"{dto.Name} - {httpStatusCode}");
+            //});
+            Func<object?[], Task<string>> myResponseDelegate = MyAsyncMethod;
+            hubConnection.On("PostWhsOrderOutDtoWithResponse", new[] {typeof(string)}, (str) => myResponseDelegate(str));
 
             await TryStartConnection(hubConnection);
 
-            using IHost host = builder.Build();
-            Console.Read();
-            await host.StartAsync();
-
-            
+            builder.Services.AddHostedService<ProxyWorker>();
+            builder.Services.AddHostedService<HealthChecker>();
+            IHost host = builder.Build();
+            host.Run();
         }
+
+
         private static async Task TryStartConnection(HubConnection hubConnection)
         {
             Log.Information($"Trying to connect");
@@ -73,9 +65,22 @@ namespace PickItEasy.Integration.Proxy
             await hubConnection.SendAsync("GetResult", $"{dto.Name} - {httpStatusCode}"); // Guid
         }
 
-        private static void HandleResievedMessage(string message)
+        private static Task<string> PostWhsOrderOutDtoWithResponse(WhsOrderOutDto dto)
         {
-            Log.Information($"{message}");
+            Log.Information($"{dto.Name}");
+            var httpStatusCode = HttpStatusCode.OK;
+            return Task.FromResult($"{dto.Name} - {httpStatusCode}"); // Guid
         }
+        public static async Task<string> MyAsyncMethod(object?[] input)
+        {
+            Console.WriteLine(input[0].ToString());
+            // Do some asynchronous work
+            await Task.Delay(1000);
+
+            var result = input[0].ToString();
+            // Return a string result
+            return result + " -> Response from Client";
+        }
+
     }
 }

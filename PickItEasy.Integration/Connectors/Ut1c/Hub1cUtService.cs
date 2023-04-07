@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace PickItEasy.Integration.Connectors.Ut1c
 {
@@ -29,7 +30,20 @@ namespace PickItEasy.Integration.Connectors.Ut1c
         public async Task SendWhsOrderOutAsync(WhsOrderOutDto whsOrderOutDto)
         {
             //var message = JsonSerializer.Serialize(whsOrderOutDto);
-            await _hubContext.Clients.Group(Hub1cUt.HUB_1C_UT_GROUP).SendAsync("PostWhsOrderOutDto", whsOrderOutDto);
+            //await _hubContext.Clients.Group(Hub1cUt.HUB_1C_UT_GROUP)
+            //    .SendAsync("PostWhsOrderOutDto", whsOrderOutDto);
+
+            var clientId = Hub1cUt.connections[0];
+
+            CancellationTokenSource cts = new CancellationTokenSource();
+
+            //string result = await _hubContext.Clients.Client(clientId)
+            //    .InvokeAsync<string>("PostWhsOrderOutDtoWithResponse", whsOrderOutDto, cts.Token);
+                        
+            string result = await _hubContext.Clients.Client(clientId)
+                .InvokeAsync<string>("PostWhsOrderOutDtoWithResponse", "Request from Hub", CancellationToken.None);
+            
+            await Console.Out.WriteLineAsync(result);
         }
 
         public void Dispose()
