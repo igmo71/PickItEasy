@@ -16,9 +16,11 @@ namespace PickItEasy.Integration.Proxy
                 options.ServiceName = "PickItEasy.Integration";
             });
 
-            LoggerProviderOptions.RegisterProviderOptions<EventLogSettings, EventLogLoggerProvider>(builder.Services);
-            builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
+            //LoggerProviderOptions.RegisterProviderOptions<EventLogSettings, EventLogLoggerProvider>(builder.Services);
+            //builder.Logging.ClearProviders();
+            //builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
             builder.Logging.AddEventLog();
+            //builder.Logging.AddConsole();
             var logger = LoggerFactory.Create(config => config.AddEventLog()).CreateLogger("PickItEasy.Integration");
 
             builder.Services.AddHostedService<ProxyWorker>();
@@ -50,6 +52,7 @@ namespace PickItEasy.Integration.Proxy
             await StartConnection(hubConnection, logger);
 
             IHost host = builder.Build();
+
             host.Run();
         }
 
