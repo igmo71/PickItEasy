@@ -14,6 +14,7 @@ namespace PickItEasy.Integration.Proxy
             while (!stoppingToken.IsCancellationRequested)
             {
                 _logger.LogInformation("HealthChecker running at: {time}", DateTimeOffset.Now);
+
                 await Task.Delay(200000, stoppingToken);
             }
         }
