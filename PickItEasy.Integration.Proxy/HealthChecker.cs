@@ -2,9 +2,9 @@ namespace PickItEasy.Integration.Proxy
 {
     public class HealthChecker : BackgroundService
     {
-        private readonly ILogger<ProxyWorker> _logger;
+        private readonly ILogger<HealthChecker> _logger;
 
-        public HealthChecker(ILogger<ProxyWorker> logger)
+        public HealthChecker(ILogger<HealthChecker> logger)
         {
             _logger = logger;
         }
@@ -13,9 +13,9 @@ namespace PickItEasy.Integration.Proxy
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                _logger.LogInformation("HealthChecker running at: {time}", DateTimeOffset.Now);
+                _logger.LogInformation("Health Check: {time}", DateTimeOffset.Now);
 
-                await Task.Delay(200000, stoppingToken);
+                await Task.Delay(60000, stoppingToken);
             }
         }
     }
