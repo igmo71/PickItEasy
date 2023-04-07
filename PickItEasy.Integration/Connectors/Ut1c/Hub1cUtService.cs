@@ -19,31 +19,26 @@ namespace PickItEasy.Integration.Connectors.Ut1c
         public Hub1cUtService(IHubContext<Hub1cUt> hubContext)
         {
             _hubContext = hubContext;
-            Hub1cUt.ResultReceived += ResultReceivedHandel;
+            Hub1cUt.MessageReceived += MessageReceivedHandel;
         }
 
-        private void ResultReceivedHandel(object? sender, string message)
+        private void MessageReceivedHandel(object? sender, string message)
         {
             Console.WriteLine(message);
         }
 
-        public async Task SendWhsOrderOutAsync(WhsOrderOutDto whsOrderOutDto)
-        {
-            //var message = JsonSerializer.Serialize(whsOrderOutDto);
-            //await _hubContext.Clients.Group(Hub1cUt.HUB_1C_UT_GROUP)
-            //    .SendAsync("PostWhsOrderOutDto", whsOrderOutDto);
-
-            var clientId = Hub1cUt.connections[0];
-                                    
-            string result = await _hubContext.Clients.Client(clientId)
+        public async Task<string> SendWhsOrderOutAsync(WhsOrderOutDto whsOrderOutDto)
+        {                                    
+            string result = await _hubContext.Clients.Client(Hub1cUt.ConnectionId)
                 .InvokeAsync<string>("PostWhsOrderOutDtoWithResponse", whsOrderOutDto, CancellationToken.None);
             
             await Console.Out.WriteLineAsync(result);
+            return result;
         }
 
         public void Dispose()
         {
-            Hub1cUt.ResultReceived -= ResultReceivedHandel;
+            Hub1cUt.MessageReceived -= MessageReceivedHandel;
         }
     }
 }

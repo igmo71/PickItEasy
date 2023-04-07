@@ -29,7 +29,7 @@ namespace PickItEasy.Integration.Connectors.Ut1c
             };
         }
 
-        public async Task<HttpStatusCode> PostWhsOrderOutAsync(WhsOrderOutDto whsOrderOutDto)
+        public async Task<string> PostWhsOrderOutAsync(WhsOrderOutDto whsOrderOutDto)
         {
             try
             {
@@ -37,14 +37,14 @@ namespace PickItEasy.Integration.Connectors.Ut1c
                 var stringContent = new StringContent(content, Encoding.UTF8, MediaTypeNames.Application.Json);
                 var requestUri = $"{_httpServiceConfig.Url}/{nameof(WhsOrderOut)}";
                 var response = await _client1cUt.PutAsync(requestUri, stringContent);
-                return response.StatusCode;
+                return response.StatusCode.ToString();
             }
             catch (Exception ex)
             {
                 await Console.Out.WriteLineAsync($"Error: {ex.Message}");
                 //throw;
             }
-            return HttpStatusCode.ServiceUnavailable;
+            return HttpStatusCode.ServiceUnavailable.ToString();
         }
     }
 }

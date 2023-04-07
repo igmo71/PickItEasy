@@ -10,6 +10,6 @@ namespace PickItEasy.Application.Interfaces.Integration
 {
     public interface IHub1cUtService
     {
-        Task SendWhsOrderOutAsync(WhsOrderOutDto whsOrderOutDto);
+        Task<string> SendWhsOrderOutAsync(WhsOrderOutDto whsOrderOutDto);
     }
 }
