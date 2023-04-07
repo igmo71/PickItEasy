@@ -33,7 +33,19 @@ namespace PickItEasy.Integration.Proxy
                 .WithAutomaticReconnect()
                 .Build();
 
-            hubConnection.On("PostWhsOrderOutDto", new[] { typeof(WhsOrderOutDto) }, HandlePostWhsOrderOutDto);
+            //hubConnection.On("PostWhsOrderOutDto", new[] { typeof(WhsOrderOutDto) }, HandlePostWhsOrderOutDto);
+            hubConnection.On("PostWhsOrderOutDto", new[] { typeof(WhsOrderOutDto) }, async (input) =>
+            {
+                Console.WriteLine($"{(input[0] as WhsOrderOutDto).Name} - received");
+
+                logger.LogInformation($"{(input[0] as WhsOrderOutDto).Name} - received");
+
+                await Task.Delay(1000);
+
+                var result = (input[0] as WhsOrderOutDto).Name;
+
+                return $"{result} - Ok";
+            });
 
             await StartConnection(hubConnection, logger);
 
