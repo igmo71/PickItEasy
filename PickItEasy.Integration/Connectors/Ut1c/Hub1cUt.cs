@@ -58,10 +58,5 @@ namespace PickItEasy.Integration.Connectors.Ut1c
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, HUB_1C_UT_GROUP);
             await base.OnDisconnectedAsync(exception);
         }
-
-        //private string GetMessage(string originalMessage)
-        //{
-        //    return $"User connection id: {Context.ConnectionId}. Message: {originalMessage}";
-        //}
     }
 }
