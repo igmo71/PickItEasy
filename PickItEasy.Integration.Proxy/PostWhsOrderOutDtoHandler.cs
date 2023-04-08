@@ -10,23 +10,24 @@ namespace PickItEasy.Integration.Proxy
     public class PostWhsOrderOutDtoHandler : IRequestHandler, IDisposable
     {
         private readonly ILogger<PostWhsOrderOutDtoHandler> _logger;
-        private readonly ISignalRHubClient _signalRHubClient;
+        //private readonly ISignalRHubClient _signalRHubClient;
         public PostWhsOrderOutDtoHandler(ILogger<PostWhsOrderOutDtoHandler> logger, ISignalRHubClient signalRHubClient)
         {
             _logger = logger;
-            _signalRHubClient = signalRHubClient;
-            _signalRHubClient.RegisterPostWhsOrderOutDtoHandler(Handle);
+            //_signalRHubClient = signalRHubClient;
+            Hub1cUtClientService.RegisterPostWhsOrderOutDtoHandler(Handle);
         }
 
         public Task<string> Handle<WhsOrderOutDto>(WhsOrderOutDto request)
         {
+            //_logger.LogInformation(request.Name)
             string result = string.Empty;
             return Task.FromResult(result);
         }
 
         public void Dispose()
         {
-            _signalRHubClient.UnregisterPostWhsOrderOutDtoHandler(Handle);
+            Hub1cUtClientService.UnregisterPostWhsOrderOutDtoHandler(Handle);
         }
     }
 }

@@ -8,9 +8,11 @@ namespace PickItEasy.Integration.Proxy
     {
         private readonly HubConnection _hubConnection;
         private readonly ILogger<Hub1cUtClientService> _logger;
-        public OnPostWhsOrderOutDtoHandler? postWhsOrderOutDtoHandler;
+        public static OnPostWhsOrderOutDtoHandler? postWhsOrderOutDtoHandler;
 
-        public Hub1cUtClientService(IConfiguration configuration, ILogger<Hub1cUtClientService> logger)
+        private readonly IRequestHandler _requestHandler;
+
+        public Hub1cUtClientService(IConfiguration configuration, ILogger<Hub1cUtClientService> logger, IRequestHandler requestHandler)
         {
             _logger = logger;
 
@@ -35,6 +37,9 @@ namespace PickItEasy.Integration.Proxy
                 var result = await OnPostWhsOrderOutDto((input[0] as WhsOrderOutDto));
                 return result;
             });
+
+            _requestHandler = requestHandler;
+
         }
 
         private async Task StartConnection()
@@ -69,12 +74,12 @@ namespace PickItEasy.Integration.Proxy
             var result = await _hubConnection.InvokeAsync<string>("SendMessage", message);
         }
 
-        public void RegisterPostWhsOrderOutDtoHandler(OnPostWhsOrderOutDtoHandler handler)
+        public static void RegisterPostWhsOrderOutDtoHandler(OnPostWhsOrderOutDtoHandler handler)
         {
             postWhsOrderOutDtoHandler += handler;
         }
 
-        public void UnregisterPostWhsOrderOutDtoHandler(OnPostWhsOrderOutDtoHandler handler)
+        public static void UnregisterPostWhsOrderOutDtoHandler(OnPostWhsOrderOutDtoHandler handler)
         {
             postWhsOrderOutDtoHandler -= handler;
         }

@@ -10,7 +10,5 @@ namespace PickItEasy.Integration.Proxy
     public interface ISignalRHubClient
     {
         string State { get; }
-        void RegisterPostWhsOrderOutDtoHandler(OnPostWhsOrderOutDtoHandler handler);
-        void UnregisterPostWhsOrderOutDtoHandler(OnPostWhsOrderOutDtoHandler handler);
     }
 }
