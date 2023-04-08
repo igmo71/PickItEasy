@@ -13,7 +13,6 @@ namespace PickItEasy.Integration.Proxy
 
             builder.Logging.AddEventLog();
 
-            //builder.Services.AddHostedService<ProxyWorker>();
             builder.Services.AddHostedService<HealthChecker>();
             builder.Services.AddSingleton<ISignalRHubClient, SignalRHubClient>();
             builder.Services.AddSingleton<IRequestHandler, RequestHandler>();
