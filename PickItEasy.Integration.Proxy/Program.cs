@@ -19,10 +19,10 @@ namespace PickItEasy.Integration.Proxy
             builder.Logging.AddEventLog();
             var logger = LoggerFactory.Create(config => config.AddEventLog()).CreateLogger("PickItEasy.Integration");
 
-            builder.Services.AddSingleton<ISignalRHubClient, Hub1cUtClientService>();
+            builder.Services.AddSingleton<ISignalRHubClient, SignalRHubClient>();
             builder.Services.AddHostedService<HealthChecker>();
             builder.Services.AddHostedService<ProxyWorker>();
-            builder.Services.AddSingleton<IRequestHandler, PostWhsOrderOutDtoHandler>();
+            builder.Services.AddSingleton<IRequestHandler, RequestHandler>();
 
             //string hubUri = builder.Configuration.GetSection("HubUri").Value
             //    ?? throw new ApplicationException("Fail to get configuration");

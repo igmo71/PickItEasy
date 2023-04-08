@@ -2,17 +2,18 @@
 
 namespace PickItEasy.Integration.Connectors.Ut1c
 {
-    public class Hub1cUt : Hub<IHub1cUtClient>
+    public class Hub1cUt : Hub
     {
         private static string connectionId = string.Empty;
         public static string ConnectionId => connectionId;
 
         public static event EventHandler<string>? MessageReceived;
 
-        public void GetMessage(string message)
+        public string GetMessage(string message)
         {
-            Console.WriteLine(message);
+            Console.WriteLine($"Received: {message}");
             OnMessageReceived(message);
+            return $"Received: {message}";
         }
 
         private void OnMessageReceived(string content)
