@@ -14,7 +14,6 @@ namespace PickItEasy.Integration.Proxy
             while (!stoppingToken.IsCancellationRequested)
             {
                 //_logger.LogInformation("ProxyWorker is up: {time}", DateTimeOffset.Now);
-
                 await Task.Delay(60000, stoppingToken);
             }
         }
