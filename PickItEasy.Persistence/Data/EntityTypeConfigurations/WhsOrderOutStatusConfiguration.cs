@@ -13,14 +13,15 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
 
         private static void SeedWhsOrderOutStatus(EntityTypeBuilder<WhsOrderOutStatus> builder)
         {
-            foreach (var status in Integration.Connectors.Ut1c.WhsOrderOutStatus.List)
+            foreach (var item in Integration.Connectors.Ut1c.SeedData.WhsOrderOutStatusInitial.List)
             {
                 builder.HasData(new WhsOrderOutStatus
                 {
-                    Id = status.Id,
-                    Value = status.Value,
-                    Name = status.Name,
-                    Synonym = status.Synonym
+                    Id = item.Id,
+                    Value = item.Value,
+                    IsActive = item.IsActive,
+                    Name = item.Name,
+                    Synonym = item.Synonym
                 });
             }
         }

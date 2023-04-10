@@ -50,6 +50,7 @@ namespace PickItEasy.Persistence.Data
             builder.ApplyConfiguration(new WhsOrderStatusConfiguration());
             builder.ApplyConfiguration(new WhsOrderOutStatusConfiguration());
             builder.ApplyConfiguration(new WhsOrderQueueConfiguration());
+            builder.ApplyConfiguration(new WhsOrderOutQueueConfiguration());
 
             
         }

@@ -17,13 +17,15 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
         {
             builder.HasKey(e => e.Id);
             
+            builder.Property(e => e.Value).IsRequired();
+            
+            builder.Property(e => e.IsActive).IsRequired();
+            
             builder.Property(e => e.Name).IsRequired()
                 .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.MAX_LENGTH_NAME);
             
-            builder.Property(e => e.NameRu).IsRequired()
+            builder.Property(e => e.Synonym).IsRequired()
                 .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.MAX_LENGTH_NAME);
-            
-            builder.Property(e => e.Rank).IsRequired();
         }
     }
 }

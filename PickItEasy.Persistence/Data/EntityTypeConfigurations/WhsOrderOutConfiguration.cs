@@ -32,7 +32,7 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
                     });
 
             builder.HasOne(o => o.Status).WithMany().HasForeignKey(o => o.StatusId).HasPrincipalKey(s => s.Id).OnDelete(DeleteBehavior.SetNull);
-            //builder.HasOne(o => o.Queue).WithMany().HasForeignKey(o => o.QueueId).HasPrincipalKey(q => q.Value).OnDelete(DeleteBehavior.SetNull);
+            builder.HasOne(o => o.Queue).WithMany().HasForeignKey(o => o.QueueId).HasPrincipalKey(q => q.Id).OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

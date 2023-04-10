@@ -9,10 +9,10 @@ namespace PickItEasy.Domain.Entities
 {
     public abstract class WhsOrderStatus : IHasName
     {
-        public Guid Id { get; set; }
-        public int Value { get; set; }
+        public required Guid Id { get; set; }
+        public required int Value { get; set; }
         public required string Name { get; set; }
         public required string Synonym { get; set; }
-        public bool IsActive { get; set; }
+        public required bool IsActive { get; set; }
     }
 }
