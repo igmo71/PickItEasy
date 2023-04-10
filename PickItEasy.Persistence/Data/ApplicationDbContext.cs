@@ -9,7 +9,7 @@ using PickItEasy.Persistence.Models;
 
 namespace PickItEasy.Persistence.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>//, IApplicationDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -24,8 +24,8 @@ namespace PickItEasy.Persistence.Data
 
         public DbSet<Product> Products { get; set; }
 
-        public DbSet<WhsOrderIn> WhsOrdersIn { get; set; }
-        public DbSet<WhsOrderInProduct> WhsOrderInProducts { get; set; }
+        //public DbSet<WhsOrderIn> WhsOrdersIn { get; set; }
+        //public DbSet<WhsOrderInProduct> WhsOrderInProducts { get; set; }
         public DbSet<WhsOrderOut> WhsOrdersOut { get; set; }
         public DbSet<WhsOrderOutProduct> WhsOrderOutProducts { get; set; }
 
@@ -43,8 +43,8 @@ namespace PickItEasy.Persistence.Data
             builder.ApplyConfiguration(new WeatherForecastConfiguration());
 
             builder.ApplyConfiguration(new ProductConfiguration());
-            builder.ApplyConfiguration(new WhsOrderInConfiguration());
-            builder.ApplyConfiguration(new WhsOrderInProductConfiguration());
+            //builder.ApplyConfiguration(new WhsOrderInConfiguration());
+            //builder.ApplyConfiguration(new WhsOrderInProductConfiguration());
             builder.ApplyConfiguration(new WhsOrderOutConfiguration());
             builder.ApplyConfiguration(new WhsOrderOutProductConfiguration());
             builder.ApplyConfiguration(new WhsOrderStatusConfiguration());
@@ -52,7 +52,7 @@ namespace PickItEasy.Persistence.Data
             builder.ApplyConfiguration(new WhsOrderQueueConfiguration());
             builder.ApplyConfiguration(new WhsOrderOutQueueConfiguration());
 
-            
+
         }
     }
 }

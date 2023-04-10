@@ -16,8 +16,8 @@ namespace PickItEasy.Persistence
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(connectionString));
 
-            services.AddScoped<IApplicationDbContext>(provider =>
-                provider.GetRequiredService<ApplicationDbContext>());
+            //services.AddScoped<IApplicationDbContext>(provider =>
+            //    provider.GetRequiredService<ApplicationDbContext>());
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
