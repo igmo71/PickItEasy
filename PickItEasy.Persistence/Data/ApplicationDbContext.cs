@@ -9,7 +9,7 @@ using PickItEasy.Persistence.Models;
 
 namespace PickItEasy.Persistence.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>//, IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

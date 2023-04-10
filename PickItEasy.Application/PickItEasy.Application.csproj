@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Services\WhsOrderOutQueues\Queries\" />
     <Folder Include="Services\WhsOrdersOut\Notifications\" />
   </ItemGroup>
 

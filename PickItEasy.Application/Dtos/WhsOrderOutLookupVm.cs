@@ -10,5 +10,6 @@ namespace PickItEasy.Application.Dtos
         public DateTime DateTime { get; set; }
 
         public WhsOrderOutStatusVm? Status { get; set; }
+        public WhsOrderOutQueueVm? Queue { get; set; }
     }
 }

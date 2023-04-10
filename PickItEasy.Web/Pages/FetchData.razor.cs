@@ -7,7 +7,7 @@ namespace PickItEasy.Web.Pages
 {
     public partial class FetchData :
         INotificationHandler<WeatherForecastCreateNotifucation>,
-        INotificationHandler<WeatherForecastUpdateNotifucation>,
+        INotificationHandler<WeatherForecastUpdateNotification>,
         IDisposable
     {
         [Inject]
@@ -17,7 +17,7 @@ namespace PickItEasy.Web.Pages
         private SearchWeatherForecastModel searchForecastModel = new();
 
         private static event EventHandler<WeatherForecastCreateNotifucation>? WeatherForecastCreated;
-        private static event EventHandler<WeatherForecastUpdateNotifucation>? WeatherForecastUpdated;
+        private static event EventHandler<WeatherForecastUpdateNotification>? WeatherForecastUpdated;
 
         protected override async Task OnInitializedAsync()
         {
@@ -41,7 +41,7 @@ namespace PickItEasy.Web.Pages
             SearchAsync(searchForecastModel).GetAwaiter().GetResult();
         }
 
-        private void WeatherForecastUpdatedHandle(object? sender, WeatherForecastUpdateNotifucation e)
+        private void WeatherForecastUpdatedHandle(object? sender, WeatherForecastUpdateNotification e)
         {
             SearchAsync(searchForecastModel).GetAwaiter().GetResult();
         }
@@ -60,7 +60,7 @@ namespace PickItEasy.Web.Pages
             return Task.CompletedTask;
         }
 
-        public Task Handle(WeatherForecastUpdateNotifucation notification, CancellationToken cancellationToken)
+        public Task Handle(WeatherForecastUpdateNotification notification, CancellationToken cancellationToken)
         {
             WeatherForecastUpdated?.Invoke(this, notification);
             return Task.CompletedTask;

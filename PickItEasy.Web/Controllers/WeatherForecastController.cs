@@ -53,7 +53,7 @@ namespace PickItEasy.Web.Controllers
             var result = await _forecastService.UpdateAsync(weatherForecast);
 
             //_forecastEventManager.OnWeatherForecastCreated();
-            await _mediator.Publish(new WeatherForecastUpdateNotifucation() { Value = result });
+            await _mediator.Publish(new WeatherForecastUpdateNotification() { Value = result });
 
             return Ok(result);
         }

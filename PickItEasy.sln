@@ -31,8 +31,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PickItEasy.Integration", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PickItEasy.Integration.Proxy", "PickItEasy.Integration.Proxy\PickItEasy.Integration.Proxy.csproj", "{28D31848-5A44-47A8-B4E9-8EABB7F660A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication4", "..\WebApplication4\WebApplication4.csproj", "{CFCEF41D-5381-4A79-83EF-52280B77BFCC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,10 +77,6 @@ Global
 		{28D31848-5A44-47A8-B4E9-8EABB7F660A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28D31848-5A44-47A8-B4E9-8EABB7F660A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28D31848-5A44-47A8-B4E9-8EABB7F660A6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CFCEF41D-5381-4A79-83EF-52280B77BFCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFCEF41D-5381-4A79-83EF-52280B77BFCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFCEF41D-5381-4A79-83EF-52280B77BFCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFCEF41D-5381-4A79-83EF-52280B77BFCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,7 +91,6 @@ Global
 		{B411EF39-47A5-4FB9-B595-D6126EF6FB11} = {D6E64110-533C-48B6-AB52-3545892B3E6D}
 		{16C98E8F-558B-494E-BB0C-DEE964756687} = {D6E64110-533C-48B6-AB52-3545892B3E6D}
 		{28D31848-5A44-47A8-B4E9-8EABB7F660A6} = {D6E64110-533C-48B6-AB52-3545892B3E6D}
-		{CFCEF41D-5381-4A79-83EF-52280B77BFCC} = {7D4B6A9D-29BE-492F-9620-0F8F65736E45}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F29F149A-0968-4A56-A6D2-DA5316693CB0}

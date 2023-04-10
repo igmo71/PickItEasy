@@ -58,7 +58,8 @@ namespace PickItEasy.Application.Dtos.Mapping
                 .ForMember(lookup => lookup.Name, opt => opt.MapFrom(order => order.Name))
                 .ForMember(lookup => lookup.Number, opt => opt.MapFrom(order => order.Number))
                 .ForMember(lookup => lookup.DateTime, opt => opt.MapFrom(order => order.DateTime))
-                .ForMember(lookup => lookup.Status, opt => opt.MapFrom(order => order.Status));
+                .ForMember(lookup => lookup.Status, opt => opt.MapFrom(order => order.Status))
+                .ForMember(lookup => lookup.Queue, opt => opt.MapFrom(order => order.Queue));
         }
     }
 }
