@@ -1,0 +1,25 @@
+﻿@using PickItEasy.Application.Dtos;
+
+@if (Queues is not null && Queues.Any())
+{
+    <div class="row">
+        @foreach (var queue in Queues)
+        {
+            <div class="col">
+                <div class="h5">@queue.Synonym</div>
+                @if (Orders is not null && Orders.Any() && Orders.ContainsKey(queue.Id))
+                {
+                    <CardsQueue Orders="@Orders[queue.Id]"></CardsQueue>
+                }
+            </div>
+        }
+    </div>
+}
+
+@code {
+    [Parameter]
+    public List<WhsOrderOutQueueVm>? Queues { get; set; }
+
+    [Parameter]
+    public Dictionary<Guid, List<WhsOrderOutLookupVm>>? Orders { get; set; }
+}

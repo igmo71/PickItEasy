@@ -1,0 +1,30 @@
+﻿@using PickItEasy.Application.Dtos;
+<ul class="nav nav-tabs mt-2">
+    @*nav-fill*@
+    @if (Statuses is not null)
+    {
+        @foreach (var status in Statuses)
+        {
+            string active = status.Id == activeStatusId ? "active" : string.Empty;
+            <li class="nav-item">
+                <button class="btn btn-link nav-link @active" @onclick="(() => OnClickHandle(status.Id))">@status.Synonym</button>
+            </li>
+        }
+    }
+</ul>
+
+@code {
+    [Parameter]
+    public List<WhsOrderOutStatusVm>? Statuses { get; set; }
+
+    [Parameter]
+    public EventCallback<Guid> OnClick { get; set; }
+
+    private Guid activeStatusId = Guid.Empty;
+
+    private async Task OnClickHandle(Guid statusId)
+    {
+        activeStatusId = statusId;
+        await this.OnClick.InvokeAsync(statusId);
+    }
+}

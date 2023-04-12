@@ -1,0 +1,18 @@
+﻿@page "/WhsOrders/Out/List"
+@page "/WhsOrders/Out/List/{StatusId}"
+@using PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out.Components
+
+<input type="hidden" id="barcode" value="@barcode" @onchange="@ScannedBarcodeAsync" />
+<div class="row">
+    <div class="col"><h3>Расходники</h3></div>
+    <div class="col">@pageMessage</div>
+</div>
+
+<SearchForm SearchParameters="@searchParameters" OnSubmit="HandleSearch"></SearchForm>
+
+<NavTabs Statuses="@statusListVm.Statuses" OnClick="NavigationOnClickHandle"></NavTabs>
+
+@if (orderListVm.Orders is not null && orderListVm.Orders.Any())
+{
+    <CardsByQueue Queues="@queueListVm.Queues" Orders="@orderOutDictionaryByQueueVm.Orders"></CardsByQueue>
+}

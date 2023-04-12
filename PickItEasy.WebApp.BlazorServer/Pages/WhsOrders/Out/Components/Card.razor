@@ -1,0 +1,25 @@
+﻿@using PickItEasy.Application.Dtos;
+
+<div class="card mb-2">
+    <div class="card-header">
+        <h6 class="card-title">
+            <a href="/WhsOrders/Out/Item/@Order?.Id">@Order?.Name</a>
+        </h6>
+    </div>
+    <div class="card-body">
+        <div>
+            Статус: @Order?.Status?.Synonym
+        </div>
+        <div>
+            Очередь: @Order?.Queue?.Synonym
+        </div>
+    </div>
+    <div class="card-footer">
+        <span>Доп инфо </span>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public WhsOrderOutLookupVm? Order { get; set; }
+}

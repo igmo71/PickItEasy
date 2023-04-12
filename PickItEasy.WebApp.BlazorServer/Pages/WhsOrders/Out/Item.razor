@@ -1,0 +1,24 @@
+﻿@page "/WhsOrders/Out/Item/{id}"
+
+<h3>Item</h3>
+
+<div>@pageMessage</div>
+
+@if(whsOrderOutVm is not null)
+{
+    <div>@whsOrderOutVm.Name</div>
+    <div>@whsOrderOutVm.Number</div>
+    <div>@whsOrderOutVm.DateTime</div>
+    <div>
+        <table class="table">
+            @foreach(var item in whsOrderOutVm.Products)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Count</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <button class="btn btn-primary" @onclick="@PostWhsOrderOut">PostWhsOrderOut</button>
+}

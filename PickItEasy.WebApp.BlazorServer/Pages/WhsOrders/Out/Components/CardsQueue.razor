@@ -1,0 +1,14 @@
+﻿@using PickItEasy.Application.Dtos;
+
+@if(Orders is not null)
+{
+    @foreach (var order in Orders)
+    {
+        <Card Order="@order"></Card>
+    }
+}
+
+@code {
+    [Parameter]
+    public List<WhsOrderOutLookupVm>? Orders { get; set; }
+}
