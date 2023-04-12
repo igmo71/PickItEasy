@@ -3,6 +3,7 @@
 <h3>Item</h3>
 
 <div>@pageMessage</div>
+<button class="btn btn-primary" @onclick="@PostWhsOrderOut">PostWhsOrderOut</button>
 
 @if(whsOrderOutVm is not null)
 {
@@ -20,5 +21,4 @@
             }
         </table>
     </div>
-    <button class="btn btn-primary" @onclick="@PostWhsOrderOut">PostWhsOrderOut</button>
 }
