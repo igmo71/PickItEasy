@@ -1,6 +1,6 @@
 ﻿using PickItEasy.Domain.Entities;
 
-namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList
+namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
 {
     public static class SearchExtensions
     {
@@ -15,8 +15,8 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList
             {
                 var lowerCaseSearchTerm = parameters.SearchTerm.Trim().ToLower();
                 query = query.Where(e =>
-                    (e.Name.ToLower().Contains(lowerCaseSearchTerm)) ||
-                    (e.Number.ToLower().Contains(lowerCaseSearchTerm)));
+                    e.Name.ToLower().Contains(lowerCaseSearchTerm) ||
+                    e.Number.ToLower().Contains(lowerCaseSearchTerm));
             }
 
             query = query.OrderByDescending(e => e.DateTime).Take(parameters.Take);

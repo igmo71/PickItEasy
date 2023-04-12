@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces;
 
-namespace PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetList
+namespace PickItEasy.Application.Services.WhsOrderOutQueues.Queries.GetList
 {
-    public class GetListQueryHandler : IRequestHandler<GetListQuery, WhsOrderOutStatusListVm>
+    public class GetListQueryHandler : IRequestHandler<GetListQuery, WhsOrderOutQueueListVm>
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -18,15 +18,15 @@ namespace PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetList
             _mapper = mapper;
         }
 
-        public async Task<WhsOrderOutStatusListVm> Handle(GetListQuery request, CancellationToken cancellationToken)
+        public async Task<WhsOrderOutQueueListVm> Handle(GetListQuery request, CancellationToken cancellationToken)
         {
-            var statuses = await _dbContext.WhsOrderOutStatuses
+            var queues = await _dbContext.WhsOrderOutQueues
                 .AsNoTracking()
-                .Where(s => s.IsActive)
-                .OrderBy(s => s.Value)
-                .ProjectTo<WhsOrderOutStatusVm>(_mapper.ConfigurationProvider)
+                .Where(e => e.IsActive)
+                .OrderBy(e => e.Value)
+                .ProjectTo<WhsOrderOutQueueVm>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
-            var response = new WhsOrderOutStatusListVm { Statuses = statuses};
+            var response = new WhsOrderOutQueueListVm() { Queues = queues};
             return response;
         }
     }

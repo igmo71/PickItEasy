@@ -1,4 +1,4 @@
-﻿namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList
+﻿namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
 {
     public class SearchParameters
     {
