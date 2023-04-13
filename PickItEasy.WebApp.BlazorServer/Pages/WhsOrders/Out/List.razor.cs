@@ -106,12 +106,6 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             await HandleSearch();
         }
 
-        private async Task ClearSearchTerm()
-        {
-            searchParameters.SearchTerm = null;
-            await HandleSearch();
-        }
-
         private async Task HandleSearch()
         {
             await GetOrderDictionaryByQueue();

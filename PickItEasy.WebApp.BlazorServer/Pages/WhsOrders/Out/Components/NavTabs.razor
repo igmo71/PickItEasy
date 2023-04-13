@@ -5,7 +5,7 @@
     {
         @foreach (var status in Statuses)
         {
-            string active = status.Id == activeStatusId ? "active" : string.Empty;
+            string active = status.Id == ActiveStatus ? "active" : string.Empty;
             <li class="nav-item">
                 <button class="btn btn-link nav-link @active" @onclick="(() => OnClickHandle(status.Id))">@status.Synonym</button>
             </li>
@@ -18,13 +18,16 @@
     public List<WhsOrderOutStatusVm>? Statuses { get; set; }
 
     [Parameter]
+    public Guid ActiveStatus { get; set; }
+
+    [Parameter]
     public EventCallback<Guid> OnClick { get; set; }
 
-    private Guid activeStatusId = Guid.Empty;
+    //private Guid activeStatusId = Guid.Empty;
 
     private async Task OnClickHandle(Guid statusId)
     {
-        activeStatusId = statusId;
+        ActiveStatus = statusId;
         await this.OnClick.InvokeAsync(statusId);
     }
 }

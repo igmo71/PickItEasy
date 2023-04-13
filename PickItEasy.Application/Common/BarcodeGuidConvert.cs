@@ -2,15 +2,12 @@
 
 namespace PickItEasy.Application.Common
 {
-    public static class GuidConvert
+    public static class BarcodeGuidConvert
     {
-        private const string alphabet = "0123456789abcdef";
+        private const string alphabet = "0123456789abcdef";        
 
-        public static string ToNumStr(string guidStr)
+        public static string ToNumericString(Guid guid)
         {
-            if (!Guid.TryParse(guidStr, out Guid guid))
-                throw new ApplicationException($"Guid. Failure to parse ({guidStr}) ");
-
             string value = guid.ToString("n");
 
             BigInteger bigInt = 0;
@@ -23,14 +20,22 @@ namespace PickItEasy.Application.Common
             string result = bigInt.ToString();
 
             result = result.Length % 2 != 0 ? $"0{result}" : result;
-            
+
             return result;
         }
 
-        public static string FromNumStr(string numStr)
+        public static string ToNumericString(string guidString)
         {
-            if(! BigInteger.TryParse(numStr, out BigInteger bigInt))
-                throw new ApplicationException($"BigInteger. Failure to parse ({numStr}) ");
+            if (!Guid.TryParse(guidString, out Guid guid))
+                throw new ApplicationException($"Guid. Failure to parse ({guidString}) ");
+
+            return ToNumericString(guid);
+        }
+
+        public static Guid FromNumericString(string numericString)
+        {
+            if (!BigInteger.TryParse(numericString, out BigInteger bigInt))
+                throw new ApplicationException($"BigInteger. Failure to parse ({numericString}) ");
             string result = "";
 
             while (bigInt > 0)
@@ -43,8 +48,14 @@ namespace PickItEasy.Application.Common
             while (result.Length < 32)
                 result = $"0{result}";
 
-            if(!Guid.TryParse(result, out Guid guid))
+            if (!Guid.TryParse(result, out Guid guid))
                 throw new ApplicationException($"Guid. Failure to parse ({result}) ");
+            return guid;
+        }
+
+        public static string FromNumericStringAsString(string numericString)
+        {
+            Guid guid = FromNumericString(numericString);
 
             return guid.ToString();
         }

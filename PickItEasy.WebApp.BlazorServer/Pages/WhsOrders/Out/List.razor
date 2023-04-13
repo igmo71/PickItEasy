@@ -1,5 +1,6 @@
 ﻿@page "/WhsOrders/Out/List"
 @page "/WhsOrders/Out/List/{StatusId}"
+
 @using PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out.Components
 
 <input type="hidden" id="barcode" value="@barcode" @onchange="@ScannedBarcodeAsync" />
@@ -10,7 +11,7 @@
 
 <SearchForm SearchParameters="@searchParameters" OnSubmit="HandleSearch"></SearchForm>
 
-<NavTabs Statuses="@statusListVm.Statuses" OnClick="NavigationOnClickHandle"></NavTabs>
+<NavTabs Statuses="@statusListVm.Statuses" ActiveStatus="@searchParameters.StatusId" OnClick="NavigationOnClickHandle"></NavTabs>
 
 @if (orderListVm.Orders is not null && orderListVm.Orders.Any())
 {

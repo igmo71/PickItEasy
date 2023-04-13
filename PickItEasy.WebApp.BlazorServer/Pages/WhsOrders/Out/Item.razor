@@ -1,18 +1,24 @@
 ﻿@page "/WhsOrders/Out/Item/{id}"
+@using PickItEasy.Application.Common;
 
 <h3>Item</h3>
 
 <div>@pageMessage</div>
 <button class="btn btn-primary" @onclick="@PostWhsOrderOut">PostWhsOrderOut</button>
 
-@if(whsOrderOutVm is not null)
-{
+@if (whsOrderOutVm is not null)
+{    
+    string barcodeBase64 = Barcode.GetBase64(whsOrderOutVm.Id);
+    <img src=@($"data:image/jpeg;base64,{barcodeBase64}") alt="штрих код" />
+    <div>
+        
+    </div>
     <div>@whsOrderOutVm.Name</div>
     <div>@whsOrderOutVm.Number</div>
     <div>@whsOrderOutVm.DateTime</div>
     <div>
         <table class="table">
-            @foreach(var item in whsOrderOutVm.Products)
+            @foreach (var item in whsOrderOutVm.Products)
             {
                 <tr>
                     <td>@item.Name</td>
