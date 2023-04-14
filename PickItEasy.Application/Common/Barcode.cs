@@ -11,7 +11,7 @@ namespace PickItEasy.Application.Common
         public static string GetBase64(string idString)
         {
             var numericString = BarcodeGuidConvert.ToNumericString(idString);
-            var barcode = new NetBarcode.Barcode(numericString, NetBarcode.Type.Code128, true);
+            var barcode = new NetBarcode.Barcode(numericString, NetBarcode.Type.Code128, false);
             var result = barcode.GetBase64Image();
             return result;
         }
@@ -19,7 +19,7 @@ namespace PickItEasy.Application.Common
         public static string GetBase64(Guid idGuid)
         {
             var numericString = BarcodeGuidConvert.ToNumericString(idGuid);
-            var barcode = new NetBarcode.Barcode(numericString, NetBarcode.Type.Code128, true);
+            var barcode = new NetBarcode.Barcode(numericString, NetBarcode.Type.Code128, false);
             var result = barcode.GetBase64Image();
             return result;
         }
