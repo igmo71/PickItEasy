@@ -92,6 +92,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         {
             WhsOrderOutConsumer.MessageReceived += async (sender, args) => await MessageReceivedHandle(sender, args);
         }
+
         private async Task ScannedBarcodeAsync(ChangeEventArgs args)
         {
             barcode = args.Value?.ToString();

@@ -4,8 +4,9 @@
 @using PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out.Components
 
 <input type="hidden" id="barcode" value="@barcode" @onchange="@ScannedBarcodeAsync" />
+
 <div class="row">
-    <div class="col"><h3>Расходники</h3></div>
+    <div class="col"><h4>Расходники</h4></div>
     <div class="col">@pageMessage</div>
 </div>
 

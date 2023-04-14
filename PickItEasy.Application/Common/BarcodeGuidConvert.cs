@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using NetBarcode;
 
 namespace PickItEasy.Application.Common
 {
@@ -58,6 +59,22 @@ namespace PickItEasy.Application.Common
             Guid guid = FromNumericString(numericString);
 
             return guid.ToString();
+        }
+
+        public static string? GetBarcodeBase64(string idString)
+        {
+            var numericString = ToNumericString(idString);
+            var barcode = new Barcode(numericString, NetBarcode.Type.Code128, false);
+            var result = barcode.GetBase64Image();
+            return result;
+        }
+
+        public static string? GetBarcodeBase64(Guid idGuid)
+        {
+            var numericString = ToNumericString(idGuid);
+            var barcode = new Barcode(numericString, NetBarcode.Type.Code128, false);
+            var result = barcode.GetBase64Image();
+            return result;
         }
     }
 }

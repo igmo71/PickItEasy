@@ -1,4 +1,6 @@
-﻿using PickItEasy.Domain.Entities;
+﻿using NetBarcode;
+using PickItEasy.Application.Common;
+using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Dtos
 {
@@ -13,5 +15,7 @@ namespace PickItEasy.Application.Dtos
         public WhsOrderOutQueueVm? Queue { get; set; }
 
         public List<WhsOrderOutProductVm>? Products { get; set; }
+
+        public string? BarcodeBase64 => BarcodeGuidConvert.GetBarcodeBase64(Id);
     }
 }

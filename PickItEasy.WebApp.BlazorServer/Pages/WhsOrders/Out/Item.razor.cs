@@ -14,6 +14,8 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         [Parameter]
         public string? Id { get; set; }
 
+        private string? barcode;
+
         private WhsOrderOutVm? whsOrderOutVm;
         private string pageMessage = string.Empty;
 
@@ -32,6 +34,13 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             var postWhsOrderOutRequest = new PostWhsOrderOutRequest { WhsOrderOutVm = whsOrderOutVm };
             var result = await Mediator.Send(postWhsOrderOutRequest);
             pageMessage = result;
+        }
+
+        private async Task ScannedBarcodeAsync(ChangeEventArgs args)
+        {
+            barcode = args.Value?.ToString();
+            //await SearchByBarcodeAsync();
+            pageMessage = barcode;
         }
     }
 }

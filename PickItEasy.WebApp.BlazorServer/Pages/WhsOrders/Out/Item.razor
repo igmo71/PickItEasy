@@ -1,29 +1,25 @@
 ﻿@page "/WhsOrders/Out/Item/{id}"
+
 @using PickItEasy.Application.Common;
+@using PickItEasy.Application.Dtos;
 
-<h3>Item</h3>
+<input type="hidden" id="barcode" value="@barcode" @onchange="@ScannedBarcodeAsync" />
 
-<div>@pageMessage</div>
-<button class="btn btn-primary" @onclick="@PostWhsOrderOut">PostWhsOrderOut</button>
-
-@if (whsOrderOutVm is not null)
-{
-    string barcodeBase64 = Barcode.GetBase64(whsOrderOutVm.Id);
-    <img src=@($"data:image/jpeg;base64,{barcodeBase64}") alt="штрих код" />
-    <div>
+<div class="row d-flex justify-content-between">
+    <div class="col"><h4>@whsOrderOutVm?.Name</h4></div>
+    <div class="col">@pageMessage</div>
+    <div class="col d-flex justify-content-end">
+        <img src=@($"data:image/jpeg;base64,{whsOrderOutVm?.BarcodeBase64}") width="256" height="96" alt="штрих код" />
     </div>
-    <div>@whsOrderOutVm.Name</div>
-    <div>@whsOrderOutVm.Number</div>
-    <div>@whsOrderOutVm.DateTime</div>
-    <div>
-        <table class="table">
-            @foreach (var item in whsOrderOutVm.Products)
-            {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Count</td>
-                </tr>
-            }
-        </table>
-    </div>
-}
+</div>
+
+<div><button class="btn btn-primary" @onclick="@PostWhsOrderOut">PostWhsOrderOut</button></div>
+
+<div>@whsOrderOutVm?.Number</div>
+<div>@whsOrderOutVm?.DateTime</div>
+<div>
+    <QuickGrid Items="@(whsOrderOutVm?.Products?.AsQueryable<WhsOrderOutProductVm>())" Class="table table-bordered table-hover">
+        <PropertyColumn Property="@(p => p.Name)" Title="Товар" Sortable="true"></PropertyColumn>
+        <PropertyColumn Property="@(p => p.Count)" Title="Кол-во" Sortable="true"></PropertyColumn>
+    </QuickGrid>
+</div>
