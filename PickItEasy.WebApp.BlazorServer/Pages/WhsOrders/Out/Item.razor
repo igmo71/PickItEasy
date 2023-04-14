@@ -9,7 +9,11 @@
     <div class="col"><h4>@whsOrderOutVm?.Name</h4></div>
     <div class="col">@pageMessage</div>
     <div class="col d-flex justify-content-end">
-        <img src=@($"data:image/jpeg;base64,{whsOrderOutVm?.BarcodeBase64}") width="256" height="96" alt="штрих код" />
+        @*<img src=@($"data:image/jpeg;base64,{whsOrderOutVm?.BarcodeBase64}") width="256" height="96" alt="штрих код" />*@
+        @if (whsOrderOutVm != null)
+        {
+            <img src=@($"data:image/jpeg;base64,{BarcodeGuidConvert.GetBarcodeBase64(whsOrderOutVm.Id)}") width="256" height="96" alt="штрих код" />
+        }
     </div>
 </div>
 

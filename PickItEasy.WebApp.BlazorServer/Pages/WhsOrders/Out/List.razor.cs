@@ -6,40 +6,33 @@ using WhsOrderOutStatuses = PickItEasy.Application.Services.WhsOrderOutStatuses.
 using WhsOrderOutQueues = PickItEasy.Application.Services.WhsOrderOutQueues.Queries.GetList;
 using WhsOrdersOut = PickItEasy.Application.Services.WhsOrdersOut.Queries;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries;
+using PickItEasy.Application.Common;
 
 namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 {
     public partial class List : IDisposable
     {
-        [Parameter]
-        public string? StatusId { get; set; }
-
         [Inject] public required IMediator Mediator { get; set; }
+        [Inject] public required SearchParameters SearchParameters { get; set; }
 
         private string? barcode;
 
         private string pageMessage = "Hello!";
-        private WhsOrderOutListVm orderListVm = new();
-        private WhsOrderOutDictionaryByQueueVm orderOutDictionaryByQueueVm = new();
-        private WhsOrderOutStatusListVm statusListVm = new();
+
+        private WhsOrderOutStatusListVm statusListVm = new();       
         private WhsOrderOutQueueListVm queueListVm = new();
-        private SearchParameters searchParameters = new();
+        private WhsOrderOutDictionaryByQueueVm orderOutDictionaryByQueueVm = new();
 
         protected async override Task OnInitializedAsync()
         {
-            await base.OnInitializedAsync();
             await GetStatusList();
             await GetQueueList();
-            SetInitialStatusId();
-            SetSearchParameters();
-            await GetOrderList();
-            await GetOrderDictionaryByQueue();
+            await SearchHandle();
         }
-
         private async Task GetStatusList()
         {
             var getStatusListQuery = new WhsOrderOutStatuses.GetListQuery();
-            statusListVm = await Mediator.Send(getStatusListQuery);
+            statusListVm = await Mediator.Send(getStatusListQuery);            
         }
 
         private async Task GetQueueList()
@@ -48,33 +41,38 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             queueListVm = await Mediator.Send(getSQueueListQuery);
         }
 
-        private void SetInitialStatusId()
+        private async Task SearchHandle()
         {
-            if (!string.IsNullOrEmpty(StatusId)) return;
-            var initialStatus = statusListVm.Statuses?.FirstOrDefault();
-            StatusId = initialStatus == null ? Guid.Empty.ToString() : initialStatus.Id.ToString();
+            await GetOrderDictionaryByQueue();
+            //await InvokeAsync(StateHasChanged);
         }
 
-        private void SetSearchParameters()
-        {
-            searchParameters.StatusId = string.IsNullOrEmpty(StatusId) ? Guid.Empty : Guid.Parse(StatusId);
-        }
-
-        private async Task GetOrderList()
-        {
-            var getListQuery = new WhsOrdersOut.GetList.GetListQuery { SearchParameters = searchParameters };
-            orderListVm = await Mediator.Send(getListQuery);
-        }
         private async Task GetOrderDictionaryByQueue()
         {
-            var getDictionaryByQueueQuery = new WhsOrdersOut.GetDictionaryByQueue.GetDictionaryByQueueQuery { SearchParameters = searchParameters };
+            var getDictionaryByQueueQuery = new WhsOrdersOut.GetDictionaryByQueue.GetDictionaryByQueueQuery
+            {
+                SearchParameters = SearchParameters
+            };
             orderOutDictionaryByQueueVm = await Mediator.Send(getDictionaryByQueueQuery);
         }
 
-        protected async override Task OnAfterRenderAsync(bool firstRender)
+        private async Task NavigationOnClickHandle(Guid statusId)
         {
-            await base.OnAfterRenderAsync(firstRender);
+            SearchParameters.StatusId = statusId;
+            await SearchHandle();
+        }
 
+        private async Task ScannedBarcodeAsync(ChangeEventArgs args)
+        {
+            barcode = args.Value?.ToString();
+            SearchParameters.DocumentId = BarcodeGuidConvert.FromNumericString(barcode);
+            await SearchHandle();
+            SearchParameters.DocumentId = null;
+            pageMessage = barcode ?? string.Empty;
+        }
+
+        protected override void OnAfterRender(bool firstRender)
+        {
             if (firstRender)
             {
                 WhsOrderOutConsumer.MessageReceived += async (sender, args) => await MessageReceivedHandle(sender, args);
@@ -83,33 +81,13 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 
         private async Task MessageReceivedHandle(object? sender, string message)
         {
+            await SearchHandle();
             pageMessage = $"{sender}: {message}";
-            await GetOrderList();
-            await InvokeAsync(StateHasChanged);
         }
 
         public void Dispose()
         {
-            WhsOrderOutConsumer.MessageReceived += async (sender, args) => await MessageReceivedHandle(sender, args);
-        }
-
-        private async Task ScannedBarcodeAsync(ChangeEventArgs args)
-        {
-            barcode = args.Value?.ToString();
-            //await SearchByBarcodeAsync();
-            pageMessage = barcode;
-        }
-
-        private async Task NavigationOnClickHandle(Guid statusId)
-        {
-            pageMessage = statusListVm.Statuses.FirstOrDefault(e => e.Id == statusId).Synonym;
-            searchParameters.StatusId = statusId;
-            await HandleSearch();
-        }
-
-        private async Task HandleSearch()
-        {
-            await GetOrderDictionaryByQueue();
+            WhsOrderOutConsumer.MessageReceived -= async (sender, args) => await MessageReceivedHandle(sender, args);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿@page "/WhsOrders/Out/List"
-@page "/WhsOrders/Out/List/{StatusId}"
 
 @using PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out.Components
 
@@ -10,11 +9,11 @@
     <div class="col">@pageMessage</div>
 </div>
 
-<SearchForm SearchParameters="@searchParameters" OnSubmit="HandleSearch"></SearchForm>
+<SearchForm OnSubmit="SearchHandle"></SearchForm>
 
-<NavTabs Statuses="@statusListVm.Statuses" ActiveStatus="@searchParameters.StatusId" OnClick="NavigationOnClickHandle"></NavTabs>
+<NavTabs Statuses="@statusListVm.Statuses" OnClick="NavigationOnClickHandle"></NavTabs>
 
-@if (orderListVm.Orders is not null && orderListVm.Orders.Any())
+@if (orderOutDictionaryByQueueVm.Orders is not null && orderOutDictionaryByQueueVm.Orders.Any())
 {
     <CardsByQueue Queues="@queueListVm.Queues" Orders="@orderOutDictionaryByQueueVm.Orders"></CardsByQueue>
 }

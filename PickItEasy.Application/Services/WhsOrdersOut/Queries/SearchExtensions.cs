@@ -6,7 +6,12 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
     {
         public static IQueryable<WhsOrderOut> Search(this IQueryable<WhsOrderOut> query, SearchParameters parameters)
         {
-            if (parameters.StatusId != Guid.Empty)
+            if (parameters.DocumentId != null)
+            {
+                query = query.Where(e => e.Id == parameters.DocumentId);
+            }
+
+            if (parameters.StatusId != null && parameters.StatusId != Guid.Empty)
             {
                 query = query.Where(e => e.StatusId == parameters.StatusId);
             }

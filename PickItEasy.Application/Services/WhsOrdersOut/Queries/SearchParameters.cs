@@ -2,10 +2,11 @@
 {
     public class SearchParameters
     {
-        public Guid StatusId { get; set; }
-        public Guid WarehouseId { get; set; }
-        public Guid UserId { get; set; }
+        public Guid? DocumentId { get; set; }
+        public Guid? StatusId { get; set; }
+        public Guid? WarehouseId { get; set; }
+        public Guid? UserId { get; set; }
         public string? SearchTerm { get; set; }
-        public int Take { get; set; } = 10;
+        public int Take { get; set; } = 20;
     }
 }

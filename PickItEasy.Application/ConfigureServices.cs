@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using PickItEasy.Application.Common.Behaviors;
 using PickItEasy.Application.Dtos.Mapping;
+using PickItEasy.Application.Services.WhsOrdersOut.Queries;
 using System.Reflection;
 
 namespace PickItEasy.Application
@@ -27,6 +28,8 @@ namespace PickItEasy.Application
             }); services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
 
             //services.AddTransient(typeof(INotificationHandler<>), typeof(WeatherForecastCreateNotificationHandler));
+
+            services.AddScoped<SearchParameters>();
 
             return services;
         }

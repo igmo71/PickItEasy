@@ -1,11 +1,15 @@
 ﻿@using PickItEasy.Application.Dtos;
+@using PickItEasy.Application.Services.WhsOrdersOut.Queries;
+
+@inject SearchParameters SearchParameters
+
 <ul class="nav nav-tabs mt-2">
     @*nav-fill*@
     @if (Statuses is not null)
     {
         @foreach (var status in Statuses)
         {
-            string active = status.Id == ActiveStatus ? "active" : string.Empty;
+            string active = status.Id == SearchParameters.StatusId ? "active" : string.Empty;
             <li class="nav-item">
                 <button class="btn btn-link nav-link @active" @onclick="(() => OnClickHandle(status.Id))">@status.Synonym</button>
             </li>
@@ -14,20 +18,18 @@
 </ul>
 
 @code {
-    [Parameter]
-    public List<WhsOrderOutStatusVm>? Statuses { get; set; }
+    [Parameter] public List<WhsOrderOutStatusVm>? Statuses { get; set; }
+    [Parameter] public EventCallback<Guid> OnClick { get; set; }
 
-    [Parameter]
-    public Guid ActiveStatus { get; set; }
-
-    [Parameter]
-    public EventCallback<Guid> OnClick { get; set; }
-
-    //private Guid activeStatusId = Guid.Empty;
+    protected override void OnParametersSet()
+    {
+        if (SearchParameters.StatusId is null)
+            SearchParameters.StatusId = Statuses?.FirstOrDefault()?.Id;
+    }
 
     private async Task OnClickHandle(Guid statusId)
     {
-        ActiveStatus = statusId;
+        SearchParameters.StatusId = statusId;
         await this.OnClick.InvokeAsync(statusId);
     }
 }

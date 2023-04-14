@@ -24,13 +24,13 @@ namespace PickItEasy.Integration.Connectors.Ut1c
         public override async Task OnConnectedAsync()
         {
             connectionId = Context.ConnectionId;
-            await base.OnConnectedAsync();
+            await base.OnConnectedAsync(); // TODO: ???
         }
 
         public override async Task OnDisconnectedAsync(Exception? exception)        
         {
             connectionId = string.Empty;
-            await base.OnDisconnectedAsync(exception);
+            await base.OnDisconnectedAsync(exception); // TODO: ???
         }
     }
 }
