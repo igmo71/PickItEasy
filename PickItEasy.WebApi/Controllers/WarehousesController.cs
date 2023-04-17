@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Services.Warehouses.Commands.Create;
+using PickItEasy.Application.Services.Warehouses.Commands.Disable;
 using PickItEasy.Application.Services.Warehouses.Queries.GetById;
+using System.Net;
 
 namespace PickItEasy.WebApi.Controllers
 {
@@ -40,6 +42,20 @@ namespace PickItEasy.WebApi.Controllers
             var result = await _mediator.Send(createWarehouseCommand);
 
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+        }
+
+        // DELETE api/<WarehousesController>/5
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var disableWarehouseCommand = new DisableCommand { Id = id };
+            await _mediator.Send(disableWarehouseCommand);
+
+            return NoContent();
         }
     }
 }

@@ -12,7 +12,11 @@ namespace PickItEasy.Application.Dtos.Mapping
     {
         public WarehouseMappingProfile()
         {
-            CreateMap<WarehouseDto, Warehouse>();
+            CreateMap<WarehouseDto, Warehouse>()
+                .ForMember(warehouse => warehouse.Id, opt => opt.MapFrom(dto => dto.Id))
+                .ForMember(warehouse => warehouse.Name, opt => opt.MapFrom(dto => dto.Name))
+                .ForMember(warehouse => warehouse.IsActive, opt => opt.Ignore());
+
             CreateMap<Warehouse, WarehouseVm>();
         }
     }

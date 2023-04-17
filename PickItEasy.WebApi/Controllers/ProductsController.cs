@@ -76,9 +76,12 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            return StatusCode((int)HttpStatusCode.MethodNotAllowed);
+            var disableProductCommand = new DisableProducCommand { Id = id };
+            await _mediator.Send(disableProductCommand);
+
+            return NoContent();
         }
     }
 }
