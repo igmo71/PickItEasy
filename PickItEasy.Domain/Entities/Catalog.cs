@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Domain.Entities
 {
-    public abstract class Catalog : Item, IHasIsActive
+    public abstract class Catalog : Item, IHasActive
     {
         public required bool Active { get; set; }
     }

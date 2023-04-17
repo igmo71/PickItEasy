@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Domain.Entities.Interfaces
 {
-    public interface IHasIsActive
+    public interface IHasActive
     {
         public bool Active { get; set; }
     }

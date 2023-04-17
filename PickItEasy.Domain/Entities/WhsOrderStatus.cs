@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 
 namespace PickItEasy.Domain.Entities
 {
-    public abstract class WhsOrderStatus : IHasName, IHasIsActive
+    public abstract class WhsOrderStatus : Catalog
     {
-        public required Guid Id { get; set; }
         public required int Value { get; set; }
-        public required string Name { get; set; }
         public required string Synonym { get; set; }
-        public required bool Active { get; set; }
     }
 }
