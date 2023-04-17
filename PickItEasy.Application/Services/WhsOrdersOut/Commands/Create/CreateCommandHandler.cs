@@ -29,6 +29,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
             var whsOrder = _mapper.Map<WhsOrderOut>(request.WhsOrderOutDto);
 
             whsOrder.StatusId = await _mediator.Send(new GetIdByValueQuery { Value = request.WhsOrderOutDto.Status }, cancellationToken);
+            whsOrder.QueueId = Guid.Parse("7e83260a-316f-4a1f-be9a-bf353b118536");
 
             var isExists = await _mediator.Send(new IsExistsByIdQuery { Id = whsOrder.Id }, cancellationToken);
             if (isExists)

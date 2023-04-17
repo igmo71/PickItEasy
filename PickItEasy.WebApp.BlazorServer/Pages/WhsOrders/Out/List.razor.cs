@@ -102,6 +102,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         private async Task MessageReceivedHandle(object? sender, string message)
         {
             await SearchHandle();
+            await InvokeAsync(StateHasChanged);
             pageMessage = $"{sender}: {message}";
         }
 

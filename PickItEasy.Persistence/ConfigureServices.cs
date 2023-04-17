@@ -14,7 +14,10 @@ namespace PickItEasy.Persistence
                     ?? throw new ApplicationException("Connection string 'DefaultConnection' not found.");
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(connectionString));
+            {
+                options.UseNpgsql(connectionString);
+                options.EnableSensitiveDataLogging();
+            });
 
             services.AddScoped<IApplicationDbContext>(provider =>
                 provider.GetRequiredService<ApplicationDbContext>());

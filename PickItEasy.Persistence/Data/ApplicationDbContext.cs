@@ -38,6 +38,8 @@ namespace PickItEasy.Persistence.Data
 
         public DbSet<Warehouse> Warehouses { get; set; }
 
+        public DbSet<QueueNumber> QueueNumbers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -53,8 +55,7 @@ namespace PickItEasy.Persistence.Data
             builder.ApplyConfiguration(new WhsOrderOutStatusConfiguration());
             builder.ApplyConfiguration(new WhsOrderQueueConfiguration());
             builder.ApplyConfiguration(new WhsOrderOutQueueConfiguration());
-
-
+            builder.ApplyConfiguration(new QueueNumbersConfiguration());
         }
     }
 }
