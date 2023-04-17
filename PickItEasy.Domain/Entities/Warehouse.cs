@@ -1,11 +1,5 @@
-﻿using PickItEasy.Domain.Entities.Interfaces;
-
-namespace PickItEasy.Domain.Entities
+﻿namespace PickItEasy.Domain.Entities
 {
-    public class Warehouse : BaseEntity, IHasId, IHasName, IHasIsActive
-    {
-        public required Guid Id { get; set; }
-        public required string Name { get; set; }
-        public required bool Active { get; set; }
-    }
+    public class Warehouse : Catalog
+    { }
 }
