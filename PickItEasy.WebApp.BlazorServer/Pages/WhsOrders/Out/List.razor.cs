@@ -14,12 +14,13 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
     {
         [Inject] public required IMediator Mediator { get; set; }
         [Inject] public required SearchParameters SearchParameters { get; set; }
+        [Inject] public required NavigationManager NavigationManager { get; set; }
 
         private string? barcode;
 
         private string pageMessage = "Hello!";
 
-        private WhsOrderOutStatusListVm statusListVm = new();       
+        private WhsOrderOutStatusListVm statusListVm = new();
         private WhsOrderOutQueueListVm queueListVm = new();
         private WhsOrderOutDictionaryByQueueVm orderOutDictionaryByQueueVm = new();
 
@@ -32,7 +33,9 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         private async Task GetStatusList()
         {
             var getStatusListQuery = new WhsOrderOutStatuses.GetListQuery();
-            statusListVm = await Mediator.Send(getStatusListQuery);            
+            statusListVm = await Mediator.Send(getStatusListQuery);
+            if (SearchParameters.StatusId is null)
+                SearchParameters.StatusId = statusListVm.Statuses?.FirstOrDefault()?.Id;
         }
 
         private async Task GetQueueList()
@@ -67,8 +70,25 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             barcode = args.Value?.ToString();
             SearchParameters.DocumentId = BarcodeGuidConvert.FromNumericString(barcode);
             await SearchHandle();
-            SearchParameters.DocumentId = null;
+
             pageMessage = barcode ?? string.Empty;
+
+            TryOpenItem(SearchParameters.DocumentId);
+        }
+
+        private void TryOpenItem(Guid? documentId)
+        {
+            SearchParameters.DocumentId = null;
+            if (IsDocumentSingle())
+                NavigationManager?.NavigateTo($"WhsOrders/Out/Item/{documentId}");
+        }
+
+        private bool IsDocumentSingle()
+        {
+            return orderOutDictionaryByQueueVm.Orders != null
+                && orderOutDictionaryByQueueVm.Orders.Count == 1
+                && orderOutDictionaryByQueueVm.Orders.FirstOrDefault().Value != null
+                && orderOutDictionaryByQueueVm.Orders.FirstOrDefault().Value.Count == 1;
         }
 
         protected override void OnAfterRender(bool firstRender)

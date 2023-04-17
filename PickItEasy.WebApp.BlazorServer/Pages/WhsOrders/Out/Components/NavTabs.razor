@@ -21,11 +21,11 @@
     [Parameter] public List<WhsOrderOutStatusVm>? Statuses { get; set; }
     [Parameter] public EventCallback<Guid> OnClick { get; set; }
 
-    protected override void OnParametersSet()
-    {
-        if (SearchParameters.StatusId is null)
-            SearchParameters.StatusId = Statuses?.FirstOrDefault()?.Id;
-    }
+    //protected override void OnParametersSet()
+    //{
+    //    if (SearchParameters.StatusId is null)
+    //        SearchParameters.StatusId = Statuses?.FirstOrDefault()?.Id;
+    //}
 
     private async Task OnClickHandle(Guid statusId)
     {
