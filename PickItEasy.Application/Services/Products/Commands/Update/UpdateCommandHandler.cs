@@ -27,6 +27,7 @@ namespace PickItEasy.Application.Services.Products.Commands.Update
                 throw new EntityNotFoundException(nameof(Product), request.Id);
 
             product.Name = request.ProductDto.Name;
+            product.Active = request.ProductDto.Active;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 

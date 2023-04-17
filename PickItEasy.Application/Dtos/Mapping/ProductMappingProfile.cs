@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using PickItEasy.Application.Services.Products.Commands.Create;
 using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Dtos.Mapping
@@ -8,7 +7,11 @@ namespace PickItEasy.Application.Dtos.Mapping
     {
         public ProductMappingProfile()
         {
-            CreateMap<ProductDto, Product>();
+            CreateMap<ProductDto, Product>()
+                .ForMember(product => product.Id, opt => opt.MapFrom(dto => dto.Id))
+                .ForMember(product => product.Name, opt => opt.MapFrom(dto => dto.Name))
+                .ForMember(product => product.Active, opt => opt.MapFrom(dto => dto.Active));
+
             CreateMap<Product, ProductVm>();
         }
     }

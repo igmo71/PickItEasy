@@ -8,6 +8,6 @@ namespace PickItEasy.Domain.Entities.Interfaces
 {
     public interface IHasIsActive
     {
-        public bool IsActive { get; set; }
+        public bool Active { get; set; }
     }
 }

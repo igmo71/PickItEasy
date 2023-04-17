@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Services.Warehouses.Commands.Create;
+using PickItEasy.Application.Services.Warehouses.Commands.Delete;
 using PickItEasy.Application.Services.Warehouses.Commands.Disable;
 using PickItEasy.Application.Services.Warehouses.Queries.GetById;
 using System.Net;
@@ -45,15 +46,34 @@ namespace PickItEasy.WebApi.Controllers
         }
 
         // DELETE api/<WarehousesController>/5
+        /// <summary>
+        /// Disable - Set Active = false (Doesn't delete permanently )
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Disable(Guid id)
         {
             var disableWarehouseCommand = new DisableCommand { Id = id };
             await _mediator.Send(disableWarehouseCommand);
+
+            return NoContent();
+        }
+
+        // DELETE api/<WarehousesController>
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
+        public async Task<IActionResult> Delete([FromBody] WarehouseDto dto)
+        {
+            var deleteWarehouseCommand = new DeleteCommand {WarehouseDto = dto };
+            await _mediator.Send(deleteWarehouseCommand);
 
             return NoContent();
         }

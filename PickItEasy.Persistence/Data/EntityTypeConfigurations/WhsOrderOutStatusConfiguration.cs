@@ -19,7 +19,7 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
                 {
                     Id = item.Id,
                     Value = item.Value,
-                    IsActive = item.IsActive,
+                    Active = item.Active,
                     Name = item.Name,
                     Synonym = item.Synonym
                 });

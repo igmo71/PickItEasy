@@ -13,6 +13,6 @@ namespace PickItEasy.Domain.Entities
         public required int Value { get; set; }
         public required string Name { get; set; }
         public required string Synonym { get; set; }
-        public required bool IsActive { get; set; }
+        public required bool Active { get; set; }
     }
 }

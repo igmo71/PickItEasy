@@ -36,7 +36,7 @@ namespace PickItEasy.Application.Services.Warehouses.Commands.Create
             }
             else
             {
-                warehouse.IsActive = true;
+                warehouse.Active = true;
                 await _dbContext.Warehouses.AddAsync(warehouse, cancellationToken);
                 await _dbContext.SaveChangesAsync(cancellationToken);
             }

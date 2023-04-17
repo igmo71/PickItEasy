@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Services.Products.Commands.Create;
+using PickItEasy.Application.Services.Products.Commands.Delete;
+using PickItEasy.Application.Services.Products.Commands.Disable;
 using PickItEasy.Application.Services.Products.Commands.Update;
 using PickItEasy.Application.Services.Products.Queries.GetById;
 using System.Net;
@@ -71,6 +73,11 @@ namespace PickItEasy.WebApi.Controllers
         }
 
         // DELETE api/<ProductsController>/5
+        /// <summary>
+        /// Disable - Set Active = false (Doesn't delete permanently )
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -78,8 +85,22 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var disableProductCommand = new DisableProducCommand { Id = id };
+            var disableProductCommand = new DisableCommand { Id = id };
             await _mediator.Send(disableProductCommand);
+
+            return NoContent();
+        }
+
+        // DELETE api/<ProductsController>
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
+        public async Task<IActionResult> Delete([FromBody] ProductDto dto)
+        {
+            var deleteProductCommand = new DeleteCommand { ProductDto = dto };
+            await _mediator.Send(deleteProductCommand);
 
             return NoContent();
         }

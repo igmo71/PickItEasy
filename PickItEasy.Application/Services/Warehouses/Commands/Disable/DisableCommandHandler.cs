@@ -20,7 +20,7 @@ namespace PickItEasy.Application.Services.Warehouses.Commands.Disable
             var warehouse = await _dbContext.Warehouses.FirstOrDefaultAsync(e => e.Id == request.Id)
                 ?? throw new EntityNotFoundException(nameof(Product), request.Id);
 
-            warehouse.IsActive = false;
+            warehouse.Active = false;
             await _dbContext.SaveChangesAsync(cancellationToken);
 
             return;

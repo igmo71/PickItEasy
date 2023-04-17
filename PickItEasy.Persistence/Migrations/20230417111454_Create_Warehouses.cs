@@ -11,6 +11,23 @@ namespace PickItEasy.Persistence.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.RenameColumn(
+                name: "IsActive",
+                table: "WhsOrderStatuses",
+                newName: "Active");
+
+            migrationBuilder.RenameColumn(
+                name: "IsActive",
+                table: "WhsOrderQueues",
+                newName: "Active");
+
+            migrationBuilder.AddColumn<bool>(
+                name: "Active",
+                table: "Products",
+                type: "boolean",
+                nullable: false,
+                defaultValue: false);
+
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
                 table: "AspNetUserTokens",
@@ -53,7 +70,7 @@ namespace PickItEasy.Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    IsActive = table.Column<bool>(type: "boolean", nullable: false)
+                    Active = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -66,6 +83,20 @@ namespace PickItEasy.Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Warehouses");
+
+            migrationBuilder.DropColumn(
+                name: "Active",
+                table: "Products");
+
+            migrationBuilder.RenameColumn(
+                name: "Active",
+                table: "WhsOrderStatuses",
+                newName: "IsActive");
+
+            migrationBuilder.RenameColumn(
+                name: "Active",
+                table: "WhsOrderQueues",
+                newName: "IsActive");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",

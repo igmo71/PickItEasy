@@ -27,6 +27,7 @@ namespace PickItEasy.Application.Services.Warehouses.Commands.Update
                 throw new EntityNotFoundException(nameof(Warehouse), request.Id);
 
             warehouse.Name = request.WarehouseDto.Name;
+            warehouse.Active = request.WarehouseDto.Active;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 

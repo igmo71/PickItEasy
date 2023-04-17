@@ -22,7 +22,7 @@ namespace PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetList
         {
             var statuses = await _dbContext.WhsOrderOutStatuses
                 .AsNoTracking()
-                .Where(s => s.IsActive)
+                .Where(s => s.Active)
                 .OrderBy(s => s.Value)
                 .ProjectTo<WhsOrderOutStatusVm>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
