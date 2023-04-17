@@ -13,6 +13,7 @@ namespace PickItEasy.Application.Dtos.Mapping
         public WarehouseMappingProfile()
         {
             CreateMap<WarehouseDto, Warehouse>();
+            CreateMap<Warehouse, WarehouseVm>();
         }
     }
 }

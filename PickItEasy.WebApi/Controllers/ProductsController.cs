@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Services.Products.Commands.Create;
@@ -16,12 +15,10 @@ namespace PickItEasy.WebApi.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
 
-        public ProductsController(IMediator mediator, IMapper mapper)
+        public ProductsController(IMediator mediator)
         {
             _mediator = mediator;
-            _mapper = mapper;
         }
 
         // GET: api/<ProductsController>

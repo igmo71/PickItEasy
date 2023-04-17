@@ -6,9 +6,9 @@ using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Domain.Entities;
 
-namespace PickItEasy.Application.Services.Products.Queries.GetById
+namespace PickItEasy.Application.Services.Warehouses.Queries.GetById
 {
-    public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, ProductVm>
+    public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, WarehouseVm>
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -19,14 +19,14 @@ namespace PickItEasy.Application.Services.Products.Queries.GetById
             _mapper = mapper;
         }
 
-        public async Task<ProductVm> Handle(GetByIdQuery request, CancellationToken cancellationToken)
+        public async Task<WarehouseVm> Handle(GetByIdQuery request, CancellationToken cancellationToken)
         {
-            var product = await _dbContext.Products
+            var warehouse = await _dbContext.Warehouses
                 .AsNoTracking()
                 .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken)
                 ?? throw new EntityNotFoundException(nameof(Product), request.Id);
 
-            var response = _mapper.Map<ProductVm>(product);
+            var response = _mapper.Map<WarehouseVm>(warehouse);
 
             return response;
         }
