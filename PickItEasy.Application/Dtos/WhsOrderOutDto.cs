@@ -6,7 +6,8 @@
         public required string Name { get; set; }
         public required string Number { get; set; }
         public required DateTime DateTime { get; set; }
-        public int Status { get; set; }
+        public required int Status { get; set; }
+        public required bool Active { get; set; }
 
         public required List<WhsOrderOutProductDto> Products { get; set; }
     }
