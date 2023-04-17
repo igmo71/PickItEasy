@@ -31,11 +31,7 @@ namespace PickItEasy.Application.Services.Products.Commands.Create
                 await _mediator.Send(new UpdateCommand
                 {
                     Id = product.Id,
-                    ProductDto = new ProductDto
-                    {
-                        Id = product.Id,
-                        Name = product.Name
-                    }
+                    ProductDto = request.ProductDto
                 }, cancellationToken);
             }
             else
