@@ -2,9 +2,15 @@
 
 <div class="card mb-2">
     <div class="card-header">
-        <h6 class="card-title">
-            <a href="/WhsOrders/Out/Item/@Order?.Id">@Order?.Name</a>
-        </h6>
+        <div class="row card-title">
+            <div class="col-9">
+                <h6><a href="/WhsOrders/Out/Item/@Order?.Id">@Order?.Name</a></h6>
+            </div>
+            <div class="col-3">
+                <h6>@Order?.QueueNumber</h6>
+            </div>
+        </div>
+       
     </div>
     <div class="card-body">
         <div>
@@ -13,9 +19,12 @@
         <div>
             Очередь: @Order?.Queue?.Synonym
         </div>
+        <div>
+            Дата отгрузки: @Order?.ShipDateTime
+        </div>
     </div>
     <div class="card-footer">
-        <span>Доп инфо </span>
+        <span>@Order?.Comment</span>
     </div>
 </div>
 

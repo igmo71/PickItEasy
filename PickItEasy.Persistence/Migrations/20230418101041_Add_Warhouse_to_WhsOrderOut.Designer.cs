@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PickItEasy.Persistence.Data;
@@ -11,9 +12,11 @@ using PickItEasy.Persistence.Data;
 namespace PickItEasy.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230418101041_Add_Warhouse_to_WhsOrderOut")]
+    partial class Add_Warhouse_to_WhsOrderOut
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -228,9 +231,6 @@ namespace PickItEasy.Persistence.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Comment")
-                        .HasColumnType("text");
-
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("timestamp without time zone");
 
@@ -246,13 +246,6 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.Property<Guid>("QueueId")
                         .HasColumnType("uuid");
-
-                    b.Property<string>("QueueNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("ShipDateTime")
-                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("StatusId")
                         .HasColumnType("uuid");

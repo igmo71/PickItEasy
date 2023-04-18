@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-using PickItEasy.Application.Common.Exceptions;
 using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces;
-using PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetIdByValue;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Delete;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.IsExistsById;
 using PickItEasy.Domain.Entities;
@@ -28,8 +25,9 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
         {
             var whsOrder = _mapper.Map<WhsOrderOut>(request.WhsOrderOutDto);
 
-            whsOrder.StatusId = await _mediator.Send(new GetIdByValueQuery { Value = request.WhsOrderOutDto.Status }, cancellationToken);
-            whsOrder.QueueId = Guid.Parse("7e83260a-316f-4a1f-be9a-bf353b118536");
+            whsOrder.StatusId = await _mediator.Send(new WhsOrderOutStatuses.Queries.GetIdByValue.GetIdByValueQuery { Value = request.WhsOrderOutDto.Status }, cancellationToken);
+            //whsOrder.QueueId = Guid.Parse("7e83260a-316f-4a1f-be9a-bf353b118536");
+            whsOrder.QueueId = await _mediator.Send(new WhsOrderOutQueues.Queries.GetIdByValue.GetIdByValueQuery { Value = request.WhsOrderOutDto.Queue }, cancellationToken);
 
             var isExists = await _mediator.Send(new IsExistsByIdQuery { Id = whsOrder.Id }, cancellationToken);
             if (isExists)
