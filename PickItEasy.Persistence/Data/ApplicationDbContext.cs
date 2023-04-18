@@ -38,7 +38,7 @@ namespace PickItEasy.Persistence.Data
 
         public DbSet<Warehouse> Warehouses { get; set; }
 
-        public DbSet<QueueNumber> QueueNumbers { get; set; }
+        public DbSet<QueueNumber> QueueNumber { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

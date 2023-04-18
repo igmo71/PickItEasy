@@ -2,25 +2,33 @@
 {
     public class QueueNumber
     {
-        public required string Value { get; set; }
-        public required bool Active { get; set; }
+        public int CharValue { get; set; }
+        public int NumValue { get; set; }
+        public string? Value { get; set; }
 
-        public static List<QueueNumber> Generate()
+        public QueueNumber Next(QueueNumber currentQueueNumber)
         {
-            List<QueueNumber> queueNumbers = new List<QueueNumber>();
-            string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            for (int i = 0; i < alphabet.Length; i++)
+            //string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string alphabet = "ABCEHKMOPT";
+
+            var newQueueNumber = new QueueNumber()
             {
-                for (int j = 0; j < 10; j++)
-                {
-                    for (int k = 0; k < 10; k++)
-                    {
-                        QueueNumber item = new QueueNumber { Value = $"{alphabet[i]}{j}{k}", Active = true };
-                        queueNumbers.Add(item);
-                    }
-                }
+                NumValue = currentQueueNumber.NumValue,
+                CharValue = currentQueueNumber.CharValue,
+                Value = currentQueueNumber.Value
+            };
+
+            newQueueNumber.NumValue = (newQueueNumber.NumValue + 1) % 1000;
+
+            if (newQueueNumber.NumValue == 0)
+            {
+                newQueueNumber.NumValue++;
+                newQueueNumber.CharValue = (newQueueNumber.CharValue + 1) % alphabet.Length;
             }
-            return queueNumbers;
-        }
+
+            newQueueNumber.Value = $"{alphabet[newQueueNumber.CharValue]}{newQueueNumber.NumValue:D3}";
+
+            return newQueueNumber;
+        }   
     }
 }

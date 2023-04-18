@@ -9,16 +9,13 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<QueueNumber> builder)
         {
             builder.HasKey(e => e.Value);
-            SeedQueueNumbers(builder);
-        }
-
-        private void SeedQueueNumbers(EntityTypeBuilder<QueueNumber> builder)
-        {
-            foreach (var item in QueueNumber.Generate())
-            {
-                builder.HasData(item);
-            }
-
+            builder.HasData(
+                new QueueNumber
+                {
+                    CharValue = 0,
+                    NumValue = 0,
+                    Value = "A000"
+                });
         }
     }
 }
