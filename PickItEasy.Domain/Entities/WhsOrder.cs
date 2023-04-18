@@ -8,5 +8,7 @@
         public string? Comment { get; set; }
 
         public List<Product>? Products { get; set; }
+
+        public List<BaseDocument>? BaseDocuments { get; set; }
     }
 }
