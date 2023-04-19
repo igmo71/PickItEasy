@@ -22,10 +22,10 @@
 
 <div>@whsOrderOutVm?.Number</div>
 <div>@whsOrderOutVm?.DateTime</div>
-<div>@whsOrderOutVm?.Warehouse?.Name</div>
-<div>@whsOrderOutVm?.Status?.Synonym</div>
-<div>@whsOrderOutVm?.Queue?.Synonym</div>
-<div>@whsOrderOutVm?.ShipDateTime</div>
+<div>Склад: @whsOrderOutVm?.Warehouse?.Name</div>
+<div>Статус: @whsOrderOutVm?.Status?.Synonym</div>
+<div>Очередь: @whsOrderOutVm?.Queue?.Synonym</div>
+<div>Дата отгрузки: @whsOrderOutVm?.ShipDateTime</div>
 <div>@whsOrderOutVm?.Comment</div>
 <div>
     <QuickGrid Items="@(whsOrderOutVm?.Products?.AsQueryable<WhsOrderOutProductVm>())" Class="table table-bordered table-hover">

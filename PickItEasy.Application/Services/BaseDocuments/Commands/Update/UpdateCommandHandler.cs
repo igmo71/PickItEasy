@@ -5,7 +5,7 @@ using PickItEasy.Application.Common.Exceptions;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Domain.Entities;
 
-namespace PickItEasy.Application.Services.Products.Commands.Update
+namespace PickItEasy.Application.Services.BaseDocuments.Commands.Update
 {
     public class UpdateCommandHandler : IRequestHandler<UpdateCommand>
     {
@@ -21,14 +21,13 @@ namespace PickItEasy.Application.Services.Products.Commands.Update
 
         public async Task Handle(UpdateCommand request, CancellationToken cancellationToken)
         {
-            var product = await _dbContext.Products
+            var baseDocument = await _dbContext.BaseDocuments
                 .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken);
 
-            if (product is null || product.Id != request.Id) 
-                throw new EntityNotFoundException(nameof(Product), request.Id);
+            if (baseDocument is null || baseDocument.Id != request.Id)
+                throw new EntityNotFoundException(nameof(BaseDocument), request.Id);
 
-            product.Name = request.ProductDto.Name;
-            product.Active = request.ProductDto.Active;
+            baseDocument.Name = request.BaseDocumentDto.Name;
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 

@@ -7,8 +7,7 @@ namespace PickItEasy.Application.Services.Products.Commands.Create
     {
         public CreateCommandValidator()
         {
-            RuleFor(createCommand => createCommand.ProductDto).NotNull().NotEmpty();
-            RuleFor(createCommand => createCommand.ProductDto).SetValidator(new ProductDtoValidator());
+            RuleFor(createCommand => createCommand.ProductDto).NotNull().NotEmpty().SetValidator(new ProductDtoValidator());
         }        
     }
 }

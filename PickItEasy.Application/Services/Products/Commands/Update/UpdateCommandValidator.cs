@@ -8,8 +8,7 @@ namespace PickItEasy.Application.Services.Products.Commands.Update
         public UpdateCommandValidator()
         {
             RuleFor(updateCommand => updateCommand.Id).NotNull().NotEmpty();
-            RuleFor(updateCommand => updateCommand.ProductDto).NotNull().NotEmpty();
-            RuleFor(updateCommand => updateCommand.ProductDto).SetValidator(new ProductDtoValidator());
+            RuleFor(updateCommand => updateCommand.ProductDto).NotNull().NotEmpty().SetValidator(new ProductDtoValidator());
         }
     }
 }
