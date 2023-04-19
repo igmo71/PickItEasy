@@ -23,6 +23,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
         {
             var whsOrderOut = await _dbContext.WhsOrdersOut.AsNoTracking()
                 .Include(e => e.WhsOrderOutProducts).ThenInclude(op => op.Product)//.Include(e => e.Products)
+                .Include(e => e.WhsOrderOutBaseDocuments).ThenInclude(ob => ob.BaseDocument)
                 .Include(e => e.Status)
                 .Include(e => e.Queue)
                 .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken: cancellationToken)

@@ -21,5 +21,6 @@
         public string? Comment { get; set; }
 
         public required List<WhsOrderOutProductDto> Products { get; set; }
+        public required List<WhsOrderOutBaseDocumentDto> BaseDocuments{ get; set; }
     }
 }

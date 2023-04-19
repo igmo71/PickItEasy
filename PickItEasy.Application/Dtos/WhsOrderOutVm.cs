@@ -10,6 +10,8 @@ namespace PickItEasy.Application.Dtos
         public string? Number { get; set; }
         public DateTime DateTime { get; set; }
 
+        public  bool Active { get; set; }
+
         public Warehouse? Warehouse { get; set; }
 
         public WhsOrderOutStatusVm? Status { get; set; }
@@ -22,6 +24,7 @@ namespace PickItEasy.Application.Dtos
         public string? Comment { get; set; }
 
         public List<WhsOrderOutProductVm>? Products { get; set; }
+        public List<WhsOrderOutBaseDocumentVm>? BaseDocuments { get; set; }
 
         public string? BarcodeBase64 => BarcodeGuidConvert.GetBarcodeBase64(Id);
     }

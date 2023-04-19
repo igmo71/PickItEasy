@@ -21,11 +21,12 @@ namespace PickItEasy.Application
 
             services.AddAutoMapper(config =>
             {
+                config.AddProfile<BaseDocumentMappingProfile>();
                 config.AddProfile<ProductMappingProfile>();
-                config.AddProfile<WhsOrderOutMappingProfile>();
-                config.AddProfile<WhsOrderOutStatusMappingProfile>();
-                config.AddProfile<WhsOrderOutQueueMappingProfile>();
                 config.AddProfile<WarehouseMappingProfile>();
+                config.AddProfile<WhsOrderOutMappingProfile>();
+                config.AddProfile<WhsOrderOutQueueMappingProfile>();
+                config.AddProfile<WhsOrderOutStatusMappingProfile>();
             }); services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
 
             //services.AddTransient(typeof(INotificationHandler<>), typeof(WeatherForecastCreateNotificationHandler));
