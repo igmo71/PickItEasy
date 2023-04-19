@@ -36,9 +36,9 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations.WhsOrder.Out
             builder.HasOne(o => o.Warehouse).WithMany().HasForeignKey(o => o.WarehouseId).HasPrincipalKey(q => q.Id).OnDelete(DeleteBehavior.SetNull);
 
             builder.HasMany(o => o.BaseDocuments).WithMany()
-                .UsingEntity<WhsOrderOutBaseDocumentConfiguration>(
+                .UsingEntity<WhsOrderOutBaseDocument>(
                     b => b.HasOne(od => od.BaseDocument).WithMany().HasForeignKey(od => od.BaseDocumentId),
-                    b => b.HasOne(od => od.WhsOrderOut).WithMany().HasForeignKey(od => od.WhsOrderOutId),
+                    b => b.HasOne(od => od.WhsOrderOut).WithMany(o => o.WhsOrderOutBaseDocuments).HasForeignKey(od => od.WhsOrderOutId),
                     b =>
                     {
                         b.HasKey(od => od.Id);

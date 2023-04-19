@@ -28,7 +28,7 @@ namespace PickItEasy.Persistence.Data
         //public DbSet<WhsOrderIn> WhsOrdersIn { get; set; }
         //public DbSet<WhsOrderInProduct> WhsOrderInProducts { get; set; }
             // Out
-        public DbSet<WhsOrderOutBaseDocument> whsOrderOutBaseDocuments { get; set; }
+        public DbSet<WhsOrderOutBaseDocument> WhsOrderOutBaseDocuments { get; set; }
         public DbSet<WhsOrderOut> WhsOrdersOut { get; set; }
         public DbSet<WhsOrderOutProduct> WhsOrderOutProducts { get; set; }
         public DbSet<WhsOrderOutQueue> WhsOrderOutQueues { get; set; }

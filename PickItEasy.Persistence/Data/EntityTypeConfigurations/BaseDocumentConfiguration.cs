@@ -9,9 +9,9 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<BaseDocument> builder)
         {
-            builder.HasKey(p => p.Id);
+            builder.HasKey(b => b.Id);
 
-            builder.Property(p => p.Name).IsRequired()
+            builder.Property(b => b.Name).IsRequired()
                 .HasColumnType(EntityConfig.TYPE_VARCHAR).HasMaxLength(EntityConfig.MAX_LENGTH_NAME);
         }
     }
