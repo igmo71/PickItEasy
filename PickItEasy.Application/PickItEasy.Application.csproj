@@ -24,6 +24,7 @@
   <ItemGroup>
     <Folder Include="Services\WhsOrdersOut\Commands\Disable\" />
     <Folder Include="Services\WhsOrdersOut\Notifications\" />
+    <Folder Include="Services\WhsOrdersOut\Queries\GetCountByStatus\" />
   </ItemGroup>
 
 </Project>
