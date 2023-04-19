@@ -11,11 +11,14 @@ namespace PickItEasy.Application.Interfaces
 
         public DbSet<Product> Products { get; set; }
 
+        public DbSet<BaseDocument> BaseDocuments { get; set; }
+
         //public DbSet<WhsOrderIn> WhsOrdersIn { get; set; }
         //public DbSet<WhsOrderInProduct> WhsOrderInProducts { get; set; }
 
         public DbSet<WhsOrderOut> WhsOrdersOut { get; set; }
         public DbSet<WhsOrderOutProduct> WhsOrderOutProducts { get; set; }
+        public DbSet<WhsOrderOutBaseDocument> whsOrderOutBaseDocuments { get; set; }
 
         public DbSet<WhsOrderStatus> WhsOrderStatuses { get; set; }
         public DbSet<WhsOrderOutStatus> WhsOrderOutStatuses { get; set; }

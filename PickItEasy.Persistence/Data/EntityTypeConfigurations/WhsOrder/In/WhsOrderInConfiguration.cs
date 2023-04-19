@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PickItEasy.Application.Common;
 using PickItEasy.Domain.Entities;
 
-namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
+namespace PickItEasy.Persistence.Data.EntityTypeConfigurations.WhsOrder.In
 {
     public class WhsOrderInConfiguration : IEntityTypeConfiguration<WhsOrderIn>
     {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PickItEasy.Application.Common;
 using PickItEasy.Domain.Entities;
 
-namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
+namespace PickItEasy.Persistence.Data.EntityTypeConfigurations.WhsOrder.Out
 {
     public class WhsOrderOutConfiguration : IEntityTypeConfiguration<WhsOrderOut>
     {
@@ -36,7 +36,7 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
             builder.HasOne(o => o.Warehouse).WithMany().HasForeignKey(o => o.WarehouseId).HasPrincipalKey(q => q.Id).OnDelete(DeleteBehavior.SetNull);
 
             builder.HasMany(o => o.BaseDocuments).WithMany()
-                .UsingEntity<WhsOrderOutBaseDocument>(
+                .UsingEntity<WhsOrderOutBaseDocumentConfiguration>(
                     b => b.HasOne(od => od.BaseDocument).WithMany().HasForeignKey(od => od.BaseDocumentId),
                     b => b.HasOne(od => od.WhsOrderOut).WithMany().HasForeignKey(od => od.WhsOrderOutId),
                     b =>

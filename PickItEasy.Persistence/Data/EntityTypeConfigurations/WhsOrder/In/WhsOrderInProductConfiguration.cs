@@ -1,8 +1,8 @@
-﻿    using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PickItEasy.Domain.Entities;
 
-namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
+namespace PickItEasy.Persistence.Data.EntityTypeConfigurations.WhsOrder.In
 {
     public class WhsOrderInProductConfiguration : IEntityTypeConfiguration<WhsOrderInProduct>
     {

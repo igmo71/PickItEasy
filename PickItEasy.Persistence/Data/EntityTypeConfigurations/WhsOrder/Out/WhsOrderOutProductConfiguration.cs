@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PickItEasy.Domain.Entities;
 
-namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
+namespace PickItEasy.Persistence.Data.EntityTypeConfigurations.WhsOrder.Out
 {
     public class WhsOrderOutProductConfiguration : IEntityTypeConfiguration<WhsOrderOutProduct>
     {

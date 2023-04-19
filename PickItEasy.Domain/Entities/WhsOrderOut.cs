@@ -13,5 +13,7 @@
         public DateTime ShipDateTime { get; set; }
 
         public List<WhsOrderOutProduct> WhsOrderOutProducts { get; set; } = new();
+
+        public List<WhsOrderOutBaseDocument> WhsOrderOutBaseDocuments { get; set; } = new();
     }
 }

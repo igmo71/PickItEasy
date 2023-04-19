@@ -1,18 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PickItEasy.Application.Common;
-using PickItEasy.Domain.Entities;
+using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PickItEasy.Domain.Entities;
+using PickItEasy.Application.Common;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
+namespace PickItEasy.Persistence.Data.EntityTypeConfigurations.WhsOrder
 {
-    public class WhsOrderStatusConfiguration : IEntityTypeConfiguration<WhsOrderStatus>
+    public class WhsOrderQueueConfiguration : IEntityTypeConfiguration<WhsOrderQueue>
     {
-        public void Configure(EntityTypeBuilder<WhsOrderStatus> builder)
+        public void Configure(EntityTypeBuilder<WhsOrderQueue> builder)
         {
             builder.HasKey(e => e.Id);
 

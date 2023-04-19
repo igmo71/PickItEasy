@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PickItEasy.Persistence.Data.EntityTypeConfigurations
+namespace PickItEasy.Persistence.Data.EntityTypeConfigurations.WhsOrder.Out
 {
     public class WhsOrderOutQueueConfiguration : IEntityTypeConfiguration<WhsOrderOutQueue>
     {
