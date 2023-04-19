@@ -22,6 +22,10 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations.WhsOrder.Out
             //builder.Property(o => o.DateTime).IsRequired()
             //    .HasColumnType(EntityConfig.TYPE_DATETIME);
 
+            builder.HasOne(o => o.Status).WithMany().HasForeignKey(o => o.StatusId).HasPrincipalKey(s => s.Id).OnDelete(DeleteBehavior.SetNull);
+            builder.HasOne(o => o.Queue).WithMany().HasForeignKey(o => o.QueueId).HasPrincipalKey(q => q.Id).OnDelete(DeleteBehavior.SetNull);
+            builder.HasOne(o => o.Warehouse).WithMany().HasForeignKey(o => o.WarehouseId).HasPrincipalKey(q => q.Id).OnDelete(DeleteBehavior.SetNull);
+
             builder.HasMany(o => o.Products).WithMany()
                 .UsingEntity<WhsOrderOutProduct>(
                     b => b.HasOne(op => op.Product).WithMany().HasForeignKey(op => op.ProductId),
@@ -30,10 +34,6 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations.WhsOrder.Out
                     {
                         b.HasKey(op => op.Id);
                     });
-
-            builder.HasOne(o => o.Status).WithMany().HasForeignKey(o => o.StatusId).HasPrincipalKey(s => s.Id).OnDelete(DeleteBehavior.SetNull);
-            builder.HasOne(o => o.Queue).WithMany().HasForeignKey(o => o.QueueId).HasPrincipalKey(q => q.Id).OnDelete(DeleteBehavior.SetNull);
-            builder.HasOne(o => o.Warehouse).WithMany().HasForeignKey(o => o.WarehouseId).HasPrincipalKey(q => q.Id).OnDelete(DeleteBehavior.SetNull);
 
             builder.HasMany(o => o.BaseDocuments).WithMany()
                 .UsingEntity<WhsOrderOutBaseDocument>(

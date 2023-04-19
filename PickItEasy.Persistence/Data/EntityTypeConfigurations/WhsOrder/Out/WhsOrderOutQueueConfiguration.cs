@@ -15,6 +15,7 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations.WhsOrder.Out
         private void SeedWhsOrderOutQueue(EntityTypeBuilder<WhsOrderOutQueue> builder)
         {
             foreach (var item in WhsOrderOutQueueInitial.List)
+            {
                 builder.HasData(new WhsOrderOutQueue
                 {
                     Id = item.Id,
@@ -23,6 +24,7 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations.WhsOrder.Out
                     Name = item.Name,
                     Synonym = item.Synonym
                 });
+            }
         }
     }
 }

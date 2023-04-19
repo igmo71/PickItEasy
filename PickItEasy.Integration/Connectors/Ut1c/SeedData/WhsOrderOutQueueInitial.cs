@@ -4,7 +4,7 @@ namespace PickItEasy.Integration.Connectors.Ut1c.SeedData
 {
     public class WhsOrderOutQueueInitial
     {
-        private static readonly List<WhsOrderOutQueue> whsOrderOutQueues = new()
+        private static readonly List<WhsOrderOutQueue> whsOrderOutQueues = new() // TODO: кастыль 
         {
             new WhsOrderOutQueue {Id = Guid.Parse("7E83260A-316F-4A1F-BE9A-BF353B118536"), Value = 10, Active = true, Name = "LiveQueue",     Synonym = "Живая очередь"},
             new WhsOrderOutQueue {Id = Guid.Parse("3558D2BA-FFB6-4F08-9891-F7F1E8853C83"), Value = 20, Active = true, Name = "Schedule",      Synonym = "Собрать к дате"},

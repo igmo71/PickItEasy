@@ -44,17 +44,17 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             queueListVm = await Mediator.Send(getSQueueListQuery);
         }
 
-        private async Task SearchHandle(SearchParameters? searchParameters = null)
+        private async Task SearchHandle()
         {
-            await GetOrderDictionaryByQueue(searchParameters);
+            await GetOrderDictionaryByQueue(/*searchParameters*/);
             //await InvokeAsync(StateHasChanged);
         }
 
-        private async Task GetOrderDictionaryByQueue(SearchParameters? searchParameters = null)
+        private async Task GetOrderDictionaryByQueue()
         {
             var getDictionaryByQueueQuery = new WhsOrdersOut.GetDictionaryByQueue.GetDictionaryByQueueQuery
             {
-                SearchParameters = searchParameters == null ? SearchParameters : searchParameters
+                SearchParameters = SearchParameters
             };
             orderOutDictionaryByQueueVm = await Mediator.Send(getDictionaryByQueueQuery);
         }
@@ -68,18 +68,20 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         private async Task ScannedBarcodeAsync(ChangeEventArgs args)
         {
             barcode = args.Value?.ToString();
-            //SearchParameters.DocumentId = BarcodeGuidConvert.FromNumericString(barcode);
-            SearchParameters searchParameters = new() { DocumentId = BarcodeGuidConvert.FromNumericString(barcode) };
-            await SearchHandle(searchParameters);
+            if (barcode is null) return;
+            pageMessage = barcode;
 
-            pageMessage = barcode ?? string.Empty;
+            SearchParameters.DocumentId = BarcodeGuidConvert.FromNumericString(barcode);
+            
+            await SearchHandle();
+            
+            SearchParameters.DocumentId = null;
 
             TryOpenItem(SearchParameters.DocumentId);
         }
 
         private void TryOpenItem(Guid? documentId)
-        {
-            SearchParameters.DocumentId = null;
+        {            
             if (IsDocumentSingle())
                 NavigationManager?.NavigateTo($"WhsOrders/Out/Item/{documentId}");
             else
@@ -104,9 +106,9 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 
         private async Task MessageReceivedHandle(object? sender, string message)
         {
+            pageMessage = $"{sender}: {message}";
             await SearchHandle();
             await InvokeAsync(StateHasChanged);
-            pageMessage = $"{sender}: {message}";
         }
 
         public void Dispose()

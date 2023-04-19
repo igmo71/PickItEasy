@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PickItEasy.Domain.Entities;
+using PickItEasy.Integration.Connectors.Ut1c.SeedData;
 
 namespace PickItEasy.Persistence.Data.EntityTypeConfigurations.WhsOrder.Out
 {
@@ -13,7 +14,7 @@ namespace PickItEasy.Persistence.Data.EntityTypeConfigurations.WhsOrder.Out
 
         private static void SeedWhsOrderOutStatus(EntityTypeBuilder<WhsOrderOutStatus> builder)
         {
-            foreach (var item in Integration.Connectors.Ut1c.SeedData.WhsOrderOutStatusInitial.List)
+            foreach (var item in WhsOrderOutStatusInitial.List)
             {
                 builder.HasData(new WhsOrderOutStatus
                 {

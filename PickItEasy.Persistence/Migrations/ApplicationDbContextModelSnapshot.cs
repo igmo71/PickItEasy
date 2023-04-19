@@ -171,7 +171,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BaseDocuments");
+                    b.ToTable("BaseDocuments", (string)null);
                 });
 
             modelBuilder.Entity("PickItEasy.Domain.Entities.Product", b =>
@@ -190,7 +190,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("PickItEasy.Domain.Entities.QueueNumber", b =>
@@ -206,7 +206,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasKey("Value");
 
-                    b.ToTable("QueueNumber");
+                    b.ToTable("QueueNumber", (string)null);
 
                     b.HasData(
                         new
@@ -233,7 +233,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Warehouses");
+                    b.ToTable("Warehouses", (string)null);
                 });
 
             modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderOut", b =>
@@ -285,7 +285,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasIndex("WarehouseId");
 
-                    b.ToTable("WhsOrdersOut");
+                    b.ToTable("WhsOrdersOut", (string)null);
                 });
 
             modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderOutBaseDocument", b =>
@@ -306,7 +306,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasIndex("WhsOrderOutId");
 
-                    b.ToTable("WhsOrderOutBaseDocuments");
+                    b.ToTable("WhsOrderOutBaseDocuments", (string)null);
                 });
 
             modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderOutProduct", b =>
@@ -330,7 +330,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasIndex("WhsOrderOutId");
 
-                    b.ToTable("WhsOrderOutProducts");
+                    b.ToTable("WhsOrderOutProducts", (string)null);
                 });
 
             modelBuilder.Entity("PickItEasy.Domain.Entities.WhsOrderQueue", b =>
@@ -361,7 +361,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WhsOrderQueues");
+                    b.ToTable("WhsOrderQueues", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("WhsOrderQueue");
 
@@ -396,7 +396,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WhsOrderStatuses");
+                    b.ToTable("WhsOrderStatuses", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("WhsOrderStatus");
 
@@ -420,7 +420,7 @@ namespace PickItEasy.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WeatherForecasts");
+                    b.ToTable("WeatherForecasts", (string)null);
                 });
 
             modelBuilder.Entity("PickItEasy.Persistence.Models.ApplicationUser", b =>
