@@ -71,15 +71,15 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             if (barcode is null) return;
             pageMessage = barcode;
 
-            SearchParameters.DocumentId = BarcodeGuidConvert.FromNumericString(barcode);            
-            await SearchHandle();            
+            SearchParameters.DocumentId = BarcodeGuidConvert.FromNumericString(barcode);
+            await SearchHandle();
             SearchParameters.DocumentId = null;
 
             TryOpenItem(SearchParameters.DocumentId);
         }
 
         private void TryOpenItem(Guid? documentId)
-        {            
+        {
             if (IsDocumentSingle())
                 NavigationManager?.NavigateTo($"WhsOrders/Out/Item/{documentId}");
             else
@@ -105,6 +105,9 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         private async Task MessageReceivedHandle(object? sender, string message)
         {
             pageMessage = $"{sender}: {message}";
+
+            if (SearchParameters.StatusId == Guid.Empty) return;
+
             await SearchHandle();
             await InvokeAsync(StateHasChanged);
         }
