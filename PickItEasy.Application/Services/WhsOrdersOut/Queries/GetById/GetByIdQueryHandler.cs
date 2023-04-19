@@ -22,6 +22,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
         public async Task<WhsOrderOutVm> Handle(GetByIdQuery request, CancellationToken cancellationToken)
         {
             var whsOrderOut = await _dbContext.WhsOrdersOut.AsNoTracking()
+                .Include(e => e.Warehouse)
                 .Include(e => e.WhsOrderOutProducts).ThenInclude(op => op.Product)//.Include(e => e.Products)
                 .Include(e => e.WhsOrderOutBaseDocuments).ThenInclude(ob => ob.BaseDocument)
                 .Include(e => e.Status)

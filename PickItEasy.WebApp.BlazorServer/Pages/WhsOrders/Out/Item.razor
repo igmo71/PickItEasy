@@ -22,8 +22,10 @@
 
 <div>@whsOrderOutVm?.Number</div>
 <div>@whsOrderOutVm?.DateTime</div>
+<div>@whsOrderOutVm?.Warehouse?.Name</div>
 <div>@whsOrderOutVm?.Status?.Synonym</div>
 <div>@whsOrderOutVm?.Queue?.Synonym</div>
+<div>@whsOrderOutVm?.ShipDateTime</div>
 <div>@whsOrderOutVm?.Comment</div>
 <div>
     <QuickGrid Items="@(whsOrderOutVm?.Products?.AsQueryable<WhsOrderOutProductVm>())" Class="table table-bordered table-hover">
