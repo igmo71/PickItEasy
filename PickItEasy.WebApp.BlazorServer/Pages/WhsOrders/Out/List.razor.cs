@@ -22,7 +22,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 
         private WhsOrderOutStatusListVm statusListVm = new();
         private WhsOrderOutQueueListVm queueListVm = new();
-        private WhsOrderOutDictionaryByQueueVm orderOutDictionaryByQueueVm = new();
+        private WhsOrderOutDictionaryByQueueVm orderDictionaryVm = new();
 
         protected async override Task OnInitializedAsync()
         {
@@ -46,17 +46,17 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 
         private async Task SearchHandle()
         {
-            await GetOrderDictionaryByQueue(/*searchParameters*/);
+            await GetWhsOrderDictionaryByQueue(/*searchParameters*/);
             //await InvokeAsync(StateHasChanged);
         }
 
-        private async Task GetOrderDictionaryByQueue()
+        private async Task GetWhsOrderDictionaryByQueue()
         {
             var getDictionaryByQueueQuery = new WhsOrdersOut.GetDictionaryByQueue.GetDictionaryByQueueQuery
             {
                 SearchParameters = SearchParameters
             };
-            orderOutDictionaryByQueueVm = await Mediator.Send(getDictionaryByQueueQuery);
+            orderDictionaryVm = await Mediator.Send(getDictionaryByQueueQuery);
         }
 
         private async Task NavigationOnClickHandle(Guid statusId)
@@ -65,16 +65,14 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             await SearchHandle();
         }
 
-        private async Task ScannedBarcodeAsync(ChangeEventArgs args)
+        private async Task ScannedBarcodeHandle(ChangeEventArgs args)
         {
             barcode = args.Value?.ToString();
             if (barcode is null) return;
             pageMessage = barcode;
 
-            SearchParameters.DocumentId = BarcodeGuidConvert.FromNumericString(barcode);
-            
-            await SearchHandle();
-            
+            SearchParameters.DocumentId = BarcodeGuidConvert.FromNumericString(barcode);            
+            await SearchHandle();            
             SearchParameters.DocumentId = null;
 
             TryOpenItem(SearchParameters.DocumentId);
@@ -90,10 +88,10 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 
         private bool IsDocumentSingle()
         {
-            return orderOutDictionaryByQueueVm.Orders != null
-                && orderOutDictionaryByQueueVm.Orders.Count == 1
-                && orderOutDictionaryByQueueVm.Orders.FirstOrDefault().Value != null
-                && orderOutDictionaryByQueueVm.Orders.FirstOrDefault().Value.Count == 1;
+            return orderDictionaryVm.Orders != null
+                && orderDictionaryVm.Orders.Count == 1
+                && orderDictionaryVm.Orders.FirstOrDefault().Value != null
+                && orderDictionaryVm.Orders.FirstOrDefault().Value.Count == 1;
         }
 
         protected override void OnAfterRender(bool firstRender)

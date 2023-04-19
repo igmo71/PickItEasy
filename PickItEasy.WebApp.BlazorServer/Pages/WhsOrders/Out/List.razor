@@ -2,7 +2,7 @@
 
 @using PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out.Components
 
-<input type="hidden" id="barcode" value="@barcode" @onchange="@ScannedBarcodeAsync" />
+<input type="hidden" id="barcode" value="@barcode" @onchange="@ScannedBarcodeHandle" />
 
 <div class="row">
     <div class="col"><h4>Расходники</h4></div>
@@ -13,7 +13,7 @@
 
 <NavTabs Statuses="@statusListVm.Statuses" OnClick="NavigationOnClickHandle"></NavTabs>
 
-@if (orderOutDictionaryByQueueVm.Orders is not null && orderOutDictionaryByQueueVm.Orders.Any())
+@if (orderDictionaryVm.Orders is not null && orderDictionaryVm.Orders.Any())
 {
-    <CardsByQueue Queues="@queueListVm.Queues" Orders="@orderOutDictionaryByQueueVm.Orders"></CardsByQueue>
+    <CardsByQueue Queues="@queueListVm.Queues" Orders="@orderDictionaryVm.Orders"></CardsByQueue>
 }

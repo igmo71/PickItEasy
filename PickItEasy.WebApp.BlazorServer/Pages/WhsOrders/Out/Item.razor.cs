@@ -16,22 +16,25 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 
         private string? barcode;
 
-        private WhsOrderOutVm? whsOrderOutVm;
+        private WhsOrderOutVm? orderOutVm;
         private string pageMessage = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
-            await base.OnInitializedAsync();
+            await GetWhsOrderOut();
+        }
 
+        private async Task GetWhsOrderOut()
+        {
             if (string.IsNullOrEmpty(Id)) return;
             var getByIdWhsOrderOutQuery = new GetByIdQuery { Id = Guid.Parse(Id) };
-            whsOrderOutVm = await Mediator.Send(getByIdWhsOrderOutQuery);
+            orderOutVm = await Mediator.Send(getByIdWhsOrderOutQuery);
         }
 
         private async Task PostWhsOrderOut()
         {
-            if (whsOrderOutVm is null) return;
-            var postWhsOrderOutRequest = new PostWhsOrderOutRequest { WhsOrderOutVm = whsOrderOutVm };
+            if (orderOutVm is null) return;
+            var postWhsOrderOutRequest = new PostWhsOrderOutRequest { WhsOrderOutVm = orderOutVm };
             var result = await Mediator.Send(postWhsOrderOutRequest);
             pageMessage = result;
         }
