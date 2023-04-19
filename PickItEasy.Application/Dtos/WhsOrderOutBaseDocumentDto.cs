@@ -2,7 +2,7 @@
 {
     public class WhsOrderOutBaseDocumentDto
     {
-        public required Guid BaseDocumentId { get; set; }
-        public required string Name { get; set; }
+        public required Guid DocumentId { get; set; }
+        public required string DocumentName { get; set; }
     }
 }

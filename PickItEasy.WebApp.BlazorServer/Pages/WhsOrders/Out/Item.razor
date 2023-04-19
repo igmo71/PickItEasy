@@ -20,13 +20,23 @@
 
 <div><button class="btn btn-primary" @onclick="@PostWhsOrderOut">PostWhsOrderOut</button></div>
 
-<div>@whsOrderOutVm?.Number</div>
-<div>@whsOrderOutVm?.DateTime</div>
+<div>Номер:@whsOrderOutVm?.Number</div>
+<div>Дата: @whsOrderOutVm?.DateTime</div>
 <div>Склад: @whsOrderOutVm?.Warehouse?.Name</div>
 <div>Статус: @whsOrderOutVm?.Status?.Synonym</div>
 <div>Очередь: @whsOrderOutVm?.Queue?.Synonym</div>
 <div>Дата отгрузки: @whsOrderOutVm?.ShipDateTime</div>
-<div>@whsOrderOutVm?.Comment</div>
+<div>Комментарий: @whsOrderOutVm?.Comment</div>
+<div>
+    Документы основания:
+    @if (whsOrderOutVm != null &&  whsOrderOutVm?.BaseDocuments != null)
+    {
+        @foreach (var item in whsOrderOutVm.BaseDocuments)
+        {
+            <div>@item.Name</div>
+        }
+    }    
+</div>
 <div>
     <QuickGrid Items="@(whsOrderOutVm?.Products?.AsQueryable<WhsOrderOutProductVm>())" Class="table table-bordered table-hover">
         <PropertyColumn Property="@(p => p.Name)" Title="Товар" Sortable="true"></PropertyColumn>

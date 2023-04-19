@@ -32,7 +32,7 @@ namespace PickItEasy.Application.Dtos.Mapping
                 .ForMember(product => product.WhsOrderOut, opt => opt.Ignore());
 
             CreateMap<WhsOrderOutBaseDocumentDto, WhsOrderOutBaseDocument>()
-                .ForMember(baseDocument => baseDocument.BaseDocumentId, opt => opt.MapFrom(dto => dto.BaseDocumentId))
+                .ForMember(baseDocument => baseDocument.BaseDocumentId, opt => opt.MapFrom(dto => dto.DocumentId))
                 .ForMember(baseDocument => baseDocument.BaseDocument, opt => opt.Ignore())
                 .ForMember(baseDocument => baseDocument.WhsOrderOut, opt => opt.Ignore());
 
@@ -72,8 +72,10 @@ namespace PickItEasy.Application.Dtos.Mapping
                 .ForMember(dto => dto.Active, opt => opt.MapFrom(vm => vm.Active))
                 .ForMember(dto => dto.Comment, opt => opt.MapFrom(vm => vm.Comment))
                 .ForMember(dto => dto.WarehouseId, opt => opt.MapFrom(vm => vm.Warehouse != null ? vm.Warehouse.Id : Guid.Empty))
-                .ForMember(dto => dto.Status, opt => opt.MapFrom(vm => vm.Status != null ? vm.Status.Value : -1)) // TODO: кастыль
-                .ForMember(dto => dto.Queue, opt => opt.MapFrom(vm => vm.Queue != null ? vm.Queue.Value : -1)) // TODO: кастыль
+                .ForMember(dto => dto.Status, opt => opt.MapFrom(vm => 
+                    vm.Status != null ? vm.Status.Value : -1)) // TODO: кастыль
+                .ForMember(dto => dto.Queue, opt => opt.MapFrom(vm => 
+                    vm.Queue != null ? vm.Queue.Value : -1)) // TODO: кастыль
                 .ForMember(dto => dto.QueueNumber, opt => opt.MapFrom(vm => vm.QueueNumber))
                 .ForMember(dto => dto.ShipDateTime, opt => opt.MapFrom(vm => vm.ShipDateTime))
                 .ForMember(dto => dto.Products, opt => opt.MapFrom(vm => vm.Products))
@@ -84,8 +86,8 @@ namespace PickItEasy.Application.Dtos.Mapping
                 .ForMember(dto => dto.Count, opt => opt.MapFrom(vm => vm.Count));
 
             CreateMap<WhsOrderOutBaseDocumentVm, WhsOrderOutBaseDocumentDto>()
-                .ForMember(dto => dto.BaseDocumentId, opt => opt.MapFrom(vm => vm.BaseDocumentId))
-                .ForMember(dto => dto.Name, opt => opt.MapFrom(vm => vm.Name));
+                .ForMember(dto => dto.DocumentId, opt => opt.MapFrom(vm => vm.BaseDocumentId))
+                .ForMember(dto => dto.DocumentName, opt => opt.MapFrom(vm => vm.Name));
 
             // WhsOrderOut => WhsOrderOutLookupVm
             CreateMap<WhsOrderOut, WhsOrderOutLookupVm>()
