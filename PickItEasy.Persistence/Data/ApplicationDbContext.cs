@@ -24,10 +24,10 @@ namespace PickItEasy.Persistence.Data
         // WhsOrder
         public DbSet<WhsOrderQueue> WhsOrderQueues { get; set; }
         public DbSet<WhsOrderStatus> WhsOrderStatuses { get; set; }
-            // In
+        // In
         //public DbSet<WhsOrderIn> WhsOrdersIn { get; set; }
         //public DbSet<WhsOrderInProduct> WhsOrderInProducts { get; set; }
-            // Out
+        // Out
         public DbSet<WhsOrderOutBaseDocument> WhsOrderOutBaseDocuments { get; set; }
         public DbSet<WhsOrderOut> WhsOrdersOut { get; set; }
         public DbSet<WhsOrderOutProduct> WhsOrderOutProducts { get; set; }
@@ -47,11 +47,11 @@ namespace PickItEasy.Persistence.Data
 
             // WhsOrder
             builder.ApplyConfiguration(new WhsOrderQueueConfiguration());
-            builder.ApplyConfiguration(new WhsOrderStatusConfiguration());            
-                // In
+            builder.ApplyConfiguration(new WhsOrderStatusConfiguration());
+            // In
             //builder.ApplyConfiguration(new WhsOrderInConfiguration());
             //builder.ApplyConfiguration(new WhsOrderInProductConfiguration());            
-                // Out
+            // Out
             builder.ApplyConfiguration(new WhsOrderOutBaseDocumentConfiguration());
             builder.ApplyConfiguration(new WhsOrderOutConfiguration());
             builder.ApplyConfiguration(new WhsOrderOutProductConfiguration());

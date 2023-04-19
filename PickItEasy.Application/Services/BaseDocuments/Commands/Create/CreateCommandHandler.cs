@@ -26,7 +26,7 @@ namespace PickItEasy.Application.Services.BaseDocuments.Commands.Create
             var baseDocument = _mapper.Map<BaseDocument>(request.BaseDocumentDto);
 
             var isBaseDocumentExists = await _mediator.Send(new IsExistsByIdQuery { Id = baseDocument.Id }, cancellationToken);
-            if(isBaseDocumentExists)
+            if (isBaseDocumentExists)
             {
                 await _mediator.Send(new UpdateCommand
                 {

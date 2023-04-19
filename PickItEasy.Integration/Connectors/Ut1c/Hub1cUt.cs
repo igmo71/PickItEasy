@@ -27,7 +27,7 @@ namespace PickItEasy.Integration.Connectors.Ut1c
             await base.OnConnectedAsync(); // TODO: ???
         }
 
-        public override async Task OnDisconnectedAsync(Exception? exception)        
+        public override async Task OnDisconnectedAsync(Exception? exception)
         {
             connectionId = string.Empty;
             await base.OnDisconnectedAsync(exception); // TODO: ???

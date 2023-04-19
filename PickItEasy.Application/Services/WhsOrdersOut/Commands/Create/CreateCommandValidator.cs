@@ -7,7 +7,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
     {
         public CreateCommandValidator()
         {
-            RuleFor(createCommand => createCommand.WhsOrderOutDto).NotNull().NotEmpty() .SetValidator(new WhsOrderOutDtoValidator());
+            RuleFor(createCommand => createCommand.WhsOrderOutDto).NotNull().NotEmpty().SetValidator(new WhsOrderOutDtoValidator());
         }
     }
 }

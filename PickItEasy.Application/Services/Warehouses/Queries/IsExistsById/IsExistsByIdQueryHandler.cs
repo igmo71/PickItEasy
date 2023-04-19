@@ -6,7 +6,7 @@ namespace PickItEasy.Application.Services.Warehouses.Queries.IsExistsById
 {
     public class IsExistsByIdQueryHandler : IRequestHandler<IsExistsByIdQuery, bool>
     {
-        private readonly IApplicationDbContext _dbContext;  
+        private readonly IApplicationDbContext _dbContext;
 
         public IsExistsByIdQueryHandler(IApplicationDbContext dbContext)
         {

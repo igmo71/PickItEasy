@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static PickItEasy.Integration.Proxy.SignalRHubClient;
-
-namespace PickItEasy.Integration.Proxy
+﻿namespace PickItEasy.Integration.Proxy
 {
     public interface ISignalRHubClient
     {

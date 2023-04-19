@@ -72,9 +72,9 @@ namespace PickItEasy.Application.Dtos.Mapping
                 .ForMember(dto => dto.Active, opt => opt.MapFrom(vm => vm.Active))
                 .ForMember(dto => dto.Comment, opt => opt.MapFrom(vm => vm.Comment))
                 .ForMember(dto => dto.WarehouseId, opt => opt.MapFrom(vm => vm.Warehouse != null ? vm.Warehouse.Id : Guid.Empty))
-                .ForMember(dto => dto.Status, opt => opt.MapFrom(vm => 
+                .ForMember(dto => dto.Status, opt => opt.MapFrom(vm =>
                     vm.Status != null ? vm.Status.Value : -1)) // TODO: кастыль
-                .ForMember(dto => dto.Queue, opt => opt.MapFrom(vm => 
+                .ForMember(dto => dto.Queue, opt => opt.MapFrom(vm =>
                     vm.Queue != null ? vm.Queue.Value : -1)) // TODO: кастыль
                 .ForMember(dto => dto.QueueNumber, opt => opt.MapFrom(vm => vm.QueueNumber))
                 .ForMember(dto => dto.ShipDateTime, opt => opt.MapFrom(vm => vm.ShipDateTime))

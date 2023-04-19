@@ -23,7 +23,7 @@ namespace PickItEasy.Integration.Connectors.Ut1c
         }
 
         public async Task<string> SendWhsOrderOutAsync(WhsOrderOutDto whsOrderOutDto)
-        {                                    
+        {
             string result = await _hubContext.Clients.Client(Hub1cUt.ConnectionId)
                 .InvokeAsync<string>("PostWhsOrderOutDto", whsOrderOutDto, CancellationToken.None);
 

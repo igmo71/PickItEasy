@@ -1,5 +1,4 @@
 ﻿using PickItEasy.Application.Dtos;
-using System.Net;
 
 namespace PickItEasy.Application.Interfaces.Integration
 {

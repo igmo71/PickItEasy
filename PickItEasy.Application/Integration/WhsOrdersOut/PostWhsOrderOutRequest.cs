@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using PickItEasy.Application.Dtos;
-using System.Net;
 
 namespace PickItEasy.Application.Integration.WhsOrdersOut
 {

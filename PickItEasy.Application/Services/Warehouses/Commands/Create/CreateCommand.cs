@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using PickItEasy.Application.Dtos;
-using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.Warehouses.Commands.Create
 {

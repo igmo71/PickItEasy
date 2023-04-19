@@ -1,7 +1,4 @@
 ﻿using FluentValidation;
-using MediatR;
-using PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.Contains;
-using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Dtos.Validation
 {

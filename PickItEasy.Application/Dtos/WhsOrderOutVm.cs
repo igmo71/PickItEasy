@@ -10,7 +10,7 @@ namespace PickItEasy.Application.Dtos
         public string? Number { get; set; }
         public DateTime DateTime { get; set; }
 
-        public  bool Active { get; set; }
+        public bool Active { get; set; }
 
         public Warehouse? Warehouse { get; set; }
 

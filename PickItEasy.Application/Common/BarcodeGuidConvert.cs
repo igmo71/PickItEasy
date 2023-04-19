@@ -1,11 +1,11 @@
-﻿using System.Numerics;
-using NetBarcode;
+﻿using NetBarcode;
+using System.Numerics;
 
 namespace PickItEasy.Application.Common
 {
     public static class BarcodeGuidConvert
     {
-        private const string alphabet = "0123456789abcdef";        
+        private const string alphabet = "0123456789abcdef";
 
         public static string ToNumericString(Guid guid)
         {

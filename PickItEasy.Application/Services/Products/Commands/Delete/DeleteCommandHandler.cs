@@ -6,7 +6,7 @@ using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.Products.Commands.Delete
 {
-    public class DeleteCommandHandler: IRequestHandler<DeleteCommand>
+    public class DeleteCommandHandler : IRequestHandler<DeleteCommand>
     {
         private readonly IApplicationDbContext _dbContext;
 

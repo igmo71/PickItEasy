@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using PickItEasy.Application.Dtos.Validation;
-    
+
 namespace PickItEasy.Application.Services.Warehouses.Commands.Create
 {
     public class CreateCommandValidator : AbstractValidator<CreateCommand>

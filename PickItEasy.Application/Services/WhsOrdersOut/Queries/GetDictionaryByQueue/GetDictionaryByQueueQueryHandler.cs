@@ -4,15 +4,10 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetDictionaryByQueue
 {
-    public class GetDictionaryByQueueQueryHandler: IRequestHandler<GetDictionaryByQueueQuery, WhsOrderOutDictionaryByQueueVm>
+    public class GetDictionaryByQueueQueryHandler : IRequestHandler<GetDictionaryByQueueQuery, WhsOrderOutDictionaryByQueueVm>
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IMapper _mapper;

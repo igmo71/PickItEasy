@@ -24,7 +24,7 @@ namespace PickItEasy.Application.Services.Products.Commands.Update
             var product = await _dbContext.Products
                 .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken);
 
-            if (product is null || product.Id != request.Id) 
+            if (product is null || product.Id != request.Id)
                 throw new EntityNotFoundException(nameof(Product), request.Id);
 
             product.Name = request.ProductDto.Name;

@@ -29,6 +29,6 @@
             newQueueNumber.Value = $"{alphabet[newQueueNumber.CharValue]}{newQueueNumber.NumValue:D3}";
 
             return newQueueNumber;
-        }   
+        }
     }
 }

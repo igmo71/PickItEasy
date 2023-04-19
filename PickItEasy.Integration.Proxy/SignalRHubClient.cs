@@ -67,7 +67,7 @@ namespace PickItEasy.Integration.Proxy
         private async Task<string> OnPostWhsOrderOutDto(object?[] input)
         {
             WhsOrderOutDto whsOrderOutDto = input[0] as WhsOrderOutDto ?? throw new ApplicationException("Input is Empty");
-            var result = await _requestHandler.Handle<WhsOrderOutDto>(whsOrderOutDto); 
+            var result = await _requestHandler.Handle<WhsOrderOutDto>(whsOrderOutDto);
             return result;
         }
     }

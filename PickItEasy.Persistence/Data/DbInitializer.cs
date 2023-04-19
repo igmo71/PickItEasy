@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace PickItEasy.Persistence.Data
+﻿namespace PickItEasy.Persistence.Data
 {
     public class DbInitializer
     {

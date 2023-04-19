@@ -40,7 +40,7 @@ namespace PickItEasy.Application.Services.Warehouses.Commands.Create
                 await _dbContext.Warehouses.AddAsync(warehouse, cancellationToken);
                 await _dbContext.SaveChangesAsync(cancellationToken);
             }
-            
+
             return request.WarehouseDto;
         }
     }

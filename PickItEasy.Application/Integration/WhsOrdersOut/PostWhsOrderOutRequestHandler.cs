@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using PickItEasy.Application.Dtos;
-using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Interfaces.Integration;
-using System.Net;
 
 namespace PickItEasy.Application.Integration.WhsOrdersOut
 {

@@ -1,8 +1,3 @@
-using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Extensions.Logging.Configuration;
-using Microsoft.Extensions.Logging.EventLog;
-using PickItEasy.Application.Dtos;
-
 namespace PickItEasy.Integration.Proxy
 {
     public class Program

@@ -23,7 +23,7 @@ namespace PickItEasy.Application.Services.Warehouses.Commands.Update
             var warehouse = await _dbContext.Warehouses
                 .FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken: cancellationToken);
 
-            if (warehouse == null || warehouse.Id != request.Id) 
+            if (warehouse == null || warehouse.Id != request.Id)
                 throw new EntityNotFoundException(nameof(Warehouse), request.Id);
 
             warehouse.Name = request.WarehouseDto.Name;

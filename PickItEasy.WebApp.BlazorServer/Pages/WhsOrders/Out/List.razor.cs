@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Components;
-using PickItEasy.Application.Dtos;
-using PickItEasy.EventBus.RabbitMq;
-using WhsOrderOutStatuses = PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetList;
-using WhsOrderOutQueues = PickItEasy.Application.Services.WhsOrderOutQueues.Queries.GetList;
-using WhsOrdersOut = PickItEasy.Application.Services.WhsOrdersOut.Queries;
-using PickItEasy.Application.Services.WhsOrdersOut.Queries;
 using PickItEasy.Application.Common;
+using PickItEasy.Application.Dtos;
+using PickItEasy.Application.Services.WhsOrdersOut.Queries;
+using PickItEasy.EventBus.RabbitMq;
+using WhsOrderOutQueues = PickItEasy.Application.Services.WhsOrderOutQueues.Queries.GetList;
+using WhsOrderOutStatuses = PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetList;
+using WhsOrdersOut = PickItEasy.Application.Services.WhsOrdersOut.Queries;
 
 namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 {

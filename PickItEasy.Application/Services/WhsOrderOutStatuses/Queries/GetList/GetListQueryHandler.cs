@@ -26,7 +26,7 @@ namespace PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetList
                 .OrderBy(s => s.Value)
                 .ProjectTo<WhsOrderOutStatusVm>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
-            var response = new WhsOrderOutStatusListVm { Statuses = statuses};
+            var response = new WhsOrderOutStatusListVm { Statuses = statuses };
             return response;
         }
     }
