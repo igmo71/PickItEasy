@@ -17,6 +17,8 @@ namespace PickItEasy.Persistence
             {
                 options.UseNpgsql(connectionString);
                 options.EnableSensitiveDataLogging();
+                options.EnableDetailedErrors();
+                options.LogTo(s => System.Diagnostics.Debug.WriteLine(s));
             });
 
             services.AddScoped<IApplicationDbContext>(provider =>

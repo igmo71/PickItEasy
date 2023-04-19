@@ -10,7 +10,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
 
             if (parameters.DocumentId != null)
             {
-                query = query.Where(e => e.Id == parameters.DocumentId);
+                query = query.Where(e => e.Id == parameters.DocumentId || e.WhsOrderOutBaseDocuments.Any(bd => bd.BaseDocumentId == parameters.DocumentId));
                 return query;
             }
 

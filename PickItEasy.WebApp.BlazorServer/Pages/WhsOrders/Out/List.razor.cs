@@ -44,17 +44,17 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             queueListVm = await Mediator.Send(getSQueueListQuery);
         }
 
-        private async Task SearchHandle()
+        private async Task SearchHandle(SearchParameters? searchParameters = null)
         {
-            await GetOrderDictionaryByQueue();
+            await GetOrderDictionaryByQueue(searchParameters);
             //await InvokeAsync(StateHasChanged);
         }
 
-        private async Task GetOrderDictionaryByQueue()
+        private async Task GetOrderDictionaryByQueue(SearchParameters? searchParameters = null)
         {
             var getDictionaryByQueueQuery = new WhsOrdersOut.GetDictionaryByQueue.GetDictionaryByQueueQuery
             {
-                SearchParameters = SearchParameters
+                SearchParameters = searchParameters == null ? SearchParameters : searchParameters
             };
             orderOutDictionaryByQueueVm = await Mediator.Send(getDictionaryByQueueQuery);
         }
@@ -68,8 +68,9 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         private async Task ScannedBarcodeAsync(ChangeEventArgs args)
         {
             barcode = args.Value?.ToString();
-            SearchParameters.DocumentId = BarcodeGuidConvert.FromNumericString(barcode);
-            await SearchHandle();
+            //SearchParameters.DocumentId = BarcodeGuidConvert.FromNumericString(barcode);
+            SearchParameters searchParameters = new() { DocumentId = BarcodeGuidConvert.FromNumericString(barcode) };
+            await SearchHandle(searchParameters);
 
             pageMessage = barcode ?? string.Empty;
 
@@ -81,6 +82,8 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             SearchParameters.DocumentId = null;
             if (IsDocumentSingle())
                 NavigationManager?.NavigateTo($"WhsOrders/Out/Item/{documentId}");
+            else
+                SearchParameters.StatusId = Guid.Empty;
         }
 
         private bool IsDocumentSingle()

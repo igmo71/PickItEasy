@@ -7,6 +7,12 @@
     @*nav-fill*@
     @if (Statuses is not null)
     {
+        <li class="nav-item">
+            <button @onclick="(() => OnClickHandle(Guid.Empty))"
+                    class="btn btn-link nav-link @(SearchParameters.StatusId == Guid.Empty ? "active" : string.Empty)">
+                Все
+            </button>
+        </li>
         @foreach (var status in Statuses)
         {
             string active = status.Id == SearchParameters.StatusId ? "active" : string.Empty;
