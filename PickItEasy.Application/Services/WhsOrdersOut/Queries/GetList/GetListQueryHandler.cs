@@ -1,32 +1,31 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
+﻿using MediatR;
 using PickItEasy.Application.Dtos;
-using PickItEasy.Application.Interfaces;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList
 {
     public class GetListQueryHandler : IRequestHandler<GetListQuery, WhsOrderOutListVm>
     {
-        private readonly IApplicationDbContext _dbContext;
-        private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public GetListQueryHandler(IApplicationDbContext dbContext, IMapper mapper)
+        public GetListQueryHandler(IMediator mediator)
         {
-            _dbContext = dbContext;
-            _mapper = mapper;
+            _mediator = mediator;
         }
 
         public async Task<WhsOrderOutListVm> Handle(GetListQuery request, CancellationToken cancellationToken)
         {
-            var orders = await _dbContext.WhsOrdersOut
-                //.Include(o => o.Status)
-                .AsNoTracking()
-                .Search(request.SearchParameters)
-                .ProjectTo<WhsOrderOutLookupVm>(_mapper.ConfigurationProvider)
-                .ToListAsync(cancellationToken);
-            var response = new WhsOrderOutListVm { Orders = orders };
+            var orderDictionaryVm = await _mediator.Send(new WhsOrdersOut.Queries.GetDictionaryByQueue.GetDictionaryByQueueQuery
+            {
+                SearchParameters = request.SearchParameters
+            });
+
+            var countByStatus = await _mediator.Send(new WhsOrdersOut.Queries.GetCountByStatus.GetCountByStatusQuery
+            {
+                SearchParameters = request.SearchParameters
+            });
+
+            var response = new WhsOrderOutListVm { Orders = orderDictionaryVm.Orders, CountByStatus = countByStatus };
+
             return response;
         }
     }

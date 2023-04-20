@@ -11,9 +11,9 @@
 
 <SearchForm OnSubmit="SearchHandle"></SearchForm>
 
-<NavTabs Statuses="@statusListVm.Statuses" OnClick="NavigationOnClickHandle"></NavTabs>
+<NavTabs Statuses="@statusListVm.Statuses" CountByStatus="@orderListVm.CountByStatus" OnClick="NavigationOnClickHandle"></NavTabs>
 
-@if (orderDictionaryVm.Orders is not null && orderDictionaryVm.Orders.Any())
+@if (orderListVm.Orders is not null && orderListVm.Orders.Any())
 {
-    <CardsByQueue Queues="@queueListVm.Queues" Orders="@orderDictionaryVm.Orders"></CardsByQueue>
+    <CardsByQueue Queues="@queueListVm.Queues" Orders="@orderListVm.Orders"></CardsByQueue>
 }
