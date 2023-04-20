@@ -14,15 +14,20 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList
 
         public async Task<WhsOrderOutListVm> Handle(GetListQuery request, CancellationToken cancellationToken)
         {
-            var orderDictionaryVm = await _mediator.Send(new WhsOrdersOut.Queries.GetDictionaryByQueue.GetDictionaryByQueueQuery
+            var getDictionaryByQueueQuery = new WhsOrdersOut.Queries.GetDictionaryByQueue.GetDictionaryByQueueQuery
             {
                 SearchParameters = request.SearchParameters
-            });
+            };
 
-            var countByStatus = await _mediator.Send(new WhsOrdersOut.Queries.GetCountByStatus.GetCountByStatusQuery
+            var orderDictionaryVm = await _mediator.Send(getDictionaryByQueueQuery, cancellationToken);
+
+
+            var getCountByStatusQuery = new WhsOrdersOut.Queries.GetCountByStatus.GetCountByStatusQuery
             {
                 SearchParameters = request.SearchParameters
-            });
+            };
+
+            var countByStatus = await _mediator.Send(getCountByStatusQuery, cancellationToken);
 
             var response = new WhsOrderOutListVm { Orders = orderDictionaryVm.Orders, CountByStatus = countByStatus };
 

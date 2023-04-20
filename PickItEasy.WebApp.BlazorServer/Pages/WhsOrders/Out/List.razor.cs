@@ -47,11 +47,11 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 
         private async Task SearchHandle()
         {
-            await GetWhsOrderList(/*searchParameters*/);
+            await GetWhsOrderList();
             //await InvokeAsync(StateHasChanged);
         }
 
-        private async Task GetWhsOrderList() // TODO: Rename to GetWhsOrderList
+        private async Task GetWhsOrderList() 
         {
             var getListQuery = new WhsOrdersOut.GetList.GetListQuery
             {
@@ -60,25 +60,21 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             orderListVm = await Mediator.Send(getListQuery);
         }
 
-        //private async Task NavigationOnClickHandle(Guid statusId)
-        //{
-        //    SearchParameters.StatusId = statusId;
-        //    await SearchHandle();
-        //}
-
         private async Task ScannedBarcodeHandle(ChangeEventArgs args)
         {
             barcode = args.Value?.ToString();
             if (barcode is null) return;
             pageMessage = barcode;
 
+            SearchParameters.SearchTerm = null;
+            SearchParameters.StatusId = null;
             SearchParameters.Barcode = barcode;
-
+            StateHasChanged();
             await SearchHandle();
 
             TryOpenItem();
 
-            SearchParameters.Barcode = null;
+            //SearchParameters.Barcode = null;
         }
 
         private void TryOpenItem()

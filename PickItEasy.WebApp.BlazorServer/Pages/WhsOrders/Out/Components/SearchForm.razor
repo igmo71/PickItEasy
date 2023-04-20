@@ -6,11 +6,22 @@
     <div class="row">
         <div class="col">
             <div class="input-group">
-                <InputText class="form-control" type="text" id="searchTerm" placeholder="строка поиска"
-                @bind-Value="@SearchParameters.SearchTerm" />
-                <button class="btn btn-outline-secondary" type="button" @onclick="ClearSearchTerm">
-                    <i class="bi bi-x"></i>
-                </button>
+                @if (SearchParameters.Barcode != null)
+                {
+                    <InputText class="form-control" type="text" id="barcode" placeholder="штрихкод" disabled
+                        @bind-Value="@SearchParameters.Barcode" />
+                    <button class="btn btn-outline-secondary" type="button" @onclick="Clear">
+                        <i class="bi bi-x"></i>
+                    </button>
+                }
+                else
+                {
+                    <InputText class="form-control" type="text" id="searchTerm" placeholder="строка поиска"
+                        @bind-Value="@SearchParameters.SearchTerm" />
+                    <button class="btn btn-outline-secondary" type="button" @onclick="Clear">
+                        <i class="bi bi-x"></i>
+                    </button>
+                }
             </div>
         </div>
         <div class="col">
@@ -27,9 +38,10 @@
         await OnSubmit.InvokeAsync(searchParameters);
     }
 
-    private async Task ClearSearchTerm()
+    private async Task Clear()
     {
         SearchParameters.SearchTerm = null;
+        SearchParameters.Barcode = null;
         await SubmitHandle(SearchParameters);
     }
 }

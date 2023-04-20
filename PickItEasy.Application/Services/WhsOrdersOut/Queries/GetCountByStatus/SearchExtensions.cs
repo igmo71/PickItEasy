@@ -13,13 +13,8 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetCountByStatus
             {
                 var id = BarcodeGuidConvert.FromNumericString(parameters.Barcode);
                 query = query.Where(e => e.Id == id || e.WhsOrderOutBaseDocuments.Any(bd => bd.BaseDocumentId == id));
-                return query;
+                //return query;
             }
-
-            //if (parameters.StatusId != null && parameters.StatusId != Guid.Empty)
-            //{
-            //    query = query.Where(e => e.StatusId == parameters.StatusId);
-            //}
 
             if (!string.IsNullOrWhiteSpace(parameters.SearchTerm))
             {
