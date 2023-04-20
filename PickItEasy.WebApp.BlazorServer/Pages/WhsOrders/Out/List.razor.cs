@@ -23,7 +23,6 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 
         private WhsOrderOutStatusListVm statusListVm = new();
         private WhsOrderOutQueueListVm queueListVm = new();
-        //private WhsOrderOutDictionaryByQueueVm orderDictionaryVm = new();
         private WhsOrderOutListVm orderListVm = new();
 
         protected async override Task OnInitializedAsync()
@@ -48,18 +47,16 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 
         private async Task SearchHandle()
         {
-            await GetWhsOrderDictionaryByQueue(/*searchParameters*/);
+            await GetWhsOrderList(/*searchParameters*/);
             //await InvokeAsync(StateHasChanged);
         }
 
-        private async Task GetWhsOrderDictionaryByQueue() // TODO: Rename to GetWhsOrderList
+        private async Task GetWhsOrderList() // TODO: Rename to GetWhsOrderList
         {
-            //var getDictionaryByQueueQuery = new WhsOrdersOut.GetDictionaryByQueue.GetDictionaryByQueueQuery
             var getListQuery = new WhsOrdersOut.GetList.GetListQuery
             {
                 SearchParameters = SearchParameters
             };
-            //orderListVm = await Mediator.Send(getDictionaryByQueueQuery);
             orderListVm = await Mediator.Send(getListQuery);
         }
 
