@@ -60,11 +60,11 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             orderListVm = await Mediator.Send(getListQuery);
         }
 
-        private async Task NavigationOnClickHandle(Guid statusId)
-        {
-            SearchParameters.StatusId = statusId;
-            await SearchHandle();
-        }
+        //private async Task NavigationOnClickHandle(Guid statusId)
+        //{
+        //    SearchParameters.StatusId = statusId;
+        //    await SearchHandle();
+        //}
 
         private async Task ScannedBarcodeHandle(ChangeEventArgs args)
         {
@@ -72,29 +72,33 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             if (barcode is null) return;
             pageMessage = barcode;
 
-            SearchParameters.DocumentId = BarcodeGuidConvert.FromNumericString(barcode);
+            SearchParameters.Barcode = barcode;
 
             await SearchHandle();
 
-            TryOpenItem(SearchParameters.DocumentId);
+            TryOpenItem();
 
-            SearchParameters.DocumentId = null;
+            SearchParameters.Barcode = null;
         }
 
-        private void TryOpenItem(Guid? documentId)
+        private void TryOpenItem()
         {
-            if (IsDocumentSingle())
-                NavigationManager?.NavigateTo($"WhsOrders/Out/Item/{documentId}");
+            if (IsDocumentSingle(out Guid? id))
+                NavigationManager?.NavigateTo($"WhsOrders/Out/Item/{id}");
             else
                 SearchParameters.StatusId = Guid.Empty;
         }
 
-        private bool IsDocumentSingle()
+        private bool IsDocumentSingle(out Guid? id)
         {
-            return orderListVm.Orders != null
+            var result = orderListVm.Orders != null
                 && orderListVm.Orders.Count == 1
                 && orderListVm.Orders.FirstOrDefault().Value != null
                 && orderListVm.Orders.FirstOrDefault().Value.Count == 1;
+
+            id = orderListVm.Orders?.FirstOrDefault().Value?.FirstOrDefault()?.Id;
+
+            return result;
         }
 
         protected override void OnAfterRender(bool firstRender)

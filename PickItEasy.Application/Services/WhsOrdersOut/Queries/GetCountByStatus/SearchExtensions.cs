@@ -1,4 +1,5 @@
-﻿using PickItEasy.Domain.Entities;
+﻿using PickItEasy.Application.Common;
+using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetCountByStatus
 {
@@ -8,9 +9,10 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetCountByStatus
         {
             query = query.Where(e => e.Active);
 
-            if (parameters.DocumentId != null)
+            if (parameters.Barcode != null)
             {
-                query = query.Where(e => e.Id == parameters.DocumentId || e.WhsOrderOutBaseDocuments.Any(bd => bd.BaseDocumentId == parameters.DocumentId));
+                var id = BarcodeGuidConvert.FromNumericString(parameters.Barcode);
+                query = query.Where(e => e.Id == id || e.WhsOrderOutBaseDocuments.Any(bd => bd.BaseDocumentId == id));
                 return query;
             }
 

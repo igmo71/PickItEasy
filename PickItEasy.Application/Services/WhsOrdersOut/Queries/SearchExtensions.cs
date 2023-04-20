@@ -1,4 +1,6 @@
-﻿using PickItEasy.Domain.Entities;
+﻿using NetBarcode;
+using PickItEasy.Application.Common;
+using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
 {
@@ -8,10 +10,11 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
         {
             query = query.Where(e => e.Active);
 
-            if (parameters.DocumentId != null)
+            if (parameters.Barcode != null)
             {
-                query = query.Where(e => e.Id == parameters.DocumentId || e.WhsOrderOutBaseDocuments.Any(bd => bd.BaseDocumentId == parameters.DocumentId));
-                return query;
+                var id = BarcodeGuidConvert.FromNumericString(parameters.Barcode);
+                query = query.Where(e => e.Id == id || e.WhsOrderOutBaseDocuments.Any(bd => bd.BaseDocumentId == id));
+                //return query;
             }
 
             if (parameters.StatusId != null && parameters.StatusId != Guid.Empty)
