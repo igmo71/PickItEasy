@@ -17,7 +17,9 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetCountByStatus
         {
             var result = await _dbContext.WhsOrdersOut
                 .AsNoTracking()
-                .SearchCountByStatus(request.SearchParameters)
+                .Where(e => e.Active)
+                .SearchByBarcode(request.SearchParameters)
+                .SearchByTerm(request.SearchParameters)
                 .GroupBy(e => e.StatusId)
                 .Select(e => new { Key = e.Key, Value = e.Count() })
                 .ToDictionaryAsync(e => e.Key, e => e.Value);

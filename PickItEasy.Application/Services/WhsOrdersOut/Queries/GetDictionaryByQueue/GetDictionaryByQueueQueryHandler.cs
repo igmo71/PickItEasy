@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetDictionaryByQueue
 {
@@ -22,12 +23,15 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetDictionaryByQu
         {
             var orders = await _dbContext.WhsOrdersOut
                 .AsNoTracking()
-                .Search(request.SearchParameters)
+                .Where(e => e.Active)
+                .SearchByBarcode(request.SearchParameters)
+                .SearchByTerm(request.SearchParameters)
+                .SearchByStatus(request.SearchParameters)
                 .OrderBy(e => e.StatusId)
                     .ThenBy(e => e.QueueId)
-                    .ThenByDescending(e => e.DateTime)
+                    .ThenByDescending(e => e.ShipDateTime)
                 .ProjectTo<WhsOrderOutLookupVm>(_mapper.ConfigurationProvider)
-                .GroupBy(e => e.Queue.Id) // TODO:
+                .GroupBy(e => e.Queue.Id) // TODO: GroupBy if may be null
                 .ToDictionaryAsync(e => e.Key, e => e.ToList(), cancellationToken: cancellationToken);
 
             var response = new WhsOrderOutDictionaryByQueueVm { Orders = orders };

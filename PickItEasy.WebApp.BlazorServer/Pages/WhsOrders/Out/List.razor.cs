@@ -66,10 +66,10 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             if (barcode is null) return;
             pageMessage = barcode;
 
+            SearchParameters.Barcode = barcode;
             SearchParameters.SearchTerm = null;
             SearchParameters.StatusId = null;
-            SearchParameters.Barcode = barcode;
-            StateHasChanged();
+            //StateHasChanged();
             await SearchHandle();
 
             TryOpenItem();

@@ -3,13 +3,13 @@
 
 @inject SearchParameters SearchParameters
 
-<ul class="nav nav-tabs mt-2">
+<ul class="nav nav-tabs mb-2">
     @*nav-fill*@
     @if (Statuses is not null)
     {
         <li class="nav-item">
-            <button @onclick="(() => OnClickHandle(Guid.Empty))"
-                    class="btn btn-link nav-link @(SearchParameters.StatusId == Guid.Empty ? "active" : string.Empty)">
+            <button class="btn btn-link nav-link @(SearchParameters.StatusId == Guid.Empty ? "active" : string.Empty)" 
+                    @onclick="(() => OnClickHandle(Guid.Empty))">
                 <h5>
                     <span>
                         Все
@@ -22,9 +22,9 @@
         </li>
         @foreach (var status in Statuses)
         {
-            string active = status.Id == SearchParameters.StatusId ? "active" : string.Empty;
             <li class="nav-item">
-                <button class="btn btn-link nav-link @active" @onclick="(() => OnClickHandle(status.Id))">
+                <button class="btn btn-link nav-link @(status.Id == SearchParameters.StatusId ? "active" : string.Empty)" 
+                        @onclick="(() => OnClickHandle(status.Id))">
                     <h5>
                         <span>
                             @status.Synonym
@@ -42,11 +42,11 @@
 @code {
     [Parameter] public List<WhsOrderOutStatusVm>? Statuses { get; set; }
     [Parameter] public Dictionary<Guid, int>? CountByStatus { get; set; }
-    [Parameter] public EventCallback<SearchParameters> OnClick { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
 
     private async Task OnClickHandle(Guid statusId)
     {
         SearchParameters.StatusId = statusId;
-        await this.OnClick.InvokeAsync(SearchParameters);
+        await OnClick.InvokeAsync();
     }
 }

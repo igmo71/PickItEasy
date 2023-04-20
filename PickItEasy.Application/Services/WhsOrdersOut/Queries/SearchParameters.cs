@@ -7,6 +7,5 @@
         public Guid? StatusId { get; set; }
         public Guid? WarehouseId { get; set; }
         public Guid? UserId { get; set; }
-        public int Take { get; set; } = 20;
     }
 }

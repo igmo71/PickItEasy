@@ -2,46 +2,57 @@
 
 @inject SearchParameters SearchParameters
 
-<EditForm Model="@SearchParameters" OnSubmit="() => SubmitHandle(SearchParameters)">
-    <div class="row">
-        <div class="col">
-            <div class="input-group">
-                @if (SearchParameters.Barcode != null)
-                {
-                    <InputText class="form-control" type="text" id="barcode" placeholder="штрихкод" disabled
-                        @bind-Value="@SearchParameters.Barcode" />
-                    <button class="btn btn-outline-secondary" type="button" @onclick="Clear">
+<EditForm Model="@SearchParameters" OnSubmit="SubmitHandle" class="mb-2">
+
+    @if (SearchParameters.Barcode != null)
+    {
+        <div class="row">
+            <div class="col">
+                <div class="input-group">
+                    <InputText class="form-control" type="text" id="barcode" @bind-Value="@SearchParameters.Barcode" placeholder="штрихкод" disabled />
+                    <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit">
                         <i class="bi bi-x"></i>
                     </button>
-                }
-                else
-                {
-                    <InputText class="form-control" type="text" id="searchTerm" placeholder="строка поиска"
-                        @bind-Value="@SearchParameters.SearchTerm" />
-                    <button class="btn btn-outline-secondary" type="button" @onclick="Clear">
-                        <i class="bi bi-x"></i>
-                    </button>
-                }
+                </div>
             </div>
         </div>
-        <div class="col">
-            <button class="btn btn-primary" type="submit">Поиск</button>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col">
+                <div class="input-group">
+                    <InputText class="form-control" type="text" id="searchTerm" @bind-Value="@SearchParameters.SearchTerm" placeholder="строка поиска" />
+                    <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit" title="Очистить">
+                        <i class="bi bi-x"></i>
+                    </button>
+                    <button class="btn btn-primary" type="submit" title="Поиск">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-    </div>
+    }
+
 </EditForm>
 
 @code {
-    [Parameter] public EventCallback<SearchParameters> OnSubmit { get; set; }
+    [Parameter] public EventCallback OnSubmit { get; set; }
 
-    private async Task SubmitHandle(SearchParameters searchParameters)
+    private async Task SubmitHandle()
     {
-        await OnSubmit.InvokeAsync(searchParameters);
+        await OnSubmit.InvokeAsync();
     }
 
-    private async Task Clear()
+    private async Task ClearAndSubmit()
+    {
+        ClearSearchParameters();
+        await SubmitHandle();
+    }
+
+    private void ClearSearchParameters()
     {
         SearchParameters.SearchTerm = null;
         SearchParameters.Barcode = null;
-        await SubmitHandle(SearchParameters);
     }
 }
