@@ -21,7 +21,7 @@ namespace PickItEasy.Application.Services.BaseDocuments.Commands.CreateByPack
             foreach (var whsOrderOutBaseDocumentDto in request.WhsOrderOutBaseDocumentDtos)
             {
                 var baseDocumentDto = _mapper.Map<BaseDocumentDto>(whsOrderOutBaseDocumentDto);
-                _ = await _mediator.Send(new CreateCommand { BaseDocumentDto = baseDocumentDto });
+                _ = await _mediator.Send(new CreateCommand { BaseDocumentDto = baseDocumentDto }, cancellationToken);
             }
 
             return;

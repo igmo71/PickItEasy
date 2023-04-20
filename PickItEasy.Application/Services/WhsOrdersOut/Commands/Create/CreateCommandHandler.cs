@@ -39,7 +39,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
                 await _mediator.Send(new DeleteCommand { Id = whsOrder.Id }, cancellationToken);
             }
             await _dbContext.WhsOrdersOut.AddAsync(whsOrder, cancellationToken);
-            await _dbContext.SaveChangesAsync(CancellationToken.None);
+            await _dbContext.SaveChangesAsync(cancellationToken);
 
             return request.WhsOrderOutDto;
         }

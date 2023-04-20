@@ -17,11 +17,11 @@ namespace PickItEasy.Application.Services.WhsOrderOutQueues.Queries.GetIdByValue
 
         public async Task<Guid> Handle(GetIdByValueQuery request, CancellationToken cancellationToken)
         {
-            var quue = await _dbContext.WhsOrderOutQueues
+            var queue = await _dbContext.WhsOrderOutQueues
                 .AsNoTracking()
-                .FirstOrDefaultAsync(e => e.Value == request.Value)
+                .FirstOrDefaultAsync(e => e.Value == request.Value, cancellationToken)
                 ?? throw new EntityNotFoundException(nameof(WhsOrderOutQueue), request.Value.ToString());
-            return quue.Id;
+            return queue.Id;
         }
     }
 }

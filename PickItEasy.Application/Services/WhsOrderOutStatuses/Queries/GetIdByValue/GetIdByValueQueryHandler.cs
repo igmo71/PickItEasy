@@ -19,7 +19,7 @@ namespace PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetIdByVal
         {
             var status = await _dbContext.WhsOrderOutStatuses
                 .AsNoTracking()
-                .FirstOrDefaultAsync(e => e.Value == request.Value)
+                .FirstOrDefaultAsync(e => e.Value == request.Value, cancellationToken)
                 ?? throw new EntityNotFoundException(nameof(WhsOrderOutStatus), request.Value.ToString());
             return status.Id;
         }

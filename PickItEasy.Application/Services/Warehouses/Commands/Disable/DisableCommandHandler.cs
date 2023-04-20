@@ -17,7 +17,7 @@ namespace PickItEasy.Application.Services.Warehouses.Commands.Disable
 
         public async Task Handle(DisableCommand request, CancellationToken cancellationToken)
         {
-            var warehouse = await _dbContext.Warehouses.FirstOrDefaultAsync(e => e.Id == request.Id)
+            var warehouse = await _dbContext.Warehouses.FirstOrDefaultAsync(e => e.Id == request.Id, cancellationToken)
                 ?? throw new EntityNotFoundException(nameof(Product), request.Id);
 
             warehouse.Active = false;

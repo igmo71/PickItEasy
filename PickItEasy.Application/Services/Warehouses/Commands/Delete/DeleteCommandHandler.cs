@@ -17,7 +17,7 @@ namespace PickItEasy.Application.Services.Warehouses.Commands.Delete
 
         public async Task Handle(DeleteCommand request, CancellationToken cancellationToken)
         {
-            var warehouse = await _dbContext.Warehouses.FirstOrDefaultAsync(e => e.Id == request.WarehouseDto.Id)
+            var warehouse = await _dbContext.Warehouses.FirstOrDefaultAsync(e => e.Id == request.WarehouseDto.Id, cancellationToken)
                 ?? throw new EntityNotFoundException(nameof(Product), request.WarehouseDto.Id);
 
             _dbContext.Warehouses.Remove(warehouse);
