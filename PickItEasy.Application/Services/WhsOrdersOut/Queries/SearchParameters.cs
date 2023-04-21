@@ -2,7 +2,7 @@
 {
     public class SearchParameters
     {
-        public string? Barcode { get; set; }
+        public bool IsBarcode { get; set; }
         public string? SearchTerm { get; set; }
         public Guid? StatusId { get; set; }
         public Guid? WarehouseId { get; set; }

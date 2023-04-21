@@ -3,43 +3,26 @@
 @inject SearchParametersState SearchParametersState
 
 <EditForm Model="@SearchParametersState" OnSubmit="SubmitHandle" class="mb-2">
-
-    @if (SearchParametersState.Barcode != null)
-    {
-        <div class="row">
-            <div class="col">
-                <div class="input-group">
-                    <InputText class="form-control" type="text" id="barcodeInput" @bind-Value="@SearchParametersState.Barcode" placeholder="штрихкод" disabled />
-                    <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit">
-                        <i class="bi bi-x"></i>
-                    </button>
-                </div>
+    <div class="row">
+        <div class="col">
+            <div class="input-group">
+                <InputText class="form-control" type="text" id="searchTermInput" @bind-Value="@SearchParametersState.SearchTerm" placeholder="строка поиска" />
+                <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit" title="Очистить">
+                    <i class="bi bi-x"></i>
+                </button>
+                <button class="btn btn-primary" type="submit" title="Поиск">
+                    <i class="bi bi-search"></i>
+                </button>
             </div>
         </div>
-    }
-    else
-    {
-        <div class="row">
-            <div class="col">
-                <div class="input-group">
-                    <InputText class="form-control" type="text" id="searchTermInput" @bind-Value="@SearchParametersState.SearchTerm" placeholder="строка поиска" />
-                    <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit" title="Очистить">
-                        <i class="bi bi-x"></i>
-                    </button>
-                    <button class="btn btn-primary" type="submit" title="Поиск">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    }
+    </div>
 
 </EditForm>
 
 @code {
     [Parameter] public EventCallback OnSubmit { get; set; }
 
-        private async Task SubmitHandle()
+    private async Task SubmitHandle()
     {
         await OnSubmit.InvokeAsync();
     }
@@ -53,6 +36,6 @@
     private void ClearSearchParameters()
     {
         SearchParametersState.SearchTerm = null;
-        SearchParametersState.Barcode = null;
+        SearchParametersState.IsBarcode = false;
     }
 }

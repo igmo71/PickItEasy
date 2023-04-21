@@ -4,7 +4,6 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetDictionaryByQueue
 {
@@ -24,7 +23,6 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetDictionaryByQu
             var orders = await _dbContext.WhsOrdersOut
                 .AsNoTracking()
                 .Where(e => e.Active)
-                .SearchByBarcode(request.SearchParameters)
                 .SearchByTerm(request.SearchParameters)
                 .SearchByStatus(request.SearchParameters)
                 .OrderBy(e => e.StatusId)

@@ -54,7 +54,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         {
             searchParameters = new()
             {
-                Barcode = SearchParametersState.Barcode,
+                IsBarcode = SearchParametersState.IsBarcode,
                 SearchTerm = SearchParametersState.SearchTerm,
                 StatusId = SearchParametersState.StatusId,
                 WarehouseId = SearchParametersState.WarehouseId,
@@ -74,8 +74,8 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             if (barcode is null) return;
             pageMessage = barcode;
 
-            SearchParametersState.Barcode = barcode;
-            SearchParametersState.SearchTerm = null;
+            SearchParametersState.IsBarcode = true;
+            SearchParametersState.SearchTerm = barcode;
             SearchParametersState.StatusId = null;
             StateHasChanged();
 
