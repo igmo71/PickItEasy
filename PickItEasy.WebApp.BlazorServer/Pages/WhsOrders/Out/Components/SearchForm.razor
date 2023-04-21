@@ -1,12 +1,12 @@
 ﻿@using PickItEasy.Application.Services.WhsOrdersOut.Queries
 
-@inject SearchParametersState SearchParametersState
+@inject ISearchState SearchState
 
-<EditForm Model="@SearchParametersState" OnSubmit="SubmitHandle" class="mb-2">
+<EditForm Model="@SearchState" OnSubmit="SubmitHandle" class="mb-2">
     <div class="row">
         <div class="col">
-            <div class="input-group">
-                <InputText class="form-control" type="text" id="searchTermInput" @bind-Value="@SearchParametersState.SearchTerm" placeholder="строка поиска" />
+            <div class="input-group">                
+                <InputText class="form-control" type="text" id="searchTermInput" @bind-Value="@SearchState.Parameters.SearchTerm" placeholder="строка поиска" />
                 <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit" title="Очистить">
                     <i class="bi bi-x"></i>
                 </button>
@@ -35,7 +35,7 @@
 
     private void ClearSearchParameters()
     {
-        SearchParametersState.SearchTerm = null;
-        SearchParametersState.IsBarcode = false;
+        SearchState.Parameters.SearchTerm = null;
+        SearchState.Parameters.IsBarcode = false;
     }
 }

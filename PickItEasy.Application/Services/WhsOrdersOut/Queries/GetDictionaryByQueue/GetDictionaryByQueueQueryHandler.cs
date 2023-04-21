@@ -30,7 +30,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetDictionaryByQu
                     .ThenByDescending(e => e.ShipDateTime)
                 .ProjectTo<WhsOrderOutLookupVm>(_mapper.ConfigurationProvider)
                 .GroupBy(e => e.Queue.Id) // TODO: GroupBy if may be null
-                .ToDictionaryAsync(e => e.Key, e => e.ToList(), cancellationToken: cancellationToken);
+                .ToDictionaryAsync(e => e.Key, e => e.ToList(), cancellationToken);
 
             var response = new WhsOrderOutDictionaryByQueueVm { Orders = orders };
             return response;

@@ -31,7 +31,7 @@ namespace PickItEasy.Application
 
             //services.AddTransient(typeof(INotificationHandler<>), typeof(WeatherForecastCreateNotificationHandler));
 
-            services.AddScoped<PickItEasy.Application.Services.WhsOrdersOut.Queries.SearchParametersState>();
+            services.AddScoped<ISearchState, SearchState>();
 
             return services;
         }

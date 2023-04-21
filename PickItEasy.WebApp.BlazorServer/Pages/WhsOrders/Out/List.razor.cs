@@ -12,7 +12,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
     public partial class List : IDisposable
     {
         [Inject] public required IMediator Mediator { get; set; }
-        [Inject] public required SearchParametersState SearchParametersState { get; set; }
+        [Inject] public required ISearchState SearchState { get; set; }
         [Inject] public required NavigationManager NavigationManager { get; set; }
 
         private string? barcode;
@@ -22,7 +22,6 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         private WhsOrderOutStatusListVm statusListVm = new();
         private WhsOrderOutQueueListVm queueListVm = new();
         private WhsOrderOutListVm orderListVm = new();
-        private SearchParameters searchParameters = new();
 
         protected async override Task OnInitializedAsync()
         {
@@ -34,8 +33,8 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         {
             var getStatusListQuery = new WhsOrderOutStatuses.GetListQuery();
             statusListVm = await Mediator.Send(getStatusListQuery);
-            if (SearchParametersState.StatusId is null)
-                SearchParametersState.StatusId = statusListVm.Statuses?.FirstOrDefault()?.Id;
+            if (SearchState.Parameters.StatusId is null)
+                SearchState.Parameters.StatusId = statusListVm.Statuses?.FirstOrDefault()?.Id;
         }
 
         private async Task GetQueueList()
@@ -51,19 +50,11 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         }
 
         private async Task GetWhsOrderList()
-        {
-            searchParameters = new()
-            {
-                IsBarcode = SearchParametersState.IsBarcode,
-                SearchTerm = SearchParametersState.SearchTerm,
-                StatusId = SearchParametersState.StatusId,
-                WarehouseId = SearchParametersState.WarehouseId,
-                UserId = SearchParametersState.UserId
-            };
+        {           
 
             var getListQuery = new WhsOrdersOut.GetList.GetListQuery
             {
-                SearchParameters = searchParameters // TODO: !!!
+                SearchParameters = SearchState.Parameters // TODO: !!!
             };
             orderListVm = await Mediator.Send(getListQuery);
         }
@@ -74,9 +65,9 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             if (barcode is null) return;
             pageMessage = barcode;
 
-            SearchParametersState.IsBarcode = true;
-            SearchParametersState.SearchTerm = barcode;
-            SearchParametersState.StatusId = null;
+            SearchState.Parameters.IsBarcode = true;
+            SearchState.Parameters.SearchTerm = barcode;
+            SearchState.Parameters.StatusId = null;
             StateHasChanged();
 
             await SearchHandle();
@@ -91,7 +82,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             if (IsDocumentSingle(out Guid? id))
                 NavigationManager?.NavigateTo($"WhsOrders/Out/Item/{id}");
             else
-                SearchParametersState.StatusId = Guid.Empty;
+                SearchState.Parameters.StatusId = Guid.Empty;
         }
 
         private bool IsDocumentSingle(out Guid? id)
@@ -118,7 +109,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         {
             pageMessage = $"{sender}: {message}";
 
-            if (SearchParametersState.StatusId == Guid.Empty) return;
+            if (SearchState.Parameters.StatusId == Guid.Empty) return;
 
             await SearchHandle();
             await InvokeAsync(StateHasChanged);

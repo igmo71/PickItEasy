@@ -21,7 +21,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetCountByStatus
                 .SearchByTerm(request.SearchParameters)
                 .GroupBy(e => e.StatusId)
                 .Select(e => new { Key = e.Key, Value = e.Count() })
-                .ToDictionaryAsync(e => e.Key, e => e.Value);
+                .ToDictionaryAsync(e => e.Key, e => e.Value, cancellationToken);
 
             return result;
         }
