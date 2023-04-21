@@ -2,10 +2,60 @@
 {
     public class SearchParameters
     {
-        public bool IsBarcode { get; set; }
-        public string? SearchTerm { get; set; }
-        public Guid? StatusId { get; set; }
-        public Guid? WarehouseId { get; set; }
-        public Guid? UserId { get; set; }
+        private bool isBarcode;
+        private string? searchTerm;
+        private Guid? statusId;
+        private Guid? warehouseId;
+        private Guid? userId;
+
+        public bool IsBarcode
+        {
+            get => isBarcode;
+            set
+            {
+                isBarcode = value;
+                NotifyStateChanged();
+            }
+        }
+
+        public string? SearchTerm
+        {
+            get => searchTerm;
+            set
+            {
+                searchTerm = value;
+                NotifyStateChanged();
+            }
+        }
+        public Guid? StatusId
+        {
+            get => statusId;
+            set
+            {
+                statusId = value;
+                NotifyStateChanged();
+            }
+        }
+        public Guid? WarehouseId
+        {
+            get => warehouseId;
+            set
+            {
+                warehouseId = value;
+                NotifyStateChanged();
+            }
+        }
+        public Guid? UserId
+        {
+            get => userId;
+            set
+            {
+                userId = value;
+                NotifyStateChanged();
+            }
+        }
+
+        public event Action? OnChange;
+        private void NotifyStateChanged() => OnChange?.Invoke();
     }
 }

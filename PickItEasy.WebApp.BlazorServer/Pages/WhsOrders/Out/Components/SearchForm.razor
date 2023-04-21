@@ -1,12 +1,14 @@
 ﻿@using PickItEasy.Application.Services.WhsOrdersOut.Queries
 
-@inject ISearchState SearchState
+@implements IDisposable
 
-<EditForm Model="@SearchState" OnSubmit="SubmitHandle" class="mb-2">
+@inject SearchParameters SearchParameters
+
+<EditForm Model="@SearchParameters" OnSubmit="SubmitHandle" class="mb-2">
     <div class="row">
         <div class="col">
             <div class="input-group">                
-                <InputText class="form-control" type="text" id="searchTermInput" @bind-Value="@SearchState.Parameters.SearchTerm" placeholder="строка поиска" />
+                <InputText class="form-control" type="text" id="searchTermInput" @bind-Value="@SearchParameters.SearchTerm" placeholder="строка поиска" />
                 <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit" title="Очистить">
                     <i class="bi bi-x"></i>
                 </button>
@@ -16,11 +18,22 @@
             </div>
         </div>
     </div>
-
 </EditForm>
 
 @code {
     [Parameter] public EventCallback OnSubmit { get; set; }
+
+    protected override void OnInitialized()
+    {
+        SearchParameters.OnChange += OnChange;
+    }
+
+    private void OnChange()
+    {
+        var term = SearchParameters.SearchTerm;
+        StateHasChanged();
+        term = SearchParameters.SearchTerm;
+    }
 
     private async Task SubmitHandle()
     {
@@ -35,7 +48,12 @@
 
     private void ClearSearchParameters()
     {
-        SearchState.Parameters.SearchTerm = null;
-        SearchState.Parameters.IsBarcode = false;
+        SearchParameters.SearchTerm = null;
+        SearchParameters.IsBarcode = false;
+    }
+
+    public void Dispose()
+    {
+        SearchParameters.OnChange -= OnChange;
     }
 }

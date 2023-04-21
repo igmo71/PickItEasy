@@ -1,14 +1,16 @@
 ﻿@using PickItEasy.Application.Dtos;
 @using PickItEasy.Application.Services.WhsOrdersOut.Queries;
 
-@inject ISearchState SearchState
+@implements IDisposable
+
+@inject SearchParameters SearchParameters
 
 <ul class="nav nav-tabs mb-2">
     @*nav-fill*@
     @if (Statuses is not null)
     {
         <li class="nav-item">
-            <button class="btn btn-link nav-link @(SearchState.Parameters.StatusId == Guid.Empty ? "active" : string.Empty)"
+            <button class="btn btn-link nav-link @(SearchParameters.StatusId == Guid.Empty ? "active" : string.Empty)"
             @onclick="(() => OnClickHandle(Guid.Empty))">
                 <h5>
                     <span>
@@ -23,7 +25,7 @@
         @foreach (var status in Statuses)
         {
             <li class="nav-item">
-                <button class="btn btn-link nav-link @(status.Id == SearchState.Parameters.StatusId ? "active" : string.Empty)"
+                <button class="btn btn-link nav-link @(status.Id == SearchParameters.StatusId ? "active" : string.Empty)"
                 @onclick="(() => OnClickHandle(status.Id))">
                     <h5>
                         <span>
@@ -44,9 +46,26 @@
     [Parameter] public Dictionary<Guid, int>? CountByStatus { get; set; }
     [Parameter] public EventCallback OnClick { get; set; }
 
+    protected override void OnInitialized()
+    {
+        SearchParameters.OnChange += OnChange;
+    }
+
+    private void OnChange()
+    {
+        var term = SearchParameters.SearchTerm;
+        StateHasChanged();
+        term = SearchParameters.SearchTerm;
+    }
+
     private async Task OnClickHandle(Guid statusId)
     {
-        SearchState.Parameters.StatusId = statusId;
+        SearchParameters.StatusId = statusId;
         await OnClick.InvokeAsync();
+    }
+
+    public void Dispose()
+    {
+        SearchParameters.OnChange -= OnChange;
     }
 }
