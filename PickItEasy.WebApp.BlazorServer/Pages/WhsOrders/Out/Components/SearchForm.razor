@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col">
                 <div class="input-group">
-                    <InputText @ref="searchTermInput" class="form-control" type="text" id="searchTermInput" @bind-Value="@SearchParametersState.SearchTerm" placeholder="строка поиска" />
+                    <InputText class="form-control" type="text" id="searchTermInput" @bind-Value="@SearchParametersState.SearchTerm" placeholder="строка поиска" />
                     <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit" title="Очистить">
                         <i class="bi bi-x"></i>
                     </button>
@@ -39,15 +39,7 @@
 @code {
     [Parameter] public EventCallback OnSubmit { get; set; }
 
-    private InputText? searchTermInput;
-
-    protected override void OnInitialized()
-    {
-        if (SearchParametersState.Barcode != null && searchTermInput != null)
-            searchTermInput.Value = null;
-    }
-
-    private async Task SubmitHandle()
+        private async Task SubmitHandle()
     {
         await OnSubmit.InvokeAsync();
     }
