@@ -1,9 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Components;
-using PickItEasy.Application.Common;
 using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries;
-using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetDictionaryByQueue;
 using PickItEasy.EventBus.RabbitMq;
 using WhsOrderOutQueues = PickItEasy.Application.Services.WhsOrderOutQueues.Queries.GetList;
 using WhsOrderOutStatuses = PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetList;
@@ -14,7 +12,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
     public partial class List : IDisposable
     {
         [Inject] public required IMediator Mediator { get; set; }
-        [Inject] public required SearchParameters SearchParameters { get; set; }
+        [Inject] public required SearchParametersState SearchParametersState { get; set; }
         [Inject] public required NavigationManager NavigationManager { get; set; }
 
         private string? barcode;
@@ -24,6 +22,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         private WhsOrderOutStatusListVm statusListVm = new();
         private WhsOrderOutQueueListVm queueListVm = new();
         private WhsOrderOutListVm orderListVm = new();
+        private SearchParameters searchParameters = new();
 
         protected async override Task OnInitializedAsync()
         {
@@ -35,8 +34,8 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         {
             var getStatusListQuery = new WhsOrderOutStatuses.GetListQuery();
             statusListVm = await Mediator.Send(getStatusListQuery);
-            if (SearchParameters.StatusId is null)
-                SearchParameters.StatusId = statusListVm.Statuses?.FirstOrDefault()?.Id;
+            if (SearchParametersState.StatusId is null)
+                SearchParametersState.StatusId = statusListVm.Statuses?.FirstOrDefault()?.Id;
         }
 
         private async Task GetQueueList()
@@ -51,11 +50,20 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             //await InvokeAsync(StateHasChanged);
         }
 
-        private async Task GetWhsOrderList() 
+        private async Task GetWhsOrderList()
         {
+            searchParameters = new()
+            {
+                Barcode = SearchParametersState.Barcode,
+                SearchTerm = SearchParametersState.SearchTerm,
+                StatusId = SearchParametersState.StatusId,
+                WarehouseId = SearchParametersState.WarehouseId,
+                UserId = SearchParametersState.UserId
+            };
+
             var getListQuery = new WhsOrdersOut.GetList.GetListQuery
             {
-                SearchParameters = SearchParameters
+                SearchParameters = searchParameters // TODO: !!!
             };
             orderListVm = await Mediator.Send(getListQuery);
         }
@@ -66,10 +74,11 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             if (barcode is null) return;
             pageMessage = barcode;
 
-            SearchParameters.Barcode = barcode;
-            SearchParameters.SearchTerm = null;
-            SearchParameters.StatusId = null;
-            //StateHasChanged();
+            SearchParametersState.Barcode = barcode;
+            SearchParametersState.SearchTerm = null;
+            SearchParametersState.StatusId = null;
+            StateHasChanged();
+
             await SearchHandle();
 
             TryOpenItem();
@@ -82,7 +91,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             if (IsDocumentSingle(out Guid? id))
                 NavigationManager?.NavigateTo($"WhsOrders/Out/Item/{id}");
             else
-                SearchParameters.StatusId = Guid.Empty;
+                SearchParametersState.StatusId = Guid.Empty;
         }
 
         private bool IsDocumentSingle(out Guid? id)
@@ -109,7 +118,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         {
             pageMessage = $"{sender}: {message}";
 
-            if (SearchParameters.StatusId == Guid.Empty) return;
+            if (SearchParametersState.StatusId == Guid.Empty) return;
 
             await SearchHandle();
             await InvokeAsync(StateHasChanged);

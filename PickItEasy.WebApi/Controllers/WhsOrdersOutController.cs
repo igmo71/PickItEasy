@@ -32,6 +32,7 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
+
         public async Task<IActionResult> Get([FromQuery] SearchParameters searchParameters)
         {
             var getListWhsOrderOutQuery = new GetListQuery { SearchParameters = searchParameters };

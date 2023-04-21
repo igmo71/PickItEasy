@@ -1,15 +1,15 @@
 ﻿@using PickItEasy.Application.Services.WhsOrdersOut.Queries
 
-@inject SearchParameters SearchParameters
+@inject SearchParametersState SearchParametersState
 
-<EditForm Model="@SearchParameters" OnSubmit="SubmitHandle" class="mb-2">
+<EditForm Model="@SearchParametersState" OnSubmit="SubmitHandle" class="mb-2">
 
-    @if (SearchParameters.Barcode != null)
+    @if (SearchParametersState.Barcode != null)
     {
         <div class="row">
             <div class="col">
                 <div class="input-group">
-                    <InputText class="form-control" type="text" id="barcode" @bind-Value="@SearchParameters.Barcode" placeholder="штрихкод" disabled />
+                    <InputText class="form-control" type="text" id="barcodeInput" @bind-Value="@SearchParametersState.Barcode" placeholder="штрихкод" disabled />
                     <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit">
                         <i class="bi bi-x"></i>
                     </button>
@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col">
                 <div class="input-group">
-                    <InputText class="form-control" type="text" id="searchTerm" @bind-Value="@SearchParameters.SearchTerm" placeholder="строка поиска" />
+                    <InputText @ref="searchTermInput" class="form-control" type="text" id="searchTermInput" @bind-Value="@SearchParametersState.SearchTerm" placeholder="строка поиска" />
                     <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit" title="Очистить">
                         <i class="bi bi-x"></i>
                     </button>
@@ -39,6 +39,14 @@
 @code {
     [Parameter] public EventCallback OnSubmit { get; set; }
 
+    private InputText? searchTermInput;
+
+    protected override void OnInitialized()
+    {
+        if (SearchParametersState.Barcode != null && searchTermInput != null)
+            searchTermInput.Value = null;
+    }
+
     private async Task SubmitHandle()
     {
         await OnSubmit.InvokeAsync();
@@ -52,7 +60,7 @@
 
     private void ClearSearchParameters()
     {
-        SearchParameters.SearchTerm = null;
-        SearchParameters.Barcode = null;
+        SearchParametersState.SearchTerm = null;
+        SearchParametersState.Barcode = null;
     }
 }

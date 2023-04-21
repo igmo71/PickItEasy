@@ -1,15 +1,15 @@
 ﻿@using PickItEasy.Application.Dtos;
 @using PickItEasy.Application.Services.WhsOrdersOut.Queries;
 
-@inject SearchParameters SearchParameters
+@inject SearchParametersState SearchParametersState
 
 <ul class="nav nav-tabs mb-2">
     @*nav-fill*@
     @if (Statuses is not null)
     {
         <li class="nav-item">
-            <button class="btn btn-link nav-link @(SearchParameters.StatusId == Guid.Empty ? "active" : string.Empty)" 
-                    @onclick="(() => OnClickHandle(Guid.Empty))">
+            <button class="btn btn-link nav-link @(SearchParametersState.StatusId == Guid.Empty ? "active" : string.Empty)"
+            @onclick="(() => OnClickHandle(Guid.Empty))">
                 <h5>
                     <span>
                         Все
@@ -23,8 +23,8 @@
         @foreach (var status in Statuses)
         {
             <li class="nav-item">
-                <button class="btn btn-link nav-link @(status.Id == SearchParameters.StatusId ? "active" : string.Empty)" 
-                        @onclick="(() => OnClickHandle(status.Id))">
+                <button class="btn btn-link nav-link @(status.Id == SearchParametersState.StatusId ? "active" : string.Empty)"
+                @onclick="(() => OnClickHandle(status.Id))">
                     <h5>
                         <span>
                             @status.Synonym
@@ -46,7 +46,7 @@
 
     private async Task OnClickHandle(Guid statusId)
     {
-        SearchParameters.StatusId = statusId;
+        SearchParametersState.StatusId = statusId;
         await OnClick.InvokeAsync();
     }
 }
