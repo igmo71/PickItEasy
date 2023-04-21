@@ -5,19 +5,35 @@
 @inject SearchParameters SearchParameters
 
 <EditForm Model="@SearchParameters" OnSubmit="SubmitHandle" class="mb-2">
-    <div class="row">
-        <div class="col">
-            <div class="input-group">                
-                <InputText class="form-control" type="text" id="searchTermInput" @bind-Value="@SearchParameters.SearchTerm" placeholder="строка поиска" />
-                <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit" title="Очистить">
-                    <i class="bi bi-x"></i>
-                </button>
-                <button class="btn btn-primary" type="submit" title="Поиск">
-                    <i class="bi bi-search"></i>
-                </button>
+    @if (SearchParameters.IsBarcode)
+    {
+        <div class="row">
+            <div class="col">
+                <div class="input-group">
+                    <InputText class="form-control" @bind-Value="@SearchParameters.SearchBarcode" placeholder="строка поиска" disabled />
+                    <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit" title="Очистить">
+                        <i class="bi bi-x"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col">
+                <div class="input-group">
+                    <InputText class="form-control" type="text" @bind-Value="@SearchParameters.SearchTerm" placeholder="строка поиска" />
+                    <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit" title="Очистить">
+                        <i class="bi bi-x"></i>
+                    </button>
+                    <button class="btn btn-primary" type="button" @onclick="SubmitHandle" title="Поиск">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
 </EditForm>
 
 @code {
@@ -25,14 +41,7 @@
 
     protected override void OnInitialized()
     {
-        SearchParameters.OnChange += OnChange;
-    }
-
-    private void OnChange()
-    {
-        var term = SearchParameters.SearchTerm;
-        StateHasChanged();
-        term = SearchParameters.SearchTerm;
+        SearchParameters.OnChange += StateHasChanged;
     }
 
     private async Task SubmitHandle()
@@ -42,18 +51,12 @@
 
     private async Task ClearAndSubmit()
     {
-        ClearSearchParameters();
+        SearchParameters.ClearSearchByTermAndBarcode();
         await SubmitHandle();
-    }
-
-    private void ClearSearchParameters()
-    {
-        SearchParameters.SearchTerm = null;
-        SearchParameters.IsBarcode = false;
     }
 
     public void Dispose()
     {
-        SearchParameters.OnChange -= OnChange;
+        SearchParameters.OnChange -= StateHasChanged;
     }
 }

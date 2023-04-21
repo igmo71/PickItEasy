@@ -11,7 +11,7 @@
     {
         <li class="nav-item">
             <button class="btn btn-link nav-link @(SearchParameters.StatusId == Guid.Empty ? "active" : string.Empty)"
-            @onclick="(() => OnClickHandle(Guid.Empty))">
+            @onclick="(() => OnClickHandle(Guid.Empty))" id="@Guid.Empty">
                 <h5>
                     <span>
                         Все
@@ -26,7 +26,7 @@
         {
             <li class="nav-item">
                 <button class="btn btn-link nav-link @(status.Id == SearchParameters.StatusId ? "active" : string.Empty)"
-                @onclick="(() => OnClickHandle(status.Id))">
+                @onclick="(() => OnClickHandle(status.Id))" id="@status.Id">
                     <h5>
                         <span>
                             @status.Synonym
@@ -48,24 +48,19 @@
 
     protected override void OnInitialized()
     {
-        SearchParameters.OnChange += OnChange;
-    }
-
-    private void OnChange()
-    {
-        var term = SearchParameters.SearchTerm;
-        StateHasChanged();
-        term = SearchParameters.SearchTerm;
+        SearchParameters.OnChange += StateHasChanged;
     }
 
     private async Task OnClickHandle(Guid statusId)
     {
-        SearchParameters.StatusId = statusId;
+        SearchParameters.SetSearchByStatus(statusId);
+
         await OnClick.InvokeAsync();
     }
 
     public void Dispose()
     {
-        SearchParameters.OnChange -= OnChange;
+        SearchParameters.OnChange -= StateHasChanged;
     }
 }
+

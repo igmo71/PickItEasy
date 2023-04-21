@@ -50,11 +50,11 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         }
 
         private async Task GetWhsOrderList()
-        {           
+        {
 
             var getListQuery = new WhsOrdersOut.GetList.GetListQuery
             {
-                SearchParameters = SearchParameters // TODO: !!!
+                SearchParameters = SearchParameters
             };
             orderListVm = await Mediator.Send(getListQuery);
         }
@@ -63,24 +63,21 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         {
             barcode = args.Value?.ToString();
             if (barcode is null) return;
-            pageMessage = barcode;
+            pageMessage = barcode;            
 
-            SearchParameters.IsBarcode = true;
-            SearchParameters.SearchTerm = barcode;
-            SearchParameters.StatusId = null;
-            StateHasChanged();
+            SearchParameters.SetSearchByBarcode(barcode);
 
             await SearchHandle();
 
             TryOpenItem();
-
-            //SearchParameters.Barcode = null;
         }
 
         private void TryOpenItem()
         {
-            if (IsDocumentSingle(out Guid? id))
+            if (IsDocumentSingle(out Guid? id)) { 
+                SearchParameters.ClearSearchByBarcode();
                 NavigationManager?.NavigateTo($"WhsOrders/Out/Item/{id}");
+            }
             else
                 SearchParameters.StatusId = Guid.Empty;
         }

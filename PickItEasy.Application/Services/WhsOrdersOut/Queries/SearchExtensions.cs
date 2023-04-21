@@ -7,14 +7,14 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
     {
         public static IQueryable<WhsOrderOut> SearchByTerm(this IQueryable<WhsOrderOut> query, SearchParameters parameters)
         {
-            if (!string.IsNullOrWhiteSpace(parameters.SearchTerm))
+            if (parameters.IsBarcode && !string.IsNullOrEmpty(parameters.SearchBarcode))
             {
-                if (parameters.IsBarcode)
-                {
-                    var id = BarcodeGuidConvert.FromNumericString(parameters.SearchTerm);
-                    query = query.Where(e => e.Id == id || e.WhsOrderOutBaseDocuments.Any(bd => bd.BaseDocumentId == id));
-                }
-                else
+                var id = BarcodeGuidConvert.FromNumericString(parameters.SearchBarcode);
+                query = query.Where(e => e.Id == id || e.WhsOrderOutBaseDocuments.Any(bd => bd.BaseDocumentId == id));
+            }
+
+            if (!parameters.IsBarcode && !string.IsNullOrWhiteSpace(parameters.SearchTerm))
+            {
                 {
                     query = query.Where(e => e.Name.ToLower().Contains(parameters.SearchTerm.Trim().ToLower()));
                 }
@@ -25,7 +25,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
 
         public static IQueryable<WhsOrderOut> SearchByStatus(this IQueryable<WhsOrderOut> query, SearchParameters parameters)
         {
-            if (parameters.StatusId != null && parameters.StatusId != Guid.Empty)
+            if (parameters.IsStatus && parameters.StatusId != null && parameters.StatusId != Guid.Empty)
             {
                 query = query.Where(e => e.StatusId == parameters.StatusId);
             }
