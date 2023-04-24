@@ -7,6 +7,7 @@ using PickItEasy.Integration.Connectors.Ut1c;
 using PickItEasy.Persistence;
 using PickItEasy.WebApi.Middleware;
 using Serilog;
+using Microsoft.AspNetCore.HttpLogging;
 
 namespace PickItEasy.WebApi
 {
@@ -21,6 +22,9 @@ namespace PickItEasy.WebApi
                 .WriteTo.Console());
 
             // Add services to the container.
+
+            builder.Services.AddHttpLogging(options =>
+                options.LoggingFields = options.LoggingFields | HttpLoggingFields.RequestBody | HttpLoggingFields.ResponseBody);
 
             builder.Services.AddApplication();
             builder.Services.AddPersistence(builder.Configuration);
@@ -40,6 +44,8 @@ namespace PickItEasy.WebApi
             builder.Services.AddHttpContextAccessor();
 
             var app = builder.Build();
+
+            app.UseHttpLogging();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
