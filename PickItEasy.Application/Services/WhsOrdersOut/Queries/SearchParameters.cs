@@ -1,6 +1,4 @@
-﻿using NetBarcode;
-
-namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
+﻿namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
 {
     public class SearchParameters
     {
@@ -21,7 +19,6 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
             set
             {
                 isBarcode = value;
-                //NotifyStateChanged();
             }
         }
 
@@ -31,7 +28,6 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
             set
             {
                 isTerm = value;
-                //NotifyStateChanged();
             }
         }
 
@@ -41,7 +37,6 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
             set
             {
                 isStatus = value;
-                //NotifyStateChanged();
             }
         }
 
@@ -50,9 +45,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
             get => searchBarcode;
             set
             {
-                isBarcode = true;
                 searchBarcode = value;
-                NotifyStateChanged();
             }
         }
 
@@ -61,11 +54,10 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
             get => searchTerm;
             set
             {
-                if (isBarcode)
-                    searchTerm = null;
-                else
+                //if (isBarcode)
+                //    searchTerm = null;
+                //else
                     searchTerm = value;
-                NotifyStateChanged();
             }
         }
 
@@ -75,7 +67,6 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
             set
             {
                 statusId = value;
-                NotifyStateChanged();
             }
         }
 
@@ -85,7 +76,6 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
             set
             {
                 warehouseId = value;
-                NotifyStateChanged();
             }
         }
 
@@ -95,7 +85,6 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
             set
             {
                 userId = value;
-                NotifyStateChanged();
             }
         }
 
@@ -105,9 +94,14 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
         public void SetSearchByBarcode(string? barcode)
         {
             isBarcode = true;
+            isTerm = false;
             isStatus = false;
 
             SearchBarcode = barcode;
+            SearchTerm = null;
+            StatusId = Guid.Empty;
+
+            NotifyStateChanged();
         }
 
         public void ClearSearchByBarcode()
@@ -116,11 +110,15 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
             isStatus = true;
 
             SearchBarcode = null;
+
+            NotifyStateChanged();
         }
 
         public void SetSearchByTerm()
         {
             isTerm = true;
+
+            NotifyStateChanged();
         }
 
         public void ClearSearchByTerm()
@@ -128,6 +126,8 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
             isTerm = false;
 
             SearchTerm = null;
+
+            NotifyStateChanged();
         }
 
         public void ClearSearchByTermAndBarcode()
@@ -136,6 +136,8 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
 
             SearchTerm = null;
             SearchBarcode = null;
+
+            NotifyStateChanged();
         }
 
         public void SetSearchByStatus(Guid statusId)
@@ -143,6 +145,8 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
             isStatus = true;
 
             StatusId = statusId;
+
+            NotifyStateChanged();
         }
 
         public void ClearSearchByStatus(Guid statusId)
@@ -150,6 +154,8 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
             isStatus = false;
 
             StatusId = Guid.Empty;
+
+            NotifyStateChanged();
         }
     }
 }

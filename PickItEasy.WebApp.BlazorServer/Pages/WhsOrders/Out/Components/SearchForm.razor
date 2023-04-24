@@ -6,13 +6,13 @@
 
 <BarcodeScan OnScannedBarcode="ScannedBarcodeHandle"></BarcodeScan>
 
-@*<EditForm Model="@SearchParameters" OnSubmit="SearcByTermhHandle" class="mb-2">*@
+<EditForm Model="@SearchParameters" OnSubmit="SearcByTermhHandle" class="mb-2">
     @if (SearchParameters.IsBarcode)
     {
         <div class="row">
             <div class="col">
                 <div class="input-group">
-                <input type="text" class="form-control" @bind-value="@SearchParameters.SearchBarcode" placeholder="строка поиска" disabled />
+                <InputText type="text" class="form-control" @bind-Value="@SearchParameters.SearchBarcode" placeholder="строка поиска" disabled />
                     <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit" title="Очистить">
                         <i class="bi bi-x"></i>
                     </button>
@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col">
                 <div class="input-group">
-                <input type="text" class="form-control" @bind-value="@SearchParameters.SearchTerm" placeholder="строка поиска" />
+                <InputText type="text" class="form-control" @bind-Value="@SearchParameters.SearchTerm" placeholder="строка поиска" />
                     <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit" title="Очистить">
                         <i class="bi bi-x"></i>
                     </button>
@@ -36,7 +36,7 @@
             </div>
         </div>
     }
-@*</EditForm>*@
+</EditForm>
 
 @code {
     [Parameter] public EventCallback OnSubmit { get; set; }

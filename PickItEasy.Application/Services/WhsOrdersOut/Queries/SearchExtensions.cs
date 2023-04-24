@@ -13,7 +13,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
                 query = query.Where(e => e.Id == id || e.WhsOrderOutBaseDocuments.Any(bd => bd.BaseDocumentId == id));
             }
 
-            if (!parameters.IsBarcode && !string.IsNullOrWhiteSpace(parameters.SearchTerm))
+            if (parameters.IsTerm && !string.IsNullOrWhiteSpace(parameters.SearchTerm))
             {
                 {
                     query = query.Where(e => e.Name.ToLower().Contains(parameters.SearchTerm.Trim().ToLower()));
