@@ -1,0 +1,36 @@
+﻿@using PickItEasy.Application.Services.WhsOrdersOut.Queries;
+
+@inject SearchParameters SearchParameters
+
+<input type="hidden" id="barcode" value="@barcode" @onchange="@ScannedBarcodeHandle" />
+
+@code {
+    [Parameter] public EventCallback OnScannedBarcode { get; set; }
+
+    private string? barcode;
+
+    protected override void OnInitialized()
+    {
+        SearchParameters.OnChange += SearchParametersChangedHandle;
+    }
+
+    private async Task ScannedBarcodeHandle(ChangeEventArgs args)
+    {
+        barcode = args.Value?.ToString();
+        if (barcode is null) return;
+
+        SearchParameters.SetSearchByBarcode(barcode);
+
+        await OnScannedBarcode.InvokeAsync();
+    }
+
+    private void SearchParametersChangedHandle()
+    {
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        SearchParameters.OnChange -= SearchParametersChangedHandle;
+    }
+}

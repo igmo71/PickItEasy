@@ -59,18 +59,18 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
             orderListVm = await Mediator.Send(getListQuery);
         }
 
-        private async Task ScannedBarcodeHandle(ChangeEventArgs args)
-        {
-            barcode = args.Value?.ToString();
-            if (barcode is null) return;
-            pageMessage = barcode;            
+        //private async Task ScannedBarcodeHandle(ChangeEventArgs args)
+        //{
+        //    barcode = args.Value?.ToString();
+        //    if (barcode is null) return;
+        //    pageMessage = barcode;            
 
-            SearchParameters.SetSearchByBarcode(barcode);
+        //    SearchParameters.SetSearchByBarcode(barcode);
 
-            await SearchHandle();
+        //    await SearchHandle();
 
-            TryOpenItem();
-        }
+        //    TryOpenItem();
+        //}
 
         private void TryOpenItem()
         {

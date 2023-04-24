@@ -5,7 +5,10 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
     public class SearchParameters
     {
         private bool isBarcode;
+        private bool isTerm;
         private bool isStatus;
+        private bool isWarehouse;
+        private bool isUser;
         private string? searchBarcode;
         private string? searchTerm;
         private Guid? statusId;
@@ -18,16 +21,27 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
             set
             {
                 isBarcode = value;
-                NotifyStateChanged();
+                //NotifyStateChanged();
             }
         }
+
+        public bool IsTerm
+        {
+            get => isTerm;
+            set
+            {
+                isTerm = value;
+                //NotifyStateChanged();
+            }
+        }
+
         public bool IsStatus
         {
             get => isStatus;
             set
             {
                 isStatus = value;
-                NotifyStateChanged();
+                //NotifyStateChanged();
             }
         }
 
@@ -36,6 +50,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
             get => searchBarcode;
             set
             {
+                isBarcode = true;
                 searchBarcode = value;
                 NotifyStateChanged();
             }
@@ -89,29 +104,52 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries
 
         public void SetSearchByBarcode(string? barcode)
         {
+            isBarcode = true;
+            isStatus = false;
+
             SearchBarcode = barcode;
-            IsBarcode = true;
-            IsStatus = false;
         }
 
         public void ClearSearchByBarcode()
         {
+            isBarcode = false;
+            isStatus = true;
+
             SearchBarcode = null;
-            IsBarcode = false;
-            IsStatus = true;
+        }
+
+        public void SetSearchByTerm()
+        {
+            isTerm = true;
+        }
+
+        public void ClearSearchByTerm()
+        {
+            isTerm = false;
+
+            SearchTerm = null;
         }
 
         public void ClearSearchByTermAndBarcode()
         {
+            isBarcode = false;
+
             SearchTerm = null;
             SearchBarcode = null;
-            IsBarcode = false;
         }
 
         public void SetSearchByStatus(Guid statusId)
         {
+            isStatus = true;
+
             StatusId = statusId;
-            IsStatus = true;
+        }
+
+        public void ClearSearchByStatus(Guid statusId)
+        {
+            isStatus = false;
+
+            StatusId = Guid.Empty;
         }
     }
 }

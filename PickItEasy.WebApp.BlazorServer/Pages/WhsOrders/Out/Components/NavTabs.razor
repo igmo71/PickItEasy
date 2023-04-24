@@ -48,7 +48,7 @@
 
     protected override void OnInitialized()
     {
-        SearchParameters.OnChange += StateHasChanged;
+        SearchParameters.OnChange += SearchParametersChangedHandle;
     }
 
     private async Task OnClickHandle(Guid statusId)
@@ -58,9 +58,14 @@
         await OnClick.InvokeAsync();
     }
 
+    private void SearchParametersChangedHandle()
+    {
+        StateHasChanged();
+    }
+
     public void Dispose()
     {
-        SearchParameters.OnChange -= StateHasChanged;
+        SearchParameters.OnChange -= SearchParametersChangedHandle;
     }
 }
 
