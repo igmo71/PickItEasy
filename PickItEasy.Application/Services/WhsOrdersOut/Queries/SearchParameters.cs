@@ -13,6 +13,13 @@
         private Guid? warehouseId;
         private Guid? userId;
 
+        public SearchParameters()
+        {
+            this.isBarcode = false;
+            this.isTerm = true;
+            this.isStatus = true;
+        }
+
         public bool IsBarcode
         {
             get => isBarcode;
@@ -98,7 +105,7 @@
             isStatus = false;
 
             SearchBarcode = barcode;
-            SearchTerm = null;
+            //SearchTerm = null;
             StatusId = Guid.Empty;
 
             NotifyStateChanged();
@@ -107,6 +114,7 @@
         public void ClearSearchByBarcode()
         {
             isBarcode = false;
+            isTerm = true;
             isStatus = true;
 
             SearchBarcode = null;
@@ -123,19 +131,9 @@
 
         public void ClearSearchByTerm()
         {
-            isTerm = false;
+            //isTerm = false;
 
             SearchTerm = null;
-
-            NotifyStateChanged();
-        }
-
-        public void ClearSearchByTermAndBarcode()
-        {
-            isBarcode = false;
-
-            SearchTerm = null;
-            SearchBarcode = null;
 
             NotifyStateChanged();
         }

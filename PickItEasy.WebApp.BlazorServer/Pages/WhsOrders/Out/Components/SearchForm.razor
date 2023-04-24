@@ -4,33 +4,21 @@
 
 @inject SearchParameters SearchParameters
 
-<BarcodeScan OnScannedBarcode="ScannedBarcodeHandle"></BarcodeScan>
+<EditForm Model="@SearchParameters" OnSubmit="SearcHandle" class="mb-2">
+    
+    <SearchByBarcode OnScannedBarcode="ScannedBarcodeHandle"></SearchByBarcode>
 
-<EditForm Model="@SearchParameters" OnSubmit="SearcByTermhHandle" class="mb-2">
-    @if (SearchParameters.IsBarcode)
+    @if(SearchParameters.IsTerm)
     {
         <div class="row">
             <div class="col">
                 <div class="input-group">
-                <InputText type="text" class="form-control" @bind-Value="@SearchParameters.SearchBarcode" placeholder="строка поиска" disabled />
-                    <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit" title="Очистить">
-                        <i class="bi bi-x"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    }
-    else
-    {
-        <div class="row">
-            <div class="col">
-                <div class="input-group">
-                <InputText type="text" class="form-control" @bind-Value="@SearchParameters.SearchTerm" placeholder="строка поиска" />
-                    <button class="btn btn-outline-secondary" type="button" @onclick="ClearAndSubmit" title="Очистить">
-                        <i class="bi bi-x"></i>
-                    </button>
-                    <button class="btn btn-primary" type="button" @onclick="SearcByTermhHandle" title="Поиск">
+                    <InputText type="text" class="form-control" @bind-Value="@SearchParameters.SearchTerm" placeholder="строка поиска" />
+                    <button class="btn btn-primary" type="button" @onclick="SearcHandle" title="Поиск">
                         <i class="bi bi-search"></i>
+                    </button>
+                    <button class="btn btn-outline-secondary" type="button" @onclick="ClearSearchAndSubmit" title="Очистить">
+                        <i class="bi bi-x"></i>
                     </button>
                 </div>
             </div>
@@ -56,15 +44,15 @@
         await SubmitHandle();
     }
 
-    private async Task SearcByTermhHandle()
+    private async Task SearcHandle()
     {
         SearchParameters.SetSearchByTerm();
         await SubmitHandle();
     }
 
-    private async Task ClearAndSubmit()
+    private async Task ClearSearchAndSubmit()
     {
-        SearchParameters.ClearSearchByTermAndBarcode();
+        SearchParameters.ClearSearchByTerm();
         await SubmitHandle();
     }
 

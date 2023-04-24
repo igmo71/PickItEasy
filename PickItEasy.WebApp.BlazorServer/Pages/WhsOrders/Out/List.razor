@@ -11,7 +11,7 @@
 
 <SearchForm OnSubmit="SearchHandle"></SearchForm>
 
-<NavTabs Statuses="@statusListVm.Statuses" CountByStatus="@orderListVm.CountByStatus" OnClick="SearchHandle"></NavTabs>
+<SearchByStatusTabs Statuses="@statusListVm.Statuses" CountByStatus="@orderListVm.CountByStatus" OnClick="SearchHandle"></SearchByStatusTabs>
 
 @if (orderListVm.Orders is not null && orderListVm.Orders.Any())
 {
