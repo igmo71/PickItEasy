@@ -70,12 +70,13 @@ namespace PickItEasy.Application.Services.Products
         public async Task<bool> IsExistsByIdAsync(Guid id)
         {
             var result = await _dbContext.Products.AnyAsync(p => p.Id == id);
+
             return result;
         }
 
         public async Task UpdateAsync(ProductDto dto)
         {
-            var product = await _dbContext.Products
+            Product? product = await _dbContext.Products
                 .FirstOrDefaultAsync(e => e.Id == dto.Id);
 
             if (product is null || product.Id != dto.Id)
