@@ -18,7 +18,7 @@ namespace PickItEasy.Application.Services.WhsOrders.Out.Statuses
             _logger = logger;
         }
 
-        public Task<WhsOrderOutStatusVm> CreateAsync(WhsOrderOutStatusDto dto)
+        public Task<WhsOrderOutStatusDto> CreateAsync(WhsOrderOutStatusDto dto)
         {
             throw new NotImplementedException();
         }

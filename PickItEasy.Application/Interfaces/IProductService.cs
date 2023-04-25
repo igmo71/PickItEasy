@@ -1,5 +1,4 @@
 ﻿using PickItEasy.Application.Services.Products;
-using PickItEasy.Application.Services.WhsOrders.Out.Statuses;
 
 namespace PickItEasy.Application.Interfaces
 {

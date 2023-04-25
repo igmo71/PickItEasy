@@ -17,7 +17,7 @@ namespace PickItEasy.Application.Services.WhsOrders.Out.Queues
             _dbContext = dbContext;
             _logger = logger;
         }
-        public Task<WhsOrderOutQueueVm> CreateAsync(WhsOrderOutQueueDto dto)
+        public Task<WhsOrderOutQueueDto> CreateAsync(WhsOrderOutQueueDto dto)
         {
             throw new NotImplementedException();
         }
