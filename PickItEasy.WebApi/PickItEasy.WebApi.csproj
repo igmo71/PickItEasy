@@ -26,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PickItEasy.Application\PickItEasy.Application.csproj" />
     <ProjectReference Include="..\PickItEasy.EventBus\PickItEasy.EventBus.csproj" />
     <ProjectReference Include="..\PickItEasy.Integration\PickItEasy.Integration.csproj" />
     <ProjectReference Include="..\PickItEasy.Persistence\PickItEasy.Persistence.csproj" />
