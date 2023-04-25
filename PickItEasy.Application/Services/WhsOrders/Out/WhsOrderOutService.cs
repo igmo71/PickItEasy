@@ -4,7 +4,6 @@ using PickItEasy.Application.Common.Exceptions;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Interfaces.WhsOrders.Out;
 using PickItEasy.Domain.Entities;
-using System.Threading;
 
 namespace PickItEasy.Application.Services.WhsOrders.Out
 {
