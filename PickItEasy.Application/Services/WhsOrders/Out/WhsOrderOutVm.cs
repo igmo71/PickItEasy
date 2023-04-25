@@ -25,8 +25,8 @@ namespace PickItEasy.Application.Services.WhsOrders.Out
 
         public string? Comment { get; set; }
 
-        public List<WhsOrderOutProductVm>? Products { get; set; }
-        public List<WhsOrderOutBaseDocumentVm>? BaseDocuments { get; set; }
+        public List<WhsOrderOutProductVm> Products { get; set; } = new();
+        public List<WhsOrderOutBaseDocumentVm> BaseDocuments { get; set; } = new();
 
         public string? BarcodeBase64 => BarcodeGuidConvert.GetBarcodeBase64(Id);
     }

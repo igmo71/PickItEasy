@@ -1,6 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using PickItEasy.Application.Common.Exceptions;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Interfaces.WhsOrders.Out;
+using PickItEasy.Domain.Entities;
+using System.Threading;
 
 namespace PickItEasy.Application.Services.WhsOrders.Out
 {
@@ -8,51 +12,119 @@ namespace PickItEasy.Application.Services.WhsOrders.Out
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly ILogger<WhsOrderOutService> _logger;
+        private readonly IBaseDocumentService _baseDocumentService;
+        private readonly IWhsOrderOutStatusService _statusService;
+        private readonly IWhsOrderOutQueueService _queueService;
 
-        public WhsOrderOutService(IApplicationDbContext dbContext, ILogger<WhsOrderOutService> logger)
+        public WhsOrderOutService(IApplicationDbContext dbContext, ILogger<WhsOrderOutService> logger, IBaseDocumentService baseDocumentService, IWhsOrderOutStatusService statusService, IWhsOrderOutQueueService queueService)
         {
             _dbContext = dbContext;
             _logger = logger;
+            _baseDocumentService = baseDocumentService;
+            _statusService = statusService;
+            _queueService = queueService;
+
         }
 
-        public Task<WhsOrderOutDto> Create(WhsOrderOutDto dto)
+        public async Task<WhsOrderOutDto> CreateAsync(WhsOrderOutDto dto)
         {
-            throw new NotImplementedException();
+            await _baseDocumentService.CreateRangeAsync(dto.BaseDocuments);
+
+            WhsOrderOut whsOrder = WhsOrderOutMapper.Map(dto);
+
+            whsOrder.StatusId = await _statusService.GetIdByValueAsync(dto.Status);
+            whsOrder.QueueId = await _queueService.GetIdByValueAsync(dto.Queue);
+
+            var isExists = await IsExistsByIdAsync(dto.Id);
+            if(isExists)
+            {
+                await DeleteAsync(dto.Id);
+            }
+            await _dbContext.WhsOrdersOut.AddAsync(whsOrder);
+            await _dbContext.SaveChangesAsync();
+
+            return dto;
         }
 
-        public Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            WhsOrderOut whsOrder = await _dbContext.WhsOrdersOut
+                .FirstOrDefaultAsync(e => e.Id == id)
+                ?? throw new NotFoundException(nameof(WhsOrderOut), id);
+
+            _dbContext.WhsOrdersOut.Remove(whsOrder);
+
+            await _dbContext.SaveChangesAsync();
         }
 
-        public Task DisableAsync(Guid id)
+        public async Task DisableAsync(Guid id)
         {
-            throw new NotImplementedException();
+            WhsOrderOut whsOrder = await _dbContext.WhsOrdersOut
+                .FirstOrDefaultAsync(e => e.Id == id)
+                ?? throw new NotFoundException(nameof(WhsOrderOut), id);
+
+            whsOrder.Active = false;
+
+            await _dbContext.SaveChangesAsync();
         }
 
-        public Task<WhsOrderOutVm> GetByIdAsync(Guid id)
+        public async Task<WhsOrderOutVm> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            WhsOrderOut whsOrderOut = await _dbContext.WhsOrdersOut
+                .AsNoTracking()
+                .Include(e => e.Warehouse)
+                .Include(e => e.WhsOrderOutProducts).ThenInclude(op => op.Product)//.Include(e => e.Products)
+                .Include(e => e.WhsOrderOutBaseDocuments).ThenInclude(ob => ob.BaseDocument)
+                .Include(e => e.Status)
+                .Include(e => e.Queue)
+                .FirstOrDefaultAsync(e => e.Id == id)
+                ?? throw new NotFoundException(nameof(WhsOrderOut), id);
+
+            var result = WhsOrderOutMapper.Map(whsOrderOut);
+
+            return result;
         }
 
-        public Task<int> GetCountByStatusAsync()
+        public async Task<Dictionary<Guid, int>> GetCountByStatusAsync(SearchParameters searchParameters)
         {
-            throw new NotImplementedException();
+            var result = await _dbContext.WhsOrdersOut
+                .AsNoTracking()
+                .Where(e => e.Active)
+                .SearchByTerm(searchParameters)
+                .GroupBy(e => e.StatusId)
+                .Select(e => new { Key = e.Key, Value = e.Count() })
+                .ToDictionaryAsync(e => e.Key, e => e.Value);
+
+            return result;
         }
 
-        public Task<WhsOrderOutDictionaryByQueueVm> GetDictionaryByQueueAsync(SearchParameters SearchParameters)
+        public async Task<WhsOrderOutDictionaryByQueueVm> GetDictionaryByQueueAsync(SearchParameters searchParameters)
         {
-            throw new NotImplementedException();
+            List<WhsOrderOut> orderList = await _dbContext.WhsOrdersOut
+                .AsNoTracking()
+                .Where(e => e.Active)
+                .SearchByTerm(searchParameters)
+                .SearchByStatus(searchParameters)
+                .OrderBy(e => e.StatusId)
+                    .ThenBy(e => e.QueueId)
+                    .ThenByDescending(e => e.ShipDateTime)
+                .ToListAsync();
+
+            List<WhsOrderOutLookupVm> orderLookupList = WhsOrderOutMapper.Map(orderList);
+                        
+            Dictionary<Guid, List<WhsOrderOutLookupVm>> orderDictionary = orderLookupList
+                .GroupBy(e => e.Queue.Id) // TODO: GroupBy if may be null
+                .ToDictionary(e => e.Key, e => e.ToList());
+
+            var result = new WhsOrderOutDictionaryByQueueVm { Orders = orderDictionary };
+
+            return result;
         }
 
-        public Task<bool> IsExistsById(Guid id)
+        public async Task<bool> IsExistsByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(WhsOrderOutDto dto)
-        {
-            throw new NotImplementedException();
+            var result = await _dbContext.WhsOrdersOut.AnyAsync(e => e.Id == id);
+            return result;
         }
     }
 }

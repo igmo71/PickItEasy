@@ -9,10 +9,8 @@ namespace PickItEasy.Application.Services.WhsOrders.Out.Queues
             WhsOrderOutQueueVm destination = new WhsOrderOutQueueVm
             {
                 Id = source.Id,
-                Name = source.Name,
                 Synonym = source.Synonym,
-                Value = source.Value,
-                Active = source.Active
+                Value = source.Value
             };
 
             return destination;

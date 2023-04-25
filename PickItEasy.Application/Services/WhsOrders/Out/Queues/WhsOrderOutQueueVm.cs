@@ -1,8 +1,9 @@
-﻿using PickItEasy.Domain.Entities;
-
-namespace PickItEasy.Application.Services.WhsOrders.Out.Queues
+﻿namespace PickItEasy.Application.Services.WhsOrders.Out.Queues
 {
-    public class WhsOrderOutQueueVm:  WhsOrderOutQueue
+    public class WhsOrderOutQueueVm
     {
+        public Guid Id { get; set; }
+        public int Value { get; set; }
+        public string? Synonym { get; set; }
     }
 }

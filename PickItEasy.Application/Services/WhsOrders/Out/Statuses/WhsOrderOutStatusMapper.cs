@@ -9,10 +9,8 @@ namespace PickItEasy.Application.Services.WhsOrders.Out.Statuses
             WhsOrderOutStatusVm destination = new WhsOrderOutStatusVm
             {
                 Id = source.Id,
-                Name = source.Name,
                 Synonym = source.Synonym,
-                Value = source.Value,
-                Active = source.Active
+                Value = source.Value
             };
 
             return destination;
