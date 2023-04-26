@@ -1,4 +1,4 @@
-﻿namespace PickItEasy.Application.Models.Warehouse
+﻿namespace PickItEasy.Application.Models.Warehouses
 {
     public class WarehouseVm
     {

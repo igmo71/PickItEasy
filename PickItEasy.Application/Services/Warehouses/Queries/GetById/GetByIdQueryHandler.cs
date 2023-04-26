@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Common.Exceptions;
 using PickItEasy.Application.Interfaces;
-using PickItEasy.Application.Models.Warehouse;
+using PickItEasy.Application.Models.Warehouses;
 using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.Warehouses.Queries.GetById

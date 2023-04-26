@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using PickItEasy.Application.Common;
-using PickItEasy.Application.Models.Warehouse;
+using PickItEasy.Application.Models.Warehouses;
 
 namespace PickItEasy.Application.Dtos.Validation
 {

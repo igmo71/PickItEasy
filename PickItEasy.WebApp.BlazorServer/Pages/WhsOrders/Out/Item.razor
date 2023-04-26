@@ -1,8 +1,7 @@
 ﻿@page "/WhsOrders/Out/Item/{id}"
 
-@    using PickItEasy.Application.Common;
-@    using PickItEasy.Application.Dtos;
-    using PickItEasy.Application.Dtos.WhsOrder.Out;
+@using PickItEasy.Application.Common;
+@using PickItEasy.Application.Models.WhsOrder.Out.Vm;
 
 <input type="hidden" id="barcode" value="@barcode" @onchange="@ScannedBarcodeAsync" />
 
