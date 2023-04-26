@@ -4,7 +4,7 @@ using PickItEasy.Persistence.Models;
 
 namespace PickItEasy.Web.Controllers.Identity
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
     public class RolesController : ControllerBase
@@ -18,10 +18,10 @@ namespace PickItEasy.Web.Controllers.Identity
             _userManager = userManager;
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public IActionResult GetAll() => Ok(_roleManager.Roles.ToList());
 
-        [HttpPost("[action]")]
+        [HttpPost]
         public async Task<IActionResult> CreateRole(string name)
         {
             if (string.IsNullOrEmpty(name))
@@ -34,7 +34,7 @@ namespace PickItEasy.Web.Controllers.Identity
             return Ok(name);
         }
 
-        [HttpPost("[action]/{roleId}")]
+        [HttpDelete("{roleId}")]
         public async Task<IActionResult> DeleteRole(string roleId)
         {
             var role = await _roleManager.FindByIdAsync(roleId);
@@ -48,10 +48,10 @@ namespace PickItEasy.Web.Controllers.Identity
             return Ok();
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public IActionResult UserList() => Ok(_userManager.Users.ToList());
 
-        [HttpGet("[action]")]
+        [HttpGet("UserRoles")]
         public async Task<IActionResult> UserRoles(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -62,14 +62,14 @@ namespace PickItEasy.Web.Controllers.Identity
             return Ok(userRoles);
         }
 
-        [HttpPost("[action]/{userId}")]
+        [HttpPost("{userId}")]
         public async Task<IActionResult> AddRoles(string userId, List<string> roles)
         {
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
                 return NotFound(userId);
 
-            // получем список ролей пользователя
+            // получаем список ролей пользователя
             var userRoles = await _userManager.GetRolesAsync(user);
             // получаем все роли
             var allRoles = _roleManager.Roles.ToList();

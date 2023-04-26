@@ -43,7 +43,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         {
             barcode = args.Value?.ToString();
             //await SearchByBarcodeAsync();
-            pageMessage = barcode;
+            pageMessage = barcode ?? string.Empty;
         }
     }
 }

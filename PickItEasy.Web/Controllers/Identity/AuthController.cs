@@ -9,7 +9,7 @@ using System.Text;
 
 namespace PickItEasy.Web.Controllers.Identity
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace PickItEasy.Web.Controllers.Identity
             _configuration = configuration;
         }
 
-        [HttpPost("[action]")]
+        [HttpPost]
         public async Task<IActionResult> Login([FromBody] UserForApiLogin loginUser)
         {
             var user = await _userManager.FindByNameAsync(loginUser.UserName);
