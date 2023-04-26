@@ -1,11 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using PickItEasy.Application.Common.Exceptions;
-using PickItEasy.Application.Dtos;
-using PickItEasy.Application.Interfaces.Services;
 using PickItEasy.Application.Interfaces;
-using PickItEasy.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+using PickItEasy.Application.Interfaces.Services;
 using PickItEasy.Application.Models.BaseDocuments;
+using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.BaseDocuments
 {
@@ -22,9 +21,9 @@ namespace PickItEasy.Application.Services.BaseDocuments
 
         public async Task<BaseDocumentDto> CreateAsync(BaseDocumentDto dto)
         {
-            var baseDocument = BaseDocumentDto.Map(dto);
+            BaseDocument baseDocument = BaseDocumentDto.Map(dto);
 
-            var isBaseDocumentExists = await IsExistsByIdAsync(dto.Id);
+            bool isBaseDocumentExists = await IsExistsByIdAsync(dto.Id);
             if (isBaseDocumentExists)
             {
                 await UpdateAsync(dto);
@@ -40,7 +39,7 @@ namespace PickItEasy.Application.Services.BaseDocuments
 
         public async Task CreateRangeAsync(List<BaseDocumentDto> dtoList)
         {
-            foreach (var item in dtoList)
+            foreach (BaseDocumentDto item in dtoList)
             {
                 await CreateAsync(item);
             }
@@ -48,7 +47,7 @@ namespace PickItEasy.Application.Services.BaseDocuments
 
         public async Task<bool> IsExistsByIdAsync(Guid id)
         {
-            var result = await _dbContext.BaseDocuments.AnyAsync(p => p.Id == id);
+            bool result = await _dbContext.BaseDocuments.AnyAsync(p => p.Id == id);
             return result;
         }
 
