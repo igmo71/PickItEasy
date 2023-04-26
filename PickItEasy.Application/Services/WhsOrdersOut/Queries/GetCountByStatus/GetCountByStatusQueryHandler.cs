@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Interfaces;
+using PickItEasy.Application.Services.WhsOrder.Out.Search;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetCountByStatus
 {

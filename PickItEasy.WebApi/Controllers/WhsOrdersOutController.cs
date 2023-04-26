@@ -1,7 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces.EventBus;
+using PickItEasy.Application.Models.WhsOrder.Out.Dto;
+using PickItEasy.Application.Services.WhsOrder.Out.Search;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Create;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Delete;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries;

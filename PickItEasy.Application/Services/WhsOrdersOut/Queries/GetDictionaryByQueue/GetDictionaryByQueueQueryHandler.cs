@@ -2,8 +2,9 @@
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces;
+using PickItEasy.Application.Models.WhsOrder.Out.Vm;
+using PickItEasy.Application.Services.WhsOrder.Out.Search;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetDictionaryByQueue
 {

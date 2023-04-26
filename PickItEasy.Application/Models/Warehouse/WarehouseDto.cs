@@ -1,6 +1,6 @@
-﻿namespace PickItEasy.Application.Dtos
+﻿namespace PickItEasy.Application.Models.Warehouse
 {
-    public class ProductDto
+    public class WarehouseDto
     {
         public required Guid Id { get; set; }
         public required string Name { get; set; }

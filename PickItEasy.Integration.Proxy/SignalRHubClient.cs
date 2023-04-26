@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
-using PickItEasy.Application.Dtos;
+using PickItEasy.Application.Models.WhsOrder.Out.Dto;
 
 namespace PickItEasy.Integration.Proxy
 {

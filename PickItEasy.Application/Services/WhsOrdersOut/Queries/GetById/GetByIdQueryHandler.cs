@@ -2,8 +2,8 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Common.Exceptions;
-using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces;
+using PickItEasy.Application.Models.WhsOrder.Out.Vm;
 using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById

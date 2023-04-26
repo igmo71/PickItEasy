@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using PickItEasy.Application.Models.Products;
 using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Dtos.Mapping

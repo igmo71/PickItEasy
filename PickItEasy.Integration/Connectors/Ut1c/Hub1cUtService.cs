@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
-using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces.Integration;
+using PickItEasy.Application.Models.WhsOrder.Out.Dto;
 
 namespace PickItEasy.Integration.Connectors.Ut1c
 {

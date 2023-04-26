@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using PickItEasy.Application.Services.WhsOrder.Out.Search;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetCountByStatus
 {

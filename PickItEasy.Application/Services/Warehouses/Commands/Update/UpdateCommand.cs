@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using PickItEasy.Application.Dtos;
+using PickItEasy.Application.Models.Warehouse;
 
 namespace PickItEasy.Application.Services.Warehouses.Commands.Update
 {

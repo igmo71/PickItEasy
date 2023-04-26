@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Components;
-using PickItEasy.Application.Dtos;
+using PickItEasy.Application.Models.WhsOrder.Out.Vm;
+using PickItEasy.Application.Services.WhsOrder.Out.Search;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries;
 using PickItEasy.EventBus.RabbitMq;
 using WhsOrderOutQueues = PickItEasy.Application.Services.WhsOrderOutQueues.Queries.GetList;

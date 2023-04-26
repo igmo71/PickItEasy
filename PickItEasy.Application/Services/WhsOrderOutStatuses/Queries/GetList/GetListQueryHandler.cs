@@ -2,8 +2,8 @@
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces;
+using PickItEasy.Application.Models.WhsOrder.Out.Vm;
 
 namespace PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetList
 {

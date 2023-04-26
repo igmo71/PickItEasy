@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using PickItEasy.Application.Dtos;
+using PickItEasy.Application.Models.WhsOrder.Out.Vm;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
 {

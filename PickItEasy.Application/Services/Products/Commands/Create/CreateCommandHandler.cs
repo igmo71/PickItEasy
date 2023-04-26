@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
-using PickItEasy.Application.Dtos;
 using PickItEasy.Application.Interfaces;
+using PickItEasy.Application.Models.Products;
 using PickItEasy.Application.Services.Products.Commands.Update;
 using PickItEasy.Application.Services.Products.Queries.IsExistsById;
 using PickItEasy.Domain.Entities;

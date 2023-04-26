@@ -1,6 +1,6 @@
-﻿namespace PickItEasy.Application.Dtos
+﻿namespace PickItEasy.Application.Models.BaseDocuments
 {
-    public class BaseDocumentDto
+    public class BaseDocumentVm
     {
         public required Guid Id { get; set; }
         public required string Name { get; set; }

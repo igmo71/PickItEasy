@@ -1,4 +1,4 @@
-﻿using PickItEasy.Application.Dtos;
+﻿using PickItEasy.Application.Models.WhsOrder.Out.Dto;
 
 namespace PickItEasy.Application.Interfaces.Integration
 {

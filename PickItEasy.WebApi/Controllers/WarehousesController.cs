@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PickItEasy.Application.Dtos;
+using PickItEasy.Application.Models.Warehouse;
 using PickItEasy.Application.Services.Warehouses.Commands.Create;
 using PickItEasy.Application.Services.Warehouses.Commands.Delete;
 using PickItEasy.Application.Services.Warehouses.Commands.Disable;

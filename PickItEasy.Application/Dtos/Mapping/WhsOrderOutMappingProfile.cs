@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using PickItEasy.Application.Models.WhsOrder.Out.Dto;
+using PickItEasy.Application.Models.WhsOrder.Out.Vm;
 using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.Dtos.Mapping

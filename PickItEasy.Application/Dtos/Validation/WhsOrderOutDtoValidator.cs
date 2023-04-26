@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using PickItEasy.Application.Models.WhsOrder.Out.Dto;
 
 namespace PickItEasy.Application.Dtos.Validation
 {
