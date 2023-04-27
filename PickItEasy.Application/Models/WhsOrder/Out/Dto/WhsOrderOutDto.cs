@@ -27,14 +27,12 @@ namespace PickItEasy.Application.Models.WhsOrder.Out.Dto
 
         [Required]
         public int Queue { get; set; }
-
-        [Required]
+        
         public string? QueueNumber { get; set; }
 
         [Required]
         public DateTime ShipDateTime { get; set; }
-
-        [Required]
+                
         public string? Comment { get; set; }
 
         [Required]

@@ -12,9 +12,9 @@ namespace PickItEasy.Application.Dtos.Validation
             RuleFor(whsOrderOutDto => whsOrderOutDto.Number).NotNull().NotEmpty();
             RuleFor(whsOrderOutDto => whsOrderOutDto.DateTime).NotNull().NotEmpty();
 
-            RuleFor(whsOrderOutDto => whsOrderOutDto.Status).NotNull();
+            //RuleFor(whsOrderOutDto => whsOrderOutDto.Status).NotNull();
             //RuleFor(whsOrderOutDto => whsOrderOutDto.Queue).NotNull();
-            RuleFor(whsOrderOutDto => whsOrderOutDto.QueueNumber).NotNull().NotEmpty();
+            //RuleFor(whsOrderOutDto => whsOrderOutDto.QueueNumber).NotNull().NotEmpty();
 
             RuleFor(whsOrderOutDto => whsOrderOutDto.Products).NotNull().NotEmpty();
             RuleForEach(whsOrderOutDto => whsOrderOutDto.Products).SetValidator(new WhsOrderOutProductDtoValidator());
