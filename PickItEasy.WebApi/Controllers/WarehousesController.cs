@@ -59,7 +59,6 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
         public async Task<IActionResult> Disable(Guid id)
         {
             //var disableWarehouseCommand = new DisableCommand { Id = id };
@@ -74,7 +73,6 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
         public async Task<IActionResult> Delete([FromBody] WarehouseDto dto)
         {
             //var deleteWarehouseCommand = new DeleteCommand { WarehouseDto = dto };
