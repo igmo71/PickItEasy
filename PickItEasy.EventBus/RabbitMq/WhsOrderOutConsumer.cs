@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using PickItEasy.Application.Interfaces.EventBus;
-using PickItEasy.Domain.Entities;
+using PickItEasy.Domain.Entities.WhsOrder.Out;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using Serilog;

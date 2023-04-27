@@ -2,10 +2,11 @@
 
 namespace PickItEasy.Domain.Entities
 {
-    public abstract class Document : Item, IHasId, IHasName, IHasNumber, IHasDateTime, IHasActive
+    public abstract class Document : BaseEntity, IHasName, IHasNumber, IHasDateTime, IHasActive
     {
-        public required string Number { get; set; }
-        public required DateTime DateTime { get; set; }
+        public string? Name { get; set; }
+        public string? Number { get; set; }
+        public DateTime DateTime { get; set; }
         public bool Active { get; set; }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PickItEasy.Domain;
 using PickItEasy.Domain.Entities;
+using PickItEasy.Domain.Entities.WhsOrder;
+using PickItEasy.Domain.Entities.WhsOrder.Out;
 
 namespace PickItEasy.Application.Interfaces
 {

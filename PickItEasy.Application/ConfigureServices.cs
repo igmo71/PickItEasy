@@ -5,6 +5,8 @@ using PickItEasy.Application.Common.Behaviors;
 using PickItEasy.Application.Dtos.Mapping;
 using PickItEasy.Application.Services.WhsOrder.Out.Search;
 using System.Reflection;
+using Mapster;
+using MapsterMapper;
 
 namespace PickItEasy.Application
 {
@@ -31,7 +33,7 @@ namespace PickItEasy.Application
 
             //services.AddTransient(typeof(INotificationHandler<>), typeof(WeatherForecastCreateNotificationHandler));
 
-            //services.AddScoped<ISearchState, SearchState>();
+            //services.AddMapster();
             services.AddScoped<SearchParameters>();
 
             return services;

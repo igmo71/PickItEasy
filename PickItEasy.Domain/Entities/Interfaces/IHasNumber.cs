@@ -2,6 +2,6 @@
 {
     public interface IHasNumber
     {
-        public string Number { get; set; }
+        public string? Number { get; set; }
     }
 }

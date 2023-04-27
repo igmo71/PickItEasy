@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Common.Exceptions;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Models.WhsOrder.Out.Vm;
-using PickItEasy.Domain.Entities;
+using PickItEasy.Domain.Entities.WhsOrder.Out;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById
 {

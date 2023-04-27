@@ -1,6 +1,8 @@
-﻿namespace PickItEasy.Domain.Entities
+﻿using PickItEasy.Domain.Entities.Interfaces;
+
+namespace PickItEasy.Domain.Entities
 {
-    public class BaseDocument : Item
+    public class BaseDocument : Catalog
     {
     }
 }

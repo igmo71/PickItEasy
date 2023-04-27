@@ -1,5 +1,5 @@
 ﻿namespace PickItEasy.Domain.Entities
 {
-    public class ProductHistory : ItemHistory
+    public class ProductHistory : DocumentItemHistory
     { }
 }

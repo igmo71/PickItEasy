@@ -1,4 +1,4 @@
-﻿namespace PickItEasy.Domain.Entities
+﻿namespace PickItEasy.Domain.Entities.WhsOrder.In
 {
     public class WhsOrderIn : WhsOrder
     {

@@ -1,4 +1,6 @@
-﻿namespace PickItEasy.Domain.Entities
+﻿using PickItEasy.Domain.Entities.WhsOrder;
+
+namespace PickItEasy.Domain.Entities.WhsOrder.Out
 {
     public class WhsOrderOutBaseDocument : WhsOrderBaseDocument
     {

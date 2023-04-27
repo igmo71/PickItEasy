@@ -2,8 +2,8 @@
 
 namespace PickItEasy.Domain.Entities
 {
-    public abstract class Catalog : Item, IHasActive
+    public abstract class Catalog : BaseEntity, IHasName
     {
-        public required bool Active { get; set; }
+        public string? Name { get; set; }
     }
 }

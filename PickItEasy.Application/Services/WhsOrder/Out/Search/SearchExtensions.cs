@@ -1,5 +1,5 @@
 ﻿using PickItEasy.Application.Common;
-using PickItEasy.Domain.Entities;
+using PickItEasy.Domain.Entities.WhsOrder.Out;
 
 namespace PickItEasy.Application.Services.WhsOrder.Out.Search
 {

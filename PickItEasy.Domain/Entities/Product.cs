@@ -1,5 +1,9 @@
-﻿namespace PickItEasy.Domain.Entities
+﻿using PickItEasy.Domain.Entities.Interfaces;
+
+namespace PickItEasy.Domain.Entities
 {
-    public class Product : Catalog
-    { }
+    public class Product : Catalog, IHasActive
+    {
+        public bool Active { get; set; }
+    }
 }

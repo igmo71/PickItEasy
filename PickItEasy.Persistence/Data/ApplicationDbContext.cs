@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Domain;
 using PickItEasy.Domain.Entities;
+using PickItEasy.Domain.Entities.WhsOrder;
+using PickItEasy.Domain.Entities.WhsOrder.Out;
 using PickItEasy.Persistence.Data.EntityTypeConfigurations;
 using PickItEasy.Persistence.Data.EntityTypeConfigurations.WhsOrder;
 using PickItEasy.Persistence.Data.EntityTypeConfigurations.WhsOrder.Out;

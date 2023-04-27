@@ -2,8 +2,7 @@
 
 namespace PickItEasy.Domain.Entities
 {
-    public abstract class DocumentItem : BaseEntity, IHasId
+    public abstract class DocumentItem : BaseEntity
     {
-        public Guid Id { get; set; }
     }
 }

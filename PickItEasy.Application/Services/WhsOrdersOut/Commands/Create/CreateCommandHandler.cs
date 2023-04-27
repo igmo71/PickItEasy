@@ -4,7 +4,7 @@ using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Models.WhsOrder.Out.Dto;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Delete;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.IsExistsById;
-using PickItEasy.Domain.Entities;
+using PickItEasy.Domain.Entities.WhsOrder.Out;
 
 namespace PickItEasy.Application.Services.WhsOrdersOut.Commands.Create
 {

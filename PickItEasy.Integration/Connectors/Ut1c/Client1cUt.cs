@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using PickItEasy.Application.Interfaces.Integration;
 using PickItEasy.Application.Models.WhsOrder.Out.Dto;
-using PickItEasy.Domain.Entities;
+using PickItEasy.Domain.Entities.WhsOrder.Out;
 using System.Net;
 using System.Net.Mime;
 using System.Text;
