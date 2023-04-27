@@ -2,7 +2,7 @@
 
 namespace PickItEasy.Domain.Entities
 {
-    public class DocumentHistory : BaseEntity, IHasDateTime
+    public abstract class DocumentHistory : BaseEntity, IHasDateTime
     {
         public DateTime DateTime { get; set; }
         public Guid DocumentId { get; set; }

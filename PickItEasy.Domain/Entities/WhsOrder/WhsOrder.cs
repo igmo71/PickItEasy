@@ -4,7 +4,7 @@
     {
         public string? Comment { get; set; }
 
-        public required Guid WarehouseId { get; set; }
+        public Guid WarehouseId { get; set; }
         public Warehouse? Warehouse { get; set; }
 
         public List<Product>? Products { get; set; }

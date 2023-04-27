@@ -1,14 +1,121 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PickItEasy.Domain.Entities.WhsOrder.In.WhsOrderIn">
+    <Position X="42.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Entities\WhsOrder\In\WhsOrderIn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.WhsOrder.In.WhsOrderInHistory">
+    <Position X="13" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\WhsOrder\In\WhsOrderInHistory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.WhsOrder.In.WhsOrderInProduct">
+    <Position X="21" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\WhsOrder\In\WhsOrderInProduct.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.WhsOrder.Out.WhsOrderOut">
+    <Position X="40.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAMAAAAAAQAAAAAAAEAQAAAAAAAAgAAAAwAAAA=</HashCode>
+      <FileName>Entities\WhsOrder\Out\WhsOrderOut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.WhsOrder.Out.WhsOrderOutBaseDocument">
+    <Position X="18" Y="6.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\WhsOrder\Out\WhsOrderOutBaseDocument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.WhsOrder.Out.WhsOrderOutHistory">
+    <Position X="15.5" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\WhsOrder\Out\WhsOrderOutHistory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.WhsOrder.Out.WhsOrderOutProduct">
+    <Position X="23.5" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\WhsOrder\Out\WhsOrderOutProduct.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.WhsOrder.Out.WhsOrderOutQueue">
+    <Position X="28.5" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\WhsOrder\Out\WhsOrderOutQueue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.WhsOrder.Out.WhsOrderOutStatus">
+    <Position X="31" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\WhsOrder\Out\WhsOrderOutStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.WhsOrder.WhsOrder">
+    <Position X="41.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEBAAAAAAAAAAAAAAAAAAAAABACAAAAAAAAAQ=</HashCode>
+      <FileName>Entities\WhsOrder\WhsOrder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.WhsOrder.WhsOrderBaseDocument">
+    <Position X="18" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\WhsOrder\WhsOrderBaseDocument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.WhsOrder.WhsOrderHistory">
+    <Position X="14.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\WhsOrder\WhsOrderHistory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.WhsOrder.WhsOrderProduct">
+    <Position X="22.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\WhsOrder\WhsOrderProduct.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.WhsOrder.WhsOrderQueue">
+    <Position X="28.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQgAAAgAAAAAAA=</HashCode>
+      <FileName>Entities\WhsOrder\WhsOrderQueue.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.WhsOrder.WhsOrderStatus">
+    <Position X="31" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQgAAAgAAAAAAA=</HashCode>
+      <FileName>Entities\WhsOrder\WhsOrderStatus.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Class Name="PickItEasy.Domain.Entities.BaseDocument">
-    <Position X="31" Y="5.25" Width="1.5" />
+    <Position X="33.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\BaseDocument.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PickItEasy.Domain.Entities.BaseEntity">
-    <Position X="35.25" Y="1.5" Width="1.5" />
+    <Position X="27.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\BaseEntity.cs</FileName>
@@ -16,7 +123,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="PickItEasy.Domain.Entities.Catalog">
-    <Position X="26.5" Y="3.25" Width="1.5" />
+    <Position X="33.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Entities\Catalog.cs</FileName>
@@ -24,172 +131,93 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="PickItEasy.Domain.Entities.Document">
-    <Position X="33.75" Y="3.25" Width="1.75" />
+    <Position X="41.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAEAAAAQAAAAAAAQgAAAAAAAAAAA=</HashCode>
       <FileName>Entities\Document.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="PickItEasy.Domain.Entities.DocumentItemHistory">
-    <Position X="39.25" Y="3.25" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAgAAAAAAAAAgAAAAAAAAAAAAAQAAAAAIAAAAAA=</HashCode>
-      <FileName>Entities\DocumentItemHistory.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.DocumentItem">
-    <Position X="45" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\DocumentItem.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.Product">
-    <Position X="22" Y="5.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\Product.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.ProductHistory">
-    <Position X="39.25" Y="6" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\ProductHistory.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.QueueNumber" Collapsed="true">
-    <Position X="51" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AgAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABAgAAAAAAA=</HashCode>
-      <FileName>Entities\QueueNumber.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.Warehouse">
-    <Position X="24.25" Y="5.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\Warehouse.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.WhsOrder">
-    <Position X="33.25" Y="6" Width="2.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAEBAAAAAAAAAAAAAAAAAAAAABACAAAAAAAAAQ=</HashCode>
-      <FileName>Entities\WhsOrder.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.WhsOrderBaseDocument">
-    <Position X="47.5" Y="5" Width="2.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAACAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\WhsOrderBaseDocument.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.WhsOrderHistory">
-    <Position X="36.75" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\WhsOrderHistory.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.WhsOrderIn" Collapsed="true">
-    <Position X="52.75" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
-      <FileName>Entities\WhsOrderIn.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.WhsOrderInHistory" Collapsed="true">
-    <Position X="54.5" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\WhsOrderInHistory.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.WhsOrderInProduct">
-    <Position X="44.75" Y="7.5" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAIAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\WhsOrderInProduct.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.WhsOrderOut" Collapsed="true">
-    <Position X="51" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAMAAAAAAQAAAAAAAEAQAAAAAAAAgAAAAwAAAA=</HashCode>
-      <FileName>Entities\WhsOrderOut.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.WhsOrderOutBaseDocument" Collapsed="true">
-    <Position X="52.75" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\WhsOrderOutBaseDocument.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.WhsOrderOutHistory" Collapsed="true">
-    <Position X="54.5" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\WhsOrderOutHistory.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.WhsOrderOutProduct">
-    <Position X="41.75" Y="7.5" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\WhsOrderOutProduct.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.WhsOrderOutQueue" Collapsed="true">
-    <Position X="51" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\WhsOrderOutQueue.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.WhsOrderOutStatus" Collapsed="true">
-    <Position X="52.75" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\WhsOrderOutStatus.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.WhsOrderProduct">
-    <Position X="43.5" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>EAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Entities\WhsOrderProduct.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.WhsOrderQueue">
-    <Position X="26.5" Y="5.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQgAAAgAAAAAAA=</HashCode>
-      <FileName>Entities\WhsOrderQueue.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="PickItEasy.Domain.Entities.WhsOrderStatus">
-    <Position X="28.75" Y="5.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQgAAAgAAAAAAA=</HashCode>
-      <FileName>Entities\WhsOrderStatus.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="PickItEasy.Domain.Entities.DocumentHistory">
-    <Position X="36.75" Y="3.25" Width="1.75" />
+    <Position X="14.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAQAAAAAIAAAAAA=</HashCode>
       <FileName>Entities\DocumentHistory.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="PickItEasy.Domain.Entities.DocumentItem">
+    <Position X="20.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\DocumentItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.DocumentItemHistory">
+    <Position X="26" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAgAAAAAAAAAAAAAQAAAAAIAAAAAA=</HashCode>
+      <FileName>Entities\DocumentItemHistory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.Product">
+    <Position X="35.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Product.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.QueueNumber" Collapsed="true">
+    <Position X="45" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABAgAAAAAAA=</HashCode>
+      <FileName>Entities\QueueNumber.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PickItEasy.Domain.Entities.Warehouse">
+    <Position X="38" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Warehouse.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="PickItEasy.Domain.Entities.Interfaces.IHasActive" Collapsed="true">
+    <Position X="45" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Interfaces\IHasActive.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PickItEasy.Domain.Entities.Interfaces.IHasDateTime" Collapsed="true">
+    <Position X="46.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Interfaces\IHasDateTime.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PickItEasy.Domain.Entities.Interfaces.IHasId" Collapsed="true">
+    <Position X="48.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Interfaces\IHasId.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PickItEasy.Domain.Entities.Interfaces.IHasName" Collapsed="true">
+    <Position X="45" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Interfaces\IHasName.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="PickItEasy.Domain.Entities.Interfaces.IHasNumber" Collapsed="true">
+    <Position X="46.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Interfaces\IHasNumber.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
