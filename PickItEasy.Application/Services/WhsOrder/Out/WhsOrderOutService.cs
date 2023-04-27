@@ -35,19 +35,6 @@ namespace PickItEasy.Application.Services.WhsOrder.Out
         {
             List<BaseDocumentDto>? baseDocumentsDto = dto.BaseDocuments?.Adapt<List<BaseDocumentDto>>();
 
-            // Alternate
-            //List<BaseDocumentDto> baseDocumentsDto = new List<BaseDocumentDto>();
-            //foreach(var item in dto.BaseDocuments)
-            //{
-            //    var baseDocumentDto = item.Adapt<BaseDocumentDto>();
-            //    baseDocumentsDto.Add(baseDocumentDto);
-            //}
-
-            //var baseDocumentsDtoQueryable = dto.BaseDocuments.AsQueryable();
-            //var baseDocumentsDto = baseDocumentsDtoQueryable.ProjectToType<BaseDocumentDto>().ToList();
-
-
-
             await _baseDocumentService.CreateRangeAsync(baseDocumentsDto);
 
             WhsOrderOut whsOrder = dto.Adapt<WhsOrderOut>();
