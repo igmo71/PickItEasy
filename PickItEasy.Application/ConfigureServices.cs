@@ -1,10 +1,12 @@
 ﻿using FluentValidation;
+using Mapster;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using PickItEasy.Application.Common.Behaviors;
 using PickItEasy.Application.Dtos.Mapping;
 using PickItEasy.Application.Interfaces.Services;
 using PickItEasy.Application.Interfaces.Services.WhsOrder.Out;
+using PickItEasy.Application.Models.WhsOrder.Out.Dto;
 using PickItEasy.Application.Services.BaseDocuments;
 using PickItEasy.Application.Services.Products;
 using PickItEasy.Application.Services.Warehouses;
@@ -37,6 +39,7 @@ namespace PickItEasy.Application
 
             //services.AddTransient(typeof(INotificationHandler<>), typeof(WeatherForecastCreateNotificationHandler));
             
+            
             services.AddScoped<SearchParameters>();
             services.AddScoped<IBaseDocumentService, BaseDocumentService>();
             services.AddScoped<IProductService, ProductService>();
@@ -44,6 +47,10 @@ namespace PickItEasy.Application
             services.AddScoped<IWhsOrderOutService, WhsOrderOutService>();
             services.AddScoped<IWhsOrderOutQueueService, WhsOrderOutQueueService>();
             services.AddScoped<IWhsOrderOutStatusService, WhsOrderOutStatusService>();
+
+            //services.AddSingleton<TypeAdapterConfig>();
+            //TypeAdapterConfig typeAdapterConfig = new TypeAdapterConfig();
+            WhsOrderOutBaseDocumentDto.RegisterMapping();
 
             return services;
         }

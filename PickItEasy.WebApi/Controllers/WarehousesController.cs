@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Interfaces.Services;
 using PickItEasy.Application.Models.Warehouses;
-using PickItEasy.Application.Services.Warehouses.Commands.Create;
-using PickItEasy.Application.Services.Warehouses.Commands.Delete;
-using PickItEasy.Application.Services.Warehouses.Commands.Disable;
-using PickItEasy.Application.Services.Warehouses.Queries.GetById;
+//using PickItEasy.Application.Services.Warehouses.Commands.Create;
+//using PickItEasy.Application.Services.Warehouses.Commands.Delete;
+//using PickItEasy.Application.Services.Warehouses.Commands.Disable;
+//using PickItEasy.Application.Services.Warehouses.Queries.GetById;
 
 namespace PickItEasy.WebApi.Controllers
 {
