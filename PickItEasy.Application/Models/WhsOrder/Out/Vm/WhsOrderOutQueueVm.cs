@@ -1,6 +1,4 @@
-﻿using PickItEasy.Domain.Entities;
-
-namespace PickItEasy.Application.Models.WhsOrder.Out.Vm
+﻿namespace PickItEasy.Application.Models.WhsOrder.Out.Vm
 {
     public class WhsOrderOutQueueVm
     {

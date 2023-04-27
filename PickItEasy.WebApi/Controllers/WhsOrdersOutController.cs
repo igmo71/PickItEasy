@@ -5,7 +5,6 @@ using PickItEasy.Application.Models.WhsOrder.Out.Dto;
 using PickItEasy.Application.Services.WhsOrder.Out.Search;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Create;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Delete;
-using PickItEasy.Application.Services.WhsOrdersOut.Queries;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList;
 using System.Net;

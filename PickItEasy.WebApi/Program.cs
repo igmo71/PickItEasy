@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.HttpLogging;
 using PickItEasy.Application;
 using PickItEasy.Application.Common;
 using PickItEasy.Application.Interfaces;
@@ -7,7 +8,6 @@ using PickItEasy.Integration.Connectors.Ut1c;
 using PickItEasy.Persistence;
 using PickItEasy.WebApi.Middleware;
 using Serilog;
-using Microsoft.AspNetCore.HttpLogging;
 
 namespace PickItEasy.WebApi
 {

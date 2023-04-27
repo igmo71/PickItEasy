@@ -1,6 +1,4 @@
-﻿using PickItEasy.Domain.Entities;
-
-namespace PickItEasy.Application.Models.Products
+﻿namespace PickItEasy.Application.Models.Products
 {
     public class ProductDto
     {

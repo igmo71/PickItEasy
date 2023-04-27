@@ -1,6 +1,4 @@
-﻿using PickItEasy.Domain.Entities;
-
-namespace PickItEasy.Application.Models.BaseDocuments
+﻿namespace PickItEasy.Application.Models.BaseDocuments
 {
     public class BaseDocumentDto
     {

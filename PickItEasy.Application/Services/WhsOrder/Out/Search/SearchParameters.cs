@@ -64,7 +64,7 @@
                 //if (isBarcode)
                 //    searchTerm = null;
                 //else
-                    searchTerm = value;
+                searchTerm = value;
             }
         }
 

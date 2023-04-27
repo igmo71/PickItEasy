@@ -1,6 +1,4 @@
-﻿using PickItEasy.Domain.Entities;
-
-namespace PickItEasy.Application.Models.Warehouses
+﻿namespace PickItEasy.Application.Models.Warehouses
 {
     public class WarehouseVm
     {

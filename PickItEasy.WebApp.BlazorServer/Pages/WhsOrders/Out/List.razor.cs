@@ -74,7 +74,8 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 
         private void TryOpenItem()
         {
-            if (IsDocumentSingle(out Guid? id)) { 
+            if (IsDocumentSingle(out Guid? id))
+            {
                 SearchParameters.ClearSearchByBarcode();
                 NavigationManager?.NavigateTo($"WhsOrders/Out/Item/{id}");
             }

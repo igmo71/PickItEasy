@@ -1,5 +1,4 @@
-﻿using PickItEasy.Domain.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace PickItEasy.Application.Models.WhsOrder.Out.Dto
 {
