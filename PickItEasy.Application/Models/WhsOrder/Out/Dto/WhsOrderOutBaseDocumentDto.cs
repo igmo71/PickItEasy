@@ -23,17 +23,4 @@ namespace PickItEasy.Application.Models.WhsOrder.Out.Dto
                 .RequireDestinationMemberSource(true);
         }
     }
-
-    public static class WhsOrderOutBaseDocumentDtoMapping
-    {
-        public static void Register()
-        {
-            TypeAdapterConfig<WhsOrderOutBaseDocumentDto, BaseDocumentDto>
-                .NewConfig()
-                .Map(dst => dst.Id, src => src.DocumentId)
-                .Map(dst => dst.Name, src => src.DocumentName)
-                .RequireDestinationMemberSource(true);
-        }
-
-    }
 }
