@@ -34,6 +34,8 @@ namespace PickItEasy.Application.Services.WhsOrder.Out
         public async Task<WhsOrderOutDto> CreateAsync(WhsOrderOutDto dto)
         {
             List<BaseDocumentDto>? baseDocumentsDto = dto.BaseDocuments?.Adapt<List<BaseDocumentDto>>();
+
+            // Alternate
             //List<BaseDocumentDto> baseDocumentsDto = new List<BaseDocumentDto>();
             //foreach(var item in dto.BaseDocuments)
             //{
