@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PickItEasy.Application.Common.Exceptions;
 using PickItEasy.Application.Interfaces;
@@ -21,7 +22,7 @@ namespace PickItEasy.Application.Services.BaseDocuments
 
         public async Task<BaseDocumentDto> CreateAsync(BaseDocumentDto dto)
         {
-            BaseDocument baseDocument = BaseDocumentDto.Map(dto);
+            BaseDocument baseDocument = dto.Adapt<BaseDocument>();
 
             bool isBaseDocumentExists = await IsExistsByIdAsync(dto.Id);
             if (isBaseDocumentExists)

@@ -17,7 +17,7 @@ namespace PickItEasy.Application.Models.WhsOrder.Out.Vm
         public WhsOrderOutStatusVm? Status { get; set; }
 
         public WhsOrderOutQueueVm? Queue { get; set; }
-        public required string QueueNumber { get; set; }
+        public string? QueueNumber { get; set; }
 
         public DateTime ShipDateTime { get; set; }
 

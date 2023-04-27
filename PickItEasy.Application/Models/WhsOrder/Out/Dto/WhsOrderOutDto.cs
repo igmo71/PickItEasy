@@ -9,23 +9,38 @@ namespace PickItEasy.Application.Models.WhsOrder.Out.Dto
 
         [Required]
         public string? Name { get; set; }
-        public required string Number { get; set; }
-        public required DateTime DateTime { get; set; }
 
-        public required bool Active { get; set; }
+        [Required]
+        public string? Number { get; set; }
 
-        public required Guid WarehouseId { get; set; }
+        [Required]
+        public DateTime DateTime { get; set; }
 
-        public required int Status { get; set; }
+        [Required]
+        public bool Active { get; set; }
 
-        public required int Queue { get; set; }
-        public required string QueueNumber { get; set; }
+        [Required]
+        public Guid WarehouseId { get; set; }
 
+        [Required]
+        public int Status { get; set; }
+
+        [Required]
+        public int Queue { get; set; }
+
+        [Required]
+        public string? QueueNumber { get; set; }
+
+        [Required]
         public DateTime ShipDateTime { get; set; }
 
+        [Required]
         public string? Comment { get; set; }
 
-        public required List<WhsOrderOutProductDto> Products { get; set; }
-        public required List<WhsOrderOutBaseDocumentDto> BaseDocuments { get; set; }
+        [Required]
+        public List<WhsOrderOutProductDto>? Products { get; set; }
+
+        [Required]
+        public List<WhsOrderOutBaseDocumentDto>? BaseDocuments { get; set; }
     }
 }

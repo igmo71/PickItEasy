@@ -1,9 +1,16 @@
-﻿namespace PickItEasy.Application.Models.Products
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PickItEasy.Application.Models.Products
 {
     public class ProductDto
     {
-        public required Guid Id { get; set; }
-        public required string Name { get; set; }
-        public required bool Active { get; set; }
+        [Required]
+        public Guid Id { get; set; }
+
+        [Required]
+        public string? Name { get; set; }
+
+        [Required]
+        public bool Active { get; set; }
     }
 }

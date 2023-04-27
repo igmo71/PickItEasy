@@ -1,8 +1,13 @@
-﻿namespace PickItEasy.Application.Models.BaseDocuments
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PickItEasy.Application.Models.BaseDocuments
 {
     public class BaseDocumentDto
     {
-        public required Guid Id { get; set; }
-        public required string Name { get; set; }
+        [Required]
+        public Guid Id { get; set; }
+
+        [Required]
+        public string? Name { get; set; }
     }
 }

@@ -1,8 +1,13 @@
-﻿namespace PickItEasy.Application.Models.WhsOrder.Out.Dto
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PickItEasy.Application.Models.WhsOrder.Out.Dto
 {
     public class WhsOrderOutBaseDocumentDto
     {
-        public required Guid DocumentId { get; set; }
-        public required string DocumentName { get; set; }
+        [Required]
+        public Guid DocumentId { get; set; }
+
+        [Required]
+        public string? DocumentName { get; set; }
     }
 }

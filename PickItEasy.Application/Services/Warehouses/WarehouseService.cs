@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PickItEasy.Application.Common.Exceptions;
 using PickItEasy.Application.Interfaces;
@@ -21,7 +22,7 @@ namespace PickItEasy.Application.Services.Warehouses
 
         public async Task<WarehouseDto> CreateAsync(WarehouseDto dto)
         {
-            Warehouse warehouse = WarehouseDto.Map(dto);
+            Warehouse warehouse = dto.Adapt<Warehouse>();
 
             bool isWarehouseExists = await IsExistsByIdAsync(warehouse.Id);
             if (isWarehouseExists)
@@ -64,7 +65,7 @@ namespace PickItEasy.Application.Services.Warehouses
                 .FirstOrDefaultAsync(e => e.Id == id)
                 ?? throw new NotFoundException(nameof(Warehouse), id);
 
-            WarehouseVm result = WarehouseVm.Map(warehouse);
+            WarehouseVm result = warehouse.Adapt<WarehouseVm>();
 
             return result;
         }

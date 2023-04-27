@@ -2,7 +2,7 @@
 {
     public class WhsOrderOutBaseDocumentVm
     {
-        public required Guid BaseDocumentId { get; set; }
-        public required string Name { get; set; }
+        public Guid BaseDocumentId { get; set; }
+        public string? Name { get; set; }
     }
 }
