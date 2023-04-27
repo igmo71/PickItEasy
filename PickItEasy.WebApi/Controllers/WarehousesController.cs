@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PickItEasy.Application.Interfaces.Services;
 using PickItEasy.Application.Models.Warehouses;
 using PickItEasy.Application.Services.Warehouses.Commands.Create;
 using PickItEasy.Application.Services.Warehouses.Commands.Delete;
@@ -12,11 +13,13 @@ namespace PickItEasy.WebApi.Controllers
     [ApiController]
     public class WarehousesController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        //private readonly IMediator _mediator;
+        private readonly IWarehouseService _warehouseService;
 
-        public WarehousesController(IMediator mediator)
+        public WarehousesController(/*IMediator mediator,*/ IWarehouseService warehouseService)
         {
-            _mediator = mediator;
+            //_mediator = mediator;
+            _warehouseService = warehouseService;
         }
 
         // GET api/<WarehousesController>/5
@@ -26,7 +29,8 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var result = await _mediator.Send(new GetByIdQuery { Id = id });
+            //var result = await _mediator.Send(new GetByIdQuery { Id = id });
+            var result = await _warehouseService.GetByIdAsync(id);
 
             return Ok(result);
         }
@@ -38,8 +42,9 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Post([FromBody] WarehouseDto warehouseDto)
         {
-            var createWarehouseCommand = new CreateCommand { WarehouseDto = warehouseDto };
-            var result = await _mediator.Send(createWarehouseCommand);
+            //var createWarehouseCommand = new CreateCommand { WarehouseDto = warehouseDto };
+            //var result = await _mediator.Send(createWarehouseCommand);
+            var result = await _warehouseService.CreateAsync(warehouseDto);
 
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
@@ -57,8 +62,9 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
         public async Task<IActionResult> Disable(Guid id)
         {
-            var disableWarehouseCommand = new DisableCommand { Id = id };
-            await _mediator.Send(disableWarehouseCommand);
+            //var disableWarehouseCommand = new DisableCommand { Id = id };
+            //await _mediator.Send(disableWarehouseCommand);
+            await _warehouseService.DisableAsync(id);
 
             return NoContent();
         }
@@ -71,8 +77,9 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
         public async Task<IActionResult> Delete([FromBody] WarehouseDto dto)
         {
-            var deleteWarehouseCommand = new DeleteCommand { WarehouseDto = dto };
-            await _mediator.Send(deleteWarehouseCommand);
+            //var deleteWarehouseCommand = new DeleteCommand { WarehouseDto = dto };
+            //await _mediator.Send(deleteWarehouseCommand);
+            await _warehouseService.DeleteAsync(dto.Id);
 
             return NoContent();
         }

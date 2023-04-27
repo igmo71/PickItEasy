@@ -1,11 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PickItEasy.Application.Interfaces.Services;
 using PickItEasy.Application.Models.Products;
-using PickItEasy.Application.Services.Products.Commands.Create;
-using PickItEasy.Application.Services.Products.Commands.Delete;
-using PickItEasy.Application.Services.Products.Commands.Disable;
-using PickItEasy.Application.Services.Products.Commands.Update;
-using PickItEasy.Application.Services.Products.Queries.GetById;
+//using PickItEasy.Application.Services.Products.Commands.Create;
+//using PickItEasy.Application.Services.Products.Commands.Delete;
+//using PickItEasy.Application.Services.Products.Commands.Disable;
+//using PickItEasy.Application.Services.Products.Commands.Update;
+//using PickItEasy.Application.Services.Products.Queries.GetById;
 using System.Net;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -16,11 +17,13 @@ namespace PickItEasy.WebApi.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        //private readonly IMediator _mediator;
+        private readonly IProductService _productService;
 
-        public ProductsController(IMediator mediator)
+        public ProductsController(/*IMediator mediator,*/ IProductService productService)
         {
-            _mediator = mediator;
+            //_mediator = mediator;
+            _productService = productService;
         }
 
         // GET: api/<ProductsController>
@@ -41,7 +44,8 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var result = await _mediator.Send(new GetByIdQuery { Id = id });
+            //var result = await _mediator.Send(new GetByIdQuery { Id = id });
+            var result = await _productService.GetByIdAsync(id);
 
             return Ok(result);
         }
@@ -53,8 +57,9 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Post([FromBody] ProductDto productDto)
         {
-            var createProductCommand = new CreateCommand { ProductDto = productDto };
-            var result = await _mediator.Send(createProductCommand);
+            //var createProductCommand = new CreateCommand { ProductDto = productDto };
+            //var result = await _mediator.Send(createProductCommand);
+            var result = await _productService.CreateAsync(productDto);
 
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
@@ -66,8 +71,9 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Put(Guid id, [FromBody] ProductDto productDto)
         {
-            var updateProductCommand = new UpdateCommand { Id = id, ProductDto = productDto };
-            await _mediator.Send(updateProductCommand);
+            //var updateProductCommand = new UpdateCommand { Id = id, ProductDto = productDto };
+            //await _mediator.Send(updateProductCommand);
+            await _productService.UpdateAsync(productDto);
 
             return NoContent();
         }
@@ -83,10 +89,11 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Disable(Guid id)
         {
-            var disableProductCommand = new DisableCommand { Id = id };
-            await _mediator.Send(disableProductCommand);
+            //var disableProductCommand = new DisableCommand { Id = id };
+            //await _mediator.Send(disableProductCommand);
+            await _productService.DisableAsync(id);
 
             return NoContent();
         }
@@ -99,8 +106,9 @@ namespace PickItEasy.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status405MethodNotAllowed)]
         public async Task<IActionResult> Delete([FromBody] ProductDto dto)
         {
-            var deleteProductCommand = new DeleteCommand { ProductDto = dto };
-            await _mediator.Send(deleteProductCommand);
+            //var deleteProductCommand = new DeleteCommand { ProductDto = dto };
+            //await _mediator.Send(deleteProductCommand);
+            await _productService.DeleteAsync(dto.Id);
 
             return NoContent();
         }
