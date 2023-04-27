@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Mapster;
+using PickItEasy.Domain.Entities.WhsOrder.Out;
+using System.ComponentModel.DataAnnotations;
 
 namespace PickItEasy.Application.Models.WhsOrder.Out.Dto
 {
@@ -40,5 +42,21 @@ namespace PickItEasy.Application.Models.WhsOrder.Out.Dto
 
         [Required]
         public List<WhsOrderOutBaseDocumentDto>? BaseDocuments { get; set; }
+
+        public static void RegisterMapping()
+        {
+            TypeAdapterConfig<WhsOrderOutDto, WhsOrderOut>
+                .NewConfig()
+                .Map(dst => dst.WhsOrderOutBaseDocuments, src => src.BaseDocuments)
+                .Map(dst => dst.WhsOrderOutProducts, src => src.Products)
+                .Ignore(dst => dst.StatusId)
+                .Ignore(dst => dst.Status)
+                .Ignore(dst => dst.QueueId)
+                .Ignore(dst => dst.Queue)
+                .Ignore(dst => dst.Warehouse)
+                .Ignore(dst => dst.BaseDocuments)
+                .Ignore(dst => dst.Products)
+                .RequireDestinationMemberSource(true);
+        }
     }
 }

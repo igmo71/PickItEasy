@@ -12,6 +12,7 @@ using PickItEasy.Application.Services.Products;
 using PickItEasy.Application.Services.Warehouses;
 using PickItEasy.Application.Services.WhsOrder.Out;
 using PickItEasy.Application.Services.WhsOrder.Out.Search;
+using PickItEasy.Domain.Entities.WhsOrder.Out;
 using System.Reflection;
 
 namespace PickItEasy.Application
@@ -50,6 +51,7 @@ namespace PickItEasy.Application
 
             //services.AddSingleton<TypeAdapterConfig>();
             //TypeAdapterConfig typeAdapterConfig = new TypeAdapterConfig();
+            WhsOrderOutDto.RegisterMapping();
             WhsOrderOutBaseDocumentDto.RegisterMapping();
 
             return services;

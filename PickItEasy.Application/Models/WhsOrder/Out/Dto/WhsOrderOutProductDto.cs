@@ -1,5 +1,4 @@
-﻿using PickItEasy.Domain.Entities.WhsOrder.Out;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace PickItEasy.Application.Models.WhsOrder.Out.Dto
 {
@@ -9,6 +8,6 @@ namespace PickItEasy.Application.Models.WhsOrder.Out.Dto
         public Guid ProductId { get; set; }
 
         [Required]
-        public float Count { get; set; }        
+        public float Count { get; set; }               
     }
 }
