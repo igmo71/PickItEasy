@@ -1,5 +1,6 @@
-﻿using MediatR;
+﻿//using MediatR;
 using Microsoft.AspNetCore.Components;
+using PickItEasy.Application.Interfaces.Services.WhsOrder.Out;
 using PickItEasy.Application.Models.WhsOrder.Out.Vm;
 using PickItEasy.Application.Services.WhsOrder.Out.Search;
 using PickItEasy.EventBus.RabbitMq;
@@ -11,7 +12,10 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 {
     public partial class List : IDisposable
     {
-        [Inject] public required IMediator Mediator { get; set; }
+        //[Inject] public required IMediator Mediator { get; set; }
+        [Inject] public required IWhsOrderOutService OrderService { get; set; }
+        [Inject] public required IWhsOrderOutStatusService StatusService { get; set; }
+        [Inject] public required IWhsOrderOutQueueService QueueService { get; set; }
         [Inject] public required SearchParameters SearchParameters { get; set; }
         [Inject] public required NavigationManager NavigationManager { get; set; }
 
@@ -31,32 +35,36 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
         }
         private async Task GetStatusList()
         {
-            var getStatusListQuery = new WhsOrderOutStatuses.GetListQuery();
-            statusListVm = await Mediator.Send(getStatusListQuery);
+            //var getStatusListQuery = new WhsOrderOutStatuses.GetListQuery();
+            //statusListVm = await Mediator.Send(getStatusListQuery);
+            statusListVm = await StatusService.GetListAsync();
+
             if (SearchParameters.StatusId is null)
                 SearchParameters.StatusId = statusListVm.Statuses?.FirstOrDefault()?.Id;
         }
 
         private async Task GetQueueList()
         {
-            var getSQueueListQuery = new WhsOrderOutQueues.GetListQuery();
-            queueListVm = await Mediator.Send(getSQueueListQuery);
+            //var getSQueueListQuery = new WhsOrderOutQueues.GetListQuery();
+            //queueListVm = await Mediator.Send(getSQueueListQuery);
+            queueListVm = await QueueService.GetListAsync();
         }
 
         private async Task SearchHandle()
         {
             await GetWhsOrderList();
-            //await InvokeAsync(StateHasChanged);
+            await InvokeAsync(StateHasChanged);
         }
 
         private async Task GetWhsOrderList()
         {
 
-            var getListQuery = new WhsOrdersOut.GetList.GetListQuery
-            {
-                SearchParameters = SearchParameters
-            };
-            orderListVm = await Mediator.Send(getListQuery);
+            //var getListQuery = new WhsOrdersOut.GetList.GetListQuery
+            //{
+            //    SearchParameters = SearchParameters
+            //};
+            //orderListVm = await Mediator.Send(getListQuery);
+            orderListVm = await OrderService.GetList(SearchParameters);
         }
 
         //private async Task ScannedBarcodeHandle(ChangeEventArgs args)

@@ -12,6 +12,7 @@ namespace PickItEasy.Application.Interfaces.Services.WhsOrder.Out
         Task<WhsOrderOutVm> GetByIdAsync(Guid id);
         Task<Dictionary<Guid, int>> GetCountByStatusAsync(SearchParameters searchParameters);
         Task<WhsOrderOutDictionaryByQueueVm> GetDictionaryByQueueAsync(SearchParameters searchParameters);
+        Task<WhsOrderOutListVm> GetList(SearchParameters searchParameters);
         Task<bool> IsExistsByIdAsync(Guid id);
     }
 }

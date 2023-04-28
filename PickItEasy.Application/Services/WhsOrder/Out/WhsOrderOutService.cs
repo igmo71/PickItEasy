@@ -107,7 +107,7 @@ namespace PickItEasy.Application.Services.WhsOrder.Out
 
         public async Task<WhsOrderOutDictionaryByQueueVm> GetDictionaryByQueueAsync(SearchParameters searchParameters)
         {
-            List<WhsOrderOut> orderList = await _dbContext.WhsOrdersOut
+            var orderDictionary = await _dbContext.WhsOrdersOut
                 .AsNoTracking()
                 .Where(e => e.Active)
                 .SearchByTerm(searchParameters)
@@ -115,15 +115,21 @@ namespace PickItEasy.Application.Services.WhsOrder.Out
                 .OrderBy(e => e.StatusId)
                     .ThenBy(e => e.QueueId)
                     .ThenByDescending(e => e.ShipDateTime)
-                .ToListAsync();
-
-            List<WhsOrderOutLookupVm> orderLookupList = orderList.Adapt<List<WhsOrderOutLookupVm>>();
-
-            Dictionary<Guid, List<WhsOrderOutLookupVm>> orderDictionary = orderLookupList
+                .ProjectToType<WhsOrderOutLookupVm>()
                 .GroupBy(e => e.Queue.Id) // TODO: GroupBy if may be null
-                .ToDictionary(e => e.Key, e => e.ToList());
+                .ToDictionaryAsync(e => e.Key, e => e.ToList());
 
-            var result = new WhsOrderOutDictionaryByQueueVm { Orders = orderDictionary };
+            WhsOrderOutDictionaryByQueueVm result = new() { Orders = orderDictionary };
+
+            return result;
+        }
+
+        public async Task<WhsOrderOutListVm> GetList(SearchParameters searchParameters)
+        {
+            WhsOrderOutDictionaryByQueueVm orderDictionaryVm = await GetDictionaryByQueueAsync(searchParameters);
+            Dictionary<Guid, int> countByStatus = await GetCountByStatusAsync(searchParameters);
+
+            var result = new WhsOrderOutListVm { Orders = orderDictionaryVm.Orders, CountByStatus = countByStatus };
 
             return result;
         }

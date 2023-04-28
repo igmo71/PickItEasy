@@ -38,13 +38,14 @@ namespace PickItEasy.Application.Services.WhsOrder.Out
 
         public async Task<WhsOrderOutQueueListVm> GetListAsync()
         {
-            List<WhsOrderOutQueue> queues = await _dbContext.WhsOrderOutQueues
+            List<WhsOrderOutQueueVm> queues = await _dbContext.WhsOrderOutQueues
                .AsNoTracking()
                .Where(s => s.Active)
                .OrderBy(s => s.Value)
+               .ProjectToType<WhsOrderOutQueueVm>()
                .ToListAsync();
 
-            WhsOrderOutQueueListVm result = queues.Adapt<WhsOrderOutQueueListVm>();
+            WhsOrderOutQueueListVm result = new() { Queues = queues };
 
             return result;
         }
