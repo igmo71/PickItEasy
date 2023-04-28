@@ -2,9 +2,9 @@
 using Mapster;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using PickItEasy.Application.Common.Behaviors;
 using PickItEasy.Application.Interfaces.Services;
 using PickItEasy.Application.Interfaces.Services.WhsOrder.Out;
+using PickItEasy.Application.MediatR.Behaviors;
 using PickItEasy.Application.MediatR.Mapping;
 using PickItEasy.Application.Models;
 using PickItEasy.Application.Services;

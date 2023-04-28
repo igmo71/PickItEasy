@@ -2,7 +2,7 @@
 using PickItEasy.Application.Interfaces;
 using Serilog;
 
-namespace PickItEasy.Application.Common.Behaviors
+namespace PickItEasy.Application.MediatR.Behaviors
 {
     public class LoggingBehavior<TRequest, TResponse>
         : IPipelineBehavior<TRequest, TResponse> where TRequest : IBaseRequest

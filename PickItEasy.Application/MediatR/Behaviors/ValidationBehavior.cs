@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
 
-namespace PickItEasy.Application.Common.Behaviors
+namespace PickItEasy.Application.MediatR.Behaviors
 {
     public class ValidationBehavior<TRequest, TResponse>
         : IPipelineBehavior<TRequest, TResponse> where TRequest : IBaseRequest
