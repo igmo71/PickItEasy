@@ -36,7 +36,7 @@ namespace PickItEasy.WebApi.Middleware
                     statusCode = HttpStatusCode.BadRequest;
                     result = JsonSerializer.Serialize(validationException.Errors);
                     break;
-                case EntityNotFoundException:
+                case NotFoundException:
                     statusCode = HttpStatusCode.NotFound;
                     break;
             }
