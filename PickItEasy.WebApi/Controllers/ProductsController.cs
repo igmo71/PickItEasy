@@ -1,5 +1,4 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Interfaces.Services;
 using PickItEasy.Application.Models.Products;
 //using PickItEasy.Application.Services.Products.Commands.Create;

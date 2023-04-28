@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
-using PickItEasy.Application.Models.BaseDocuments;
 using PickItEasy.Application.MediatR.Services.BaseDocuments.Commands.Create;
+using PickItEasy.Application.Models.BaseDocuments;
 
 namespace PickItEasy.Application.MediatR.Services.BaseDocuments.Commands.CreateByPack
 {

@@ -3,16 +3,14 @@ using Mapster;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using PickItEasy.Application.Common.Behaviors;
-using PickItEasy.Application.MediatR.Mapping;
 using PickItEasy.Application.Interfaces.Services;
 using PickItEasy.Application.Interfaces.Services.WhsOrder.Out;
-using PickItEasy.Application.Models.WhsOrder.Out.Dto;
+using PickItEasy.Application.MediatR.Mapping;
+using PickItEasy.Application.Models;
 using PickItEasy.Application.Services;
 using PickItEasy.Application.Services.WhsOrder.Out;
 using PickItEasy.Application.Services.WhsOrder.Out.Search;
-using PickItEasy.Domain.Entities.WhsOrder.Out;
 using System.Reflection;
-using PickItEasy.Application.Models;
 
 namespace PickItEasy.Application
 {
@@ -35,13 +33,13 @@ namespace PickItEasy.Application
                 config.AddProfile<WhsOrderOutMappingProfile>();
                 config.AddProfile<WhsOrderOutQueueMappingProfile>();
                 config.AddProfile<WhsOrderOutStatusMappingProfile>();
-            }); 
-            
+            });
+
             services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
 
             //services.AddTransient(typeof(INotificationHandler<>), typeof(WeatherForecastCreateNotificationHandler));
-            
-            
+
+
             services.AddScoped<SearchParameters>();
             services.AddScoped<IBaseDocumentService, BaseDocumentService>();
             services.AddScoped<IProductService, ProductService>();
@@ -49,7 +47,7 @@ namespace PickItEasy.Application
             services.AddScoped<IWhsOrderOutService, WhsOrderOutService>();
             services.AddScoped<IWhsOrderOutQueueService, WhsOrderOutQueueService>();
             services.AddScoped<IWhsOrderOutStatusService, WhsOrderOutStatusService>();
-            
+
             services.AddMapster();
 
             return services;

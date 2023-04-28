@@ -1,16 +1,16 @@
 ﻿//using MediatR;
 using Microsoft.AspNetCore.Components;
-//using PickItEasy.Application.Integration.WhsOrdersOut;
-using PickItEasy.Application.Models.WhsOrder.Out.Vm;
 //using PickItEasy.Application.MediatR.Services.WhsOrdersOut.Queries.GetById;
 using PickItEasy.Application.Interfaces.Services.WhsOrder.Out;
+//using PickItEasy.Application.Integration.WhsOrdersOut;
+using PickItEasy.Application.Models.WhsOrder.Out.Vm;
 
 namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 {
     public partial class Item
     {
         //[Inject] public required IMediator Mediator { get; set; }
-        [Inject] public required IWhsOrderOutService WhsOrderOutService{ get; set; }
+        [Inject] public required IWhsOrderOutService WhsOrderOutService { get; set; }
 
         [Parameter] public string? Id { get; set; }
 
@@ -26,7 +26,7 @@ namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 
         private async Task GetWhsOrderOut()
         {
-            if (string.IsNullOrEmpty(Id)) return; 
+            if (string.IsNullOrEmpty(Id)) return;
 
             //var getByIdWhsOrderOutQuery = new GetByIdQuery { Id = Guid.Parse(Id) };
             //orderOutVm = await Mediator.Send(getByIdWhsOrderOutQuery);

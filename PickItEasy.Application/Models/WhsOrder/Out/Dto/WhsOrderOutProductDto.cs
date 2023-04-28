@@ -8,6 +8,6 @@ namespace PickItEasy.Application.Models.WhsOrder.Out.Dto
         public Guid ProductId { get; set; }
 
         [Required]
-        public float Count { get; set; }               
+        public float Count { get; set; }
     }
 }

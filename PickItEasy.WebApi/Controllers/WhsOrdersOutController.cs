@@ -67,7 +67,7 @@ namespace PickItEasy.WebApi.Controllers
             //var createWhsOrderOutCommand = new CreateCommand { WhsOrderOutDto = whsOrderOutDto };
             //var result = await _mediator.Send(createWhsOrderOutCommand);
             var result = await _whsOrderOutService.CreateAsync(whsOrderOutDto);
-            
+
             _eventPublisher.SendMessage($"{nameof(CreateCommand)}_{result.Id}");
 
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
