@@ -1,9 +1,11 @@
-﻿using PickItEasy.Application.Common;
+﻿using Mapster;
+using PickItEasy.Application.Common;
 using PickItEasy.Domain.Entities;
+using PickItEasy.Domain.Entities.WhsOrder.Out;
 
 namespace PickItEasy.Application.Models.WhsOrder.Out.Vm
 {
-    public class WhsOrderOutVm
+    public class WhsOrderOutVm : MappedModel
     {
         public Guid Id { get; set; }
         public string? Name { get; set; }
@@ -27,5 +29,13 @@ namespace PickItEasy.Application.Models.WhsOrder.Out.Vm
         public List<WhsOrderOutBaseDocumentVm>? BaseDocuments { get; set; }
 
         public string? BarcodeBase64 => BarcodeGuidConvert.GetBarcodeBase64(Id);
+
+        public override void Register(TypeAdapterConfig config)
+        {
+            config.NewConfig<WhsOrderOut, WhsOrderOutVm>()
+                .RequireDestinationMemberSource(true)
+                .Map(dst => dst.Products, src => src.WhsOrderOutProducts)
+                .Map(dst => dst.BaseDocuments, src => src.WhsOrderOutBaseDocuments);
+        }
     }
 }
