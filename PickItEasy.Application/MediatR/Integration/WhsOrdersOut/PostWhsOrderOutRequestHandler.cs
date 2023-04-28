@@ -3,7 +3,7 @@ using MediatR;
 using PickItEasy.Application.Interfaces.Integration;
 using PickItEasy.Application.Models.WhsOrder.Out.Dto;
 
-namespace PickItEasy.Application.Integration.WhsOrdersOut
+namespace PickItEasy.Application.MediatR.Integration.WhsOrdersOut
 {
     public class PostWhsOrderOutRequestHandler : IRequestHandler<PostWhsOrderOutRequest, string>
     {

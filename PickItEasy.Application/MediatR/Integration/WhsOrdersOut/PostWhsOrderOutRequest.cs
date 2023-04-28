@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using PickItEasy.Application.Models.WhsOrder.Out.Vm;
 
-namespace PickItEasy.Application.Integration.WhsOrdersOut
+namespace PickItEasy.Application.MediatR.Integration.WhsOrdersOut
 {
     public class PostWhsOrderOutRequest : IRequest<string>
     {

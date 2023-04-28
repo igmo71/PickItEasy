@@ -1,4 +1,5 @@
 ﻿using Mapster;
+using PickItEasy.Application.Models.WhsOrder.Out.Vm;
 using PickItEasy.Domain.Entities.WhsOrder.Out;
 using System.ComponentModel.DataAnnotations;
 
@@ -45,8 +46,8 @@ namespace PickItEasy.Application.Models.WhsOrder.Out.Dto
 
         public override void Register(TypeAdapterConfig config)
         {
-            config
-                .NewConfig<WhsOrderOutDto, WhsOrderOut>()
+            config.NewConfig<WhsOrderOutDto, WhsOrderOut>()
+                .RequireDestinationMemberSource(true)
                 .Map(dst => dst.WhsOrderOutBaseDocuments, src => src.BaseDocuments)
                 .Map(dst => dst.WhsOrderOutProducts, src => src.Products)
                 .Ignore(dst => dst.StatusId)
@@ -57,6 +58,11 @@ namespace PickItEasy.Application.Models.WhsOrder.Out.Dto
                 .Ignore(dst => dst.BaseDocuments)
                 .Ignore(dst => dst.Products)
                 .RequireDestinationMemberSource(true);
+
+            config.NewConfig<WhsOrderOutVm, WhsOrderOutDto>()
+                .RequireDestinationMemberSource(true)
+                .Map(dst => dst.Status, src => src.Status.Value)
+                .Map(dst => dst.Queue, src => src.Queue.Value);
         }
     }
 }
