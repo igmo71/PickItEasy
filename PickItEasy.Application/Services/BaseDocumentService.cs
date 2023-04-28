@@ -7,7 +7,7 @@ using PickItEasy.Application.Interfaces.Services;
 using PickItEasy.Application.Models.BaseDocuments;
 using PickItEasy.Domain.Entities;
 
-namespace PickItEasy.Application.Services.BaseDocuments
+namespace PickItEasy.Application.Services
 {
     public class BaseDocumentService : IBaseDocumentService
     {

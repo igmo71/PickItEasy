@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Models.WhsOrder.Out.Vm;
 
-namespace PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetList
+namespace PickItEasy.Application.MediatR.Services.WhsOrderOutStatuses.Queries.GetList
 {
     public class GetListQueryHandler : IRequestHandler<GetListQuery, WhsOrderOutStatusListVm>
     {

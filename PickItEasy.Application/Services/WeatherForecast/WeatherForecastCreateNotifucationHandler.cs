@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace PickItEasy.Application.MediatR.Services.WeatherForecast
+namespace PickItEasy.Application.Services.WeatherForecast
 {
     public class WeatherForecastCreateNotifucationHandler : INotificationHandler<WeatherForecastCreateNotifucation>
     {

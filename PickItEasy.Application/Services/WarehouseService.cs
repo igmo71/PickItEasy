@@ -7,7 +7,7 @@ using PickItEasy.Application.Interfaces.Services;
 using PickItEasy.Application.Models.Warehouses;
 using PickItEasy.Domain.Entities;
 
-namespace PickItEasy.Application.MediatR.Services.Warehouses
+namespace PickItEasy.Application.Services
 {
     public class WarehouseService : IWarehouseService
     {

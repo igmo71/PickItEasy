@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.MediatR.Services.WeatherForecast;
 using PickItEasy.Application.Services;
+using PickItEasy.Application.Services.WeatherForecast;
 using PickItEasy.Domain;
 using PickItEasy.Web.EventBus;
 

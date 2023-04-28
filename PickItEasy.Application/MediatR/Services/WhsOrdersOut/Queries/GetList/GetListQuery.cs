@@ -2,7 +2,7 @@
 using PickItEasy.Application.Models.WhsOrder.Out.Vm;
 using PickItEasy.Application.Services.WhsOrder.Out.Search;
 
-namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList
+namespace PickItEasy.Application.MediatR.Services.WhsOrdersOut.Queries.GetList
 {
     public class GetListQuery : IRequest<WhsOrderOutListVm>
     {

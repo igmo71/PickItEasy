@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using PickItEasy.Application;
 using PickItEasy.Application.Common;
 using PickItEasy.Application.Interfaces;
-using PickItEasy.Application.MediatR.Services.WeatherForecast;
+using PickItEasy.Application.Services.WeatherForecast;
 using PickItEasy.EventBus;
 using PickItEasy.Integration;
 using PickItEasy.Integration.Connectors.Ut1c;

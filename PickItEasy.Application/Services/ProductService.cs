@@ -7,7 +7,7 @@ using PickItEasy.Application.Interfaces.Services;
 using PickItEasy.Application.Models.Products;
 using PickItEasy.Domain.Entities;
 
-namespace PickItEasy.Application.Services.Products
+namespace PickItEasy.Application.Services
 {
     public class ProductService : IProductService
     {

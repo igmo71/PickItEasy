@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Services.WhsOrder.Out.Search;
 
-namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetCountByStatus
+namespace PickItEasy.Application.MediatR.Services.WhsOrdersOut.Queries.GetCountByStatus
 {
     public class GetCountByStatusQueryHandler : IRequestHandler<GetCountByStatusQuery, Dictionary<Guid, int>>
     {
@@ -21,7 +21,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetCountByStatus
                 .Where(e => e.Active)
                 .SearchByTerm(request.SearchParameters)
                 .GroupBy(e => e.StatusId)
-                .Select(e => new { Key = e.Key, Value = e.Count() })
+                .Select(e => new { e.Key, Value = e.Count() })
                 .ToDictionaryAsync(e => e.Key, e => e.Value, cancellationToken);
 
             return result;

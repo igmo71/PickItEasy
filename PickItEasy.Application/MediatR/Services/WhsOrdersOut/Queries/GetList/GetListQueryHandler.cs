@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using PickItEasy.Application.Models.WhsOrder.Out.Vm;
 
-namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList
+namespace PickItEasy.Application.MediatR.Services.WhsOrdersOut.Queries.GetList
 {
     public class GetListQueryHandler : IRequestHandler<GetListQuery, WhsOrderOutListVm>
     {
@@ -14,7 +14,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList
 
         public async Task<WhsOrderOutListVm> Handle(GetListQuery request, CancellationToken cancellationToken)
         {
-            var getDictionaryByQueueQuery = new WhsOrdersOut.Queries.GetDictionaryByQueue.GetDictionaryByQueueQuery
+            var getDictionaryByQueueQuery = new GetDictionaryByQueue.GetDictionaryByQueueQuery
             {
                 SearchParameters = request.SearchParameters
             };
@@ -22,7 +22,7 @@ namespace PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList
             var orderDictionaryVm = await _mediator.Send(getDictionaryByQueueQuery, cancellationToken);
 
 
-            var getCountByStatusQuery = new WhsOrdersOut.Queries.GetCountByStatus.GetCountByStatusQuery
+            var getCountByStatusQuery = new GetCountByStatus.GetCountByStatusQuery
             {
                 SearchParameters = request.SearchParameters
             };

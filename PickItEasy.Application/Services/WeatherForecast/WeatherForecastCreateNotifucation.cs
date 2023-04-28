@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using PickItEasy.Domain;
 
-namespace PickItEasy.Application.MediatR.Services.WeatherForecast
+namespace PickItEasy.Application.Services.WeatherForecast
 {
     public class WeatherForecastCreateNotifucation : EventArgs, INotification
     {

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Components;
-using PickItEasy.Application.MediatR.Services.WeatherForecast;
+using PickItEasy.Application.Services.WeatherForecast;
 using PickItEasy.Domain;
 
 namespace PickItEasy.Web.Pages

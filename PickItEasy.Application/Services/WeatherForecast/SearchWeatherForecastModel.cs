@@ -1,4 +1,4 @@
-﻿namespace PickItEasy.Application.MediatR.Services.WeatherForecast
+﻿namespace PickItEasy.Application.Services.WeatherForecast
 {
     public class SearchWeatherForecastModel
     {
