@@ -2,7 +2,7 @@
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Domain;
 
-namespace PickItEasy.Application.Services.WeatherForecast
+namespace PickItEasy.Application.Services.WeatherForecasts
 {
     public class WeatherForecastService
     {

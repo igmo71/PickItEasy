@@ -2,8 +2,8 @@
 using MediatR;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Models.Products;
-using PickItEasy.Application.Services.Products.Commands.Update;
-using PickItEasy.Application.Services.Products.Queries.IsExistsById;
+using PickItEasy.Application.MediatR.Services.Products.Commands.Update;
+using PickItEasy.Application.MediatR.Services.Products.Queries.IsExistsById;
 using PickItEasy.Domain.Entities;
 
 namespace PickItEasy.Application.MediatR.Services.Products.Commands.Create

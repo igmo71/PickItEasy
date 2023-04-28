@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetList;
+using PickItEasy.Application.MediatR.Services.WhsOrderOutStatuses.Queries.GetList;
 
 namespace PickItEasy.Application.MediatR.Services.WhsOrderOutStatuses.Queries.Contains
 {

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using PickItEasy.Application.Integration.WhsOrdersOut;
 using PickItEasy.Application.Models.WhsOrder.Out.Vm;
-using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById;
+using PickItEasy.Application.MediatR.Services.WhsOrdersOut.Queries.GetById;
 
 namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 {

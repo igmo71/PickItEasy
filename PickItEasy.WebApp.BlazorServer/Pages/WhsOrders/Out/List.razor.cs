@@ -4,9 +4,9 @@ using PickItEasy.Application.Interfaces.Services.WhsOrder.Out;
 using PickItEasy.Application.Models.WhsOrder.Out.Vm;
 using PickItEasy.Application.Services.WhsOrder.Out.Search;
 using PickItEasy.EventBus.RabbitMq;
-using WhsOrderOutQueues = PickItEasy.Application.Services.WhsOrderOutQueues.Queries.GetList;
-using WhsOrderOutStatuses = PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetList;
-using WhsOrdersOut = PickItEasy.Application.Services.WhsOrdersOut.Queries;
+//using WhsOrderOutQueues = PickItEasy.Application.Services.WhsOrderOutQueues.Queries.GetList;
+//using WhsOrderOutStatuses = PickItEasy.Application.Services.WhsOrderOutStatuses.Queries.GetList;
+//using WhsOrdersOut = PickItEasy.Application.Services.WhsOrdersOut.Queries;
 
 namespace PickItEasy.WebApp.BlazorServer.Pages.WhsOrders.Out
 {

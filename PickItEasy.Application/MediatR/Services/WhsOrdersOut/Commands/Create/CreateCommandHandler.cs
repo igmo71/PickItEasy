@@ -2,8 +2,8 @@
 using MediatR;
 using PickItEasy.Application.Interfaces;
 using PickItEasy.Application.Models.WhsOrder.Out.Dto;
-using PickItEasy.Application.Services.WhsOrdersOut.Commands.Delete;
-using PickItEasy.Application.Services.WhsOrdersOut.Queries.IsExistsById;
+using PickItEasy.Application.MediatR.Services.WhsOrdersOut.Commands.Delete;
+using PickItEasy.Application.MediatR.Services.WhsOrdersOut.Queries.IsExistsById;
 using PickItEasy.Domain.Entities.WhsOrder.Out;
 
 namespace PickItEasy.Application.MediatR.Services.WhsOrdersOut.Commands.Create

@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using PickItEasy.Application.Dtos.Validation;
+using PickItEasy.Application.MediatR.Validation;
 
 namespace PickItEasy.Application.MediatR.Services.Products.Commands.Update
 {
