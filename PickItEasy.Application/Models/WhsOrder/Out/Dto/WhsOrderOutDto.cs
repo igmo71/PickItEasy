@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PickItEasy.Application.Models.WhsOrder.Out.Dto
 {
-    public class WhsOrderOutDto
+    public class WhsOrderOutDto : MappedModel
     {
         [Required]
         public Guid Id { get; set; }
@@ -29,12 +29,12 @@ namespace PickItEasy.Application.Models.WhsOrder.Out.Dto
 
         [Required]
         public int Queue { get; set; }
-        
+
         public string? QueueNumber { get; set; }
 
         [Required]
         public DateTime ShipDateTime { get; set; }
-                
+
         public string? Comment { get; set; }
 
         [Required]
@@ -43,10 +43,26 @@ namespace PickItEasy.Application.Models.WhsOrder.Out.Dto
         [Required]
         public List<WhsOrderOutBaseDocumentDto>? BaseDocuments { get; set; }
 
-        public static void RegisterMapping()
+        //public static void RegisterMapping()
+        //{
+        //    TypeAdapterConfig<WhsOrderOutDto, WhsOrderOut>
+        //        .NewConfig()
+        //        .Map(dst => dst.WhsOrderOutBaseDocuments, src => src.BaseDocuments)
+        //        .Map(dst => dst.WhsOrderOutProducts, src => src.Products)
+        //        .Ignore(dst => dst.StatusId)
+        //        .Ignore(dst => dst.Status)
+        //        .Ignore(dst => dst.QueueId)
+        //        .Ignore(dst => dst.Queue)
+        //        .Ignore(dst => dst.Warehouse)
+        //        .Ignore(dst => dst.BaseDocuments)
+        //        .Ignore(dst => dst.Products)
+        //        .RequireDestinationMemberSource(true);
+        //}
+
+        public override void Register(TypeAdapterConfig config)
         {
-            TypeAdapterConfig<WhsOrderOutDto, WhsOrderOut>
-                .NewConfig()
+            config
+                .NewConfig<WhsOrderOutDto, WhsOrderOut>()
                 .Map(dst => dst.WhsOrderOutBaseDocuments, src => src.BaseDocuments)
                 .Map(dst => dst.WhsOrderOutProducts, src => src.Products)
                 .Ignore(dst => dst.StatusId)

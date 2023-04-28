@@ -12,6 +12,7 @@ using PickItEasy.Application.Services.WhsOrder.Out;
 using PickItEasy.Application.Services.WhsOrder.Out.Search;
 using PickItEasy.Domain.Entities.WhsOrder.Out;
 using System.Reflection;
+using PickItEasy.Application.Models;
 
 namespace PickItEasy.Application
 {
@@ -34,7 +35,9 @@ namespace PickItEasy.Application
                 config.AddProfile<WhsOrderOutMappingProfile>();
                 config.AddProfile<WhsOrderOutQueueMappingProfile>();
                 config.AddProfile<WhsOrderOutStatusMappingProfile>();
-            }); services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
+            }); 
+            
+            services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
 
             //services.AddTransient(typeof(INotificationHandler<>), typeof(WeatherForecastCreateNotificationHandler));
             
@@ -49,8 +52,20 @@ namespace PickItEasy.Application
 
             //services.AddSingleton<TypeAdapterConfig>();
             //TypeAdapterConfig typeAdapterConfig = new TypeAdapterConfig();
-            WhsOrderOutDto.RegisterMapping();
-            WhsOrderOutBaseDocumentDto.RegisterMapping();
+            //WhsOrderOutDto.RegisterMapping();
+            //WhsOrderOutBaseDocumentDto.RegisterMapping();
+
+
+            services.AddMapster();
+
+            return services;
+        }
+
+        public static IServiceCollection AddMapster(this IServiceCollection services)
+        {
+            var typeAdapterConfig = TypeAdapterConfig.GlobalSettings;
+            Assembly applicationAssembly = typeof(MappedModel).Assembly;
+            typeAdapterConfig.Scan(applicationAssembly);
 
             return services;
         }
