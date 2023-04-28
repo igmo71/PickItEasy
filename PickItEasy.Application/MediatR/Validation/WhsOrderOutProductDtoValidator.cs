@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using PickItEasy.Application.Models.WhsOrder.Out.Dto;
 
-namespace PickItEasy.Application.Dtos.Validation
+namespace PickItEasy.Application.MediatR.Validation
 {
     public class WhsOrderOutProductDtoValidator : AbstractValidator<WhsOrderOutProductDto>
     {

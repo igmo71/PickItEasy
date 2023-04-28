@@ -2,7 +2,7 @@
 using PickItEasy.Application.Models.Products;
 using PickItEasy.Domain.Entities;
 
-namespace PickItEasy.Application.Dtos.Mapping
+namespace PickItEasy.Application.MediatR.Mapping
 {
     public class ProductMappingProfile : Profile
     {

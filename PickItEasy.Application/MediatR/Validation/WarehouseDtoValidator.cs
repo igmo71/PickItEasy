@@ -2,7 +2,7 @@
 using PickItEasy.Application.Common;
 using PickItEasy.Application.Models.Warehouses;
 
-namespace PickItEasy.Application.Dtos.Validation
+namespace PickItEasy.Application.MediatR.Validation
 {
     public class WarehouseDtoValidator : AbstractValidator<WarehouseDto>
     {

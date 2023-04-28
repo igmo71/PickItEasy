@@ -3,7 +3,7 @@ using PickItEasy.Application.Models.BaseDocuments;
 using PickItEasy.Application.Models.WhsOrder.Out.Dto;
 using PickItEasy.Domain.Entities;
 
-namespace PickItEasy.Application.Dtos.Mapping
+namespace PickItEasy.Application.MediatR.Mapping
 {
     public class BaseDocumentMappingProfile : Profile
     {

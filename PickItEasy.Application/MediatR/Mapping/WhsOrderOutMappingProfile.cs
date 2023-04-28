@@ -3,7 +3,7 @@ using PickItEasy.Application.Models.WhsOrder.Out.Dto;
 using PickItEasy.Application.Models.WhsOrder.Out.Vm;
 using PickItEasy.Domain.Entities.WhsOrder.Out;
 
-namespace PickItEasy.Application.Dtos.Mapping
+namespace PickItEasy.Application.MediatR.Mapping
 {
     public class WhsOrderOutMappingProfile : Profile
     {
