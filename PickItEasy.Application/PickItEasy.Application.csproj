@@ -27,8 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\WhsOrdersOut\Commands\Disable\" />
-    <Folder Include="Services\WhsOrdersOut\Notifications\" />
+    <Folder Include="MediatR\Services\WhsOrdersOut\Commands\Disable\" />
+    <Folder Include="MediatR\Services\WhsOrdersOut\Notifications\" />
   </ItemGroup>
 
 </Project>

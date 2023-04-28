@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using PickItEasy.Application.Interfaces.EventBus;
 using PickItEasy.Application.Interfaces.Services.WhsOrder.Out;
+using PickItEasy.Application.MediatR.Services.WhsOrdersOut.Commands.Create;
 using PickItEasy.Application.Models.Products;
 using PickItEasy.Application.Models.WhsOrder.Out.Dto;
 using PickItEasy.Application.Services.WhsOrder.Out.Search;
-using PickItEasy.Application.Services.WhsOrdersOut.Commands.Create;
 using PickItEasy.Application.Services.WhsOrdersOut.Commands.Delete;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetById;
 using PickItEasy.Application.Services.WhsOrdersOut.Queries.GetList;

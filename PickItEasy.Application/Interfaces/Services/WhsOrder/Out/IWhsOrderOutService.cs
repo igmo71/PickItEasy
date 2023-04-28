@@ -1,6 +1,6 @@
-﻿using PickItEasy.Application.Models.WhsOrder.Out.Dto;
+﻿using PickItEasy.Application.MediatR.Services.WhsOrder.Out.Search;
+using PickItEasy.Application.Models.WhsOrder.Out.Dto;
 using PickItEasy.Application.Models.WhsOrder.Out.Vm;
-using PickItEasy.Application.Services.WhsOrder.Out.Search;
 
 namespace PickItEasy.Application.Interfaces.Services.WhsOrder.Out
 {

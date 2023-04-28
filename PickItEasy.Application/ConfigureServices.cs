@@ -6,12 +6,12 @@ using PickItEasy.Application.Common.Behaviors;
 using PickItEasy.Application.Dtos.Mapping;
 using PickItEasy.Application.Interfaces.Services;
 using PickItEasy.Application.Interfaces.Services.WhsOrder.Out;
+using PickItEasy.Application.MediatR.Services.BaseDocuments;
+using PickItEasy.Application.MediatR.Services.Products;
+using PickItEasy.Application.MediatR.Services.Warehouses;
+using PickItEasy.Application.MediatR.Services.WhsOrder.Out;
+using PickItEasy.Application.MediatR.Services.WhsOrder.Out.Search;
 using PickItEasy.Application.Models.WhsOrder.Out.Dto;
-using PickItEasy.Application.Services.BaseDocuments;
-using PickItEasy.Application.Services.Products;
-using PickItEasy.Application.Services.Warehouses;
-using PickItEasy.Application.Services.WhsOrder.Out;
-using PickItEasy.Application.Services.WhsOrder.Out.Search;
 using PickItEasy.Domain.Entities.WhsOrder.Out;
 using System.Reflection;
 
