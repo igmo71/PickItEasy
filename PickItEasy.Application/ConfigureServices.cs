@@ -49,13 +49,7 @@ namespace PickItEasy.Application
             services.AddScoped<IWhsOrderOutService, WhsOrderOutService>();
             services.AddScoped<IWhsOrderOutQueueService, WhsOrderOutQueueService>();
             services.AddScoped<IWhsOrderOutStatusService, WhsOrderOutStatusService>();
-
-            //services.AddSingleton<TypeAdapterConfig>();
-            //TypeAdapterConfig typeAdapterConfig = new TypeAdapterConfig();
-            //WhsOrderOutDto.RegisterMapping();
-            //WhsOrderOutBaseDocumentDto.RegisterMapping();
-
-
+            
             services.AddMapster();
 
             return services;
